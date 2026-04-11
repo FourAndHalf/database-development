@@ -1,0 +1,853 @@
+{
+  "resolved": [
+    {
+      "query_title": "Amazon DynamoDB: A Scalable, Predictably Performant, and Fully Managed NoSQL Database Service",
+      "query_year": 2022,
+      "matched_title": "Priority-Driven Differentiated Performance for NoSQL Database-as-a-Service",
+      "matched_year": 2023,
+      "score": 0.674,
+      "openalex_id": "https://openalex.org/W4383112791",
+      "download_url": "https://doi.org/10.1109/tcc.2023.3292031"
+    },
+    {
+      "query_title": "Riak: A Distributed, Eventually-Consistent Key/Value Data Store",
+      "query_year": null,
+      "matched_title": "CockroachDB: The Resilient Geo-Distributed SQL Database",
+      "matched_year": 2020,
+      "score": 0.517,
+      "openalex_id": "https://openalex.org/W3031917602",
+      "download_url": "https://dl.acm.org/doi/pdf/10.1145/3318464.3386134"
+    },
+    {
+      "query_title": "Consistent Hashing",
+      "query_year": 1997,
+      "matched_title": "Consistent hashing and random trees",
+      "matched_year": 1997,
+      "score": 0.929,
+      "openalex_id": "https://openalex.org/W2020765652",
+      "download_url": "https://doi.org/10.1145/258533.258660"
+    },
+    {
+      "query_title": "Spanner Sans Spanner: Bigtable with Global Consistency and Coordination",
+      "query_year": 2011,
+      "matched_title": "Exploring the design space of highly-available distributed transactions",
+      "matched_year": 2018,
+      "score": 0.483,
+      "openalex_id": "https://openalex.org/W2929989411",
+      "download_url": "https://hal.science/tel-01956321v2/document"
+    },
+    {
+      "query_title": "Bigtable: A Distributed Storage System for Structured Data",
+      "query_year": 2006,
+      "matched_title": "Bigtable: a distributed storage system for structured data",
+      "matched_year": 2006,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W2624304035",
+      "download_url": "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.101.9822"
+    },
+    {
+      "query_title": "HBase: The Hadoop Database",
+      "query_year": null,
+      "matched_title": "HBase: The Definitive Guide",
+      "matched_year": 2011,
+      "score": 0.599,
+      "openalex_id": "https://openalex.org/W1854079585",
+      "download_url": "http://deposit.dnb.de/cgi-bin/dokserv?id=3672194&amp;prov=M&amp;dok_var=1&amp;dok_ext=htm"
+    },
+    {
+      "query_title": "PNUTS: Yahoo!\u2019s Hosted Data Serving Platform",
+      "query_year": 2008,
+      "matched_title": "Toward Scalable Systems for Big Data Analytics: A Technology Tutorial",
+      "matched_year": 2014,
+      "score": 0.5,
+      "openalex_id": "https://openalex.org/W2157954477",
+      "download_url": "https://ieeexplore.ieee.org/ielx7/6287639/6705689/06842585.pdf"
+    },
+    {
+      "query_title": "Megastore: Scalable, Highly Available Storage for Interactive Services",
+      "query_year": 2011,
+      "matched_title": "Megastore: Providing Scalable, Highly Available Storage for Interactive Services",
+      "matched_year": 2011,
+      "score": 1.082,
+      "openalex_id": "https://openalex.org/W2130923111",
+      "download_url": "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.185.4719"
+    },
+    {
+      "query_title": "Cassandra \u2013 A Decentralized Structured Storage System",
+      "query_year": 2009,
+      "matched_title": "Consistency-based service level agreements for cloud storage",
+      "matched_year": 2013,
+      "score": 0.46,
+      "openalex_id": "https://openalex.org/W2078432474",
+      "download_url": "https://dl.acm.org/doi/pdf/10.1145/2517349.2522731"
+    },
+    {
+      "query_title": "Dynamo and Bigtable \u2013 Review and Comparison",
+      "query_year": null,
+      "matched_title": "Dynamo and BigTable &amp;#x2014; Review and comparison",
+      "matched_year": 2014,
+      "score": 0.941,
+      "openalex_id": "https://openalex.org/W2029047511",
+      "download_url": "https://doi.org/10.1109/eeei.2014.7005771"
+    },
+    {
+      "query_title": "Fauna: Replicated Databases Without Strict Serializability",
+      "query_year": 2014,
+      "matched_title": "The Logical Timestamp Skew Anomaly in Event-Replicated Transaction Schedulers",
+      "matched_year": 2021,
+      "score": 0.458,
+      "openalex_id": "https://openalex.org/W3185066020",
+      "download_url": "https://ieeexplore.ieee.org/ielx7/6287639/6514899/09521923.pdf"
+    },
+    {
+      "query_title": "Comprehensive comparison of NoSQL Databases",
+      "query_year": 2018,
+      "matched_title": "SQL and NoSQL Databases",
+      "matched_year": 2023,
+      "score": 0.615,
+      "openalex_id": "https://openalex.org/W4382520407",
+      "download_url": "https://link.springer.com/content/pdf/bfm:978-3-031-27908-9/1?pdf=chapter%20toc"
+    },
+    {
+      "query_title": "Spanner: Google\u2019s Globally-Distributed Database",
+      "query_year": 2012,
+      "matched_title": "Spanner: Google's globally-distributed database",
+      "matched_year": 2012,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W2013409485",
+      "download_url": "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.258.9924"
+    },
+    {
+      "query_title": "F1: A Distributed SQL Database That Scales",
+      "query_year": 2013,
+      "matched_title": "CockroachDB: The Resilient Geo-Distributed SQL Database",
+      "matched_year": 2020,
+      "score": 0.647,
+      "openalex_id": "https://openalex.org/W3031917602",
+      "download_url": "https://dl.acm.org/doi/pdf/10.1145/3318464.3386134"
+    },
+    {
+      "query_title": "CockroachDB: The Resilient Geo-Distributed SQL Database",
+      "query_year": 2020,
+      "matched_title": "CockroachDB: The Resilient Geo-Distributed SQL Database",
+      "matched_year": 2020,
+      "score": 1.3,
+      "openalex_id": "https://openalex.org/W3031917602",
+      "download_url": "https://dl.acm.org/doi/pdf/10.1145/3318464.3386134"
+    },
+    {
+      "query_title": "NewSQL: An Introduction",
+      "query_year": 2010,
+      "matched_title": "Towards next generation cyber-physical systems and digital twins for construction",
+      "matched_year": 2021,
+      "score": 0.45,
+      "openalex_id": "https://openalex.org/W3185933388",
+      "download_url": "http://www.itcon.org/papers/2021_27-SI-ITcon-Akanmu.pdf"
+    },
+    {
+      "query_title": "Omega: Flexible, Scalable Multi-Database Concurrency Control",
+      "query_year": 2013,
+      "matched_title": "A survey of scheduling problems with setup times or costs",
+      "matched_year": 2006,
+      "score": 0.43,
+      "openalex_id": "https://openalex.org/W2157793635",
+      "download_url": "http://ira.lib.polyu.edu.hk/bitstream/10397/1269/1/SetupSurvey-2006%28June-19%29.pdf"
+    },
+    {
+      "query_title": "Paxos Made Simple",
+      "query_year": 2001,
+      "matched_title": "Paxos Made Simple",
+      "matched_year": 2001,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W2182688186",
+      "download_url": "https://courses.cs.washington.edu/courses/cse490h/11wi/CSE490H_files/CSE550.paxos-simple.pdf"
+    },
+    {
+      "query_title": "Viewstamped Replication Revisited",
+      "query_year": 1988,
+      "matched_title": "Viewstamped Replication Revisited",
+      "matched_year": 2012,
+      "score": 1.2,
+      "openalex_id": "https://openalex.org/W1549820118",
+      "download_url": "http://hdl.handle.net/1721.1/71763"
+    },
+    {
+      "query_title": "The Chubby Lock Service",
+      "query_year": 2006,
+      "matched_title": "The Chubby lock service for loosely-coupled distributed systems",
+      "matched_year": 2006,
+      "score": 0.785,
+      "openalex_id": "https://openalex.org/W1992479210",
+      "download_url": "http://courses.cs.vt.edu/~cs5204/fall11-kafura/Papers/FaultTolerance/Chubby-Lock-Service.pdf"
+    },
+    {
+      "query_title": "Chain Replication for Supporting High Throughput and Availability",
+      "query_year": 2004,
+      "matched_title": "Chain replication for supporting high throughput and availability",
+      "matched_year": 2004,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W1524103123",
+      "download_url": "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.60.3800"
+    },
+    {
+      "query_title": "Paxos Made Practical",
+      "query_year": 2007,
+      "matched_title": "The part-time parliament",
+      "matched_year": 1998,
+      "score": 0.464,
+      "openalex_id": "https://openalex.org/W2075854425",
+      "download_url": "https://dl.acm.org/doi/pdf/10.1145/279227.279229"
+    },
+    {
+      "query_title": "Raft: In Search of an Understandable Consensus Algorithm",
+      "query_year": 2014,
+      "matched_title": "A Comprehensive Review of Blockchain Consensus Mechanisms",
+      "matched_year": 2021,
+      "score": 0.529,
+      "openalex_id": "https://openalex.org/W3136753322",
+      "download_url": "https://ieeexplore.ieee.org/ielx7/6287639/9312710/09376868.pdf"
+    },
+    {
+      "query_title": "Flexible Paxos",
+      "query_year": 2016,
+      "matched_title": "Flexible Paxos : An Industry Perspective",
+      "matched_year": 2017,
+      "score": 0.788,
+      "openalex_id": "https://openalex.org/W2952461139",
+      "download_url": "http://urn.kb.se/resolve?urn=urn:nbn:se:bth-14869"
+    },
+    {
+      "query_title": "EPaxos: Egalitarian Paxos",
+      "query_year": 2013,
+      "matched_title": "There is more consensus in Egalitarian parliaments",
+      "matched_year": 2013,
+      "score": 0.664,
+      "openalex_id": "https://openalex.org/W2067740651",
+      "download_url": "https://doi.org/10.1145/2517349.2517350"
+    },
+    {
+      "query_title": "Vertical Paxos",
+      "query_year": 2009,
+      "matched_title": "Vertical paxos and primary-backup replication",
+      "matched_year": 2009,
+      "score": 0.725,
+      "openalex_id": "https://openalex.org/W2118726720",
+      "download_url": "https://doi.org/10.1145/1582716.1582783"
+    },
+    {
+      "query_title": "ZooKeeper: Wait-free Coordination for Internet-scale Systems",
+      "query_year": 2010,
+      "matched_title": "ZooKeeper: wait-free coordination for internet-scale systems",
+      "matched_year": 2010,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W192446467",
+      "download_url": "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.178.5750"
+    },
+    {
+      "query_title": "The Log-Structured Merge-Tree (LSM-Tree)",
+      "query_year": 1996,
+      "matched_title": "The log-structured merge-tree (LSM-tree)",
+      "matched_year": 1996,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W2068739275",
+      "download_url": "https://doi.org/10.1007/s002360050048"
+    },
+    {
+      "query_title": "WiscKey: Separating Keys from Values in SSD-conscious Storage",
+      "query_year": 2016,
+      "matched_title": "WiscKey: separating keys from values in SSD-conscious storage",
+      "matched_year": 2016,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W2267406438",
+      "download_url": "https://dblp.uni-trier.de/db/conf/fast/fast2016.html#LuPAA16"
+    },
+    {
+      "query_title": "RocksDB: Evolution of Development Priorities in a Key-Value Store",
+      "query_year": 2021,
+      "matched_title": "RocksDB: Evolution of Development Priorities in a Key-value Store Serving Large-scale Applications",
+      "matched_year": 2021,
+      "score": 1.095,
+      "openalex_id": "https://openalex.org/W3207452942",
+      "download_url": "https://dl.acm.org/doi/pdf/10.1145/3483840"
+    },
+    {
+      "query_title": "WiredTiger: A High-Performance NoSQL Database Engine",
+      "query_year": 2014,
+      "matched_title": "Modeling temporal aspects of sensor data for MongoDB NoSQL database",
+      "matched_year": 2017,
+      "score": 0.592,
+      "openalex_id": "https://openalex.org/W2600197702",
+      "download_url": "https://journalofbigdata.springeropen.com/counter/pdf/10.1186/s40537-017-0068-5"
+    },
+    {
+      "query_title": "Google File System",
+      "query_year": 2003,
+      "matched_title": "The Google file system",
+      "matched_year": 2003,
+      "score": 1.15,
+      "openalex_id": "https://openalex.org/W2119565742",
+      "download_url": "https://doi.org/10.1145/1165389.945450"
+    },
+    {
+      "query_title": "LevelDB",
+      "query_year": 2011,
+      "matched_title": "Getting Started with LevelDB",
+      "matched_year": 2013,
+      "score": 0.55,
+      "openalex_id": "https://openalex.org/W2248148425",
+      "download_url": "http://cds.cern.ch/record/1641710"
+    },
+    {
+      "query_title": "InnoDB: The MySQL Storage Engine",
+      "query_year": 2005,
+      "matched_title": "InnoDB Database Forensics",
+      "matched_year": 2010,
+      "score": 0.586,
+      "openalex_id": "https://openalex.org/W2128387189",
+      "download_url": "https://doi.org/10.1109/aina.2010.152"
+    },
+    {
+      "query_title": "TPC-C, TPC-H Benchmarks",
+      "query_year": null,
+      "matched_title": "The mixed workload CH-benCHmark",
+      "matched_year": 2011,
+      "score": 0.578,
+      "openalex_id": "https://openalex.org/W2068245803",
+      "download_url": "https://doi.org/10.1145/1988842.1988850"
+    },
+    {
+      "query_title": "CAP Theorem",
+      "query_year": 2002,
+      "matched_title": "A Critique of the CAP Theorem",
+      "matched_year": 2015,
+      "score": 0.75,
+      "openalex_id": "https://openalex.org/W1825462490",
+      "download_url": "https://www.repository.cam.ac.uk/handle/1810/267054"
+    },
+    {
+      "query_title": "PACELC Theorem",
+      "query_year": 2010,
+      "matched_title": "Inadequacies of CAP Theorem",
+      "matched_year": 2016,
+      "score": 0.685,
+      "openalex_id": "https://openalex.org/W2532225439",
+      "download_url": "https://doi.org/10.5120/ijca2016911921"
+    },
+    {
+      "query_title": "Calvin: Fast Distributed Transactions",
+      "query_year": 2014,
+      "matched_title": "Fast and general distributed transactions using RDMA and HTM",
+      "matched_year": 2016,
+      "score": 0.654,
+      "openalex_id": "https://openalex.org/W2338370098",
+      "download_url": "https://doi.org/10.1145/2901318.2901349"
+    },
+    {
+      "query_title": "FaunaDB: Calvin at global scale",
+      "query_year": 2019,
+      "matched_title": "CockroachDB: The Resilient Geo-Distributed SQL Database",
+      "matched_year": 2020,
+      "score": 0.507,
+      "openalex_id": "https://openalex.org/W3031917602",
+      "download_url": "https://dl.acm.org/doi/pdf/10.1145/3318464.3386134"
+    },
+    {
+      "query_title": "MegaStore and Megastore extended consistency",
+      "query_year": 2011,
+      "matched_title": "Transaction chains",
+      "matched_year": 2013,
+      "score": 0.487,
+      "openalex_id": "https://openalex.org/W2143339985",
+      "download_url": "https://dl.acm.org/doi/pdf/10.1145/2517349.2522729"
+    },
+    {
+      "query_title": "Global Secondary Indexes in F1",
+      "query_year": 2013,
+      "matched_title": "PLUMED 2: New feathers for an old bird",
+      "matched_year": 2013,
+      "score": 0.439,
+      "openalex_id": "https://openalex.org/W2146411229",
+      "download_url": "https://www.sciencedirect.com/science/article/pii/S0010465513003196"
+    },
+    {
+      "query_title": "Dremel: Interactive Analysis of Web-Scale Datasets",
+      "query_year": 2010,
+      "matched_title": "Toward Scalable Systems for Big Data Analytics: A Technology Tutorial",
+      "matched_year": 2014,
+      "score": 0.442,
+      "openalex_id": "https://openalex.org/W2157954477",
+      "download_url": "https://ieeexplore.ieee.org/ielx7/6287639/6705689/06842585.pdf"
+    },
+    {
+      "query_title": "BigDAWG Polystore Architecture",
+      "query_year": 2017,
+      "matched_title": "The BigDAWG polystore system and architecture",
+      "matched_year": 2016,
+      "score": 0.95,
+      "openalex_id": "https://openalex.org/W2523955029",
+      "download_url": "https://arxiv.org/pdf/1609.07548"
+    },
+    {
+      "query_title": "MADlib: Scalable SQL Analytics",
+      "query_year": 2014,
+      "matched_title": "The MADlib analytics library",
+      "matched_year": 2012,
+      "score": 0.611,
+      "openalex_id": "https://openalex.org/W2044849727",
+      "download_url": "https://doi.org/10.14778/2367502.2367510"
+    },
+    {
+      "query_title": "Pig, Hive",
+      "query_year": null,
+      "matched_title": "Pig Vs. Hive Use Case Analysis",
+      "matched_year": 2016,
+      "score": 0.532,
+      "openalex_id": "https://openalex.org/W2573247289",
+      "download_url": "https://doi.org/10.14257/ijdta.2016.9.12.24"
+    },
+    {
+      "query_title": "Numas: In-network query processing",
+      "query_year": 2016,
+      "matched_title": "High-Speed Query Processing over High-Speed Networks",
+      "matched_year": 2015,
+      "score": 0.597,
+      "openalex_id": "https://openalex.org/W1535337707",
+      "download_url": "https://arxiv.org/pdf/1502.07169"
+    },
+    {
+      "query_title": "SQL on NoSQL",
+      "query_year": 2018,
+      "matched_title": "SQL and NoSQL Databases",
+      "matched_year": 2023,
+      "score": 0.729,
+      "openalex_id": "https://openalex.org/W4382520407",
+      "download_url": "https://link.springer.com/content/pdf/bfm:978-3-031-27908-9/1?pdf=chapter%20toc"
+    },
+    {
+      "query_title": "YCSB: Yahoo! Cloud Serving Benchmark",
+      "query_year": 2010,
+      "matched_title": "Benchmarking cloud serving systems with YCSB",
+      "matched_year": 2010,
+      "score": 0.612,
+      "openalex_id": "https://openalex.org/W1985229168",
+      "download_url": "https://doi.org/10.1145/1807128.1807152"
+    },
+    {
+      "query_title": "LinkBench: A DB Benchmark Based on the Facebook Social Graph",
+      "query_year": 2013,
+      "matched_title": "Comparison of Graph Databases and Relational Databases When Handling Large-Scale Social Data",
+      "matched_year": 2016,
+      "score": 0.511,
+      "openalex_id": "https://openalex.org/W2565398565",
+      "download_url": "http://hdl.handle.net/10388/7434"
+    },
+    {
+      "query_title": "OLTP-Bench",
+      "query_year": 2016,
+      "matched_title": "OLTP-Bench",
+      "matched_year": 2013,
+      "score": 1.15,
+      "openalex_id": "https://openalex.org/W2240667924",
+      "download_url": "https://doi.org/10.14778/2732240.2732246"
+    },
+    {
+      "query_title": "TPCC, TPC-DS, TPC-H",
+      "query_year": null,
+      "matched_title": "Stream Processing Systems Benchmark: StreamBench",
+      "matched_year": 2017,
+      "score": 0.412,
+      "openalex_id": "https://openalex.org/W2560869657",
+      "download_url": "https://aaltodoc.aalto.fi/bitstreams/01ea8c77-1187-4c3f-8aa2-653852dce8c9/download"
+    },
+    {
+      "query_title": "LinkBench",
+      "query_year": 2014,
+      "matched_title": "LinkBench",
+      "matched_year": 2013,
+      "score": 1.2,
+      "openalex_id": "https://openalex.org/W2090330503",
+      "download_url": "https://doi.org/10.1145/2463676.2465296"
+    },
+    {
+      "query_title": "Wikipedia Trace Characterization",
+      "query_year": null,
+      "matched_title": "LNCipedia: a database for annotated human lncRNA transcript sequences and structures",
+      "matched_year": 2012,
+      "score": 0.413,
+      "openalex_id": "https://openalex.org/W2165423269",
+      "download_url": "https://academic.oup.com/nar/article-pdf/41/D1/D246/18789333/gks915.pdf"
+    },
+    {
+      "query_title": "The Chubby lock service for loosely-coupled distributed systems.",
+      "query_year": 2006,
+      "matched_title": "The Chubby lock service for loosely-coupled distributed systems",
+      "matched_year": 2006,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W1992479210",
+      "download_url": "http://courses.cs.vt.edu/~cs5204/fall11-kafura/Papers/FaultTolerance/Chubby-Lock-Service.pdf"
+    },
+    {
+      "query_title": "Benchmarking Cloud Serving Systems with YCSB.",
+      "query_year": 2010,
+      "matched_title": "Benchmarking cloud serving systems with YCSB",
+      "matched_year": 2010,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W1985229168",
+      "download_url": "https://doi.org/10.1145/1807128.1807152"
+    },
+    {
+      "query_title": "Fast Distributed Transactions and Strongly Consistent Replication for OLTP Database Systems.",
+      "query_year": 2014,
+      "matched_title": "Fast Distributed Transactions and Strongly Consistent Replication for OLTP Database Systems",
+      "matched_year": 2014,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W2067055328",
+      "download_url": "https://doi.org/10.1145/2556685"
+    },
+    {
+      "query_title": "In Search of an Understandable Consensus Algorithm.",
+      "query_year": 2014,
+      "matched_title": "In search of an understandable consensus algorithm",
+      "matched_year": 2014,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W2156580773",
+      "download_url": "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.998.3935"
+    },
+    {
+      "query_title": "Evolution of Development Priorities in Key-value Stores: The RocksDB Experience.",
+      "query_year": 2021,
+      "matched_title": "Evolution of Development Priorities in Key-value Stores Serving Large-scale Applications: The {RocksDB} Experience",
+      "matched_year": 2021,
+      "score": 0.975,
+      "openalex_id": "https://openalex.org/W3130725567",
+      "download_url": "https://www.usenix.org/system/files/fast21-dong.pdf"
+    },
+    {
+      "query_title": "Bigtable vs. Cassandra vs. Dynamo",
+      "query_year": 2012,
+      "matched_title": "Big data storage technologies: a survey",
+      "matched_year": 2017,
+      "score": 0.477,
+      "openalex_id": "https://openalex.org/W2759348285",
+      "download_url": "https://link.springer.com/content/pdf/10.1631%2FFITEE.1500441.pdf"
+    },
+    {
+      "query_title": "Amazon SimpleDB",
+      "query_year": 2009,
+      "matched_title": "\u5165\u9580Amazon SimpleDB\u30d7\u30ed\u30b0\u30e9\u30df\u30f3\u30b0 : \u8eab\u8fd1\u306aKVS/\u30af\u30e9\u30a6\u30c9\u30b9\u30c8\u30ec\u30fc\u30b8\u6d3b\u7528\u306e\u57fa\u790e\u77e5\u8b58\u304b\u3089API\u3001\u30af\u30e9\u30a4\u30a2\u30f3\u30c8\u958b\u767a\u307e\u3067",
+      "matched_year": 2011,
+      "score": 0.939,
+      "openalex_id": "https://openalex.org/W601103401",
+      "download_url": "https://ci.nii.ac.jp/ncid/BB05594060"
+    },
+    {
+      "query_title": "O\u2019Neill",
+      "query_year": 2012,
+      "matched_title": "Eugene O\u2019Neill",
+      "matched_year": 1982,
+      "score": 0.817,
+      "openalex_id": "https://openalex.org/W4214822953",
+      "download_url": "https://doi.org/10.1007/978-1-349-16913-9"
+    },
+    {
+      "query_title": "MongoDB architecture",
+      "query_year": null,
+      "matched_title": "MongoDB Architecture",
+      "matched_year": 2015,
+      "score": 1.15,
+      "openalex_id": "https://openalex.org/W4242712111",
+      "download_url": "https://doi.org/10.1007/978-1-4842-0647-8_7"
+    },
+    {
+      "query_title": "Azure Cosmos DB",
+      "query_year": 2017,
+      "matched_title": "Azure Cosmos DB Overview",
+      "matched_year": 2018,
+      "score": 0.969,
+      "openalex_id": "https://openalex.org/W2885260953",
+      "download_url": "https://doi.org/10.1007/978-1-4842-3682-6_2"
+    },
+    {
+      "query_title": "Aerospike",
+      "query_year": null,
+      "matched_title": "Aerospike",
+      "matched_year": 2016,
+      "score": 1.15,
+      "openalex_id": "https://openalex.org/W2547226717",
+      "download_url": "https://doi.org/10.14778/3007263.3007276"
+    },
+    {
+      "query_title": "Part-Time Parliament",
+      "query_year": 1989,
+      "matched_title": "The part-time parliament",
+      "matched_year": 1998,
+      "score": 1.109,
+      "openalex_id": "https://openalex.org/W2075854425",
+      "download_url": "https://dl.acm.org/doi/pdf/10.1145/279227.279229"
+    },
+    {
+      "query_title": "Viewstamped Replication",
+      "query_year": 1988,
+      "matched_title": "Viewstamped Replication Revisited",
+      "matched_year": 2012,
+      "score": 1.021,
+      "openalex_id": "https://openalex.org/W1549820118",
+      "download_url": "http://hdl.handle.net/1721.1/71763"
+    },
+    {
+      "query_title": "ZooKeeper: Wait-free Coordination",
+      "query_year": 2010,
+      "matched_title": "ZooKeeper: wait-free coordination for internet-scale systems",
+      "matched_year": 2010,
+      "score": 0.953,
+      "openalex_id": "https://openalex.org/W192446467",
+      "download_url": "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.178.5750"
+    },
+    {
+      "query_title": "Chain Replication",
+      "query_year": 2004,
+      "matched_title": "Byzantine Chain Replication",
+      "matched_year": 2012,
+      "score": 0.923,
+      "openalex_id": "https://openalex.org/W2160966042",
+      "download_url": "https://doi.org/10.1007/978-3-642-35476-2_24"
+    },
+    {
+      "query_title": "LSM-Tree",
+      "query_year": 1996,
+      "matched_title": "The log-structured merge-tree (LSM-tree)",
+      "matched_year": 1996,
+      "score": 0.598,
+      "openalex_id": "https://openalex.org/W2068739275",
+      "download_url": "https://doi.org/10.1007/s002360050048"
+    },
+    {
+      "query_title": "WiscKey",
+      "query_year": 2016,
+      "matched_title": "WiscKey",
+      "matched_year": 2017,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W2594680891",
+      "download_url": "http://dl.acm.org/ft_gateway.cfm?id=3033273&type=pdf"
+    },
+    {
+      "query_title": "InnoDB",
+      "query_year": null,
+      "matched_title": "InnoDB Locks",
+      "matched_year": 2021,
+      "score": 0.817,
+      "openalex_id": "https://openalex.org/W4244939308",
+      "download_url": "https://doi.org/10.1007/978-1-4842-6652-6_7"
+    },
+    {
+      "query_title": "LLAMA",
+      "query_year": 2012,
+      "matched_title": "Llama",
+      "matched_year": 2011,
+      "score": 1.2,
+      "openalex_id": "https://openalex.org/W2162709812",
+      "download_url": "https://doi.org/10.1145/1989323.1989424"
+    },
+    {
+      "query_title": "BP-trees / fractal trees",
+      "query_year": 2011,
+      "matched_title": "Recurrence plots for the analysis of complex systems",
+      "matched_year": 2007,
+      "score": 0.478,
+      "openalex_id": "https://openalex.org/W2081681829",
+      "download_url": "https://arxiv.org/pdf/2501.13933"
+    },
+    {
+      "query_title": "SILT",
+      "query_year": 2011,
+      "matched_title": "SILT",
+      "matched_year": 2011,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W2077850713",
+      "download_url": "https://doi.org/10.1145/2043556.2043558"
+    },
+    {
+      "query_title": "HyperDex",
+      "query_year": 2013,
+      "matched_title": "HyperDex",
+      "matched_year": 2012,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W2139391817",
+      "download_url": "https://dl.acm.org/doi/pdf/10.1145/2342356.2342360"
+    },
+    {
+      "query_title": "ACID vs BASE",
+      "query_year": 2000,
+      "matched_title": "Nonalcoholic Fatty Liver Disease",
+      "matched_year": 2001,
+      "score": 0.514,
+      "openalex_id": "https://openalex.org/W2615637571",
+      "download_url": "https://diabetesjournals.org/diabetes/article-pdf/50/8/1844/369498/1844.pdf"
+    },
+    {
+      "query_title": "CALM Theorem",
+      "query_year": 2012,
+      "matched_title": "Keep CALM and CRDT On",
+      "matched_year": 2022,
+      "score": 0.474,
+      "openalex_id": "https://openalex.org/W4321448357",
+      "download_url": "https://doi.org/10.14778/3574245.3574268"
+    },
+    {
+      "query_title": "PACELC",
+      "query_year": 2010,
+      "matched_title": "Proving PACELC",
+      "matched_year": 2018,
+      "score": 0.75,
+      "openalex_id": "https://openalex.org/W3127457110",
+      "download_url": "https://doi.org/10.1145/3197406.3197420"
+    },
+    {
+      "query_title": "RedBlue consistency",
+      "query_year": 2013,
+      "matched_title": "Observable atomic consistency for CvRDTs",
+      "matched_year": 2018,
+      "score": 0.642,
+      "openalex_id": "https://openalex.org/W2788895132",
+      "download_url": "https://arxiv.org/pdf/1802.09462"
+    },
+    {
+      "query_title": "TAPIR",
+      "query_year": 2016,
+      "matched_title": "Tapir",
+      "matched_year": 2017,
+      "score": 1.25,
+      "openalex_id": "https://openalex.org/W2581356531",
+      "download_url": "http://dl.acm.org/ft_gateway.cfm?id=3018758&type=pdf"
+    },
+    {
+      "query_title": "Consistency without Partition",
+      "query_year": null,
+      "matched_title": "Constraints on fluid dynamics from equilibrium partition functions",
+      "matched_year": 2012,
+      "score": 0.5,
+      "openalex_id": "https://openalex.org/W1992014408",
+      "download_url": "https://arxiv.org/pdf/1203.3544"
+    },
+    {
+      "query_title": "Secondary Indexes in Distributed DBs",
+      "query_year": null,
+      "matched_title": "Direct Multiplex Assay of Lysosomal Enzymes in Dried Blood Spots for Newborn Screening",
+      "matched_year": 2004,
+      "score": 0.444,
+      "openalex_id": "https://openalex.org/W2159962592",
+      "download_url": "https://academic.oup.com/clinchem/article-pdf/50/10/1785/32738023/clinchem1785.pdf"
+    },
+    {
+      "query_title": "Trill",
+      "query_year": 2015,
+      "matched_title": "Trill",
+      "matched_year": 2014,
+      "score": 1.2,
+      "openalex_id": "https://openalex.org/W2244876453",
+      "download_url": "https://doi.org/10.14778/2735496.2735503"
+    },
+    {
+      "query_title": "Hyper",
+      "query_year": 2021,
+      "matched_title": "Algorithms for hyper-parameter optimization",
+      "matched_year": 2011,
+      "score": 0.408,
+      "openalex_id": "https://openalex.org/W2106411961",
+      "download_url": "https://inria.hal.science/hal-00642998"
+    },
+    {
+      "query_title": "LINE",
+      "query_year": 2019,
+      "matched_title": "LINE",
+      "matched_year": 2015,
+      "score": 1.2,
+      "openalex_id": "https://openalex.org/W1888005072",
+      "download_url": "https://arxiv.org/pdf/1503.03578"
+    },
+    {
+      "query_title": "SystemML, Spark SQL",
+      "query_year": null,
+      "matched_title": "SparkR",
+      "matched_year": 2016,
+      "score": 0.517,
+      "openalex_id": "https://openalex.org/W2443893970",
+      "download_url": "http://dl.acm.org/ft_gateway.cfm?id=2903740&type=pdf"
+    },
+    {
+      "query_title": "YCSB",
+      "query_year": 2010,
+      "matched_title": "YCSB++",
+      "matched_year": 2011,
+      "score": 1.2,
+      "openalex_id": "https://openalex.org/W2131492297",
+      "download_url": "https://doi.org/10.1145/2038916.2038925"
+    },
+    {
+      "query_title": "TailBench",
+      "query_year": 2018,
+      "matched_title": "PARTIES",
+      "matched_year": 2019,
+      "score": 0.525,
+      "openalex_id": "https://openalex.org/W2926143647",
+      "download_url": "https://dl.acm.org/doi/pdf/10.1145/3297858.3304005"
+    }
+  ],
+  "unresolved": [
+    {
+      "title": "Dynamo: Amazon\u2019s Highly Available Key-Value Store",
+      "year": 2007,
+      "raw_line": "- **\u201cDynamo: Amazon\u2019s Highly Available Key-Value Store\u201d** (DeCandia *et al.*, SOSP\u00a02007)\u30104\u2020L19-L25\u3011 \u2013 Introduces a partitioned, replicated **key-value store** with **tunable consistency** (gossip membership, vector clocks, quorum reads/writes, eventual consistency) used for Amazon\u2019s shopping cart. *Venue:* SOSP\u00a0\u201907. (PDF: AllThingsDistributed)"
+    },
+    {
+      "title": "Tsurgeon & HydraBase",
+      "year": null,
+      "raw_line": "- **\u201cTsurgeon & HydraBase\u201d** \u2013 Facebook\u2019s transactional layers (SIGMOD and SOCC papers)."
+    },
+    {
+      "title": "FLORIDA: FRATernal Lock-Free Replication for Geo-Distributed Transactions",
+      "year": 2020,
+      "raw_line": "- **\u201cFLORIDA: FRATernal Lock-Free Replication for Geo-Distributed Transactions\u201d** (DBWeek 2020) \u2013 Techniques for improving throughput in global DBs."
+    },
+    {
+      "title": "C-Store: A Column-oriented DBMS",
+      "year": 2005,
+      "raw_line": "- **\u201cC-Store: A Column-oriented DBMS\u201d** (Stonebraker *et al.*, VLDB\u00a02005) \u2013 Inspired columnar storage (Leads to Vertica)."
+    },
+    {
+      "title": "Spanner\u2019s Consistency",
+      "year": 2012,
+      "raw_line": "- **\u201cSpanner\u2019s Consistency\u201d** (Corbett\u00a0et\u00a0al., OSDI\u00a02012) \u2013 Describes TrueTime and external consistency\u301012\u2020L13-L22\u3011."
+    },
+    {
+      "title": "Troe: Dynamic Transaction Redirect on Mobile",
+      "year": null,
+      "raw_line": "- **\u201cTroe: Dynamic Transaction Redirect on Mobile\u201d** \u2013 UC Berkeley report (mobile DB optimization)."
+    },
+    {
+      "title": "Weak Consistency Models Survey",
+      "year": null,
+      "raw_line": "- **\u201cWeak Consistency Models Survey\u201d** \u2013 E.g., Brewer\u2019s CAP, PACELC, RedBlue consistency, etc. (IEEE Foundations and Trends in Databases)"
+    },
+    {
+      "title": "TOTALSTORE: Combining Paxos with Batch Processing",
+      "year": null,
+      "raw_line": "- **\u201cTOTALSTORE: Combining Paxos with Batch Processing\u201d** \u2013 Google internal."
+    },
+    {
+      "title": "Query2",
+      "year": 2017,
+      "raw_line": "- **Query2 (CIDR\u00a02017)** \u2013 W. Chang *et al.*: Approx query on row-stores."
+    },
+    {
+      "title": "TPC-C, TPC-H, TPC-DS",
+      "year": null,
+      "raw_line": "- **TPC-C, TPC-H, TPC-DS** \u2013 Industry-standard OLTP/OLAP benchmarks."
+    },
+    {
+      "title": "HelloDB",
+      "year": null,
+      "raw_line": "- **HelloDB** \u2013 Microbenchmark approach."
+    }
+  ]
+}
