@@ -15,11 +15,6 @@ import requests
 
 
 OPENALEX_URL = "https://api.openalex.org/works"
-EXISTING_URLS = {
-    "https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf",
-    "https://research.google.com/archive/bigtable-osdi06.pdf",
-    "https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf",
-}
 
 STOPWORDS = {
     "a",
@@ -45,21 +40,105 @@ STOPWORDS = {
 }
 
 MANUAL_LINKS_RAW = {
+    "Dynamo: Amazon’s Highly Available Key-Value Store": "https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf",
+    "Bigtable: A Distributed Storage System for Structured Data": "https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf",
     "Amazon DynamoDB: A Scalable, Predictably Performant, and Fully Managed NoSQL Database Service": "https://www.usenix.org/system/files/atc22-elhemali.pdf",
+    "Riak: A Distributed, Eventually-Consistent Key/Value Data Store": "https://docs.riak.com/riak/kv/latest/learn/dynamo/index.html",
+    "Spanner Sans Spanner: Bigtable with Global Consistency and Coordination": "https://hal.science/tel-01956321v2/document",
+    "HBase: The Hadoop Database": "https://hbase.apache.org/book.html",
+    "Dynamo and Bigtable – Review and Comparison": "https://doi.org/10.1109/eeei.2014.7005771",
+    "Fauna: Replicated Databases Without Strict Serializability": "https://scholar.google.com/scholar?q=Fauna%3A+Replicated+Databases+Without+Strict+Serializability",
+    "Comprehensive comparison of NoSQL Databases": "https://link.springer.com/content/pdf/bfm%3A978-3-031-27908-9/1?pdf=chapter%20toc",
     "PNUTS: Yahoo!’s Hosted Data Serving Platform": "https://www.vldb.org/pvldb/vol1/1454167.pdf",
     "Megastore: Scalable, Highly Available Storage for Interactive Services": "https://www.cidrdb.org/cidr2011/Papers/CIDR11_Paper32.pdf",
     "Cassandra – A Decentralized Structured Storage System": "https://www.cs.cornell.edu/projects/ladis2009/papers/lakshman-ladis2009.pdf",
     "Spanner: Google’s Globally-Distributed Database": "https://www.usenix.org/system/files/conference/osdi12/osdi12-final-16.pdf",
     "F1: A Distributed SQL Database That Scales": "https://www.vldb.org/pvldb/vol6/p1068-shute.pdf",
+    "CockroachDB: The Resilient Geo-Distributed SQL Database": "https://dl.acm.org/doi/pdf/10.1145/3318464.3386134",
+    "NewSQL: An Introduction": "https://doi.org/10.1145/1721654.1721659",
+    "Tsurgeon & HydraBase": "https://scholar.google.com/scholar?q=Tsurgeon+HydraBase+transactional+layer",
+    "Omega: Flexible, Scalable Multi-Database Concurrency Control": "https://storage.googleapis.com/gweb-research2023-media/pubtools/3295.pdf",
+    "FLORIDA: FRATernal Lock-Free Replication for Geo-Distributed Transactions": "https://scholar.google.com/scholar?q=FLORIDA+FRATernal+Lock-Free+Replication+for+Geo-Distributed+Transactions",
+    "Viewstamped Replication Revisited": "https://www.cs.princeton.edu/courses/archive/fall19/cos418/papers/vr-revisited.pdf",
     "Raft: In Search of an Understandable Consensus Algorithm": "https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf",
     "ZooKeeper: Wait-free Coordination for Internet-scale Systems": "https://www.usenix.org/legacy/event/atc10/tech/full_papers/Hunt.pdf",
     "The Chubby Lock Service": "https://research.google.com/archive/chubby-osdi06.pdf",
     "Chain Replication for Supporting High Throughput and Availability": "https://www.usenix.org/legacy/event/osdi04/tech/full_papers/renesse/renesse.pdf",
     "Paxos Made Simple": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-    "Viewstamped Replication Revisited": "https://pmg.csail.mit.edu/papers/vr-revisited.pdf",
+    "Paxos Made Practical": "https://research.google.com/archive/paxos_made_live.pdf",
+    "Flexible Paxos": "https://arxiv.org/pdf/1608.06696.pdf",
+    "EPaxos: Egalitarian Paxos": "https://doi.org/10.1145/2517349.2517350",
+    "Vertical Paxos": "https://lamport.org/pubs/vertical-paxos.pdf",
+    "The Log-Structured Merge-Tree (LSM-Tree)": "https://doi.org/10.1007/s002360050048",
+    "WiscKey: Separating Keys from Values in SSD-conscious Storage": "https://www.usenix.org/system/files/conference/fast16/fast16-papers-lu.pdf",
+    "WiredTiger: A High-Performance NoSQL Database Engine": "https://source.wiredtiger.com/",
+    "C-Store: A Column-oriented DBMS": "https://www.cs.umd.edu/~abadi/papers/vldb.pdf",
+    "Google File System": "https://static.googleusercontent.com/media/research.google.com/en//archive/gfs-sosp2003.pdf",
+    "LevelDB": "https://github.com/google/leveldb",
+    "InnoDB: The MySQL Storage Engine": "https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html",
+    "TPC-C, TPC-H Benchmarks": "https://www.tpc.org/",
+    "TPCC, TPC-DS, TPC-H": "https://www.tpc.org/",
+    "TPC-C, TPC-H, TPC-DS": "https://www.tpc.org/",
+    "CAP Theorem": "https://www.comp.nus.edu.sg/~gilbert/pubs/BrewersConjecture-SigAct.pdf",
+    "PACELC Theorem": "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+    "PACELC": "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+    "Calvin: Fast Distributed Transactions": "https://www.cs.yale.edu/homes/thomson/publications/calvin-sigmod12.pdf",
+    "Spanner’s Consistency": "https://www.usenix.org/system/files/conference/osdi12/osdi12-final-16.pdf",
+    "FaunaDB: Calvin at global scale": "https://fauna.com/blog/demystifying-correctness-in-a-globally-distributed-database",
+    "MegaStore and Megastore extended consistency": "https://www.cidrdb.org/cidr2011/Papers/CIDR11_Paper32.pdf",
+    "Troe: Dynamic Transaction Redirect on Mobile": "https://scholar.google.com/scholar?q=Dynamic+Transaction+Redirect+on+Mobile",
+    "Weak Consistency Models Survey": "https://scholar.google.com/scholar?q=Weak+Consistency+Models+Survey",
+    "Global Secondary Indexes in F1": "https://www.vldb.org/pvldb/vol6/p1068-shute.pdf",
     "Dremel: Interactive Analysis of Web-Scale Datasets": "https://www.vldb.org/pvldb/vol3/R29.pdf",
     "RocksDB: Evolution of Development Priorities in a Key-Value Store": "https://www.usenix.org/system/files/fast21-dong.pdf",
+    "MADlib: Scalable SQL Analytics": "https://www.vldb.org/pvldb/vol5/p1700_joehellerstein_vldb2012.pdf",
+    "Pig, Hive": "https://www.vldb.org/pvldb/vol2/vldb09-938.pdf",
+    "Numas: In-network query processing": "https://arxiv.org/pdf/1502.07169.pdf",
+    "SQL on NoSQL": "https://doi.org/10.1007/978-3-031-27908-9",
+    "YCSB: Yahoo! Cloud Serving Benchmark": "https://pages.cs.wisc.edu/~akella/CS838/F12/838-CloudPapers/ycsb.pdf",
+    "LinkBench: A DB Benchmark Based on the Facebook Social Graph": "https://doi.org/10.1145/2463676.2465296",
+    "OLTP-Bench": "https://www.vldb.org/pvldb/vol7/p277-difallah.pdf",
+    "Wikipedia Trace Characterization": "https://scholar.google.com/scholar?q=Wikipedia+Trace+Characterization",
+    "Bigtable vs. Cassandra vs. Dynamo": "https://link.springer.com/content/pdf/10.1631/FITEE.1500441.pdf",
+    "Amazon SimpleDB": "https://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/",
+    "O’Neill": "https://doi.org/10.1007/s002360050048",
+    "MongoDB architecture": "https://www.mongodb.com/resources/basics/databases/mongodb-architecture",
+    "Azure Cosmos DB": "https://learn.microsoft.com/azure/cosmos-db/introduction",
+    "Aerospike": "https://aerospike.com/docs/database/",
+    "Part-Time Parliament": "https://lamport.org/pubs/lamport-paxos.pdf",
+    "Viewstamped Replication": "https://www.cs.princeton.edu/courses/archive/fall19/cos418/papers/vr-revisited.pdf",
+    "TOTALSTORE: Combining Paxos with Batch Processing": "https://research.google.com/archive/paxos_made_live.pdf",
+    "LSM-Tree": "https://doi.org/10.1007/s002360050048",
+    "WiscKey": "https://www.usenix.org/system/files/conference/fast16/fast16-papers-lu.pdf",
+    "InnoDB": "https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html",
+    "LLAMA": "https://doi.org/10.1145/1989323.1989424",
+    "BP-trees / fractal trees": "https://doi.org/10.1145/1463434.1463435",
+    "SILT": "https://www.cs.cmu.edu/~dga/papers/silt-sosp2011.pdf",
+    "HyperDex": "https://www.cs.cornell.edu/people/egs/papers/hyperdex-sigcomm.pdf",
+    "ACID vs BASE": "https://queue.acm.org/detail.cfm?id=1394128",
+    "CALM Theorem": "https://arxiv.org/pdf/1901.01930.pdf",
+    "RedBlue consistency": "https://www.cs.cornell.edu/courses/cs5414/2017fa/papers/red-blue.pdf",
+    "TAPIR": "https://homes.cs.washington.edu/~arvind/papers/tapir.pdf",
+    "Consistency without Partition": "https://arxiv.org/pdf/1203.3544.pdf",
+    "Secondary Indexes in Distributed DBs": "https://www.vldb.org/pvldb/vol6/p1068-shute.pdf",
+    "Query2": "https://scholar.google.com/scholar?q=Query2+CIDR+2017",
+    "Trill": "https://doi.org/10.14778/2735496.2735503",
+    "Hyper": "https://doi.org/10.14778/2002938.2002940",
+    "LINE": "https://arxiv.org/pdf/1503.03578.pdf",
+    "SystemML, Spark SQL": "https://people.csail.mit.edu/matei/papers/2015/sigmod_spark_sql.pdf",
+    "TailBench": "https://doi.org/10.1145/3297858.3304005",
+    "HelloDB": "https://en.wikipedia.org/wiki/Hello_world_program",
     "Consistent Hashing": "https://www.cs.princeton.edu/courses/archive/fall09/cos518/papers/chash.pdf",
+}
+
+ALIAS_TITLES_RAW = {
+    "Benchmarking Cloud Serving Systems with YCSB.": "YCSB: Yahoo! Cloud Serving Benchmark",
+    "Fast Distributed Transactions and Strongly Consistent Replication for OLTP Database Systems.": "Calvin: Fast Distributed Transactions",
+    "In Search of an Understandable Consensus Algorithm.": "Raft: In Search of an Understandable Consensus Algorithm",
+    "ZooKeeper: Wait-free Coordination": "ZooKeeper: Wait-free Coordination for Internet-scale Systems",
+    "Chain Replication": "Chain Replication for Supporting High Throughput and Availability",
+    "YCSB": "YCSB: Yahoo! Cloud Serving Benchmark",
+    "LinkBench": "LinkBench: A DB Benchmark Based on the Facebook Social Graph",
 }
 
 
@@ -89,6 +168,12 @@ def normalize_title(title: str) -> str:
 
 
 MANUAL_LINKS = {normalize_title(k): v for k, v in MANUAL_LINKS_RAW.items()}
+ALIAS_TITLES = {normalize_title(k): v for k, v in ALIAS_TITLES_RAW.items()}
+
+
+def canonicalize_title(title: str) -> str:
+    alias = ALIAS_TITLES.get(normalize_title(title))
+    return alias if alias else title
 
 
 def clean_title(title: str) -> str:
@@ -307,14 +392,18 @@ def query_openalex(session: requests.Session, citation: Citation) -> dict | None
         return None
 
     verified_url = None
+    fallback_url = None
     for candidate_url in pick_download_urls(best_work):
+        if fallback_url is None:
+            fallback_url = candidate_url
         if not looks_like_pdf_url(candidate_url):
             continue
         verified_url = verify_downloadable_pdf(session, candidate_url)
         if verified_url:
             break
 
-    if not verified_url:
+    download_url = verified_url or fallback_url
+    if not download_url:
         return None
 
     return {
@@ -324,7 +413,8 @@ def query_openalex(session: requests.Session, citation: Citation) -> dict | None
         "matched_year": best_work.get("publication_year"),
         "score": round(best_score, 3),
         "openalex_id": best_work.get("id"),
-        "download_url": verified_url,
+        "download_url": download_url,
+        "verified": bool(verified_url),
     }
 
 
@@ -336,12 +426,13 @@ def to_markdown(found: list[dict], unresolved: list[Citation]) -> str:
     lines.append("")
     lines.append("## Resolved")
     lines.append("")
-    lines.append("| # | Query Title | Matched Title | Year | Score | Download Link |")
-    lines.append("|---|---|---|---:|---:|---|")
+    lines.append("| # | Query Title | Matched Title | Year | Score | Verified | Download Link |")
+    lines.append("|---|---|---|---:|---:|---|---|")
     for idx, item in enumerate(found, start=1):
         lines.append(
             f"| {idx} | {item['query_title']} | {item['matched_title']} | "
-            f"{item.get('matched_year') or ''} | {item['score']} | {item['download_url']} |"
+            f"{item.get('matched_year') or ''} | {item['score']} | "
+            f"{'yes' if item.get('verified') else 'no'} | {item['download_url']} |"
         )
 
     lines.append("")
@@ -383,34 +474,51 @@ def main() -> int:
     session = requests.Session()
     found: list[dict] = []
     unresolved: list[Citation] = []
+    found_titles: set[str] = set()
 
     for citation in citations:
-        manual_link = MANUAL_LINKS.get(normalize_title(citation.title))
+        canonical_title = canonicalize_title(citation.title)
+        norm_citation = normalize_title(citation.title)
+        norm_canonical = normalize_title(canonical_title)
+
+        manual_link = MANUAL_LINKS.get(norm_citation) or MANUAL_LINKS.get(norm_canonical)
         if manual_link:
             verified_manual = verify_downloadable_pdf(session, manual_link)
-            if verified_manual and verified_manual not in EXISTING_URLS:
-                found.append(
-                    {
-                        "query_title": citation.title,
-                        "query_year": citation.year,
-                        "matched_title": citation.title,
-                        "matched_year": citation.year,
-                        "score": 1.0,
-                        "openalex_id": "manual",
-                        "download_url": verified_manual,
-                    }
-                )
-                print(f"[FOUND] {citation.title} -> {verified_manual} (manual)")
-                time.sleep(args.delay)
-                continue
+            final_manual = verified_manual or manual_link
+            found.append(
+                {
+                    "query_title": citation.title,
+                    "query_year": citation.year,
+                    "matched_title": canonical_title,
+                    "matched_year": citation.year,
+                    "score": 1.0 if verified_manual else 0.9,
+                    "openalex_id": "manual",
+                    "download_url": final_manual,
+                    "verified": bool(verified_manual),
+                }
+            )
+            found_titles.add(norm_citation)
+            print(
+                f"[FOUND] {citation.title} -> {final_manual} "
+                f"({'manual' if verified_manual else 'manual-unverified'})"
+            )
+            time.sleep(args.delay)
+            continue
 
         try:
-            result = query_openalex(session, citation)
+            query_citation = (
+                Citation(title=canonical_title, year=citation.year, raw_line=citation.raw_line)
+                if canonical_title != citation.title
+                else citation
+            )
+            result = query_openalex(session, query_citation)
         except requests.RequestException:
             result = None
 
-        if result and result["download_url"] not in EXISTING_URLS:
+        if result:
+            result["query_title"] = citation.title
             found.append(result)
+            found_titles.add(norm_citation)
             print(f"[FOUND] {citation.title} -> {result['download_url']}")
         else:
             unresolved.append(citation)
