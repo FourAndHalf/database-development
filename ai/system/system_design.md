@@ -10,7 +10,7 @@ This document outlines the high-level system design of the Database Research RAG
 ## Components
 
 ### 1. Data Ingestion Pipeline (`services/ingestion`)
-- **PDF Parser:** Extracts text, tables, and metadata (Title, Authors, Year) from PDFs. Handles multi-column layouts common in academic papers.
+- **Docling Preprocessor / PDF Parser:** Uses Docling to extract text, tables, citations, and metadata (Title, Authors, Year) from PDFs, including multi-column layouts common in academic papers.
 - **Chunker:** Splits text into semantically meaningful units (e.g., paragraphs, sections). Preserves document hierarchy.
 - **Embedder:** Converts text chunks into dense vector representations using a pre-trained sentence transformer model (e.g., `all-MiniLM-L6-v2` or OpenAI's `text-embedding-3-small`).
 
@@ -30,6 +30,6 @@ This document outlines the high-level system design of the Database Research RAG
 ## Deployment Architecture
 - **AWS Infrastructure:**
   - **S3:** Raw PDFs and parsed JSON objects.
-  - **Lambda/ECS:** Ingestion tasks and API endpoints.
+  - **Lambda/ECS:** Ingestion tasks and backend API endpoints (running gRPC servers).
   - **OpenSearch Serverless:** Managed vector and text search.
   - **API Gateway:** Entry point for UI and external clients.

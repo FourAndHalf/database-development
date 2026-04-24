@@ -8,7 +8,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Amazon DynamoDB: A Scalable, Predictably Performant, and Fully Managed NoSQL Database Service",
@@ -18,7 +19,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.usenix.org/system/files/atc22-elhemali.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Riak: A Distributed, Eventually-Consistent Key/Value Data Store",
@@ -28,7 +30,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://docs.riak.com/riak/kv/latest/learn/dynamo/index.html",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Consistent Hashing",
@@ -38,7 +41,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.cs.princeton.edu/courses/archive/fall09/cos518/papers/chash.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Spanner Sans Spanner: Bigtable with Global Consistency and Coordination",
@@ -48,7 +52,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://hal.science/tel-01956321v2/document",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Bigtable: A Distributed Storage System for Structured Data",
@@ -58,7 +63,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "HBase: The Hadoop Database",
@@ -68,7 +74,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://hbase.apache.org/book.html",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "PNUTS: Yahoo!\u2019s Hosted Data Serving Platform",
@@ -78,7 +85,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.vldb.org/pvldb/vol1/1454167.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Megastore: Scalable, Highly Available Storage for Interactive Services",
@@ -88,7 +96,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.cidrdb.org/cidr2011/Papers/CIDR11_Paper32.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Cassandra \u2013 A Decentralized Structured Storage System",
@@ -98,7 +107,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.cs.cornell.edu/projects/ladis2009/papers/lakshman-ladis2009.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Dynamo and Bigtable \u2013 Review and Comparison",
@@ -108,7 +118,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://doi.org/10.1109/eeei.2014.7005771",
-      "verified": false
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Fauna: Replicated Databases Without Strict Serializability",
@@ -118,7 +129,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://scholar.google.com/scholar?q=Fauna%3A+Replicated+Databases+Without+Strict+Serializability",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Comprehensive comparison of NoSQL Databases",
@@ -128,7 +140,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://link.springer.com/content/pdf/bfm%3A978-3-031-27908-9/1?pdf=chapter%20toc",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Spanner: Google\u2019s Globally-Distributed Database",
@@ -138,7 +151,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.usenix.org/system/files/conference/osdi12/osdi12-final-16.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "F1: A Distributed SQL Database That Scales",
@@ -148,7 +162,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.vldb.org/pvldb/vol6/p1068-shute.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "CockroachDB: The Resilient Geo-Distributed SQL Database",
@@ -158,7 +173,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://dl.acm.org/doi/pdf/10.1145/3318464.3386134",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "NewSQL: An Introduction",
@@ -168,7 +184,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://doi.org/10.1145/1721654.1721659",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Tsurgeon & HydraBase",
@@ -178,7 +195,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://scholar.google.com/scholar?q=Tsurgeon+HydraBase+transactional+layer",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Omega: Flexible, Scalable Multi-Database Concurrency Control",
@@ -188,7 +206,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://storage.googleapis.com/gweb-research2023-media/pubtools/3295.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "FLORIDA: FRATernal Lock-Free Replication for Geo-Distributed Transactions",
@@ -198,7 +217,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://scholar.google.com/scholar?q=FLORIDA+FRATernal+Lock-Free+Replication+for+Geo-Distributed+Transactions",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Paxos Made Simple",
@@ -208,7 +228,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Viewstamped Replication Revisited",
@@ -218,7 +239,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.cs.princeton.edu/courses/archive/fall19/cos418/papers/vr-revisited.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "The Chubby Lock Service",
@@ -228,7 +250,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://static.googleusercontent.com/media/research.google.com/en//archive/chubby-osdi06.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Chain Replication for Supporting High Throughput and Availability",
@@ -238,7 +261,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.usenix.org/legacy/event/osdi04/tech/full_papers/renesse/renesse.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Paxos Made Practical",
@@ -248,7 +272,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://static.googleusercontent.com/media/research.google.com/en//archive/paxos_made_live.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Raft: In Search of an Understandable Consensus Algorithm",
@@ -258,7 +283,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Flexible Paxos",
@@ -268,7 +294,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://arxiv.org/pdf/1608.06696",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "EPaxos: Egalitarian Paxos",
@@ -278,7 +305,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://doi.org/10.1145/2517349.2517350",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Vertical Paxos",
@@ -288,7 +316,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://lamport.org/pubs/vertical-paxos.pdf",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "ZooKeeper: Wait-free Coordination for Internet-scale Systems",
@@ -298,7 +327,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.usenix.org/legacy/event/atc10/tech/full_papers/Hunt.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "The Log-Structured Merge-Tree (LSM-Tree)",
@@ -308,7 +338,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://doi.org/10.1007/s002360050048",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "WiscKey: Separating Keys from Values in SSD-conscious Storage",
@@ -318,7 +349,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.usenix.org/system/files/conference/fast16/fast16-papers-lu.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "RocksDB: Evolution of Development Priorities in a Key-Value Store",
@@ -328,7 +360,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.usenix.org/system/files/fast21-dong.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "WiredTiger: A High-Performance NoSQL Database Engine",
@@ -338,7 +371,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://source.wiredtiger.com/",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "C-Store: A Column-oriented DBMS",
@@ -348,7 +382,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.cs.umd.edu/~abadi/papers/vldb.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Google File System",
@@ -358,7 +393,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://static.googleusercontent.com/media/research.google.com/en//archive/gfs-sosp2003.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "LevelDB",
@@ -368,7 +404,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://github.com/google/leveldb",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "InnoDB: The MySQL Storage Engine",
@@ -378,7 +415,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "TPC-C, TPC-H Benchmarks",
@@ -388,7 +426,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://www.tpc.org/",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "CAP Theorem",
@@ -398,7 +437,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.comp.nus.edu.sg/~gilbert/pubs/BrewersConjecture-SigAct.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "PACELC Theorem",
@@ -408,7 +448,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Calvin: Fast Distributed Transactions",
@@ -418,7 +459,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.cs.yale.edu/homes/thomson/publications/calvin-sigmod12.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Spanner\u2019s Consistency",
@@ -428,7 +470,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.usenix.org/system/files/conference/osdi12/osdi12-final-16.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "FaunaDB: Calvin at global scale",
@@ -438,7 +481,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://fauna.com/blog/demystifying-correctness-in-a-globally-distributed-database",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "MegaStore and Megastore extended consistency",
@@ -448,7 +492,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.cidrdb.org/cidr2011/Papers/CIDR11_Paper32.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Troe: Dynamic Transaction Redirect on Mobile",
@@ -458,7 +503,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://scholar.google.com/scholar?q=Dynamic+Transaction+Redirect+on+Mobile",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Weak Consistency Models Survey",
@@ -468,7 +514,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://scholar.google.com/scholar?q=Weak+Consistency+Models+Survey",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Global Secondary Indexes in F1",
@@ -478,7 +525,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.vldb.org/pvldb/vol6/p1068-shute.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Dremel: Interactive Analysis of Web-Scale Datasets",
@@ -488,7 +536,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.vldb.org/pvldb/vol3/R29.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "BigDAWG Polystore Architecture",
@@ -498,7 +547,8 @@
       "score": 1.2,
       "openalex_id": "https://openalex.org/W2523955029",
       "download_url": "https://arxiv.org/pdf/1609.07548",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "MADlib: Scalable SQL Analytics",
@@ -508,7 +558,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.vldb.org/pvldb/vol5/p1700_joehellerstein_vldb2012.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Pig, Hive",
@@ -518,7 +569,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.vldb.org/pvldb/vol2/vldb09-938.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Numas: In-network query processing",
@@ -528,7 +580,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://arxiv.org/pdf/1502.07169",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "SQL on NoSQL",
@@ -538,7 +591,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://doi.org/10.1007/978-3-031-27908-9",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "YCSB: Yahoo! Cloud Serving Benchmark",
@@ -548,7 +602,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://pages.cs.wisc.edu/~akella/CS838/F12/838-CloudPapers/ycsb.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "LinkBench: A DB Benchmark Based on the Facebook Social Graph",
@@ -558,7 +613,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://doi.org/10.1145/2463676.2465296",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "OLTP-Bench",
@@ -568,7 +624,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.vldb.org/pvldb/vol7/p277-difallah.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "TPCC, TPC-DS, TPC-H",
@@ -578,7 +635,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://www.tpc.org/",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "LinkBench",
@@ -588,7 +646,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://doi.org/10.1145/2463676.2465296",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Wikipedia Trace Characterization",
@@ -598,7 +657,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://scholar.google.com/scholar?q=Wikipedia+Trace+Characterization",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "The Chubby lock service for loosely-coupled distributed systems.",
@@ -608,7 +668,8 @@
       "score": 1.5,
       "openalex_id": "https://openalex.org/W1992479210",
       "download_url": "https://courses.cs.vt.edu/~cs5204/fall11-kafura/Papers/FaultTolerance/Chubby-Lock-Service.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Benchmarking Cloud Serving Systems with YCSB.",
@@ -618,7 +679,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://pages.cs.wisc.edu/~akella/CS838/F12/838-CloudPapers/ycsb.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Fast Distributed Transactions and Strongly Consistent Replication for OLTP Database Systems.",
@@ -628,7 +690,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.cs.yale.edu/homes/thomson/publications/calvin-sigmod12.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "In Search of an Understandable Consensus Algorithm.",
@@ -638,7 +701,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Evolution of Development Priorities in Key-value Stores: The RocksDB Experience.",
@@ -648,7 +712,8 @@
       "score": 1.225,
       "openalex_id": "https://openalex.org/W3130725567",
       "download_url": "https://www.usenix.org/system/files/fast21-dong.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Bigtable vs. Cassandra vs. Dynamo",
@@ -658,7 +723,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://link.springer.com/content/pdf/10.1631/FITEE.1500441.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Amazon SimpleDB",
@@ -668,7 +734,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "O\u2019Neill",
@@ -678,7 +745,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://doi.org/10.1007/s002360050048",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "MongoDB architecture",
@@ -688,7 +756,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://www.mongodb.com/resources/basics/databases/mongodb-architecture",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Azure Cosmos DB",
@@ -698,7 +767,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://learn.microsoft.com/azure/cosmos-db/introduction",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Aerospike",
@@ -708,7 +778,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://aerospike.com/docs/database/",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Part-Time Parliament",
@@ -718,7 +789,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://lamport.org/pubs/lamport-paxos.pdf",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Viewstamped Replication",
@@ -728,7 +800,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.cs.princeton.edu/courses/archive/fall19/cos418/papers/vr-revisited.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "ZooKeeper: Wait-free Coordination",
@@ -738,7 +811,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.usenix.org/legacy/event/atc10/tech/full_papers/Hunt.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "TOTALSTORE: Combining Paxos with Batch Processing",
@@ -748,7 +822,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://static.googleusercontent.com/media/research.google.com/en//archive/paxos_made_live.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Chain Replication",
@@ -758,7 +833,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.usenix.org/legacy/event/osdi04/tech/full_papers/renesse/renesse.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "LSM-Tree",
@@ -768,7 +844,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://doi.org/10.1007/s002360050048",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "WiscKey",
@@ -778,7 +855,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.usenix.org/system/files/conference/fast16/fast16-papers-lu.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "InnoDB",
@@ -788,7 +866,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "LLAMA",
@@ -798,7 +877,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://doi.org/10.1145/1989323.1989424",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "BP-trees / fractal trees",
@@ -808,7 +888,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://doi.org/10.1145/1463434.1463435",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "SILT",
@@ -818,7 +899,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.cs.cmu.edu/~dga/papers/silt-sosp2011.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "HyperDex",
@@ -828,7 +910,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.cs.cornell.edu/people/egs/papers/hyperdex-sigcomm.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "ACID vs BASE",
@@ -838,7 +921,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://queue.acm.org/detail.cfm?id=1394128",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "CALM Theorem",
@@ -848,7 +932,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://arxiv.org/pdf/1901.01930",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "PACELC",
@@ -858,7 +943,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "RedBlue consistency",
@@ -868,7 +954,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.cs.cornell.edu/courses/cs5414/2017fa/papers/red-blue.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "TAPIR",
@@ -878,7 +965,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://homes.cs.washington.edu/~arvind/papers/tapir.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Consistency without Partition",
@@ -888,7 +976,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://arxiv.org/pdf/1203.3544",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Secondary Indexes in Distributed DBs",
@@ -898,7 +987,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://www.vldb.org/pvldb/vol6/p1068-shute.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "Query2",
@@ -908,7 +998,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://scholar.google.com/scholar?q=Query2+CIDR+2017",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Trill",
@@ -918,7 +1009,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://doi.org/10.14778/2735496.2735503",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "Hyper",
@@ -928,7 +1020,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://doi.org/10.14778/2002938.2002940",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "LINE",
@@ -938,7 +1031,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://arxiv.org/pdf/1503.03578",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "SystemML, Spark SQL",
@@ -948,7 +1042,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://people.csail.mit.edu/matei/papers/2015/sigmod_spark_sql.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "YCSB",
@@ -958,7 +1053,8 @@
       "score": 1.0,
       "openalex_id": "manual",
       "download_url": "https://pages.cs.wisc.edu/~akella/CS838/F12/838-CloudPapers/ycsb.pdf",
-      "verified": true
+      "verified": true,
+      "download_status": "downloaded"
     },
     {
       "query_title": "TPC-C, TPC-H, TPC-DS",
@@ -968,7 +1064,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://www.tpc.org/",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "TailBench",
@@ -978,7 +1075,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://doi.org/10.1145/3297858.3304005",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     },
     {
       "query_title": "HelloDB",
@@ -988,7 +1086,8 @@
       "score": 0.9,
       "openalex_id": "manual",
       "download_url": "https://en.wikipedia.org/wiki/Hello_world_program",
-      "verified": false
+      "verified": false,
+      "download_status": "failed: no new link found"
     }
   ],
   "unresolved": []

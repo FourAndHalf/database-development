@@ -7,14 +7,14 @@ This document details the step-by-step pipeline for transforming raw academic PD
 2. **Validation:** Ensure files are valid PDFs. Skip corrupted files.
 3. **Metadata Extraction:** Attempt to extract Title, Authors, and Publication Year using basic metadata parsing or an initial LLM pass.
 
-## Stage 2: Parsing & Extraction (`services/ingestion/pdf_parser.py`)
-1. **Text Extraction:** Use tools like PyMuPDF (fitz) or pdfplumber to extract raw text.
-2. **Layout Analysis:** Detect columns, headers, footers, and references. Strip out page numbers and running headers to avoid polluting chunks.
-3. **Table Handling:** Try to extract tables as markdown or structured JSON. (Note: This is notoriously difficult in academic papers; fallback to raw text if complex).
-4. **Output:** A structured JSON object for each paper containing a list of pages/sections and their text. Saved to `/data/parsed/`.
+## Stage 2: Docling Preprocessing & Extraction (`services/ingestion/pdf_parser.py`)
+1. **Docling Conversion:** Use Docling as the primary parser to convert PDFs into structured document representations.
+2. **Layout Analysis:** Preserve columns, headers, section boundaries, references, and page anchors; strip boilerplate (running headers/page numbers) before chunking.
+3. **Table Handling:** Extract tables as structured markdown/JSON where possible; fall back to cleaned text for complex tables.
+4. **Output:** A normalized JSON object per paper (pages, sections, metadata, citations) saved to `/data/parsed/`.
 
 ## Stage 3: Semantic Chunking (`services/ingestion/chunker.py`)
-1. **Strategy:** Use a Recursive Character Text Splitter or semantic boundary detection.
+1. **Strategy:** Build chunks from Docling-normalized sections using a Recursive Character Text Splitter or semantic boundary detection.
 2. **Parameters:** Target chunk size: 512 tokens. Overlap: 50-100 tokens.
 3. **Context Preservation:** Append the paper's title and section header to the beginning of each chunk to ensure the embedder captures the global context.
    - Example contextual format: `[Paper: Spanner (2012)] [Section: TrueTime] The TrueTime API...`

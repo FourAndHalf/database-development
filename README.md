@@ -23,7 +23,7 @@ This system serves as a "living encyclopedia" for database engineering. By lever
 The project follows a modular pipeline architecture designed for scalability and high precision.
 
 ### 1. Ingestion & Processing (`/services/ingestion`)
-- **PDF Parsing:** High-fidelity extraction of text, tables, and citations from academic PDFs.
+- **Document Preprocessing (Docling):** High-fidelity extraction of text, layout, tables, and citations from academic PDFs.
 - **Intelligent Chunking:** Context-aware splitting of documents to preserve semantic boundaries (e.g., keeping a Paxos algorithm description intact).
 - **Embedding:** Multi-stage embedding using state-of-the-art models to map database concepts into vector space.
 
@@ -68,7 +68,8 @@ We optimize for three core RAG metrics to ensure authoritative performance:
 ## 🛠️ Tech Stack & DevOps
 
 - **Data Pipeline:** Python 3.9+
-- **API Backend:** Golang
+- **Document Preprocessor:** Docling
+- **API Backend:** Python (gRPC / Protocol Buffers)
 - **Frontend UI:** Angular
 - **Cloud:** AWS (S3 for raw PDFs, Lambda for processing, OpenSearch for Vector Search)
 - **CI/CD:** Automated testing and deployment pipelines via GitHub Actions/Terraform.
@@ -96,6 +97,14 @@ To parse the current PDF library and update the vector store:
 python scripts/download_files.py
 python services/ingestion/pdf_parser.py
 ```
+`pdf_parser.py` should run the Docling-based preprocessing path before chunking/embedding.
+
+---
+
+## 📄 Documentation
+
+- `docs/rag-tools-and-plugins-integration.md` — comprehensive RAG tools/plugins integration guide with step-by-step setup.
+- `docs/aws-mlops-pipeline-for-rag.md` — AWS MLOps architecture and execution playbook for this RAG system.
 
 ---
 
