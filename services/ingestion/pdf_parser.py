@@ -55,12 +55,12 @@ class PdfParser:
 
         logging.info(f"Parsing PDF: {pdf_path}")
         try:
-            # The core conversion step using the docling library
-            doc = self.converter.convert(pdf_path)
+            # The core conversion step using the docling library returns a ConversionResult
+            result = self.converter.convert(pdf_path)
+            doc = result.document
             
-            # Save the parsed document as a JSON file
-            # The model_dump_json method serializes the Pydantic model
-            output_path.write_text(doc.model_dump_json(indent=2), encoding="utf-8")
+            # Save the parsed document as a JSON file using Docling's native method
+            doc.save_as_json(output_path)
             logging.info(f"Successfully parsed and saved to {output_path}")
             
             return doc
