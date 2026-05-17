@@ -1,2 +1,7 @@
 requests
 docling
+opensearch-py
+sentence-transformers
+tqdm
+chromadb
+faiss-cpu

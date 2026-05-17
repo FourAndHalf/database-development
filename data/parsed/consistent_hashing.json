@@ -1,0 +1,2871 @@
+{
+  "schema_name": "DoclingDocument",
+  "version": "1.10.0",
+  "name": "consistent_hashing",
+  "origin": {
+    "mimetype": "application/pdf",
+    "binary_hash": 8745912473491796176,
+    "filename": "consistent_hashing.pdf"
+  },
+  "furniture": {
+    "self_ref": "#/furniture",
+    "children": [],
+    "content_layer": "furniture",
+    "name": "_root_",
+    "label": "unspecified"
+  },
+  "body": {
+    "self_ref": "#/body",
+    "children": [
+      {
+        "$ref": "#/texts/0"
+      },
+      {
+        "$ref": "#/texts/1"
+      },
+      {
+        "$ref": "#/texts/2"
+      },
+      {
+        "$ref": "#/texts/3"
+      },
+      {
+        "$ref": "#/texts/4"
+      },
+      {
+        "$ref": "#/texts/5"
+      },
+      {
+        "$ref": "#/texts/6"
+      },
+      {
+        "$ref": "#/texts/7"
+      },
+      {
+        "$ref": "#/texts/8"
+      },
+      {
+        "$ref": "#/texts/9"
+      },
+      {
+        "$ref": "#/texts/10"
+      },
+      {
+        "$ref": "#/texts/11"
+      },
+      {
+        "$ref": "#/texts/12"
+      },
+      {
+        "$ref": "#/texts/13"
+      },
+      {
+        "$ref": "#/texts/14"
+      },
+      {
+        "$ref": "#/texts/15"
+      },
+      {
+        "$ref": "#/texts/16"
+      },
+      {
+        "$ref": "#/texts/17"
+      },
+      {
+        "$ref": "#/texts/18"
+      },
+      {
+        "$ref": "#/texts/19"
+      },
+      {
+        "$ref": "#/texts/20"
+      },
+      {
+        "$ref": "#/texts/21"
+      },
+      {
+        "$ref": "#/texts/22"
+      },
+      {
+        "$ref": "#/texts/23"
+      },
+      {
+        "$ref": "#/texts/24"
+      },
+      {
+        "$ref": "#/texts/25"
+      },
+      {
+        "$ref": "#/texts/26"
+      },
+      {
+        "$ref": "#/texts/27"
+      },
+      {
+        "$ref": "#/texts/28"
+      },
+      {
+        "$ref": "#/texts/29"
+      },
+      {
+        "$ref": "#/texts/30"
+      },
+      {
+        "$ref": "#/texts/31"
+      },
+      {
+        "$ref": "#/texts/32"
+      },
+      {
+        "$ref": "#/texts/33"
+      },
+      {
+        "$ref": "#/texts/34"
+      },
+      {
+        "$ref": "#/texts/35"
+      },
+      {
+        "$ref": "#/texts/36"
+      },
+      {
+        "$ref": "#/texts/37"
+      },
+      {
+        "$ref": "#/texts/38"
+      },
+      {
+        "$ref": "#/texts/39"
+      },
+      {
+        "$ref": "#/texts/40"
+      },
+      {
+        "$ref": "#/texts/41"
+      },
+      {
+        "$ref": "#/texts/42"
+      },
+      {
+        "$ref": "#/texts/43"
+      },
+      {
+        "$ref": "#/texts/44"
+      },
+      {
+        "$ref": "#/texts/45"
+      },
+      {
+        "$ref": "#/texts/46"
+      },
+      {
+        "$ref": "#/texts/47"
+      },
+      {
+        "$ref": "#/texts/48"
+      },
+      {
+        "$ref": "#/texts/49"
+      },
+      {
+        "$ref": "#/texts/50"
+      },
+      {
+        "$ref": "#/texts/51"
+      },
+      {
+        "$ref": "#/texts/52"
+      },
+      {
+        "$ref": "#/texts/53"
+      },
+      {
+        "$ref": "#/texts/54"
+      },
+      {
+        "$ref": "#/texts/55"
+      },
+      {
+        "$ref": "#/texts/56"
+      },
+      {
+        "$ref": "#/texts/57"
+      },
+      {
+        "$ref": "#/texts/58"
+      },
+      {
+        "$ref": "#/texts/59"
+      },
+      {
+        "$ref": "#/texts/60"
+      },
+      {
+        "$ref": "#/texts/61"
+      },
+      {
+        "$ref": "#/texts/62"
+      },
+      {
+        "$ref": "#/texts/63"
+      },
+      {
+        "$ref": "#/texts/64"
+      },
+      {
+        "$ref": "#/texts/65"
+      },
+      {
+        "$ref": "#/texts/66"
+      },
+      {
+        "$ref": "#/texts/67"
+      },
+      {
+        "$ref": "#/texts/68"
+      },
+      {
+        "$ref": "#/texts/69"
+      },
+      {
+        "$ref": "#/texts/70"
+      },
+      {
+        "$ref": "#/texts/71"
+      },
+      {
+        "$ref": "#/texts/72"
+      },
+      {
+        "$ref": "#/texts/73"
+      },
+      {
+        "$ref": "#/texts/74"
+      },
+      {
+        "$ref": "#/texts/75"
+      },
+      {
+        "$ref": "#/texts/76"
+      },
+      {
+        "$ref": "#/texts/77"
+      },
+      {
+        "$ref": "#/groups/0"
+      },
+      {
+        "$ref": "#/texts/79"
+      },
+      {
+        "$ref": "#/groups/1"
+      }
+    ],
+    "content_layer": "body",
+    "name": "_root_",
+    "label": "unspecified"
+  },
+  "groups": [
+    {
+      "self_ref": "#/groups/0",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/78"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/1",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/80"
+        },
+        {
+          "$ref": "#/texts/81"
+        },
+        {
+          "$ref": "#/texts/82"
+        },
+        {
+          "$ref": "#/texts/83"
+        },
+        {
+          "$ref": "#/texts/84"
+        },
+        {
+          "$ref": "#/texts/85"
+        },
+        {
+          "$ref": "#/texts/86"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    }
+  ],
+  "texts": [
+    {
+      "self_ref": "#/texts/0",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 77.28,
+            "t": 789.48,
+            "r": 532.4409165983996,
+            "b": 625.92,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            215
+          ]
+        }
+      ],
+      "orig": "Consistent Hashing and Random Trees: Distributed Caching Protocols for Relieving Hot Spots on the World Wide Web David Karger /1 Eric Lehman /1 Tom Leighton /1/;/2 Matthew Levine /1 Daniel Lewin /1 Rina Panigrahy /1",
+      "text": "Consistent Hashing and Random Trees: Distributed Caching Protocols for Relieving Hot Spots on the World Wide Web David Karger /1 Eric Lehman /1 Tom Leighton /1/;/2 Matthew Levine /1 Daniel Lewin /1 Rina Panigrahy /1"
+    },
+    {
+      "self_ref": "#/texts/1",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.7602,
+            "t": 541.6379999999999,
+            "r": 292.98020015,
+            "b": 444.1467783162519,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            660
+          ]
+        }
+      ],
+      "orig": "Wedescribe a family of caching protocols for distrib-uted networks that can be used to decrease or eliminate the occurrence of hot spots in the network. Our protocols are particularly designed for use with very large networks such as the Internet, where delays caused by hot spots can be severe, and where it is not feasible for every server to have complete information about the current state of the entire network. The protocols are easy to implement using existing network protocols such as TCP/IP, and require very little overhead. The protocols work with local control, make efficient use of existing resources, and scale gracefully as the network grows.",
+      "text": "Wedescribe a family of caching protocols for distrib-uted networks that can be used to decrease or eliminate the occurrence of hot spots in the network. Our protocols are particularly designed for use with very large networks such as the Internet, where delays caused by hot spots can be severe, and where it is not feasible for every server to have complete information about the current state of the entire network. The protocols are easy to implement using existing network protocols such as TCP/IP, and require very little overhead. The protocols work with local control, make efficient use of existing resources, and scale gracefully as the network grows."
+    },
+    {
+      "self_ref": "#/texts/2",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.75999999999999,
+            "t": 674.88,
+            "r": 88.91999999999999,
+            "b": 524.88,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            8
+          ]
+        }
+      ],
+      "orig": "Abstract",
+      "text": "Abstract"
+    },
+    {
+      "self_ref": "#/texts/3",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.75969999999995,
+            "t": 452.28,
+            "r": 292.95571464,
+            "b": 302.28,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            563
+          ]
+        }
+      ],
+      "orig": "Our caching protocols are based on a special kind of hashing that we call consistent hashing . Roughly speaking, a consistent hash function is one which changes minimally as the range of the function changes. Through the development of good consistent hash functions, we are able to develop caching protocols which do not require users to have a current or even consistent view of the network. We believe that consistent hash functions may eventually prove to be useful in other applications such as distributed name servers and/or quorum systems. /1 Introduction",
+      "text": "Our caching protocols are based on a special kind of hashing that we call consistent hashing . Roughly speaking, a consistent hash function is one which changes minimally as the range of the function changes. Through the development of good consistent hash functions, we are able to develop caching protocols which do not require users to have a current or even consistent view of the network. We believe that consistent hash functions may eventually prove to be useful in other applications such as distributed name servers and/or quorum systems. /1 Introduction"
+    },
+    {
+      "self_ref": "#/texts/4",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.75999999999999,
+            "t": 340.44,
+            "r": 292.9565315399999,
+            "b": 126.96030999999994,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1024
+          ]
+        }
+      ],
+      "orig": "In this paper, we describe caching protocols for distributed networks that can be used to decrease or eliminate the occurrences of 'hot spots'. Hot spots occur any time a large number of clients wish to simultaneously access data from a single server. If the site is not provisioned to deal with all of these clients simultaneously, service may be degraded or lost. Many of us have experienced the hot spot phenomenon in the context of the Web. A Web site can suddenly become extremely popular and receive far more requests in a relatively short time than /\u0003 This research was supported in part by DARPA contracts N00014-951-1246 and DABT63-95-C-0009, Army Contract DAAH04-95-1-0607, and NSF contract CCR-9624239 /1 Laboratory for Computer Science, MIT, Cambridge, MA 02139. email: f karger,e lehman,danl,ftl,mslevine,danl,rinap g @theory.lcs.mit.edu A full version of this paper is availble at: http://theory.lcs.mit.edu/ /\u0018 f karger,e lehman,ftl,mslevine,danl,rinap g /2 Department of Mathematics, MIT, Cambridge, MA 02139",
+      "text": "In this paper, we describe caching protocols for distributed networks that can be used to decrease or eliminate the occurrences of 'hot spots'. Hot spots occur any time a large number of clients wish to simultaneously access data from a single server. If the site is not provisioned to deal with all of these clients simultaneously, service may be degraded or lost. Many of us have experienced the hot spot phenomenon in the context of the Web. A Web site can suddenly become extremely popular and receive far more requests in a relatively short time than /\u0003 This research was supported in part by DARPA contracts N00014-951-1246 and DABT63-95-C-0009, Army Contract DAAH04-95-1-0607, and NSF contract CCR-9624239 /1 Laboratory for Computer Science, MIT, Cambridge, MA 02139. email: f karger,e lehman,danl,ftl,mslevine,danl,rinap g @theory.lcs.mit.edu A full version of this paper is availble at: http://theory.lcs.mit.edu/ /\u0018 f karger,e lehman,ftl,mslevine,danl,rinap g /2 Department of Mathematics, MIT, Cambridge, MA 02139"
+    },
+    {
+      "self_ref": "#/texts/5",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 316.8001999999999,
+            "t": 560.838,
+            "r": 555.9960790939998,
+            "b": 513.1467983162519,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            304
+          ]
+        }
+      ],
+      "orig": "it was originally configured to handle. In fact, a site may receive so many requests that it becomes 'swamped,' which typically renders it unusable. Besides making the one site inaccessible, heavy traffic destined to one location can congest the network near it, interfering with traffic at nearby sites.",
+      "text": "it was originally configured to handle. In fact, a site may receive so many requests that it becomes 'swamped,' which typically renders it unusable. Besides making the one site inaccessible, heavy traffic destined to one location can congest the network near it, interfering with traffic at nearby sites."
+    },
+    {
+      "self_ref": "#/texts/6",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 316.8,
+            "t": 511.03798000000006,
+            "r": 555.9572566999999,
+            "b": 332.4,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            851
+          ]
+        }
+      ],
+      "orig": "As use of the Web has increased, so has the occurrence and impact of hot spots. Recent famous examples of hot spots on the Web include the JPL site after the Shoemaker-Levy 9 comet struck Jupiter, an IBM site during the Deep Blue-Kasparov chess tournament, and several political sites on the night of the election. In some of these cases, users were denied access to a site for hours or even days. Other examples include sites identified as 'Web-site-ofthe-day' and sites that provide new versions of popular software. Our work was originally motivated by the problem of hot spots on the World Wide Web. We believe the tools we develop may be relevant to many client-server models, because centralized servers on the Internet such as Domain Name servers, Multicast servers, and Content Label servers are also susceptible to hot spots. /1/./1 Past Work",
+      "text": "As use of the Web has increased, so has the occurrence and impact of hot spots. Recent famous examples of hot spots on the Web include the JPL site after the Shoemaker-Levy 9 comet struck Jupiter, an IBM site during the Deep Blue-Kasparov chess tournament, and several political sites on the night of the election. In some of these cases, users were denied access to a site for hours or even days. Other examples include sites identified as 'Web-site-ofthe-day' and sites that provide new versions of popular software. Our work was originally motivated by the problem of hot spots on the World Wide Web. We believe the tools we develop may be relevant to many client-server models, because centralized servers on the Internet such as Domain Name servers, Multicast servers, and Content Label servers are also susceptible to hot spots. /1/./1 Past Work"
+    },
+    {
+      "self_ref": "#/texts/7",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 316.7996000000001,
+            "t": 352.398,
+            "r": 555.9564869,
+            "b": 254.90716831625195,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            668
+          ]
+        }
+      ],
+      "orig": "Several approaches to overcoming the hot spots have been proposed. Most use some kind of replication strategy to store copies of hot pages throughout the Internet; this spreads the work of serving a hot page across several servers. In one approach, already in wide use, several clients share a proxy cache . All user requests are forwarded through the proxy, which tries to keep copies of frequently requested pages. It tries to satisfy requests with a cached copy; failing this, it forwards the request to the home server. The dilemma in this scheme is that there is more benefit if more users share the same cache, but then the cache itself is liable to get swamped.",
+      "text": "Several approaches to overcoming the hot spots have been proposed. Most use some kind of replication strategy to store copies of hot pages throughout the Internet; this spreads the work of serving a hot page across several servers. In one approach, already in wide use, several clients share a proxy cache . All user requests are forwarded through the proxy, which tries to keep copies of frequently requested pages. It tries to satisfy requests with a cached copy; failing this, it forwards the request to the home server. The dilemma in this scheme is that there is more benefit if more users share the same cache, but then the cache itself is liable to get swamped."
+    },
+    {
+      "self_ref": "#/texts/8",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 316.79970000000003,
+            "t": 252.7979600000001,
+            "r": 555.97991148,
+            "b": 135.26765831625198,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            785
+          ]
+        }
+      ],
+      "orig": "Malpani et al. [6] work around this problem by making a group of caches function as one. A user's request for a page is direc ted to an arbitrary cache. If the page is stored there, it is returned to the user. Otherwise, the cache forwards the request to all other caches via a special protocol called 'IP Multicast'. If the page is cached nowhere, the request is forwarded to the home site of the page. The disadvantage of this technique is that as the number of participating caches grows, even with the use of multicast, the number of messages between caches can become unmanageable. A tool that we develop in this paper, consistent hashing , gives a way to implement such a distributed cache without requiring that the caches communicate all the time. We discuss this in Section 4.",
+      "text": "Malpani et al. [6] work around this problem by making a group of caches function as one. A user's request for a page is direc ted to an arbitrary cache. If the page is stored there, it is returned to the user. Otherwise, the cache forwards the request to all other caches via a special protocol called 'IP Multicast'. If the page is cached nowhere, the request is forwarded to the home site of the page. The disadvantage of this technique is that as the number of participating caches grows, even with the use of multicast, the number of messages between caches can become unmanageable. A tool that we develop in this paper, consistent hashing , gives a way to implement such a distributed cache without requiring that the caches communicate all the time. We discuss this in Section 4."
+    },
+    {
+      "self_ref": "#/texts/9",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 316.79970000000003,
+            "t": 133.15845000000013,
+            "r": 555.8997448199999,
+            "b": 75.50747831625199,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            396
+          ]
+        },
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.7602,
+            "t": 734.2379999999999,
+            "r": 292.98020090000006,
+            "b": 626.6670683162517,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            397,
+            1117
+          ]
+        }
+      ],
+      "orig": "Chankhunthod et al. [1] developed the Harvest Cache, a more scalable approach using a tree of caches. A user obtains a page by asking a nearby leaf cache. If neither this cache nor its siblings have the page, the request is forwarded to the cache's parent. If a page is stored by no cache in the tree, the request eventually reaches the root and is forwarded to the home site of the page. A cache retains a copy of any page it obtains for some time. The advantage of a cache tree is that a cache receives page requests only from its children (and siblings), ensuring that not too many requests arrive simultaneously. Thus, many requests for a page in a short period of time will only cause one request to the home server of the page, and won't overload the caches either. A disadvantage, at lea st in theory, is that the same tree is used for all pages, meaning that the root receives at least one request for every distinct page requested of the entire cache tree. This can swamp the root if the number of distinct page requests grows too large, meaning that this scheme also suffers from potential scaling problems.",
+      "text": "Chankhunthod et al. [1] developed the Harvest Cache, a more scalable approach using a tree of caches. A user obtains a page by asking a nearby leaf cache. If neither this cache nor its siblings have the page, the request is forwarded to the cache's parent. If a page is stored by no cache in the tree, the request eventually reaches the root and is forwarded to the home site of the page. A cache retains a copy of any page it obtains for some time. The advantage of a cache tree is that a cache receives page requests only from its children (and siblings), ensuring that not too many requests arrive simultaneously. Thus, many requests for a page in a short period of time will only cause one request to the home server of the page, and won't overload the caches either. A disadvantage, at lea st in theory, is that the same tree is used for all pages, meaning that the root receives at least one request for every distinct page requested of the entire cache tree. This can swamp the root if the number of distinct page requests grows too large, meaning that this scheme also suffers from potential scaling problems."
+    },
+    {
+      "self_ref": "#/texts/10",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.76020000000008,
+            "t": 624.5578599999999,
+            "r": 292.9803650000001,
+            "b": 497.18693831625177,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            855
+          ]
+        }
+      ],
+      "orig": "Plaxton and Rajaraman [9] show how to balance the load among all caches by using randomization and hashing. In particular, they use a hierarchy of progressively larger sets of 'virtual cache sites' for each page and use a random hash function to assign responsibility for each virtual site to an actual cache in the network. Clients send a request to a random element in each set in the hierarchy. Caches assigned to a given set copy the page to some members of the next, larger set when they discover that their load is too heavy. This gives fast responses even for popular pages, because the largest set that has the page is not overloaded. It also gives good load balancing, because a machine in a small (thus loaded) set for one page is likely to be in a large (thus unloaded) set for another. Plaxton and Rajaraman's technique is also fault tolerant.",
+      "text": "Plaxton and Rajaraman [9] show how to balance the load among all caches by using randomization and hashing. In particular, they use a hierarchy of progressively larger sets of 'virtual cache sites' for each page and use a random hash function to assign responsibility for each virtual site to an actual cache in the network. Clients send a request to a random element in each set in the hierarchy. Caches assigned to a given set copy the page to some members of the next, larger set when they discover that their load is too heavy. This gives fast responses even for popular pages, because the largest set that has the page is not overloaded. It also gives good load balancing, because a machine in a small (thus loaded) set for one page is likely to be in a large (thus unloaded) set for another. Plaxton and Rajaraman's technique is also fault tolerant."
+    },
+    {
+      "self_ref": "#/texts/11",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.759999999999906,
+            "t": 495.07773,
+            "r": 292.9801805999999,
+            "b": 286.68,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1016
+          ]
+        }
+      ],
+      "orig": "The Plaxton/Rajaraman algorithm has drawbacks, however. For example, since their algorithm sends a copy of each page request to a random element in every set, the small sets for a popular page are guaranteed to be swamped. In fact, the algorithm uses swamping as a feature since swamping is used to trigger replication. This works well in their model of a synchronous parallel system, where a swamped processor is assumed to receive a subset of the incoming messages, but otherwise continues to function normally. On the Internet, however, swamping has much more serious consequences. Swamped machines cannot be relied upon to recover quickly and may even crash. Moreover, the intentional swamping of large numbers of random machines could well be viewed unfavorably by the owners of those machines. The Plaxton/Rajaraman algorithm also requires that all communications be synchronous and/or that messages have priorities, and that the set of caches available be fixed and known to all users. /1/./2 Our Contribution",
+      "text": "The Plaxton/Rajaraman algorithm has drawbacks, however. For example, since their algorithm sends a copy of each page request to a random element in every set, the small sets for a popular page are guaranteed to be swamped. In fact, the algorithm uses swamping as a feature since swamping is used to trigger replication. This works well in their model of a synchronous parallel system, where a swamped processor is assumed to receive a subset of the incoming messages, but otherwise continues to function normally. On the Internet, however, swamping has much more serious consequences. Swamped machines cannot be relied upon to recover quickly and may even crash. Moreover, the intentional swamping of large numbers of random machines could well be viewed unfavorably by the owners of those machines. The Plaxton/Rajaraman algorithm also requires that all communications be synchronous and/or that messages have priorities, and that the set of caches available be fixed and known to all users. /1/./2 Our Contribution"
+    },
+    {
+      "self_ref": "#/texts/12",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.7602,
+            "t": 306.55800000000005,
+            "r": 292.98019999999997,
+            "b": 278.78711831625196,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            196
+          ]
+        }
+      ],
+      "orig": "Here, we describe two tools for data replication and use them to give a caching algorithm that overcomes the drawbacks of the preceding approaches and has several additional, desirable properties.",
+      "text": "Here, we describe two tools for data replication and use them to give a caching algorithm that overcomes the drawbacks of the preceding approaches and has several additional, desirable properties."
+    },
+    {
+      "self_ref": "#/texts/13",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.76049999999995,
+            "t": 276.6779100000001,
+            "r": 292.98019459999995,
+            "b": 149.30737831625197,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            780
+          ]
+        }
+      ],
+      "orig": "Our first tool, random cache trees , combines aspects of the structures used by Chankhunthod et al. and Plaxton/Rajaraman. Like Chankhunthod et al., we use a tree of caches to coalesce requests. Like Plaxton and Rajaraman, we balance load by using a different tree for each page and assigning tree nodes to caches via a random hash function. By combining the best features of Chankhunthod et al. and Plaxton/Rajaraman with our own methods, we prevent any server from becoming swamped with high probability, a property not possessed by either Chankhunthod et al. or Plaxton/Rajaraman. In addition, our protocol shows how to minimize memory requirements (without significantly increasing cache miss rates) by only caching pages that have been requested a sufficient number of times.",
+      "text": "Our first tool, random cache trees , combines aspects of the structures used by Chankhunthod et al. and Plaxton/Rajaraman. Like Chankhunthod et al., we use a tree of caches to coalesce requests. Like Plaxton and Rajaraman, we balance load by using a different tree for each page and assigning tree nodes to caches via a random hash function. By combining the best features of Chankhunthod et al. and Plaxton/Rajaraman with our own methods, we prevent any server from becoming swamped with high probability, a property not possessed by either Chankhunthod et al. or Plaxton/Rajaraman. In addition, our protocol shows how to minimize memory requirements (without significantly increasing cache miss rates) by only caching pages that have been requested a sufficient number of times."
+    },
+    {
+      "self_ref": "#/texts/14",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.76049999999998,
+            "t": 147.19817000000012,
+            "r": 292.95664999999997,
+            "b": 79.58742831625193,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            468
+          ]
+        },
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 316.80080000000004,
+            "t": 734.23838,
+            "r": 444.8107936699998,
+            "b": 726.3874283162519,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            469,
+            505
+          ]
+        }
+      ],
+      "orig": "We believe that the extra delay introduced by a tree of caches should be quite small in practice. The time to request a page is multiplied by the tree depth. However, the page request typically takes so little time that the extra delay is not great. The return of a page can be pipelined; a cache need not wait until it receives a whole page before sending data to its child in the tree. Therefore, the return of a page also takes only slightly longer. Altogether, the added delay seen by a user is small.",
+      "text": "We believe that the extra delay introduced by a tree of caches should be quite small in practice. The time to request a page is multiplied by the tree depth. However, the page request typically takes so little time that the extra delay is not great. The return of a page can be pipelined; a cache need not wait until it receives a whole page before sending data to its child in the tree. Therefore, the return of a page also takes only slightly longer. Altogether, the added delay seen by a user is small."
+    },
+    {
+      "self_ref": "#/texts/15",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 316.80060000000003,
+            "t": 724.27822,
+            "r": 555.9967421339999,
+            "b": 556.9471083162518,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1093
+          ]
+        }
+      ],
+      "orig": "Our second tool is a new hashing scheme we call consistent hashing . This hashing scheme differs substantially from that used in Plaxton/Rajaraman and other practical systems. Typical hashing based schemes do a good job of spreading load through a known, fixed collection of servers. The Internet, however, does not have a fixed collection of machines. Instead, machines come and go as they crash or are brought into the network. Even worse, the information about what machines are functional propagates slowly through the network, so that clients may have incompatible 'views' of which machines are available to replicate data. This makes standard hashing useless since it relies on clients agreeing on which caches are responsible for serving a particular page. For example, Feeley et al [3] implement a distributed global shared memory system for a network of workstations that uses a hash table distributed among the machines to resolve references. Each time a new machine joins the network, the require a central server to redistribute a completely updated hash table to all the machines.",
+      "text": "Our second tool is a new hashing scheme we call consistent hashing . This hashing scheme differs substantially from that used in Plaxton/Rajaraman and other practical systems. Typical hashing based schemes do a good job of spreading load through a known, fixed collection of servers. The Internet, however, does not have a fixed collection of machines. Instead, machines come and go as they crash or are brought into the network. Even worse, the information about what machines are functional propagates slowly through the network, so that clients may have incompatible 'views' of which machines are available to replicate data. This makes standard hashing useless since it relies on clients agreeing on which caches are responsible for serving a particular page. For example, Feeley et al [3] implement a distributed global shared memory system for a network of workstations that uses a hash table distributed among the machines to resolve references. Each time a new machine joins the network, the require a central server to redistribute a completely updated hash table to all the machines."
+    },
+    {
+      "self_ref": "#/texts/16",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 316.8,
+            "t": 554.8382899999999,
+            "r": 555.9805590200001,
+            "b": 326.52,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1178
+          ]
+        }
+      ],
+      "orig": "Consistent hashing may help solve such problems. Like most hashing schemes, consistent hashing assigns a set of items to buckets so that each bin receives roughly the same number of items. Unlike standard hashing schemes, a small change in the bucket set does not induce a total remapping of items to buckets. In addition, hashing items into slightly different sets of buckets gives only slightly different assignments of items to buckets. We apply consistent hashing to our tree-of-caches scheme, and show how this makes the scheme work well even if each client is aware of only a constant fraction of all the caching machines. In [5] Litwin et al proposes a hash function that allows buckets to be added one at a time sequentially. However our hash function allows the buckets to be added in an arbitrary order. Another scheme that we can improve on is given by Devine [2]. In addition, we believe that consistent hashing will be useful in other applications (such as quorum systems [7] [8] or distributed name servers) where multiple machines with different views of the network must agree on a common storage location for an object without communication. /1/./3 Presentation",
+      "text": "Consistent hashing may help solve such problems. Like most hashing schemes, consistent hashing assigns a set of items to buckets so that each bin receives roughly the same number of items. Unlike standard hashing schemes, a small change in the bucket set does not induce a total remapping of items to buckets. In addition, hashing items into slightly different sets of buckets gives only slightly different assignments of items to buckets. We apply consistent hashing to our tree-of-caches scheme, and show how this makes the scheme work well even if each client is aware of only a constant fraction of all the caching machines. In [5] Litwin et al proposes a hash function that allows buckets to be added one at a time sequentially. However our hash function allows the buckets to be added in an arbitrary order. Another scheme that we can improve on is given by Devine [2]. In addition, we believe that consistent hashing will be useful in other applications (such as quorum systems [7] [8] or distributed name servers) where multiple machines with different views of the network must agree on a common storage location for an object without communication. /1/./3 Presentation"
+    },
+    {
+      "self_ref": "#/texts/17",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 316.7999999999999,
+            "t": 297.96000000000004,
+            "r": 555.9953034499999,
+            "b": 147.96000000000004,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            476
+          ]
+        }
+      ],
+      "orig": "In Section 5 we show how our two techniques can be effectively combined. In Section 6 we propose a simple delay model that captures hierarchical clustering of machines on the Internet. We show that our protocol can be easily extended to work in this more realistic delay model. In Sections 7 and 8 we consider faults and the behavior of the protocol over time, respectively. In Section 9 we discuss some extensions and open problems. /1/./4 A Note on Randomization and Hashing",
+      "text": "In Section 5 we show how our two techniques can be effectively combined. In Section 6 we propose a simple delay model that captures hierarchical clustering of machines on the Internet. We show that our protocol can be easily extended to work in this more realistic delay model. In Sections 7 and 8 we consider faults and the behavior of the protocol over time, respectively. In Section 9 we discuss some extensions and open problems. /1/./4 A Note on Randomization and Hashing"
+    },
+    {
+      "self_ref": "#/texts/18",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 316.79999999999995,
+            "t": 346.398,
+            "r": 555.9001525499999,
+            "b": 268.82670831625205,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            524
+          ]
+        }
+      ],
+      "orig": "In Section 2 we describe our model of the Web and the hot spot problem. Our model is necessarily simplistic, but is rich enough to develop and analyze protocols that we believe may be useful in practice. In Section 3, we describe our random tree method and use it in a caching protocol that effectively eliminates hot spots under a simplified model. Independent of Section 3, in Section 4 we present our consistent hashing method and use it to solve hot spots under a different simplified model involving inconsistent views.",
+      "text": "In Section 2 we describe our model of the Web and the hot spot problem. Our model is necessarily simplistic, but is rich enough to develop and analyze protocols that we believe may be useful in practice. In Section 3, we describe our random tree method and use it in a caching protocol that effectively eliminates hot spots under a simplified model. Independent of Section 3, in Section 4 we present our consistent hashing method and use it to solve hot spots under a different simplified model involving inconsistent views."
+    },
+    {
+      "self_ref": "#/texts/19",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 316.79999999999995,
+            "t": 167.83799999999997,
+            "r": 555.9569734439999,
+            "b": 80.30654831625179,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            584
+          ]
+        },
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 53.75999999999996,
+            "t": 745.08,
+            "r": 292.9801966710001,
+            "b": 404.06734831625187,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            585,
+            2364
+          ]
+        }
+      ],
+      "orig": "In several places we make use of hash functions that map objects into a range. For clarity we assume that these functions map objects in a truly random fashion, i.e. uniformly and independently. In practice, hash functions with limited independence are more plausible since they economize on space and randomness. We have proven all theorems of this paper with only limited independence using methods similar to those in [11]. However, in this extended abstract we only state the degree of independence required for results to hold. Proofs assuming limited independence will appear in the full version of this paper. This section presents our model of the Web and the hotspot problem. We classify computers on the Web into three categories. All requests for Web pages are initiated by browsers . The permanent homes of Web pages are servers . Caches are extra machines which we use to protect servers from the barrage of browser requests. Throughout the paper, the set of caches is C and the number of caches is C . Each server is home to a fixed set of pages. Caches are also able to store a number of pages, but this set may change over time as dictated by a caching protocol. We generally assume that the content of each page is unchanging, though Section 9 contains a discussion of this issue. The set of all pages is denoted P . Any machine can send a message directly to any other with the restriction that a machine may not be aware of the existence of all caches; we require only that each machine is aware of a /1/=t fraction of the caches for some constant t . The two typical types of messages are requests for pages and the pages themselves. A machine which receives too many messages too quickly ceases to function properly and is said to be 'swamped'. Latency measures the time for a message from machine m/1 to arrive at machine m/2 . We denote this quantity /\u000e/(m/1 /; m /2 /) . In practice, of course, delays on the Internet are not so simply characterized. The value of /\u000e should be regarded as a 'best guess' that we optimize on for lack of better information; the correctness of a protocol should not depend on values of /\u000e (which could actually measure anything such as throughput, price of connection or congestion) being exactly accurate. Note that we do not make latency a function of message size; this issue is discussed in Section 3.2.1.",
+      "text": "In several places we make use of hash functions that map objects into a range. For clarity we assume that these functions map objects in a truly random fashion, i.e. uniformly and independently. In practice, hash functions with limited independence are more plausible since they economize on space and randomness. We have proven all theorems of this paper with only limited independence using methods similar to those in [11]. However, in this extended abstract we only state the degree of independence required for results to hold. Proofs assuming limited independence will appear in the full version of this paper. This section presents our model of the Web and the hotspot problem. We classify computers on the Web into three categories. All requests for Web pages are initiated by browsers . The permanent homes of Web pages are servers . Caches are extra machines which we use to protect servers from the barrage of browser requests. Throughout the paper, the set of caches is C and the number of caches is C . Each server is home to a fixed set of pages. Caches are also able to store a number of pages, but this set may change over time as dictated by a caching protocol. We generally assume that the content of each page is unchanging, though Section 9 contains a discussion of this issue. The set of all pages is denoted P . Any machine can send a message directly to any other with the restriction that a machine may not be aware of the existence of all caches; we require only that each machine is aware of a /1/=t fraction of the caches for some constant t . The two typical types of messages are requests for pages and the pages themselves. A machine which receives too many messages too quickly ceases to function properly and is said to be 'swamped'. Latency measures the time for a message from machine m/1 to arrive at machine m/2 . We denote this quantity /\u000e/(m/1 /; m /2 /) . In practice, of course, delays on the Internet are not so simply characterized. The value of /\u000e should be regarded as a 'best guess' that we optimize on for lack of better information; the correctness of a protocol should not depend on values of /\u000e (which could actually measure anything such as throughput, price of connection or congestion) being exactly accurate. Note that we do not make latency a function of message size; this issue is discussed in Section 3.2.1."
+    },
+    {
+      "self_ref": "#/texts/20",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 53.7598,
+            "t": 401.95814000000007,
+            "r": 292.95620293100006,
+            "b": 137.64,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1318
+          ]
+        }
+      ],
+      "orig": "All cache and server behavior and some browser behavior is specified in our protocol. In particular, the protocol specifies how caches and servers respond to page requests and which pages are stored in a cache. The protocol also specifies the cache or server to which a browser sends each page request. All control must be local; the behavior of a machine can depend only on messages it receives. An adversary decides which pages are requested by browsers. However, the adversary cannot see random values generated in our protocol and cannot adapt his requests based on observed delays in obtaining pages. We consider two models. First, we consider a static model in which a single 'batch' of requests is processed, and require that the number of page requests be at most R /= /\u001aC where /\u001a is a constant and C is the number of caches. We then consider a temporal model in which the adversary may initiate new requests for pages at rate at most / ; that is, in any time interval / /> /1 , he may initiate at most /\r/ requests. Objective The 'hot spot problem' is to satisfy all browser page requests while ensuring that with high probability no cache or server is swamped. The phrase 'with high probability' means 'with probability at least /1 /BnZr /1/=N ', where N is a confidence parameter used throughout the paper.",
+      "text": "All cache and server behavior and some browser behavior is specified in our protocol. In particular, the protocol specifies how caches and servers respond to page requests and which pages are stored in a cache. The protocol also specifies the cache or server to which a browser sends each page request. All control must be local; the behavior of a machine can depend only on messages it receives. An adversary decides which pages are requested by browsers. However, the adversary cannot see random values generated in our protocol and cannot adapt his requests based on observed delays in obtaining pages. We consider two models. First, we consider a static model in which a single 'batch' of requests is processed, and require that the number of page requests be at most R /= /\u001aC where /\u001a is a constant and C is the number of caches. We then consider a temporal model in which the adversary may initiate new requests for pages at rate at most / ; that is, in any time interval / /> /1 , he may initiate at most /\r/ requests. Objective The 'hot spot problem' is to satisfy all browser page requests while ensuring that with high probability no cache or server is swamped. The phrase 'with high probability' means 'with probability at least /1 /BnZr /1/=N ', where N is a confidence parameter used throughout the paper."
+    },
+    {
+      "self_ref": "#/texts/21",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 53.75999999999999,
+            "t": 153.67806999999993,
+            "r": 292.91693589000005,
+            "b": 96.0270983162518,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            332
+          ]
+        }
+      ],
+      "orig": "While our basic requirement is to prevent swamping, we also have two additional objectives. The first is to minimize cache memory requirements. A protocol should work well without requiring any cache to store a large number of pages. A second objective is, naturally, to minimize the delay a browser experiences in obtaining a page.",
+      "text": "While our basic requirement is to prevent swamping, we also have two additional objectives. The first is to minimize cache memory requirements. A protocol should work well without requiring any cache to store a large number of pages. A second objective is, naturally, to minimize the delay a browser experiences in obtaining a page."
+    },
+    {
+      "self_ref": "#/texts/22",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 316.7996899999998,
+            "t": 768.36,
+            "r": 556.0196528899997,
+            "b": 526.1071883162518,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            944
+          ]
+        }
+      ],
+      "orig": "In this section we introduce our first tool, random trees. To simplify the presentation, we give a simple caching protocol that would work well in a simpler world. In particular, we make the following simplifications to the model: 1. All machines know about all caches. 2. /\u000e/(mi /; m j /) /= /1 for all i /6/= j . 3. All requests are made at the same time. This restricted model is 'static' in the sense that there is only one batch of requests; we need not consider the long-term stability of the network. Under these restrictions we show a protocol that has good behavior. That is, with high probability no machine is swamped. We achieve a total delay of /-/(log C/) and prove that it is optimal. We use total cache space which is a fraction of the number of requests, and evenly divided among the caches. In subsequent sections we will show how to extend the protocol so as to preserve the good behavior without the simplifying assumptions.",
+      "text": "In this section we introduce our first tool, random trees. To simplify the presentation, we give a simple caching protocol that would work well in a simpler world. In particular, we make the following simplifications to the model: 1. All machines know about all caches. 2. /\u000e/(mi /; m j /) /= /1 for all i /6/= j . 3. All requests are made at the same time. This restricted model is 'static' in the sense that there is only one batch of requests; we need not consider the long-term stability of the network. Under these restrictions we show a protocol that has good behavior. That is, with high probability no machine is swamped. We achieve a total delay of /-/(log C/) and prove that it is optimal. We use total cache space which is a fraction of the number of requests, and evenly divided among the caches. In subsequent sections we will show how to extend the protocol so as to preserve the good behavior without the simplifying assumptions."
+    },
+    {
+      "self_ref": "#/texts/23",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 316.79999999999984,
+            "t": 523.99798,
+            "r": 555.9577999999998,
+            "b": 300.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            990
+          ]
+        }
+      ],
+      "orig": "The basic idea of our protocol is an extension of the 'tree of caches' approach discussed in the introduction. We use this tree to ensure that no cache has many 'children' asking it for a particular page. As discussed in the introduction, levels near the root get many requests for a page even if the page is relatively unpopular, so being the root for many pages causes swamping. Our technique, similar to Plaxton/Rajaraman's, is to use a different, rand omly generated tree for each page. This ensures that no machine is near the root for many pages, thus providing good load balancing. Note that we cannot make use of the analysis given by Plaxton/Rajaraman, because our main concern is to prevent swamping, whereas they allow machines to be swamped. In Section 3.1 below, we define our protocol precisely. In Section 3.2, we analyze the protocol, bounding the load on any cache, the storage each cache uses, and the delay a browser experiences before getting the page. /3/./1 Protocol d",
+      "text": "The basic idea of our protocol is an extension of the 'tree of caches' approach discussed in the introduction. We use this tree to ensure that no cache has many 'children' asking it for a particular page. As discussed in the introduction, levels near the root get many requests for a page even if the page is relatively unpopular, so being the root for many pages causes swamping. Our technique, similar to Plaxton/Rajaraman's, is to use a different, rand omly generated tree for each page. This ensures that no machine is near the root for many pages, thus providing good load balancing. Note that we cannot make use of the analysis given by Plaxton/Rajaraman, because our main concern is to prevent swamping, whereas they allow machines to be swamped. In Section 3.1 below, we define our protocol precisely. In Section 3.2, we analyze the protocol, bounding the load on any cache, the storage each cache uses, and the delay a browser experiences before getting the page. /3/./1 Protocol d"
+    },
+    {
+      "self_ref": "#/texts/24",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 316.8,
+            "t": 335.958,
+            "r": 555.9579598299997,
+            "b": 72.74695831625183,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1579
+          ]
+        }
+      ],
+      "orig": "We associate a rooted -ary tree, called an abstract tree , with each page. We use the term nodes only in reference to the nodes of these abstract trees. The number of nodes in each tree is equal to the number of caches, and the tree is as balanced as possible (so all levels but the bottom are full). We refer to nodes of the tree by their rank in breadth-first search order. The protocol is described as running on these abstract trees; to support this, all requests for pages take the form of a 4-tuple consisting of the identity of the requester, the name of the desired page, a sequence of nodes through which the request should be directed, and a sequence of caches that should act as those nodes. To determine the latter sequence, that is, which cache actually does the work for a given node, the nodes are mapped to machines. The root of a tree is always mapped to the server for the page. All the other nodes are mapped to the caches by a hash function h /: P /- /[/1 /: /: /: C/] /! C , which must be distributed to all browsers and caches. In order not to create copies of pages for which there are few requests, we have another parameter, q , for how many requests a cache must see before it bothers to store a copy of the page. Now, given a hash function h , and parameters d and q , our protocol is as follows: Browser When a browser wants a page, it picks a random leaf to root path, maps the nodes to machines with h , and asks the leaf node for the page. The request includes the name of the browser, the name of the page, the path, and the result of the mapping.",
+      "text": "We associate a rooted -ary tree, called an abstract tree , with each page. We use the term nodes only in reference to the nodes of these abstract trees. The number of nodes in each tree is equal to the number of caches, and the tree is as balanced as possible (so all levels but the bottom are full). We refer to nodes of the tree by their rank in breadth-first search order. The protocol is described as running on these abstract trees; to support this, all requests for pages take the form of a 4-tuple consisting of the identity of the requester, the name of the desired page, a sequence of nodes through which the request should be directed, and a sequence of caches that should act as those nodes. To determine the latter sequence, that is, which cache actually does the work for a given node, the nodes are mapped to machines. The root of a tree is always mapped to the server for the page. All the other nodes are mapped to the caches by a hash function h /: P /- /[/1 /: /: /: C/] /! C , which must be distributed to all browsers and caches. In order not to create copies of pages for which there are few requests, we have another parameter, q , for how many requests a cache must see before it bothers to store a copy of the page. Now, given a hash function h , and parameters d and q , our protocol is as follows: Browser When a browser wants a page, it picks a random leaf to root path, maps the nodes to machines with h , and asks the leaf node for the page. The request includes the name of the browser, the name of the page, the path, and the result of the mapping."
+    },
+    {
+      "self_ref": "#/texts/25",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 53.76019999999998,
+            "t": 734.3639999999999,
+            "r": 292.95648050099993,
+            "b": 578.28,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            593
+          ]
+        }
+      ],
+      "orig": "Cache When a cache receives a request, it first checks to see if it is caching a copy of the page or is in the process of getting one to cache. If so, it returns the page to the requester (after it gets its copy, if necessary). Otherwise it increments a counter for the page and the node it is acting as, and asks the next machine on the path for the page. If the counter reaches , it caches a copy of the page. In either case the cache passes the page on to the requester when it is obtained. Server When a server receives a request, it sends the requester a copy of the page. /3/./2 Analysis",
+      "text": "Cache When a cache receives a request, it first checks to see if it is caching a copy of the page or is in the process of getting one to cache. If so, it returns the page to the requester (after it gets its copy, if necessary). Otherwise it increments a counter for the page and the node it is acting as, and asks the next machine on the path for the page. If the counter reaches , it caches a copy of the page. In either case the cache passes the page on to the requester when it is obtained. Server When a server receives a request, it sends the requester a copy of the page. /3/./2 Analysis"
+    },
+    {
+      "self_ref": "#/texts/26",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 53.759799999999984,
+            "t": 414.24,
+            "r": 293.00990427999994,
+            "b": 264.24,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            600
+          ]
+        }
+      ],
+      "orig": "Note that in practice, the time required to obtain a large page is not multiplied by the number of steps in a path over which it travels. The reason is that the page can be transmitted along the path in a pipelined fashion. A cache in the middle of the path can start sending data to the next cache as soon as it receives some; it need not wait to receive the whole page. This means that although this protocol will increase the delay in getting small pages, the overhead for large pages is negligible. The existence of tree schemes, like the Harvest Cache, suggests that is acceptable in practice. C",
+      "text": "Note that in practice, the time required to obtain a large page is not multiplied by the number of steps in a path over which it travels. The reason is that the page can be transmitted along the path in a pipelined fashion. A cache in the middle of the path can start sending data to the next cache as soon as it receives some; it need not wait to receive the whole page. This means that although this protocol will increase the delay in getting small pages, the overhead for large pages is negligible. The existence of tree schemes, like the Harvest Cache, suggests that is acceptable in practice. C"
+    },
+    {
+      "self_ref": "#/texts/27",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 53.75999999999999,
+            "t": 609.48,
+            "r": 292.95742281099996,
+            "b": 383.76,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1120
+          ]
+        }
+      ],
+      "orig": "The analysis is broken into three parts. We begin by showing that the latency in processing a request is likely to be small, under the assumption that no server is swamped. We then show that no machine is likely to be swamped. We conclude by showing that no cache need store too many pages for the protocol to work properly. The analysis of swamping runs much the same way, except that the 'weights' on our abstract nodes are now the number of requests arriving at those nodes. As above, the number of requests that hit a machine is bounded by the weight of nodes mapped to it. /3/./2/./1 Latency Under our protocol, the delay a browser experiences in obtaining a page is determined by the height of the tree. If a request is forwarded from a leaf to the root, the latency is twice the length of the path, /2 log d C . If the request is satisfied with a cached copy, the latency is only less. If a request stops at a cache that is waiting for a cache copy, the latency is still less since a request has already started up the tree. Note that d can probably be made large in practice, so this latency will be quite small.",
+      "text": "The analysis is broken into three parts. We begin by showing that the latency in processing a request is likely to be small, under the assumption that no server is swamped. We then show that no machine is likely to be swamped. We conclude by showing that no cache need store too many pages for the protocol to work properly. The analysis of swamping runs much the same way, except that the 'weights' on our abstract nodes are now the number of requests arriving at those nodes. As above, the number of requests that hit a machine is bounded by the weight of nodes mapped to it. /3/./2/./1 Latency Under our protocol, the delay a browser experiences in obtaining a page is determined by the height of the tree. If a request is forwarded from a leaf to the root, the latency is twice the length of the path, /2 log d C . If the request is satisfied with a cached copy, the latency is only less. If a request stops at a cache that is waiting for a cache copy, the latency is still less since a request has already started up the tree. Note that d can probably be made large in practice, so this latency will be quite small."
+    },
+    {
+      "self_ref": "#/texts/28",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 53.759600000000006,
+            "t": 341.28,
+            "r": 292.979,
+            "b": 191.27999999999997,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            413
+          ]
+        }
+      ],
+      "orig": "Our bound is optimal (up to constant factors) for any protocol that forbids swamping. To see this, consider making requests for a single page. Look at the graph with nodes corresponding to machines and edges corresponding to links over which the page is sent. Small latency implies that this graph has small diameter, which implies that some node must have high degree, which implies swamping. /3/./2/./2 Swamping",
+      "text": "Our bound is optimal (up to constant factors) for any protocol that forbids swamping. To see this, consider making requests for a single page. Look at the graph with nodes corresponding to machines and edges corresponding to links over which the page is sent. Small latency implies that this graph has small diameter, which implies that some node must have high degree, which implies swamping. /3/./2/./2 Swamping"
+    },
+    {
+      "self_ref": "#/texts/29",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 53.75999999999999,
+            "t": 225.72000000000003,
+            "r": 292.95613964,
+            "b": 65.63980000000004,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            850
+          ]
+        }
+      ],
+      "orig": "The intuition behind our analysis is the following. First we analyze the number of requests directed to the abstract tree nodes of various pages. These give 'weights' to the tree nodes. We then analyze the outcome when the tree nodes are mapped by a hash function onto the actual caching machines: a machine gets as many requests as the total weight of nodes mapped to it. To bound the projected weight, we first give a bound for the case where each node is assigned to a random machine. This is a weighted version of the familiar balls-in-bins type of analysis. Our analysis gives a bound with an exponential tail. We can therefore argue as in [11] that it applies even when the balls are assigned to bins only k /= O/(log N/) -way independently. This can be achieved by using a k -universal hash function to map the abstract tree nodes to machines.",
+      "text": "The intuition behind our analysis is the following. First we analyze the number of requests directed to the abstract tree nodes of various pages. These give 'weights' to the tree nodes. We then analyze the outcome when the tree nodes are mapped by a hash function onto the actual caching machines: a machine gets as many requests as the total weight of nodes mapped to it. To bound the projected weight, we first give a bound for the case where each node is assigned to a random machine. This is a weighted version of the familiar balls-in-bins type of analysis. Our analysis gives a bound with an exponential tail. We can therefore argue as in [11] that it applies even when the balls are assigned to bins only k /= O/(log N/) -way independently. This can be achieved by using a k -universal hash function to map the abstract tree nodes to machines."
+    },
+    {
+      "self_ref": "#/texts/30",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 556.19999,
+            "t": 666.3602339999999,
+            "r": 564.1199899999999,
+            "b": 516.3602339999999,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2
+          ]
+        }
+      ],
+      "orig": "/!",
+      "text": "/!"
+    },
+    {
+      "self_ref": "#/texts/31",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 316.7998,
+            "t": 788.52,
+            "r": 557.3578021289994,
+            "b": 66.60000000000002,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            3466
+          ]
+        }
+      ],
+      "orig": "We will now analyze our protocol under the simplified model. In this 'static' analysis we assume for now that caches have enough space that they never have to evict pages; this means that if a cache has already made requests for a page it will not make another request for the same page. In Theorem 3.1 we provide high probability bounds on the number of requests a cache gets, assuming that all the outputs of the function h are independent and random. Theorem 3.4 extends our high probability analysis to the case when h is a k -way independent function. In particular we show that it suffices to have k logarithmic in the system parameters to achieve the same high probability bounds as with full independence. Analysis for Random h Theorem 3.1 If h is chosen uniformly and at random from the space of functions P /- /[/1 /: /: /: C/] /7/! C then with probability at least /1 /BnZr /1/=N , where N is a parameter, the number of requests a given cache gets is no more than /\u001a /\u0012 /2 log d C /+ O /\u0012 log N log log N /\u0013/\u0013 /+O / dq log N log /BnZr dq /\u001a log N /\u0001 /+ log N Note that /\u001a log d C is the average number of requests per cache since each browser request could give rise to log d C requests up the trees. The /\u001a log N log log N term arises because at the leaf nodes of a tree's page some cache could occur log N log log N times (balls-in-bins) and the adversary could choose to devote all R requests to that page. We prove the above Theorem in the rest of the section. We split the analysis into two parts. First we analyze the requests to a cache due to its presence in the leaf nodes of the abstract trees and then analyze the requests due to its presence at the internal nodes and then add them up. Requests to Leaf Nodes Due to space limitations, we give a proof that only applies when N /\u001d R . Its extension to small N is straightforward but long. Observe that the requests for each page are being mapped randomly onto the leaf nodes of its abstract tree. And then these leaf nodes are mapped randomly onto the set of caches. Look at collection of all the leaf nodes and the number of requests (weight) associated with each one of them. The variance among the 'weights' of the leaf nodes is maximized when all the requests are made for one page. This is also the case which maximizes the number of leaf node requests on a cache. Each page's tree has about C/(/1 /BnZr /1/=d/) leaf nodes. Since a machine m has a /1/=C chance of occurring at a particular leaf node, with probability /1/BnZr/1/=N it will occur in O/( log N log log N /) leaf nodes. In fact, since there are at most R requests, m will occur O/( log N log log N /) times in all those requested pages' trees with probability /1 /BnZr R/=N . Given an assignment of machines to leaf nodes so that m occurs O/( log N log log N /) times in each tree, the expected number of requests m gets is R /1 C O/( log N log log N /) which is O/( /\u001a log N log log N /) . Also, once the assignment of machine to leaf nodes is fixed, the number of requests m gets is a sum of independent Bernoulli variables. So by Chernoff bounds m gets O/( /\u001a log N log log N /+ log N/) requests with probability /1 /BnZr /1/=N . So we conclude that m gets O/( /\u001a log N log log N /+ log N/) with probability at least /1/BnZr /(R/+/1/)/=N . Replacing N by N /2 and assuming N /> R we can say that the same bound holds with probability /1 /BnZr /1/=N . It is easy to extend this proof so that the bound holds even for N /< R .",
+      "text": "We will now analyze our protocol under the simplified model. In this 'static' analysis we assume for now that caches have enough space that they never have to evict pages; this means that if a cache has already made requests for a page it will not make another request for the same page. In Theorem 3.1 we provide high probability bounds on the number of requests a cache gets, assuming that all the outputs of the function h are independent and random. Theorem 3.4 extends our high probability analysis to the case when h is a k -way independent function. In particular we show that it suffices to have k logarithmic in the system parameters to achieve the same high probability bounds as with full independence. Analysis for Random h Theorem 3.1 If h is chosen uniformly and at random from the space of functions P /- /[/1 /: /: /: C/] /7/! C then with probability at least /1 /BnZr /1/=N , where N is a parameter, the number of requests a given cache gets is no more than /\u001a /\u0012 /2 log d C /+ O /\u0012 log N log log N /\u0013/\u0013 /+O / dq log N log /BnZr dq /\u001a log N /\u0001 /+ log N Note that /\u001a log d C is the average number of requests per cache since each browser request could give rise to log d C requests up the trees. The /\u001a log N log log N term arises because at the leaf nodes of a tree's page some cache could occur log N log log N times (balls-in-bins) and the adversary could choose to devote all R requests to that page. We prove the above Theorem in the rest of the section. We split the analysis into two parts. First we analyze the requests to a cache due to its presence in the leaf nodes of the abstract trees and then analyze the requests due to its presence at the internal nodes and then add them up. Requests to Leaf Nodes Due to space limitations, we give a proof that only applies when N /\u001d R . Its extension to small N is straightforward but long. Observe that the requests for each page are being mapped randomly onto the leaf nodes of its abstract tree. And then these leaf nodes are mapped randomly onto the set of caches. Look at collection of all the leaf nodes and the number of requests (weight) associated with each one of them. The variance among the 'weights' of the leaf nodes is maximized when all the requests are made for one page. This is also the case which maximizes the number of leaf node requests on a cache. Each page's tree has about C/(/1 /BnZr /1/=d/) leaf nodes. Since a machine m has a /1/=C chance of occurring at a particular leaf node, with probability /1/BnZr/1/=N it will occur in O/( log N log log N /) leaf nodes. In fact, since there are at most R requests, m will occur O/( log N log log N /) times in all those requested pages' trees with probability /1 /BnZr R/=N . Given an assignment of machines to leaf nodes so that m occurs O/( log N log log N /) times in each tree, the expected number of requests m gets is R /1 C O/( log N log log N /) which is O/( /\u001a log N log log N /) . Also, once the assignment of machine to leaf nodes is fixed, the number of requests m gets is a sum of independent Bernoulli variables. So by Chernoff bounds m gets O/( /\u001a log N log log N /+ log N/) requests with probability /1 /BnZr /1/=N . So we conclude that m gets O/( /\u001a log N log log N /+ log N/) with probability at least /1/BnZr /(R/+/1/)/=N . Replacing N by N /2 and assuming N /> R we can say that the same bound holds with probability /1 /BnZr /1/=N . It is easy to extend this proof so that the bound holds even for N /< R ."
+    },
+    {
+      "self_ref": "#/texts/32",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 53.75999999999996,
+            "t": 782.4,
+            "r": 293.02227349199995,
+            "b": 42.60000000000002,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2935
+          ]
+        }
+      ],
+      "orig": "Again we think of the protocol as first running on the abstract trees. Now no abstract internal node gets more than requests because each child node gives out at most requests for a page. Consider any arbitrary arrangement of paths for all the requests up their respective trees. Since there are only requests in all we can bound the number of abstract nodes that get dq requests. In fact we will bound the number of abstract nodes over all trees which receive between /2 j and /2 j/+/1 requests where /0 /\u0014 qj /\u0014 log dq /BnZr /1 . Let nj denote the number of abstract nodes that receive between /2 j and /2 j/+/1 requests. Let rp be the number of requests for page p . Then P rp /\u0014 R . Since each of the R requests gives rise to at most log d C requests up the trees, the total number of requests is no more than Rlog d C . So, log/(dq/)/BnZr/1 X j/=/0 /2 j nj /\u0014 R log d C (1) Lemma 3.2 The total number of internal nodes which receive at least qx requests is at most /2R/=x if x /> /1 Proof (sketch): Look at the tree induced by the request paths, contract out degree 1 nodes, and count internal nodes. For x /= /1 there can clearly be no more than Rlog d C requests. The preceding lemma tells us that nj , the number of abstract nodes that receive between /2 j and /2 j/+/1 requests, is at most /2R /2 j except for j /= /0 . For j /= /0 , nj will be at most Rlog d C . Now the probability that machine m assumes a given one of these nj nodes is /1/=C . Since assignments of nodes to machines are independent the probability that a machine m is receives more than z of these nodes is at most /BnZr nj z /\u0001 /(/1/=C/) z /\u0014 /(enj /=Cz/) z . In order for the right hand side to be as small as /1/=N we must have z /= /\n/( nj C /+ log N log/( C n j log N/) /) . Note that the latter term will be present only if C nj log N /> /2 . So z is O/( nj C /+ log N log/( C n j log N/) /) with probability at least /1 /BnZr /1/=N . So with probability at least /1 /BnZr log/(dq/)/=N the total number of requests received by m due to internal nodes will be of the order of log/(dq/)/BnZr/1 X j/=/0 /2 j/+/1 / nj C /+ log N log/( C nj log N/) /! /= /2/\u001a log d C /+ O / dq log N log/( dq /\u001a log N/) /+ log N /! By combining the high probability bounds for internal and leaf nodes, we can say that a machine gets /\u001a /\u0012 /2 log d C /+ O /\u0012 log N log log N /\u0013/\u0013 /+O / dq log N log /BnZr dq /\u001a log N /\u0001 /+ log N requests with probability at least /1 /BnZr O/( log dq N /) . Replacing N by N log/(dq/) and ignoring log log/(dq/) in comparision with dq we get Theorem 3.1. Tightness of the high probability bound In this section we show that the high probability bound we have proven for the number of requests received by a machine m is tight. Lemma 3.3 There exists a distribution of R requests to pages so that a given machine m gets /\n/(/\u001a log d C /+ /\u001a log N log log N /+ dq log N log /BnZr dq /\u001a log N /\u0001 /) requests with probability at least /1/=N .",
+      "text": "Again we think of the protocol as first running on the abstract trees. Now no abstract internal node gets more than requests because each child node gives out at most requests for a page. Consider any arbitrary arrangement of paths for all the requests up their respective trees. Since there are only requests in all we can bound the number of abstract nodes that get dq requests. In fact we will bound the number of abstract nodes over all trees which receive between /2 j and /2 j/+/1 requests where /0 /\u0014 qj /\u0014 log dq /BnZr /1 . Let nj denote the number of abstract nodes that receive between /2 j and /2 j/+/1 requests. Let rp be the number of requests for page p . Then P rp /\u0014 R . Since each of the R requests gives rise to at most log d C requests up the trees, the total number of requests is no more than Rlog d C . So, log/(dq/)/BnZr/1 X j/=/0 /2 j nj /\u0014 R log d C (1) Lemma 3.2 The total number of internal nodes which receive at least qx requests is at most /2R/=x if x /> /1 Proof (sketch): Look at the tree induced by the request paths, contract out degree 1 nodes, and count internal nodes. For x /= /1 there can clearly be no more than Rlog d C requests. The preceding lemma tells us that nj , the number of abstract nodes that receive between /2 j and /2 j/+/1 requests, is at most /2R /2 j except for j /= /0 . For j /= /0 , nj will be at most Rlog d C . Now the probability that machine m assumes a given one of these nj nodes is /1/=C . Since assignments of nodes to machines are independent the probability that a machine m is receives more than z of these nodes is at most /BnZr nj z /\u0001 /(/1/=C/) z /\u0014 /(enj /=Cz/) z . In order for the right hand side to be as small as /1/=N we must have z /= /\n/( nj C /+ log N log/( C n j log N/) /) . Note that the latter term will be present only if C nj log N /> /2 . So z is O/( nj C /+ log N log/( C n j log N/) /) with probability at least /1 /BnZr /1/=N . So with probability at least /1 /BnZr log/(dq/)/=N the total number of requests received by m due to internal nodes will be of the order of log/(dq/)/BnZr/1 X j/=/0 /2 j/+/1 / nj C /+ log N log/( C nj log N/) /! /= /2/\u001a log d C /+ O / dq log N log/( dq /\u001a log N/) /+ log N /! By combining the high probability bounds for internal and leaf nodes, we can say that a machine gets /\u001a /\u0012 /2 log d C /+ O /\u0012 log N log log N /\u0013/\u0013 /+O / dq log N log /BnZr dq /\u001a log N /\u0001 /+ log N requests with probability at least /1 /BnZr O/( log dq N /) . Replacing N by N log/(dq/) and ignoring log log/(dq/) in comparision with dq we get Theorem 3.1. Tightness of the high probability bound In this section we show that the high probability bound we have proven for the number of requests received by a machine m is tight. Lemma 3.3 There exists a distribution of R requests to pages so that a given machine m gets /\n/(/\u001a log d C /+ /\u001a log N log log N /+ dq log N log /BnZr dq /\u001a log N /\u0001 /) requests with probability at least /1/=N ."
+    },
+    {
+      "self_ref": "#/texts/33",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 293.16006999999996,
+            "t": 348.47992200000004,
+            "r": 301.08007,
+            "b": 198.479922,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2
+          ]
+        }
+      ],
+      "orig": "/!",
+      "text": "/!"
+    },
+    {
+      "self_ref": "#/texts/34",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 316.7996,
+            "t": 780.12,
+            "r": 555.96004,
+            "b": 363.6,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1374
+          ]
+        }
+      ],
+      "orig": "Proof: Full paper. We now extend our high probability analysis to functions that are chosen at random from a -universal hash family. Theorem 3.4 If h is chosen at random from a k -universal hash family then with probability at least /1/BnZr /1/=N a given cache receives no more than /2/\u001a log d C/+O/(/(kqN/(d/+/\u001a/)/) /1/=k /(/1/+ /\u001a k /+ dq log/(kdq/=/\u001a/) /+ /\u001a log k /)/) requests. Proof: The full proof is deferred to the final version of the paper. This result does not follow immediately from the results of [11], but involves a similar argument. Setting k /= log N we get the following corollary. Corollary 3.5 The high probability bound proved in theorem 3.1 for the number of requests a cache gets holds even if h is selected from a log N -universal hash family. In fact, this can be shown to be true for all the bounds that we will prove later, i.e., it suffices k to be logarithmic in the system size. /3/./2/./3 Storage In this section, we discuss the amount of storage each cache must have in order to make our protocol work. The amount of storage required at a cache is simply the number of pages for which it receives more than q requests. Lemma 3.6 The total number of cached pages, over all machines, is O/(log R log d C /+ R q /) with probability at least /1 /BnZr /1/=R /\n/(/1/) . A given cache m has O/( /\u001a q /+ log R/) cached copies with high probability.",
+      "text": "Proof: Full paper. We now extend our high probability analysis to functions that are chosen at random from a -universal hash family. Theorem 3.4 If h is chosen at random from a k -universal hash family then with probability at least /1/BnZr /1/=N a given cache receives no more than /2/\u001a log d C/+O/(/(kqN/(d/+/\u001a/)/) /1/=k /(/1/+ /\u001a k /+ dq log/(kdq/=/\u001a/) /+ /\u001a log k /)/) requests. Proof: The full proof is deferred to the final version of the paper. This result does not follow immediately from the results of [11], but involves a similar argument. Setting k /= log N we get the following corollary. Corollary 3.5 The high probability bound proved in theorem 3.1 for the number of requests a cache gets holds even if h is selected from a log N -universal hash family. In fact, this can be shown to be true for all the bounds that we will prove later, i.e., it suffices k to be logarithmic in the system size. /3/./2/./3 Storage In this section, we discuss the amount of storage each cache must have in order to make our protocol work. The amount of storage required at a cache is simply the number of pages for which it receives more than q requests. Lemma 3.6 The total number of cached pages, over all machines, is O/(log R log d C /+ R q /) with probability at least /1 /BnZr /1/=R /\n/(/1/) . A given cache m has O/( /\u001a q /+ log R/) cached copies with high probability."
+    },
+    {
+      "self_ref": "#/texts/35",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 316.79999999999995,
+            "t": 265.038,
+            "r": 555.9800292859999,
+            "b": 49.799999999999955,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1259
+          ]
+        }
+      ],
+      "orig": "In this section we define a new hashing technique called consistent hashing . We motivate this technique by reference to a simple scheme for data replication on the Internet. Consider a single server that has a large number of objects that other clients might want to access. It is natural to introduce a layer of caches between the clients and the server in order to reduce the load on the server. In such a scheme, the objects should be distributed across the caches, so that each is responsible for a roughly equal share. In addition, clients need to know which cache to query for a specific object. The obvious approach is hashing. The server can use a hash function that evenly distributes the objects across the caches. Clients can use the hash function to discover which cache stores a object. Consider now what happens when the set of active caching machines changes, or when each client is aware of a different set of caches. (Such situations are very plausible on the Internet.) If the distribution was done with a classical hash function (for example, the linear congruential function x /7/! ax /+ b /(mod p/) ), such inconsistencies would be catastrophic. When the range of the hash function ( p in the example) changed, almost every item would be",
+      "text": "In this section we define a new hashing technique called consistent hashing . We motivate this technique by reference to a simple scheme for data replication on the Internet. Consider a single server that has a large number of objects that other clients might want to access. It is natural to introduce a layer of caches between the clients and the server in order to reduce the load on the server. In such a scheme, the objects should be distributed across the caches, so that each is responsible for a roughly equal share. In addition, clients need to know which cache to query for a specific object. The obvious approach is hashing. The server can use a hash function that evenly distributes the objects across the caches. Clients can use the hash function to discover which cache stores a object. Consider now what happens when the set of active caching machines changes, or when each client is aware of a different set of caches. (Such situations are very plausible on the Internet.) If the distribution was done with a classical hash function (for example, the linear congruential function x /7/! ax /+ b /(mod p/) ), such inconsistencies would be catastrophic. When the range of the hash function ( p in the example) changed, almost every item would be"
+    },
+    {
+      "self_ref": "#/texts/36",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 316.79999999999995,
+            "t": 468.24,
+            "r": 555.9576094280001,
+            "b": 248.27999999999997,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            479
+          ]
+        },
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 53.7602,
+            "t": 734.2379999999999,
+            "r": 292.79736593,
+            "b": 716.4268883162518,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            480,
+            602
+          ]
+        }
+      ],
+      "orig": "Proof (sketch): The analysis is very similar to that in proof of Theorem 3.1. We again play the protocol on the abstract trees. Since a page is cached only if it requested q times, we assign each abstract node a weight of one if it gets more than q requests and zero otherwise. These abstract nodes are then mapped randomly onto the set of caches. We can bound the total weight received by a particular cache, which is exactly the number of pages it caches. /4 Consistent Hashing hashed to a new location. Suddenly, all cached data is useless because clients are looking for it in a different location.",
+      "text": "Proof (sketch): The analysis is very similar to that in proof of Theorem 3.1. We again play the protocol on the abstract trees. Since a page is cached only if it requested q times, we assign each abstract node a weight of one if it gets more than q requests and zero otherwise. These abstract nodes are then mapped randomly onto the set of caches. We can bound the total weight received by a particular cache, which is exactly the number of pages it caches. /4 Consistent Hashing hashed to a new location. Suddenly, all cached data is useless because clients are looking for it in a different location."
+    },
+    {
+      "self_ref": "#/texts/37",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 53.760999999999996,
+            "t": 714.3180699999999,
+            "r": 292.95693100000005,
+            "b": 566.9068883162518,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            987
+          ]
+        }
+      ],
+      "orig": "Consistent hashing solves this problem of different 'views.' We define a view to be the set of caches of which a particular client is aware. We assume that while views can be inconsistent, they are substantial: each machine is aware of a constant fraction of the currently operating caches. A client uses a consistent hash function to map a object to one of the caches in its view. We analyze and construct hash functions with the following consistency properties. First, there is a 'smoothness' property. When a machine is added to or removed from the set of caches, the expected fraction of objects that must be moved to a new cache is the minimum needed to maintain a balanced load across the caches. Second, over all the client views, the total number of different caches to which a object is assigned is small. We call this property 'spread'. Similarly, over all the client views, the number of distinct objects assigned to a particular cache is small. We call this property 'load'.",
+      "text": "Consistent hashing solves this problem of different 'views.' We define a view to be the set of caches of which a particular client is aware. We assume that while views can be inconsistent, they are substantial: each machine is aware of a constant fraction of the currently operating caches. A client uses a consistent hash function to map a object to one of the caches in its view. We analyze and construct hash functions with the following consistency properties. First, there is a 'smoothness' property. When a machine is added to or removed from the set of caches, the expected fraction of objects that must be moved to a new cache is the minimum needed to maintain a balanced load across the caches. Second, over all the client views, the total number of different caches to which a object is assigned is small. We call this property 'spread'. Similarly, over all the client views, the number of distinct objects assigned to a particular cache is small. We call this property 'load'."
+    },
+    {
+      "self_ref": "#/texts/38",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 53.76079999999999,
+            "t": 564.7976799999999,
+            "r": 292.97979805,
+            "b": 467.30684831625183,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            609
+          ]
+        }
+      ],
+      "orig": "Consistent hashing therefore solves the problems discussed above. The 'spread' property implies that even in the presence of inconsistent views of the world, references for a given object are directed only to a small number of caching machines. Distributing a object to this small set of caches will insure access for all clients, without using a lot of storage. The 'load' property implies that no one cache is assigned an unreasonable number of objects. The 'smoothness' property implies that smooth changes in the set of caching machines are matched by a smooth evolution in the location of cached objects.",
+      "text": "Consistent hashing therefore solves the problems discussed above. The 'spread' property implies that even in the presence of inconsistent views of the world, references for a given object are directed only to a small number of caching machines. Distributing a object to this small set of caches will insure access for all clients, without using a lot of storage. The 'load' property implies that no one cache is assigned an unreasonable number of objects. The 'smoothness' property implies that smooth changes in the set of caching machines are matched by a smooth evolution in the location of cached objects."
+    },
+    {
+      "self_ref": "#/texts/39",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 53.760099999999994,
+            "t": 204.60000000000002,
+            "r": 292.94212147999997,
+            "b": 43.68003399999998,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            486
+          ]
+        }
+      ],
+      "orig": "Balance: A ranged hash family is balanced if, given a particular view a set of items, and a randomly chosen function selected from the hash family, with high probability the fraction of items mapped to each bucket is . The balance property is what is prized about standard hash functions: they distribute items among buckets in a balanced fasion. Monotonicity: Aranged hash function f is monotone if for all views V/1 /\u0012 V/2 /\u0012 B , fV/2 /(i/) /2 V/1 implies fV/1 /(i/) /= fV/2 /(i/) . A",
+      "text": "Balance: A ranged hash family is balanced if, given a particular view a set of items, and a randomly chosen function selected from the hash family, with high probability the fraction of items mapped to each bucket is . The balance property is what is prized about standard hash functions: they distribute items among buckets in a balanced fasion. Monotonicity: Aranged hash function f is monotone if for all views V/1 /\u0012 V/2 /\u0012 B , fV/2 /(i/) /2 V/1 implies fV/1 /(i/) /= fV/2 /(i/) . A"
+    },
+    {
+      "self_ref": "#/texts/40",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 53.759800000000006,
+            "t": 476.64,
+            "r": 292.97999999999996,
+            "b": 105.72000000000003,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1605
+          ]
+        }
+      ],
+      "orig": "Since there are many ways to formalize the notion of consistency as described above, we will not commit to a precise definition. Rather, in Section 4.4 we define a 'ranged hash function' and then precisely define several quantities that capture different aspects of 'consistency'. In Section 4.2 we construct practical hash functions which exhibit all four to some extent. In Section 4.4, we discuss other aspects of consistent hashing whihc, though not germane to this paper, indicate some of the richness underlying the theory. /4/./1 De/\fnitions In this section, we formalize and relate four notions of consistency. Let I be the set of items and B be the set of buckets. Let I /= jIj be the number of items. A view is any subset of the buckets B . A ranged hash function is a function of the form f /: /2 B /- I /7/! B . Such a function specifies an assignment of items to buckets for every possible view. That is, f/(V/; i/) is the bucket to which item i is assigned in view V . (We will use the notation fV/(i/) in place f/(V/; i/) from now on.) Since items should only be assigned to usable buckets, we require fV/(I/) /\u0012 V for every view V . A ranged hash family is a family of ranged hash functions. A random ranged hash function is a function drawn at random from a particular ranged hash family. In the remainder of this section, we state and relate some reasonable notions of consistency regarding ranged hash families. Throughout, we use the following notational conventions: F is a ranged hash family, f is a ranged hash function, V is a view, i is an item, and b is a bucket. V O/(/1/=jV j/)",
+      "text": "Since there are many ways to formalize the notion of consistency as described above, we will not commit to a precise definition. Rather, in Section 4.4 we define a 'ranged hash function' and then precisely define several quantities that capture different aspects of 'consistency'. In Section 4.2 we construct practical hash functions which exhibit all four to some extent. In Section 4.4, we discuss other aspects of consistent hashing whihc, though not germane to this paper, indicate some of the richness underlying the theory. /4/./1 De/\fnitions In this section, we formalize and relate four notions of consistency. Let I be the set of items and B be the set of buckets. Let I /= jIj be the number of items. A view is any subset of the buckets B . A ranged hash function is a function of the form f /: /2 B /- I /7/! B . Such a function specifies an assignment of items to buckets for every possible view. That is, f/(V/; i/) is the bucket to which item i is assigned in view V . (We will use the notation fV/(i/) in place f/(V/; i/) from now on.) Since items should only be assigned to usable buckets, we require fV/(I/) /\u0012 V for every view V . A ranged hash family is a family of ranged hash functions. A random ranged hash function is a function drawn at random from a particular ranged hash family. In the remainder of this section, we state and relate some reasonable notions of consistency regarding ranged hash families. Throughout, we use the following notational conventions: F is a ranged hash family, f is a ranged hash function, V is a view, i is an item, and b is a bucket. V O/(/1/=jV j/)"
+    },
+    {
+      "self_ref": "#/texts/41",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 316.79980000000006,
+            "t": 756.6,
+            "r": 555.960156,
+            "b": 508.20000000000005,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            915
+          ]
+        }
+      ],
+      "orig": "ranged hash family is monotone if every ranged hash function in it is. This property says that if items are initially assigned to a set of buckets and then some new buckets are added to form , then an item may move from an old bucket to a new bucket, but not from one old bucket to another. This reflects one intuition about consistency: when the set of usable buckets changes, items should only move if necessary to preserve an even distribution. Spread: Let V/1 /: /: /: V V be a set of views, altogether containing C distinct buckets and each individually containing at least C/=t buckets. For a ranged hash function and a particular item i , the spread /\u001b/(i/) is the quantity / /\f ffVj /(i/)g V j/=/1 / / . The spread of a hash function /\u001b/(f /) is the maximum spread of an item. The spread of a hash family is /\u001b if with high probability, the spread of a random hash function from the family is /\u001b . V /1/=t i",
+      "text": "ranged hash family is monotone if every ranged hash function in it is. This property says that if items are initially assigned to a set of buckets and then some new buckets are added to form , then an item may move from an old bucket to a new bucket, but not from one old bucket to another. This reflects one intuition about consistency: when the set of usable buckets changes, items should only move if necessary to preserve an even distribution. Spread: Let V/1 /: /: /: V V be a set of views, altogether containing C distinct buckets and each individually containing at least C/=t buckets. For a ranged hash function and a particular item i , the spread /\u001b/(i/) is the quantity / /\f ffVj /(i/)g V j/=/1 / / . The spread of a hash function /\u001b/(f /) is the maximum spread of an item. The spread of a hash family is /\u001b if with high probability, the spread of a random hash function from the family is /\u001b . V /1/=t i"
+    },
+    {
+      "self_ref": "#/texts/42",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 316.7996,
+            "t": 638.28,
+            "r": 555.9811099799997,
+            "b": 49.080100000000016,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2722
+          ]
+        }
+      ],
+      "orig": "The idea behind spread is that there are people, each of whom can see at least a constant fraction ( ) of the buckets that are visible to anyone. Each person tries to assign an item to a bucket using a consistent hash function. The property says that across the entire group, there are at most /\u001b/(i/) different opinions about which bucket should contain the item. Clearly, a good consistent hash function should have low spread over all items. Load: Define a set of V views as before. For a ranged hash function f and bucket b , the load /\u0015/(b/) is the quantity / /\f S V f /BnZr/1 V /(b/) / / . The load of a hash function is the maximum load of a bucket. The load of a hash family is /\u0015 if with high probability, a randomly chosen hash function has load /\u0015 . (Note that f /BnZr/1 V /(b/) is the set of items assigned to bucket b in view V .) The load property is similar to spread. The same V people are back, but this time we consider a particular bucket b instead of an item. The property says that there are at most /\u0015/(b/) distinct items that at least one person thinks belongs in the bucket. A good consistent hash function should also have low load. Our main result for consistent hashing is Theorem 4.1 which shows the existence of an efficiently computable monotonic ranged hash family with logarithmic spread and balance. /4/./2 Construction We now give a construction of a ranged hash family with good properties. Suppose that we have two random functions rB and rI . The function rB maps buckets randomly to the unit interval, and rI does the same for items. fV/(i/) is defined to be the bucket b /2 V that minimizes jrB/(b/) /BnZr r I /(i/)j . In other words, i is mapped to the bucket 'closest' to i . For reasons that will become apparent, we actually need to have more than one point in the unit interval associated with each bucket. Assuming that the number of buckets in the range is always less than C , we will need /\u0014 log/(C/) points for each bucket for some constant /\u0014 . The easiest way to view this is that each bucket is replicated /\u0014 log/(C/) times, and then rB maps each replicated bucket randomly. In order to economize on the space to represent a function in the family, and on the use of random bits, we only demand that the functions rB and rI map points log/(C/) -way independently and uniformly to /[/0/; /1/] . Note that for each point we pick in the unit interval, we need only pick enough random bits to distinguish the point from all other points. Thus it is unlikely that we need more than log/( number of points /) bits for each point. Denote the above described hash family as F . Theorem 4.1 The ranged hash family F described above has the following properties: 1. F is monotone.",
+      "text": "The idea behind spread is that there are people, each of whom can see at least a constant fraction ( ) of the buckets that are visible to anyone. Each person tries to assign an item to a bucket using a consistent hash function. The property says that across the entire group, there are at most /\u001b/(i/) different opinions about which bucket should contain the item. Clearly, a good consistent hash function should have low spread over all items. Load: Define a set of V views as before. For a ranged hash function f and bucket b , the load /\u0015/(b/) is the quantity / /\f S V f /BnZr/1 V /(b/) / / . The load of a hash function is the maximum load of a bucket. The load of a hash family is /\u0015 if with high probability, a randomly chosen hash function has load /\u0015 . (Note that f /BnZr/1 V /(b/) is the set of items assigned to bucket b in view V .) The load property is similar to spread. The same V people are back, but this time we consider a particular bucket b instead of an item. The property says that there are at most /\u0015/(b/) distinct items that at least one person thinks belongs in the bucket. A good consistent hash function should also have low load. Our main result for consistent hashing is Theorem 4.1 which shows the existence of an efficiently computable monotonic ranged hash family with logarithmic spread and balance. /4/./2 Construction We now give a construction of a ranged hash family with good properties. Suppose that we have two random functions rB and rI . The function rB maps buckets randomly to the unit interval, and rI does the same for items. fV/(i/) is defined to be the bucket b /2 V that minimizes jrB/(b/) /BnZr r I /(i/)j . In other words, i is mapped to the bucket 'closest' to i . For reasons that will become apparent, we actually need to have more than one point in the unit interval associated with each bucket. Assuming that the number of buckets in the range is always less than C , we will need /\u0014 log/(C/) points for each bucket for some constant /\u0014 . The easiest way to view this is that each bucket is replicated /\u0014 log/(C/) times, and then rB maps each replicated bucket randomly. In order to economize on the space to represent a function in the family, and on the use of random bits, we only demand that the functions rB and rI map points log/(C/) -way independently and uniformly to /[/0/; /1/] . Note that for each point we pick in the unit interval, we need only pick enough random bits to distinguish the point from all other points. Thus it is unlikely that we need more than log/( number of points /) bits for each point. Denote the above described hash family as F . Theorem 4.1 The ranged hash family F described above has the following properties: 1. F is monotone."
+    },
+    {
+      "self_ref": "#/texts/43",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 53.75999999999996,
+            "t": 788.4,
+            "r": 292.9812947009999,
+            "b": 204.12,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2546
+          ]
+        }
+      ],
+      "orig": "2. Balance: For a fixed view , for and , and, conditioned on the choice of , the assignments of items to buckets are -way independent. 3. Spread: If the number of views for some constant , and the number of items , then for , is O/(t log/(C/)/) with probability greater than /1 /BnZr /1/=C . 4. Load: If V and I are as above, then for b /2 B , /\u0015/(b/) is O/(t log/(C/)/) with probability greater than /1 /BnZr /1/=C /\n/(/1/) . Proof (sketch): Monotonicity is immediate. When a new bucket is added, the only items that move are those that are now closest to one of the new bucket's associated points. No items move betw een old buckets. The spread and load properties follow from the observation that with high probability, a point from every view falls into an interval of length O/(t/=C/) . Spread follows by observing that the number of bucket points that fall in this size interval around an item point is an upper bound on the spread of that item, since no other bucket can be closer in any view. Standard Chernoff arguments apply to this case. Load follows by a similar argument where we count the number of item points that fall in the region 'owned' by a bucket's associated points. Balance follows from the fa ct that when /\u0014 log/(C/) points are randomly mapped to the unit interval, each bucket is with highu probability responsible for no more than a O/(/1/) jVj fraction of the interval. The key here is to count the number of combinatroially distinct ways of assigning this large a fraction to the /\u0014 log/(C/) points associated with a bucket. This turns out to be polynomial in C . We then argue that with high probability none of these possibilities could actually occur by showing that in each one an additional bucket point is likely to fall. We deduce that the actual length must be smaller than O/(/1/=jVj/) . All of the above proofs can be done with only log/(C/) -way independent mappings. The following corollary is immediate and is useful in the rest of the paper. Corollary 4.2 With the same conditions of the previous theorem, Pr/[fV /(i/) /= b in any view /] /\u0014 O/(t log/(C/)/) jVj for i /2 I and b /2 B . /4/./3 Implementation In this section we show how the hash family just dexcrobed can be implemented efficiently. Specifically, the expected running time for a single hash computation will be O/(/1/) . The expectation is over the choice of hash function. The expected running time for adding or deleting a bucket will be O/(log C/) where C is an upper bound on the total number of buckets in all views. C /\u0014C log/(C/)",
+      "text": "2. Balance: For a fixed view , for and , and, conditioned on the choice of , the assignments of items to buckets are -way independent. 3. Spread: If the number of views for some constant , and the number of items , then for , is O/(t log/(C/)/) with probability greater than /1 /BnZr /1/=C . 4. Load: If V and I are as above, then for b /2 B , /\u0015/(b/) is O/(t log/(C/)/) with probability greater than /1 /BnZr /1/=C /\n/(/1/) . Proof (sketch): Monotonicity is immediate. When a new bucket is added, the only items that move are those that are now closest to one of the new bucket's associated points. No items move betw een old buckets. The spread and load properties follow from the observation that with high probability, a point from every view falls into an interval of length O/(t/=C/) . Spread follows by observing that the number of bucket points that fall in this size interval around an item point is an upper bound on the spread of that item, since no other bucket can be closer in any view. Standard Chernoff arguments apply to this case. Load follows by a similar argument where we count the number of item points that fall in the region 'owned' by a bucket's associated points. Balance follows from the fa ct that when /\u0014 log/(C/) points are randomly mapped to the unit interval, each bucket is with highu probability responsible for no more than a O/(/1/) jVj fraction of the interval. The key here is to count the number of combinatroially distinct ways of assigning this large a fraction to the /\u0014 log/(C/) points associated with a bucket. This turns out to be polynomial in C . We then argue that with high probability none of these possibilities could actually occur by showing that in each one an additional bucket point is likely to fall. We deduce that the actual length must be smaller than O/(/1/=jVj/) . All of the above proofs can be done with only log/(C/) -way independent mappings. The following corollary is immediate and is useful in the rest of the paper. Corollary 4.2 With the same conditions of the previous theorem, Pr/[fV /(i/) /= b in any view /] /\u0014 O/(t log/(C/)/) jVj for i /2 I and b /2 B . /4/./3 Implementation In this section we show how the hash family just dexcrobed can be implemented efficiently. Specifically, the expected running time for a single hash computation will be O/(/1/) . The expectation is over the choice of hash function. The expected running time for adding or deleting a bucket will be O/(log C/) where C is an upper bound on the total number of buckets in all views. C /\u0014C log/(C/)"
+    },
+    {
+      "self_ref": "#/texts/44",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 53.75999999999999,
+            "t": 344.15999999999997,
+            "r": 292.956333853,
+            "b": 134.39999999999998,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            450
+          ]
+        }
+      ],
+      "orig": "A simple implementation uses a balanced binary search tree to store the correspondence between segments of the unit interval and buckets. If there are buckets, then there will be intervals, so the search tree will have depth O/(log/(C/)/) . Thus, a single hash computation takes O/(log/(C/)/) time. The time for an addition or removal of a bucket is O/(log /2 /(C/)/) since we insert or delete /\u0014 log/(C/) points for each bucket. O/(/1/) /\u0014C log/(C/)",
+      "text": "A simple implementation uses a balanced binary search tree to store the correspondence between segments of the unit interval and buckets. If there are buckets, then there will be intervals, so the search tree will have depth O/(log/(C/)/) . Thus, a single hash computation takes O/(log/(C/)/) time. The time for an addition or removal of a bucket is O/(log /2 /(C/)/) since we insert or delete /\u0014 log/(C/) points for each bucket. O/(/1/) /\u0014C log/(C/)"
+    },
+    {
+      "self_ref": "#/texts/45",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 53.75999999999996,
+            "t": 264.48,
+            "r": 293.02200389999996,
+            "b": 44.63980000000004,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            799
+          ]
+        },
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 316.7998,
+            "t": 745.44,
+            "r": 555.99608037,
+            "b": 595.44,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            800,
+            1436
+          ]
+        }
+      ],
+      "orig": "The following trick reduces the expected running time of a hash computation to . The idea is to divide the interval into roughly equal length segments, and to keep a separate search tree for each segment. Thus, the time to compute the hash function is the time to determine which interval rI/(i/) is in, plus the time to lookup the bucket in the corresponding search tree. The first time is always O/(/1/) . Since, the expected number of points in each segment is O/(/1/) , the second time is O/(/1/) in expectation. One caveat to the above is that as the number of buckets grows, the size of the subintervals needs to shrink. In order to deal with this issue, we will use intervals only of length /1/=/2 x for some x . At first we choose the largest x such that /1/=/2 x /\u0014 /1/=/\u0014C log/(C/) . Then, as points are added, we bisect segments gradually so that when we reach the next power of , we have already divided all the segments. In this way we amortize the work of dividing search trees over all of the additions and removals. Another point is that the search trees in adjacent empty intervals may all need to be updated when a bucket is added since they may all now be closest to that bucket. Since the expected length of a run of empty intervals is small, the additional cost is negligible. For a more complete analysis of the running time we refer to the complete version of the paper. /4/./4 Some Theorems on Consistent Hashing",
+      "text": "The following trick reduces the expected running time of a hash computation to . The idea is to divide the interval into roughly equal length segments, and to keep a separate search tree for each segment. Thus, the time to compute the hash function is the time to determine which interval rI/(i/) is in, plus the time to lookup the bucket in the corresponding search tree. The first time is always O/(/1/) . Since, the expected number of points in each segment is O/(/1/) , the second time is O/(/1/) in expectation. One caveat to the above is that as the number of buckets grows, the size of the subintervals needs to shrink. In order to deal with this issue, we will use intervals only of length /1/=/2 x for some x . At first we choose the largest x such that /1/=/2 x /\u0014 /1/=/\u0014C log/(C/) . Then, as points are added, we bisect segments gradually so that when we reach the next power of , we have already divided all the segments. In this way we amortize the work of dividing search trees over all of the additions and removals. Another point is that the search trees in adjacent empty intervals may all need to be updated when a bucket is added since they may all now be closest to that bucket. Since the expected length of a run of empty intervals is small, the additional cost is negligible. For a more complete analysis of the running time we refer to the complete version of the paper. /4/./4 Some Theorems on Consistent Hashing"
+    },
+    {
+      "self_ref": "#/texts/46",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 316.7998,
+            "t": 404.28,
+            "r": 556.0201785079995,
+            "b": 121.91984400000001,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1185
+          ]
+        }
+      ],
+      "orig": "The equivalence stated in Theorem 4.3 allows us to reason about monotonic ranged hash functions in terms of permutations associated with items. Universality: A ranged hash family is universal if restricting every function in the family to a single view creates a universal hash family. This property is one way of requiring that a ranged hash function be well-behaved in every view. The above condition is rather stringent; it says that if a view is fixed, items are assigned randomly to the bins in that view. This implies that in any view V , the expected fraction of items assigned to j of the buckets is j/=jVj . Using only monotonicity and this fact about the uniformity of the assignment, we can determine the expected number of items reassigned when the set of usable buckets changes. This relates to the informal notion of 'smoothness'. Theorem 4.4 Let f be a monotonic, universal ranged hash function. Let V/1 and V/2 be views. The expected fraction of items i for which fV/1 /(i/) /= fV/2 /(i/) is jV /1 /\\V /2 j jV /1 /[V /2 j . Proof (sketch): Count the number of items that move as we add buckets from V/1 until the view is V/1 /[ V/2 , and then delete buckets down to V/2",
+      "text": "The equivalence stated in Theorem 4.3 allows us to reason about monotonic ranged hash functions in terms of permutations associated with items. Universality: A ranged hash family is universal if restricting every function in the family to a single view creates a universal hash family. This property is one way of requiring that a ranged hash function be well-behaved in every view. The above condition is rather stringent; it says that if a view is fixed, items are assigned randomly to the bins in that view. This implies that in any view V , the expected fraction of items assigned to j of the buckets is j/=jVj . Using only monotonicity and this fact about the uniformity of the assignment, we can determine the expected number of items reassigned when the set of usable buckets changes. This relates to the informal notion of 'smoothness'. Theorem 4.4 Let f be a monotonic, universal ranged hash function. Let V/1 and V/2 be views. The expected fraction of items i for which fV/1 /(i/) /= fV/2 /(i/) is jV /1 /\\V /2 j jV /1 /[V /2 j . Proof (sketch): Count the number of items that move as we add buckets from V/1 until the view is V/1 /[ V/2 , and then delete buckets down to V/2"
+    },
+    {
+      "self_ref": "#/texts/47",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 316.7998,
+            "t": 669.72,
+            "r": 556.0200175499999,
+            "b": 380.88023799999996,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1175
+          ]
+        }
+      ],
+      "orig": "In this section, we discuss some additional features of consistent hashing which, though unneccessary for the remainder of the paper, demonstrate some of its interesting properties. To give insight into the monotone property, we will define a new class of hash functions and then show that this is equivalent to the class of monotone ranged hash functions. A /\u0019 -hash function is a hash function of the familiar form f /: /2 B /- I /7/! B constructed as follows. With each item i /2 I , associate a permutation /\u0019/(i/) of all the buckets B . Define fV/(i/) to be the first bucket in the permutation /\u0019/(i/) that is contained in the view V . Note that the permutations need not be chosen uniformly or independently. Theorem 4.3 Every monotone ranged hash function is a /\u0019 -hash function and vice versa. Proof (sketch): For a ranged hash function f , associate item i with the permutation b/1 /= fB/(i/)/; /: /: /: /; bj/+/1 /= fB/BnZrfb /1 /:/:/:b j g /(i/)/; /: /: /: . Suppose bj is the first element of an arbitrary view V/1 in this permutation. Then V/1 /\u0012 V/2 /= B /BnZr fb/1 /: /: /: b j/BnZr/1 g . Since fV/2 /(i/) /= bj /2 V/1 , monotonicity implies fV/1 /(i/) /= bj .",
+      "text": "In this section, we discuss some additional features of consistent hashing which, though unneccessary for the remainder of the paper, demonstrate some of its interesting properties. To give insight into the monotone property, we will define a new class of hash functions and then show that this is equivalent to the class of monotone ranged hash functions. A /\u0019 -hash function is a hash function of the familiar form f /: /2 B /- I /7/! B constructed as follows. With each item i /2 I , associate a permutation /\u0019/(i/) of all the buckets B . Define fV/(i/) to be the first bucket in the permutation /\u0019/(i/) that is contained in the view V . Note that the permutations need not be chosen uniformly or independently. Theorem 4.3 Every monotone ranged hash function is a /\u0019 -hash function and vice versa. Proof (sketch): For a ranged hash function f , associate item i with the permutation b/1 /= fB/(i/)/; /: /: /: /; bj/+/1 /= fB/BnZrfb /1 /:/:/:b j g /(i/)/; /: /: /: . Suppose bj is the first element of an arbitrary view V/1 in this permutation. Then V/1 /\u0012 V/2 /= B /BnZr fb/1 /: /: /: b j/BnZr/1 g . Since fV/2 /(i/) /= bj /2 V/1 , monotonicity implies fV/1 /(i/) /= bj ."
+    },
+    {
+      "self_ref": "#/texts/48",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 316.8002,
+            "t": 132.918,
+            "r": 555.94220393,
+            "b": 95.18695831625178,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            226
+          ]
+        }
+      ],
+      "orig": "Note that monotonicity is used only to show an upper bound on the number of items reassigned to a new bucket; this implies that one can not obtain a 'more consistent' universal hash function by relaxing the monotone condition.",
+      "text": "Note that monotonicity is used only to show an upper bound on the number of items reassigned to a new bucket; this implies that one can not obtain a 'more consistent' universal hash function by relaxing the monotone condition."
+    },
+    {
+      "self_ref": "#/texts/49",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 316.8002,
+            "t": 93.07774999999992,
+            "r": 555.90119025,
+            "b": 75.26702831625175,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            121
+          ]
+        },
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 53.76019999999997,
+            "t": 734.2379999999999,
+            "r": 292.86019024999996,
+            "b": 705.0268883162519,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            122,
+            295
+          ]
+        }
+      ],
+      "orig": "We have shown that every monotone ranged hash function can be obtained by associating each item with a random permutation of buckets. The most natural monotone consistent hash function is obtained by choosing these permutations independently and uniformly at random. We denote this function by .",
+      "text": "We have shown that every monotone ranged hash function can be obtained by associating each item with a random permutation of buckets. The most natural monotone consistent hash function is obtained by choosing these permutations independently and uniformly at random. We denote this function by ."
+    },
+    {
+      "self_ref": "#/texts/50",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 53.75999999999999,
+            "t": 692.8441999999999,
+            "r": 292.9384282799999,
+            "b": 664.9727833089312,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            131
+          ]
+        }
+      ],
+      "orig": "Theorem 4.5 The function is monotonic and universal. For item and bucket each of the following hold with probability at least : and",
+      "text": "Theorem 4.5 The function is monotonic and universal. For item and bucket each of the following hold with probability at least : and"
+    },
+    {
+      "self_ref": "#/texts/51",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 53.75998999999993,
+            "t": 663.84,
+            "r": 293.022006831,
+            "b": 263.28,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1546
+          ]
+        }
+      ],
+      "orig": "Proof: Monotonicity and universality are immediate; this leaves spread and load. Define: We use /\u0019 to denote a list of the buckets in /[ /: /: /: /[ VV which are ordered as in . First, consider spread. Recall that in a particular view, item i is assigned to the first bucket in /\u0019/(i/) which is also in the view. Therefore, if every view contains one of the first /\u001b buckets in /\u0019 /0 /(i/) then in every view item i will be assigned to one of the first /\u001b buckets in /\u0019 /0 /(i/) . This implies that item i is assigned to at most /\u001b distinct buckets over all the views. We have to show that with high probability every view contains one of the first /\u001b buckets in /\u0019 /0 /(i/) . We do this by showing that the complement has low probability; that is, the probability that some view contains none of the first /\u001b buckets is at most /1/=N . The probability that a particular view does not contain the first bucket in /\u0019 /0 /(i/) is at most /1 /BnZr /1/=t , since each view contains at least a /1/=t fraction of all buckets. The fact that the first bucket is not in a view only reduces the probability that subsequent buckets are not in the view. Therefore, the probability that a particular view contains none of the first /\u001b buckets is at most /(/1 /BnZr /1/=t/) /\u001b /= /(/1 /BnZr /1/=t/) /(t log/(NV /)/) /< /1/=/(N V /) . By the union bound, the probability that even one of the V views contains none of the first /\u001b buckets is at most /1/=N . i t log/(NV I/) /\u0019 /0 /(i/) /1 /BnZr /1/=/(/2N /) b t log/(/2NV I/) /\u0019 /0 /(i/) /\u0015 i /1/BnZr/1/=/(/2N /)",
+      "text": "Proof: Monotonicity and universality are immediate; this leaves spread and load. Define: We use /\u0019 to denote a list of the buckets in /[ /: /: /: /[ VV which are ordered as in . First, consider spread. Recall that in a particular view, item i is assigned to the first bucket in /\u0019/(i/) which is also in the view. Therefore, if every view contains one of the first /\u001b buckets in /\u0019 /0 /(i/) then in every view item i will be assigned to one of the first /\u001b buckets in /\u0019 /0 /(i/) . This implies that item i is assigned to at most /\u001b distinct buckets over all the views. We have to show that with high probability every view contains one of the first /\u001b buckets in /\u0019 /0 /(i/) . We do this by showing that the complement has low probability; that is, the probability that some view contains none of the first /\u001b buckets is at most /1/=N . The probability that a particular view does not contain the first bucket in /\u0019 /0 /(i/) is at most /1 /BnZr /1/=t , since each view contains at least a /1/=t fraction of all buckets. The fact that the first bucket is not in a view only reduces the probability that subsequent buckets are not in the view. Therefore, the probability that a particular view contains none of the first /\u001b buckets is at most /(/1 /BnZr /1/=t/) /\u001b /= /(/1 /BnZr /1/=t/) /(t log/(NV /)/) /< /1/=/(N V /) . By the union bound, the probability that even one of the V views contains none of the first /\u001b buckets is at most /1/=N . i t log/(NV I/) /\u0019 /0 /(i/) /1 /BnZr /1/=/(/2N /) b t log/(/2NV I/) /\u0019 /0 /(i/) /\u0015 i /1/BnZr/1/=/(/2N /)"
+    },
+    {
+      "self_ref": "#/texts/52",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "formula",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 53.7602,
+            "t": 786.84,
+            "r": 199.6510024,
+            "b": 566.88,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            110
+          ]
+        }
+      ],
+      "orig": "/1 /BnZr /1/=N /\u001b/(i/) /\u0014 t log/(NV /) /\u0015/(b/) /\u0014 /(/1 /+ p /4C It /)tI log/(/2NV I/)/=C 2. /\u001b /= t log/(NV /)",
+      "text": ""
+    },
+    {
+      "self_ref": "#/texts/53",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "formula",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 101.5198,
+            "t": 710.28,
+            "r": 247.44022999999999,
+            "b": 503.88,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            65
+          ]
+        }
+      ],
+      "orig": "/\u0015 /= / /1 /+ r /4C tI /! tI log/(/2NV I/) C /0 /(i/) V/1 /\u0019/(i/)",
+      "text": ""
+    },
+    {
+      "self_ref": "#/texts/54",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 53.75999999999999,
+            "t": 393.36,
+            "r": 293.0219412420001,
+            "b": 183.48000000000002,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            794
+          ]
+        }
+      ],
+      "orig": "Now consider load. By similar reasoning, every item in every view is assigned to one of the first buckets in with probability at least . We show below that a fixed bucket appears among the first buckets in for at most items with probability at least . By the union bound, both events occur with high probability. This implies that at most /\u0015 items are assigned to bucket b over all the views. All that remains is to prove the second statement. The expected number of items i for which the bucket b appears among the first t log/(/2NV I/) buckets in /\u0019 /0 /(i/) is tI log/(/2NV I/)/=C . Using Chernoff bounds, we find that bucket b appears among the first t log/(/2NV I/) buckets in /\u0019 /0 /(i/) for at most /\u0015 items i with probability at least /1 /BnZr /1/=/(/2N V I/) /\u0015 /1 /BnZr /1/=/(/2N /) .",
+      "text": "Now consider load. By similar reasoning, every item in every view is assigned to one of the first buckets in with probability at least . We show below that a fixed bucket appears among the first buckets in for at most items with probability at least . By the union bound, both events occur with high probability. This implies that at most /\u0015 items are assigned to bucket b over all the views. All that remains is to prove the second statement. The expected number of items i for which the bucket b appears among the first t log/(/2NV I/) buckets in /\u0019 /0 /(i/) is tI log/(/2NV I/)/=C . Using Chernoff bounds, we find that bucket b appears among the first t log/(/2NV I/) buckets in /\u0019 /0 /(i/) for at most /\u0015 items i with probability at least /1 /BnZr /1/=/(/2N V I/) /\u0015 /1 /BnZr /1/=/(/2N /) ."
+    },
+    {
+      "self_ref": "#/texts/55",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 53.7602,
+            "t": 100.51819999999998,
+            "r": 292.95611779999996,
+            "b": 72.7469283162518,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            199
+          ]
+        }
+      ],
+      "orig": "In this section we apply the techniques developed in the last section to the simple hot spot protocol developed in section 3. We now relax the assumption that clients know about all of the caches. We",
+      "text": "In this section we apply the techniques developed in the last section to the simple hot spot protocol developed in section 3. We now relax the assumption that clients know about all of the caches. We"
+    },
+    {
+      "self_ref": "#/texts/56",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 53.76000000000002,
+            "t": 233.88,
+            "r": 292.95609828000005,
+            "b": 83.88,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            420
+          ]
+        }
+      ],
+      "orig": "Asimple approach to constructing a consistent hash function is to assign random scores to buckets, independently for each item. Sorting the scores defines a random permutation, and therefore has the good properties proved in the this section. However, finding the bucket an item belongs in requires computing all the scores. This could be restrictivly slow for large bucket sets. /5 Random Trees in an Inconsistent World",
+      "text": "Asimple approach to constructing a consistent hash function is to assign random scores to buckets, independently for each item. Sorting the scores defines a random permutation, and therefore has the good properties proved in the this section. However, finding the bucket an item belongs in requires computing all the scores. This could be restrictivly slow for large bucket sets. /5 Random Trees in an Inconsistent World"
+    },
+    {
+      "self_ref": "#/texts/57",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 316.8,
+            "t": 778.56,
+            "r": 555.9810978,
+            "b": 558.36,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            614
+          ]
+        }
+      ],
+      "orig": "assume only that each machine knows about a fraction of the caches chosen by an adversary. There is no difference in the protocol, except that the mapping is a consistent hash function. This change will not affect latency. Therefore, we only analyze the effects on swamping and storage. The basic properties of consistent hashing are crucial in showing that the protocol still works well. In particular, the blowup in the number of requests and storage is proportional to the maximum /\u001b and /\u0015 of the hash function. /5/./1 Swamping h log/(C/) C /0 /= C/=t /1/BnZr /1/=C /\n/(/1/) O/(/(/2/\u001at /2 log d C /0 log C/) /+",
+      "text": "assume only that each machine knows about a fraction of the caches chosen by an adversary. There is no difference in the protocol, except that the mapping is a consistent hash function. This change will not affect latency. Therefore, we only analyze the effects on swamping and storage. The basic properties of consistent hashing are crucial in showing that the protocol still works well. In particular, the blowup in the number of requests and storage is proportional to the maximum /\u001b and /\u0015 of the hash function. /5/./1 Swamping h log/(C/) C /0 /= C/=t /1/BnZr /1/=C /\n/(/1/) O/(/(/2/\u001at /2 log d C /0 log C/) /+"
+    },
+    {
+      "self_ref": "#/texts/58",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 316.7995800000001,
+            "t": 698.39984,
+            "r": 555.8359941800001,
+            "b": 519.24,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            254
+          ]
+        }
+      ],
+      "orig": "Theorem 5.1 If is implemented using the -way independent consistent hash function of Theorem 4.1 and if each view consists of caches then with probability at least an arbitrary cache gets no more than /(dqt log C /+ /\u001at/) log C/) requests. p C /0 /= C/=t",
+      "text": "Theorem 5.1 If is implemented using the -way independent consistent hash function of Theorem 4.1 and if each view consists of caches then with probability at least an arbitrary cache gets no more than /(dqt log C /+ /\u001at/) log C/) requests. p C /0 /= C/=t"
+    },
+    {
+      "self_ref": "#/texts/59",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 316.79999999999995,
+            "t": 509.88,
+            "r": 556.01990832,
+            "b": 271.0799999999999,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            661
+          ]
+        }
+      ],
+      "orig": "Since a cache in a node sends out at most requests, each node in the combined tree sends out at most requests. We now adapt the proof of Theorem 3.1 to this case. In Theorem 3.1 where every machine was aware of all the caches, an abstract node was assigned to any given machine with probability /1/=C . We now assign and abstract node to a given machine with probability /-/(/\u0015/=C/) . So we have a scenario with C /0 /= C/=t caches where each abstract node sends out up to q /0 requests to its parent and m occurs at each abstract node independently and with probability /-/(/\u0015/=C/) . The rest of the proof is very similar to that of Theorem 3.1. /5/./2 Storage",
+      "text": "Since a cache in a node sends out at most requests, each node in the combined tree sends out at most requests. We now adapt the proof of Theorem 3.1 to this case. In Theorem 3.1 where every machine was aware of all the caches, an abstract node was assigned to any given machine with probability /1/=C . We now assign and abstract node to a given machine with probability /-/(/\u0015/=C/) . So we have a scenario with C /0 /= C/=t caches where each abstract node sends out up to q /0 requests to its parent and m occurs at each abstract node independently and with probability /-/(/\u0015/=C/) . The rest of the proof is very similar to that of Theorem 3.1. /5/./2 Storage"
+    },
+    {
+      "self_ref": "#/texts/60",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 316.79970000000003,
+            "t": 629.4,
+            "r": 555.9959168639995,
+            "b": 369.84,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            868
+          ]
+        }
+      ],
+      "orig": "Proof (sketch): We look at the different trees of caches for different views for one page, . Let denote the number of caches in each tree. We overlay these different trees on one another to get a new tree where in each node, there is a set of caches. Due to the spread property of the consistent hash function at most /\u001b /= O/(t log C/) caches appear at any node in this combined tree with high probability. In fact since there are only R requests, this will be true for the nodes of all the R trees for the requested pages. If Ep/;j denotes the event that m appears in the j th node of the combined tree for page p then we know from Corrollary 4.2 that the probability of this event is O/(/\u0015/=C/) , where /\u0015 is the load which is O/(t log C/) with high probability. We condition on the event that /\u001b and /\u0015 are O/(t log C/) which happens with high probability. q q/\u001b C",
+      "text": "Proof (sketch): We look at the different trees of caches for different views for one page, . Let denote the number of caches in each tree. We overlay these different trees on one another to get a new tree where in each node, there is a set of caches. Due to the spread property of the consistent hash function at most /\u001b /= O/(t log C/) caches appear at any node in this combined tree with high probability. In fact since there are only R requests, this will be true for the nodes of all the R trees for the requested pages. If Ep/;j denotes the event that m appears in the j th node of the combined tree for page p then we know from Corrollary 4.2 that the probability of this event is O/(/\u0015/=C/) , where /\u0015 is the load which is O/(t log C/) with high probability. We condition on the event that /\u001b and /\u0015 are O/(t log C/) which happens with high probability. q q/\u001b C"
+    },
+    {
+      "self_ref": "#/texts/61",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 316.8,
+            "t": 358.68023,
+            "r": 555.9390030000001,
+            "b": 158.88,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            407
+          ]
+        }
+      ],
+      "orig": "Using techniques similar to those in proof of Theorem 5.1 we get the following lemma. The proof is deferred to the final version of the paper. Lemma 5.2 The total number of cached pages, over all machines is O/(/\u001b/\u0015/(log R log d C /+ R q /)/) with probability of /1 /BnZr /1/=R /\n/(/1/) . A given cache m has O/(/\u001b/\u0015/(/\u001a/=q /+ log R/)/) cached copies with high probability. /6 Nonuniform Communication Costs",
+      "text": "Using techniques similar to those in proof of Theorem 5.1 we get the following lemma. The proof is deferred to the final version of the paper. Lemma 5.2 The total number of cached pages, over all machines is O/(/\u001b/\u0015/(log R log d C /+ R q /)/) with probability of /1 /BnZr /1/=R /\n/(/1/) . A given cache m has O/(/\u001b/\u0015/(/\u001a/=q /+ log R/)/) cached copies with high probability. /6 Nonuniform Communication Costs"
+    },
+    {
+      "self_ref": "#/texts/62",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 316.79999999999995,
+            "t": 269.76,
+            "r": 555.9571046579998,
+            "b": 49.919899999999984,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            638
+          ]
+        }
+      ],
+      "orig": "So far we assumed that every pair of machines can communicate with equal ease. In this section we extend our protocol to take the latency between machines, /\u000e , into account. The latency of the whole request will be the sum of the latencies of the machinemachine links crossed by the request. For simplicity, we assume in this section that all clients are aware of all caches. We extend our protocol to a restricted class of functions /\u000e . In particular, we assume that /\u000e is an ultrametric . Formally, an ultrametric is a metric which obeys a more strict form of the triangle inequality: /\u000e/(x/; z/) /\u0014 max/(/\u000e/(x/; y/)/; /\u000e/(y/; z/)/) .",
+      "text": "So far we assumed that every pair of machines can communicate with equal ease. In this section we extend our protocol to take the latency between machines, /\u000e , into account. The latency of the whole request will be the sum of the latencies of the machinemachine links crossed by the request. For simplicity, we assume in this section that all clients are aware of all caches. We extend our protocol to a restricted class of functions /\u000e . In particular, we assume that /\u000e is an ultrametric . Formally, an ultrametric is a metric which obeys a more strict form of the triangle inequality: /\u000e/(x/; z/) /\u0014 max/(/\u000e/(x/; y/)/; /\u000e/(y/; z/)/) ."
+    },
+    {
+      "self_ref": "#/texts/63",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 53.75999999999999,
+            "t": 734.2379999999999,
+            "r": 292.956016611,
+            "b": 565.8,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            807
+          ]
+        }
+      ],
+      "orig": "The ultrametric is a natural model of Internet distances, since it essentially captures the hierarchical nature of the Internet topology, under which, for example, all machines in a given university are equidistant, but all of them are farther away from another university, and still farther from another continent. The logical point-topoint connectivity is established atop a physical network, and it is generally the case that the latency between two sites is determined by the 'highest level' physical communication link that must be traversed on the path between them. Indeed, another definition of an ultrametric is as a hierarchical clustering of points. The distance in the ultrametric between two points is completely determined by the smallest cluster containing both of the points. /6/./1 Protocol",
+      "text": "The ultrametric is a natural model of Internet distances, since it essentially captures the hierarchical nature of the Internet topology, under which, for example, all machines in a given university are equidistant, but all of them are farther away from another university, and still farther from another continent. The logical point-topoint connectivity is established atop a physical network, and it is generally the case that the latency between two sites is determined by the 'highest level' physical communication link that must be traversed on the path between them. Indeed, another definition of an ultrametric is as a hierarchical clustering of points. The distance in the ultrametric between two points is completely determined by the smallest cluster containing both of the points. /6/./1 Protocol"
+    },
+    {
+      "self_ref": "#/texts/64",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 53.759999999999906,
+            "t": 560.28,
+            "r": 293.0368636830001,
+            "b": 311.52,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            837
+          ]
+        }
+      ],
+      "orig": "Clearly, requiring that browsers use 'nearby' caches can cause swamping if there is only one cache and server near many browsers. Thus, in order to avoid cases of degenerate ultrametrics where there are browsers that are not close to any cache, and where there are clusters in the ultrametric without any caches in them, we restrict the set of ultrametrics that may be presented to the protocol. The restriction is that in any cluster the ratio of the number of caches to the number of browsers may not fall below /1/=/\u001a (recall that R /= /\u001aC ). This restriction makes sense in the real world where caches are likely to be evenly spread out over the Internet. It is also necessary, as we can prove that a large number of browsers clustered around one cache can be forced to swamp that cache in some circumstances. /6/./2 Analysis log d C",
+      "text": "Clearly, requiring that browsers use 'nearby' caches can cause swamping if there is only one cache and server near many browsers. Thus, in order to avoid cases of degenerate ultrametrics where there are browsers that are not close to any cache, and where there are clusters in the ultrametric without any caches in them, we restrict the set of ultrametrics that may be presented to the protocol. The restriction is that in any cluster the ratio of the number of caches to the number of browsers may not fall below /1/=/\u001a (recall that R /= /\u001aC ). This restriction makes sense in the real world where caches are likely to be evenly spread out over the Internet. It is also necessary, as we can prove that a large number of browsers clustered around one cache can be forced to swamp that cache in some circumstances. /6/./2 Analysis log d C"
+    },
+    {
+      "self_ref": "#/texts/65",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 53.76019999999991,
+            "t": 585.678,
+            "r": 292.9562138899999,
+            "b": 518.0672583162518,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            404
+          ]
+        }
+      ],
+      "orig": "The only modification we make to the protocol is that when a browser maps the tree nodes to caches, it only uses caches that are as close to it as the server of the desired page. By doing this, we insure that our path to the server does not contain any caches that are unnecessarily far away in the metric. The mapping is done using a consistent hash function, which is the vital element of the solution.",
+      "text": "The only modification we make to the protocol is that when a browser maps the tree nodes to caches, it only uses caches that are as close to it as the server of the desired page. By doing this, we insure that our path to the server does not contain any caches that are unnecessarily far away in the metric. The mapping is done using a consistent hash function, which is the vital element of the solution."
+    },
+    {
+      "self_ref": "#/texts/66",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 53.759799999999984,
+            "t": 411.72,
+            "r": 293.039924,
+            "b": 44.63980000000004,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1626
+          ]
+        },
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 316.79999999999995,
+            "t": 778.56,
+            "r": 555.9958255439999,
+            "b": 548.76,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            1627,
+            2207
+          ]
+        }
+      ],
+      "orig": "It is clear from the protocol and the definition of an ultrametric that the latency will be no more than the depth of the tree, , times the latency between the browser and the server. So once again we need only look at swamping and storage. The intuition is that inside each cluster the bounds we proved for the unit distance model apply. The monotone property on consistent hashing will allow us to restrict our analysis to log/(C/) clusters. Thus, summing over these clusters we have only a log/(C/) blowup in the bound. /6/./2/./1 Swamping Theorem 6.1 Let /\u000e be an ultrametric. Suppose that each browser makes at most one request. Then in the protocol above, an arbitrary cache gets no more than log C/(/\u001a/(/8 log d C/+O/( log N log log N /)/) /+ O/( dq log N log/( dq /\u001a log N/) /+ log N/)/) requests with probability at least /1 /BnZr /1/=N where N is a parameter. Proof (sketch): The intuition behind are proof is the following. We bound the load on a machine m . Consider the ranking of machines m/1/; /; m /2 /; /: /: /: according to their distance from m . Suppose mi asks for a page from a machine closer to itself than m . Then according to our modified protocol, it will never involve m in the request. So we need only consider machine mi if it asks for a page at least as far away from itself as m . It follows from the definition of ultrametrics that every mj , j /\u0014 i , is also used in the revised protocol by mi . Intuitively, our original protocol spread load among the machines so that the probability a machine got on the path for a particular page requests was O/(/(log d C/)/=C/) . In our ultrametric pro- tocol, plays the protocol on a set of at least machines. So is on the path of the request from with probability . Summing over , the expected load on is . Stating things slightly more formally, we consider a set of nested 'virtual' clusters . Note that any browser in will use all machines in in the protocol. We modify the protocol so that such a machine uses only the machines in Ci . This only reduces the number of machines it uses. According to the monotonicity property of our consistent hash functions, this only increases the load on machine m . Ci O/(log d C/) m Ci log C",
+      "text": "It is clear from the protocol and the definition of an ultrametric that the latency will be no more than the depth of the tree, , times the latency between the browser and the server. So once again we need only look at swamping and storage. The intuition is that inside each cluster the bounds we proved for the unit distance model apply. The monotone property on consistent hashing will allow us to restrict our analysis to log/(C/) clusters. Thus, summing over these clusters we have only a log/(C/) blowup in the bound. /6/./2/./1 Swamping Theorem 6.1 Let /\u000e be an ultrametric. Suppose that each browser makes at most one request. Then in the protocol above, an arbitrary cache gets no more than log C/(/\u001a/(/8 log d C/+O/( log N log log N /)/) /+ O/( dq log N log/( dq /\u001a log N/) /+ log N/)/) requests with probability at least /1 /BnZr /1/=N where N is a parameter. Proof (sketch): The intuition behind are proof is the following. We bound the load on a machine m . Consider the ranking of machines m/1/; /; m /2 /; /: /: /: according to their distance from m . Suppose mi asks for a page from a machine closer to itself than m . Then according to our modified protocol, it will never involve m in the request. So we need only consider machine mi if it asks for a page at least as far away from itself as m . It follows from the definition of ultrametrics that every mj , j /\u0014 i , is also used in the revised protocol by mi . Intuitively, our original protocol spread load among the machines so that the probability a machine got on the path for a particular page requests was O/(/(log d C/)/=C/) . In our ultrametric pro- tocol, plays the protocol on a set of at least machines. So is on the path of the request from with probability . Summing over , the expected load on is . Stating things slightly more formally, we consider a set of nested 'virtual' clusters . Note that any browser in will use all machines in in the protocol. We modify the protocol so that such a machine uses only the machines in Ci . This only reduces the number of machines it uses. According to the monotonicity property of our consistent hash functions, this only increases the load on machine m . Ci O/(log d C/) m Ci log C"
+    },
+    {
+      "self_ref": "#/texts/67",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 316.8,
+            "t": 485.76,
+            "r": 555.9299322779999,
+            "b": 256.0799999999999,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            819
+          ]
+        }
+      ],
+      "orig": "Basically, as in Plaxton/Rajaraman, the fact that our protocol uses random short paths to the server makes it fault tolerant. We consider a model in which an adversary designates that some of the caching machines may be down , that is, ignore all attempts at communication. Remember that our adversary does not get to see our random bits, and thus cannot simply designate all machines at the top of a tree to be down. The only restriction is that a specified fraction s of the machines in every view must be up. Under our protocol, no preemptive caching of pages is done. Thus, if a server goes down, all pages that it has not distributed become inaccessible to any algorithm. This problem can be eliminated using standard techniques, such as Rabin's Information Dispersal Algorit hm [10]. So we ignore server faults. k",
+      "text": "Basically, as in Plaxton/Rajaraman, the fact that our protocol uses random short paths to the server makes it fault tolerant. We consider a model in which an adversary designates that some of the caching machines may be down , that is, ignore all attempts at communication. Remember that our adversary does not get to see our random bits, and thus cannot simply designate all machines at the top of a tree to be down. The only restriction is that a specified fraction s of the machines in every view must be up. Under our protocol, no preemptive caching of pages is done. Thus, if a server goes down, all pages that it has not distributed become inaccessible to any algorithm. This problem can be eliminated using standard techniques, such as Rabin's Information Dispersal Algorit hm [10]. So we ignore server faults. k"
+    },
+    {
+      "self_ref": "#/texts/68",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 316.79999999999995,
+            "t": 671.52,
+            "r": 555.9961275239996,
+            "b": 424.8,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            707
+          ]
+        }
+      ],
+      "orig": "Now we can consider each separately and apply the static analysis. The total number of requests arriving in one of the clusters under the modified protocol is proportional to the number of caches in the cluster, so our static analysis applies to the cluster. This gives us a bound of on the load induced on by . Sumnming over the clusters proves the theorem. /6/./2/./2 Storage Using techniques similar to those in proof of Theorem 6.1 we get the following lemma. Lemma 6.2 The total number of cached pages, over all machines is O/(R/=q log R log d C log C/) with probability of /1 /BnZr /1/=R /\n/(/1/) . A given cache m has O/(log C/(/\u001a/=q/+log R/)/) cached copies with high probability. /7 Fault Tolerance",
+      "text": "Now we can consider each separately and apply the static analysis. The total number of requests arriving in one of the clusters under the modified protocol is proportional to the number of caches in the cluster, so our static analysis applies to the cluster. This gives us a bound of on the load induced on by . Sumnming over the clusters proves the theorem. /6/./2/./2 Storage Using techniques similar to those in proof of Theorem 6.1 we get the following lemma. Lemma 6.2 The total number of cached pages, over all machines is O/(R/=q log R log d C log C/) with probability of /1 /BnZr /1/=R /\n/(/1/) . A given cache m has O/(log C/(/\u001a/=q/+log R/)/) cached copies with high probability. /7 Fault Tolerance"
+    },
+    {
+      "self_ref": "#/texts/69",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 316.79979999999995,
+            "t": 360.12,
+            "r": 555.98081757,
+            "b": 154.31999999999994,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            590
+          ]
+        }
+      ],
+      "orig": "Observe that a request is satisfied if and only if all the caches serving for the nodes of the tree path are not down. Since each node is mapped to a machine ( -wise) independently, it is trivial (using standard Chernoff bounds) to lower bound the number of abstract nodes that have working paths to the root. This leads to the following lemma: Lemma 7.1 Suppose that d /= /\n/(log N/) . With high probability, the fraction of abstract-tree leaves that have a working path to the root is /\n/(s log d C /) . In particular, if s /= /1 /BnZr O/(/1/= log d C/) , this fraction is a constant. t t",
+      "text": "Observe that a request is satisfied if and only if all the caches serving for the nodes of the tree path are not down. Since each node is mapped to a machine ( -wise) independently, it is trivial (using standard Chernoff bounds) to lower bound the number of abstract nodes that have working paths to the root. This leads to the following lemma: Lemma 7.1 Suppose that d /= /\n/(log N/) . With high probability, the fraction of abstract-tree leaves that have a working path to the root is /\n/(s log d C /) . In particular, if s /= /1 /BnZr O/(/1/= log d C/) , this fraction is a constant. t t"
+    },
+    {
+      "self_ref": "#/texts/70",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 316.79999999999995,
+            "t": 200.23803999999996,
+            "r": 555.9295519359996,
+            "b": 142.58718831625185,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            355
+          ]
+        }
+      ],
+      "orig": "The modification to the protocol is therefore quite simple. Choose a parameter , and simultaneously send requests for the page. A logarithmic number if requests is sufficient to give a high probability of one of the requests goes through. This change in the protocol will of course have an impact on the system. This impact is described in the full paper.",
+      "text": "The modification to the protocol is therefore quite simple. Choose a parameter , and simultaneously send requests for the page. A logarithmic number if requests is sufficient to give a high probability of one of the requests goes through. This change in the protocol will of course have an impact on the system. This impact is described in the full paper."
+    },
+    {
+      "self_ref": "#/texts/71",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 316.7999999999998,
+            "t": 140.47798,
+            "r": 555.9569999999999,
+            "b": 72.74690831625185,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            444
+          ]
+        }
+      ],
+      "orig": "Note that since communication is a chancy thing on the Internet, failure to get a quick response from a machine is not a particularly good indication that it is down. Thus, we focused on the tolerance of faults, and not on their detection. However, given some way to decide that a machine is down, our consistent hash functions make it trivial to reassign the work to other machines. If a you decide a machine is down, remove it from your view.",
+      "text": "Note that since communication is a chancy thing on the Internet, failure to get a quick response from a machine is not a particularly good indication that it is down. Thus, we focused on the tolerance of faults, and not on their detection. However, given some way to decide that a machine is down, our consistent hash functions make it trivial to reassign the work to other machines. If a you decide a machine is down, remove it from your view."
+    },
+    {
+      "self_ref": "#/texts/72",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 53.75999999999996,
+            "t": 759.24,
+            "r": 292.91710925000007,
+            "b": 609.24,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            521
+          ]
+        }
+      ],
+      "orig": "So far, we have omitted any real mention of time from our analyses. We have instead considered and analyzed a single 'batch' of requests, and argued that this batch causes a limited amount of caching (storage usage) at every machine, while simultaneously arguing that no machine gets swamped by the batch. In this section, we show how this static analysis carries implications for a temporal model in which requests arrive over time. Recall that our temporal model says that browsers issues requests at a certain rate / .",
+      "text": "So far, we have omitted any real mention of time from our analyses. We have instead considered and analyzed a single 'batch' of requests, and argued that this batch causes a limited amount of caching (storage usage) at every machine, while simultaneously arguing that no machine gets swamped by the batch. In this section, we show how this static analysis carries implications for a temporal model in which requests arrive over time. Recall that our temporal model says that browsers issues requests at a certain rate / ."
+    },
+    {
+      "self_ref": "#/texts/73",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 53.76000000000002,
+            "t": 343.44,
+            "r": 292.956,
+            "b": 193.44000000000005,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            321
+          ]
+        }
+      ],
+      "orig": "The above analysis used the rate at which requests were issued to measure the rate at which connections are established to machines. If we also assume that each connection lasts for a finite duration, this immediately translates into a bound on the number of connections open at a machine at any given time. /9 Conclusion",
+      "text": "The above analysis used the rate at which requests were issued to measure the rate at which connections are established to machines. If we also assume that each connection lasts for a finite duration, this immediately translates into a bound on the number of connections open at a machine at any given time. /9 Conclusion"
+    },
+    {
+      "self_ref": "#/texts/74",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 53.75999999999999,
+            "t": 679.56,
+            "r": 292.95748531,
+            "b": 267.24,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1928
+          ]
+        }
+      ],
+      "orig": "Time is a problematic issue when modeling the Internet, because the communication protocols for it have no guarantees regarding time of delivery. Thus any one request could take arbitrarily long. However, we can consider the rate at which servers receive requests. This seems like an overly simplistic measure, but the rate at which a machine can receive requests is in fact the statistic that hardware manufacturers advertise. We consider an interval of time / , and apply our 'requests all come at once' analysis to the requests that come in this interval. We can write the bounds from the static analysis on R requests as follows: cache size /= asR /+ bs cache load /= al R /+ bl Suppose machines have cache size m . Consider a time interval small enough to make R /= /\r/ small enough so that m/> asR/+bs . In other words, the number of requests that arrive in this interval is insufficient, according to our static analysis, to use storage exceeding m per machine. Thus once a machine caches a page during this interval, it keeps it for the remainder of the interval. Thus our static analysis will apply over this interval. This gives us a bound on how many requests can arrive in the interval. Dividing by the interval length, we get the rate at which caches see requests: /\r/(a l /+ b l a s m/BnZrb s /) . Plugging in the bounds from Section 3, we get the following: Theorem 8.1 If our machines have m /= /\n/(log N/) storage, for some constant N , then with probability /1/=N , the bound on the rate of new requests per cache when we have C machines of size m is / /BnZr /2 log d C C /+ O /BnZr dq m /\u0001/\u0001 . Observe the tradeoffs implicit in this theorem. Increasing m causes the load to decrease proportionately, but never below /\n/(/\r log C/=C/) . Increasing d increases the load linearly (but reduces the number of hops on a request path). Increasing q seems only to hurt, suggesting that we should always take q /= /2 .",
+      "text": "Time is a problematic issue when modeling the Internet, because the communication protocols for it have no guarantees regarding time of delivery. Thus any one request could take arbitrarily long. However, we can consider the rate at which servers receive requests. This seems like an overly simplistic measure, but the rate at which a machine can receive requests is in fact the statistic that hardware manufacturers advertise. We consider an interval of time / , and apply our 'requests all come at once' analysis to the requests that come in this interval. We can write the bounds from the static analysis on R requests as follows: cache size /= asR /+ bs cache load /= al R /+ bl Suppose machines have cache size m . Consider a time interval small enough to make R /= /\r/ small enough so that m/> asR/+bs . In other words, the number of requests that arrive in this interval is insufficient, according to our static analysis, to use storage exceeding m per machine. Thus once a machine caches a page during this interval, it keeps it for the remainder of the interval. Thus our static analysis will apply over this interval. This gives us a bound on how many requests can arrive in the interval. Dividing by the interval length, we get the rate at which caches see requests: /\r/(a l /+ b l a s m/BnZrb s /) . Plugging in the bounds from Section 3, we get the following: Theorem 8.1 If our machines have m /= /\n/(log N/) storage, for some constant N , then with probability /1/=N , the bound on the rate of new requests per cache when we have C machines of size m is / /BnZr /2 log d C C /+ O /BnZr dq m /\u0001/\u0001 . Observe the tradeoffs implicit in this theorem. Increasing m causes the load to decrease proportionately, but never below /\n/(/\r log C/=C/) . Increasing d increases the load linearly (but reduces the number of hops on a request path). Increasing q seems only to hurt, suggesting that we should always take q /= /2 ."
+    },
+    {
+      "self_ref": "#/texts/75",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 53.7602,
+            "t": 210.19799999999998,
+            "r": 293.03712358999996,
+            "b": 142.5872583162518,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            436
+          ]
+        }
+      ],
+      "orig": "This paper has focused on one particular caching problem-that of handling read requests on the Web. We believe the ideas have broader applicability. In particular, consistent hashing may be a useful tool for distributing information from name servers such as DNS and label servers such as PICS in a load-balanced and faulttolerant fashion. Our two schemes may together provide an interesting method for constructing multicast trees [4].",
+      "text": "This paper has focused on one particular caching problem-that of handling read requests on the Web. We believe the ideas have broader applicability. In particular, consistent hashing may be a useful tool for distributing information from name servers such as DNS and label servers such as PICS in a load-balanced and faulttolerant fashion. Our two schemes may together provide an interesting method for constructing multicast trees [4]."
+    },
+    {
+      "self_ref": "#/texts/76",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 53.76019999999997,
+            "t": 140.47805000000005,
+            "r": 292.98020299999996,
+            "b": 72.7469783162519,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            458
+          ]
+        },
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 316.7994,
+            "t": 734.23793,
+            "r": 555.9415587299999,
+            "b": 666.6271183162519,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            459,
+            887
+          ]
+        }
+      ],
+      "orig": "Another important way in which our ideas could be extended is in handling pages whose information changes over time, due to either server or client activity. If we augment our protocol to let the server know which machines are currently caching its page, then the server can notify such caches whenever the data on its pages changes. This might work particularly well in conjunction with the currently under development multicast protocols [4] that broadcast information from a server to all the client members of a multicast 'group.' Our protocol can be mapped into this model if we assume that every machine 'caching' a page joins a multicast group for that page. Even without multicast, if each cache keeps track, for each page it caches, of the at most other caches it has given the page to, then notification of changes can be sent down the tree to only the caches that have copies.",
+      "text": "Another important way in which our ideas could be extended is in handling pages whose information changes over time, due to either server or client activity. If we augment our protocol to let the server know which machines are currently caching its page, then the server can notify such caches whenever the data on its pages changes. This might work particularly well in conjunction with the currently under development multicast protocols [4] that broadcast information from a server to all the client members of a multicast 'group.' Our protocol can be mapped into this model if we assume that every machine 'caching' a page joins a multicast group for that page. Even without multicast, if each cache keeps track, for each page it caches, of the at most other caches it has given the page to, then notification of changes can be sent down the tree to only the caches that have copies."
+    },
+    {
+      "self_ref": "#/texts/77",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 316.79999999999995,
+            "t": 664.5183,
+            "r": 555.9565941459997,
+            "b": 498.96000000000004,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            701
+          ]
+        }
+      ],
+      "orig": "It remains open how to deal with time when modeling the Internet, because the communication protocols have no guarantees regarding time of delivery. Indeed, at the packet level, there are not even guarantees regarding eventual delivery. This suggests modeling the Internet as some kind of distributed system. Clearly, in a model in which there are no guarantees regarding delivery times, the best one can hope to prove is some of the classical liveness and safety properties underlying distributed algorithms. It is not clear what one can prove about caching and swamping in such a model. We think that there is significant research to be done on the proper way to model this aspect of the Internet. k",
+      "text": "It remains open how to deal with time when modeling the Internet, because the communication protocols have no guarantees regarding time of delivery. Indeed, at the packet level, there are not even guarantees regarding eventual delivery. This suggests modeling the Internet as some kind of distributed system. Clearly, in a model in which there are no guarantees regarding delivery times, the best one can hope to prove is some of the classical liveness and safety properties underlying distributed algorithms. It is not clear what one can prove about caching and swamping in such a model. We think that there is significant research to be done on the proper way to model this aspect of the Internet. k"
+    },
+    {
+      "self_ref": "#/texts/78",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 318.0,
+            "t": 432.13599999999997,
+            "r": 555.88014664,
+            "b": 407.2776862811127,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            158
+          ]
+        }
+      ],
+      "orig": "[1] Anawat Chankhunthod, Peter Danzig, Chuck Neerdaels, Michael Schwartz and Kurt Worrell. A Hierarchical Internet Object Cache. In USENIX Proceedings , 1996.",
+      "text": "Anawat Chankhunthod, Peter Danzig, Chuck Neerdaels, Michael Schwartz and Kurt Worrell. A Hierarchical Internet Object Cache. In USENIX Proceedings , 1996.",
+      "enumerated": true,
+      "marker": "[1]"
+    },
+    {
+      "self_ref": "#/texts/79",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 316.79999999999995,
+            "t": 565.0799999999999,
+            "r": 555.95711919,
+            "b": 415.08,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            531
+          ]
+        }
+      ],
+      "orig": "We also believe that interesting open questions remain regarding the method of consistent hashing that we present in this paper. Among them are the following. Is there a -universal consistent hash function that can be evaluated efficiently?? What tradeoffs can be achieved between spread and load? Are there some kind of 'perfect' consistent hash functions that can be constructed deterministically with the same spread and load bounds we give? On what other theoretical problems can consistent hashing give us a handle? References",
+      "text": "We also believe that interesting open questions remain regarding the method of consistent hashing that we present in this paper. Among them are the following. Is there a -universal consistent hash function that can be evaluated efficiently?? What tradeoffs can be achieved between spread and load? Are there some kind of 'perfect' consistent hash functions that can be constructed deterministically with the same spread and load bounds we give? On what other theoretical problems can consistent hashing give us a handle? References"
+    },
+    {
+      "self_ref": "#/texts/80",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 317.99999999999994,
+            "t": 288.73591999999996,
+            "r": 555.8801187439999,
+            "b": 263.75729628111276,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            151
+          ]
+        }
+      ],
+      "orig": "[6] Radhika Malpani, Jacob Lorch and David Berger. Making World Wide Web Caching Servers Cooperate. In Proceedings of World Wide Web Conference , 1996.",
+      "text": "Radhika Malpani, Jacob Lorch and David Berger. Making World Wide Web Caching Servers Cooperate. In Proceedings of World Wide Web Conference , 1996.",
+      "enumerated": true,
+      "marker": "[6]"
+    },
+    {
+      "self_ref": "#/texts/81",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 317.99996999999996,
+            "t": 424.20008,
+            "r": 555.912062,
+            "b": 271.31999999999994,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            772
+          ]
+        }
+      ],
+      "orig": "[2] Robert Devine. Design and Implementation of DDH: A Distributed Dynamic Hashing Algorithm. In Proceedings of 4th International Conference on Foundations of Data Organizations and Algorithms , 1993. [3] M. J. Feeley, W. E. Morgan, F. P. Pighin, A. R. Karlin, H. M. Levy and C. A. Thekkath. Implementing Global Memory Management in a Workstation Cluster. In Proceedings of the 15th ACM Symposium on Operating Systems Principles , 1995. [4] Sally Floyd, Van Jacobson, Steen McCanne, Ching-Gung Liu and Lixia Zhang. A Reliable Multicast Framework for Light-weight Sessions and Application Level Framing, SIGCOMM' 95 [5] Witold Litwin, Marie-Anne Neimat and Donovan A. Schneider. LH /\u0003 -A Scalable, Distributed Data Structure. ACM Transactions on Database Systems, Dec. 1996",
+      "text": "Robert Devine. Design and Implementation of DDH: A Distributed Dynamic Hashing Algorithm. In Proceedings of 4th International Conference on Foundations of Data Organizations and Algorithms , 1993. [3] M. J. Feeley, W. E. Morgan, F. P. Pighin, A. R. Karlin, H. M. Levy and C. A. Thekkath. Implementing Global Memory Management in a Workstation Cluster. In Proceedings of the 15th ACM Symposium on Operating Systems Principles , 1995. [4] Sally Floyd, Van Jacobson, Steen McCanne, Ching-Gung Liu and Lixia Zhang. A Reliable Multicast Framework for Light-weight Sessions and Application Level Framing, SIGCOMM' 95 [5] Witold Litwin, Marie-Anne Neimat and Donovan A. Schneider. LH /\u0003 -A Scalable, Distributed Data Structure. ACM Transactions on Database Systems, Dec. 1996",
+      "enumerated": true,
+      "marker": "[2]"
+    },
+    {
+      "self_ref": "#/texts/82",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 318.0,
+            "t": 261.85623,
+            "r": 555.8239525600002,
+            "b": 236.87760628111278,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            189
+          ]
+        }
+      ],
+      "orig": "[7] M. Naor and A. Wool. The load, capacity, and availability of quorum systems. In Proceedings of the 35th IEEE Symposium on Foundations of Computer Science , pages 214-225, November 1994.",
+      "text": "M. Naor and A. Wool. The load, capacity, and availability of quorum systems. In Proceedings of the 35th IEEE Symposium on Foundations of Computer Science , pages 214-225, November 1994.",
+      "enumerated": true,
+      "marker": "[7]"
+    },
+    {
+      "self_ref": "#/texts/83",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 317.99999999999994,
+            "t": 234.85622999999998,
+            "r": 555.6399179440002,
+            "b": 218.99752628111275,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            111
+          ]
+        }
+      ],
+      "orig": "[8] D. Peleg and A. Wool. The availability of quorum systems. Information and Computation 123(2):210-233, 1995.",
+      "text": "D. Peleg and A. Wool. The availability of quorum systems. Information and Computation 123(2):210-233, 1995.",
+      "enumerated": true,
+      "marker": "[8]"
+    },
+    {
+      "self_ref": "#/texts/84",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 317.99999999999994,
+            "t": 216.97614999999996,
+            "r": 555.74410472,
+            "b": 192.11744628111273,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            178
+          ]
+        }
+      ],
+      "orig": "[9] Greg Plaxton and Rajmohan Rajaraman. Fast Fault-Tolerant Concurrent Access to Shared Objects. In Proceedings of 37th IEEE Symposium on Foundations of Computer Science , 1996.",
+      "text": "Greg Plaxton and Rajmohan Rajaraman. Fast Fault-Tolerant Concurrent Access to Shared Objects. In Proceedings of 37th IEEE Symposium on Foundations of Computer Science , 1996.",
+      "enumerated": true,
+      "marker": "[9]"
+    },
+    {
+      "self_ref": "#/texts/85",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 316.79999999999995,
+            "t": 190.09607000000005,
+            "r": 555.7441952800001,
+            "b": 174.11744628111273,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            140
+          ]
+        }
+      ],
+      "orig": "[10] M. O. Rabin. Efficient dispersal of Information for Security, Load Balancing, and Fault Tolerance. Journal of the ACM 36:335-348, 1989.",
+      "text": "M. O. Rabin. Efficient dispersal of Information for Security, Load Balancing, and Fault Tolerance. Journal of the ACM 36:335-348, 1989.",
+      "enumerated": true,
+      "marker": "[10]"
+    },
+    {
+      "self_ref": "#/texts/86",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 316.7996,
+            "t": 172.09607000000005,
+            "r": 555.8795824,
+            "b": 147.2373662811127,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            190
+          ]
+        }
+      ],
+      "orig": "[11] Jeanette Schmidt, Alan Siegel and Aravind Srinivasan. ChernoffHoeffding Bounds for Applications with Limited Independence. In Proc. 4th ACS-SIAM Symposium on Discrete Algorithms , 1993.",
+      "text": "Jeanette Schmidt, Alan Siegel and Aravind Srinivasan. ChernoffHoeffding Bounds for Applications with Limited Independence. In Proc. 4th ACS-SIAM Symposium on Discrete Algorithms , 1993.",
+      "enumerated": true,
+      "marker": "[11]"
+    }
+  ],
+  "pictures": [],
+  "tables": [],
+  "key_value_items": [],
+  "form_items": [],
+  "pages": {
+    "1": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 1
+    },
+    "2": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 2
+    },
+    "3": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 3
+    },
+    "4": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 4
+    },
+    "5": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 5
+    },
+    "6": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 6
+    },
+    "7": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 7
+    },
+    "8": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 8
+    },
+    "9": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 9
+    },
+    "10": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 10
+    }
+  }
+}

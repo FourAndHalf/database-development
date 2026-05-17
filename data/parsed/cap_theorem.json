@@ -1,0 +1,3774 @@
+{
+  "schema_name": "DoclingDocument",
+  "version": "1.10.0",
+  "name": "cap_theorem",
+  "origin": {
+    "mimetype": "application/pdf",
+    "binary_hash": 4745537863568100492,
+    "filename": "cap_theorem.pdf"
+  },
+  "furniture": {
+    "self_ref": "#/furniture",
+    "children": [],
+    "content_layer": "furniture",
+    "name": "_root_",
+    "label": "unspecified"
+  },
+  "body": {
+    "self_ref": "#/body",
+    "children": [
+      {
+        "$ref": "#/texts/0"
+      },
+      {
+        "$ref": "#/texts/1"
+      },
+      {
+        "$ref": "#/texts/2"
+      },
+      {
+        "$ref": "#/texts/3"
+      },
+      {
+        "$ref": "#/texts/4"
+      },
+      {
+        "$ref": "#/texts/5"
+      },
+      {
+        "$ref": "#/groups/0"
+      },
+      {
+        "$ref": "#/texts/9"
+      },
+      {
+        "$ref": "#/texts/10"
+      },
+      {
+        "$ref": "#/texts/11"
+      },
+      {
+        "$ref": "#/texts/12"
+      },
+      {
+        "$ref": "#/texts/13"
+      },
+      {
+        "$ref": "#/texts/14"
+      },
+      {
+        "$ref": "#/texts/15"
+      },
+      {
+        "$ref": "#/texts/16"
+      },
+      {
+        "$ref": "#/texts/17"
+      },
+      {
+        "$ref": "#/texts/18"
+      },
+      {
+        "$ref": "#/texts/19"
+      },
+      {
+        "$ref": "#/texts/20"
+      },
+      {
+        "$ref": "#/texts/21"
+      },
+      {
+        "$ref": "#/texts/22"
+      },
+      {
+        "$ref": "#/texts/23"
+      },
+      {
+        "$ref": "#/texts/24"
+      },
+      {
+        "$ref": "#/texts/25"
+      },
+      {
+        "$ref": "#/texts/26"
+      },
+      {
+        "$ref": "#/texts/27"
+      },
+      {
+        "$ref": "#/texts/28"
+      },
+      {
+        "$ref": "#/texts/29"
+      },
+      {
+        "$ref": "#/texts/30"
+      },
+      {
+        "$ref": "#/texts/31"
+      },
+      {
+        "$ref": "#/texts/32"
+      },
+      {
+        "$ref": "#/texts/33"
+      },
+      {
+        "$ref": "#/groups/1"
+      },
+      {
+        "$ref": "#/texts/36"
+      },
+      {
+        "$ref": "#/texts/37"
+      },
+      {
+        "$ref": "#/texts/38"
+      },
+      {
+        "$ref": "#/texts/39"
+      },
+      {
+        "$ref": "#/texts/40"
+      },
+      {
+        "$ref": "#/texts/41"
+      },
+      {
+        "$ref": "#/groups/2"
+      },
+      {
+        "$ref": "#/texts/44"
+      },
+      {
+        "$ref": "#/texts/45"
+      },
+      {
+        "$ref": "#/texts/46"
+      },
+      {
+        "$ref": "#/texts/47"
+      },
+      {
+        "$ref": "#/texts/48"
+      },
+      {
+        "$ref": "#/texts/49"
+      },
+      {
+        "$ref": "#/texts/50"
+      },
+      {
+        "$ref": "#/texts/51"
+      },
+      {
+        "$ref": "#/texts/52"
+      },
+      {
+        "$ref": "#/texts/53"
+      },
+      {
+        "$ref": "#/texts/54"
+      },
+      {
+        "$ref": "#/texts/55"
+      },
+      {
+        "$ref": "#/texts/56"
+      },
+      {
+        "$ref": "#/texts/57"
+      },
+      {
+        "$ref": "#/texts/58"
+      },
+      {
+        "$ref": "#/texts/59"
+      },
+      {
+        "$ref": "#/texts/60"
+      },
+      {
+        "$ref": "#/texts/61"
+      },
+      {
+        "$ref": "#/texts/62"
+      },
+      {
+        "$ref": "#/texts/63"
+      },
+      {
+        "$ref": "#/groups/3"
+      },
+      {
+        "$ref": "#/texts/66"
+      },
+      {
+        "$ref": "#/texts/67"
+      },
+      {
+        "$ref": "#/texts/68"
+      },
+      {
+        "$ref": "#/texts/69"
+      },
+      {
+        "$ref": "#/texts/70"
+      },
+      {
+        "$ref": "#/texts/71"
+      },
+      {
+        "$ref": "#/texts/72"
+      },
+      {
+        "$ref": "#/texts/73"
+      },
+      {
+        "$ref": "#/texts/74"
+      },
+      {
+        "$ref": "#/texts/75"
+      },
+      {
+        "$ref": "#/groups/4"
+      },
+      {
+        "$ref": "#/texts/81"
+      },
+      {
+        "$ref": "#/texts/82"
+      },
+      {
+        "$ref": "#/groups/5"
+      },
+      {
+        "$ref": "#/texts/97"
+      },
+      {
+        "$ref": "#/texts/98"
+      },
+      {
+        "$ref": "#/texts/99"
+      },
+      {
+        "$ref": "#/texts/100"
+      },
+      {
+        "$ref": "#/texts/101"
+      },
+      {
+        "$ref": "#/texts/102"
+      },
+      {
+        "$ref": "#/texts/103"
+      },
+      {
+        "$ref": "#/texts/104"
+      },
+      {
+        "$ref": "#/groups/6"
+      }
+    ],
+    "content_layer": "body",
+    "name": "_root_",
+    "label": "unspecified"
+  },
+  "groups": [
+    {
+      "self_ref": "#/groups/0",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/6"
+        },
+        {
+          "$ref": "#/texts/7"
+        },
+        {
+          "$ref": "#/texts/8"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/1",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/34"
+        },
+        {
+          "$ref": "#/texts/35"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/2",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/42"
+        },
+        {
+          "$ref": "#/texts/43"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/3",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/64"
+        },
+        {
+          "$ref": "#/texts/65"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/4",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/76"
+        },
+        {
+          "$ref": "#/texts/77"
+        },
+        {
+          "$ref": "#/texts/78"
+        },
+        {
+          "$ref": "#/texts/79"
+        },
+        {
+          "$ref": "#/texts/80"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/5",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/83"
+        },
+        {
+          "$ref": "#/texts/84"
+        },
+        {
+          "$ref": "#/texts/85"
+        },
+        {
+          "$ref": "#/texts/86"
+        },
+        {
+          "$ref": "#/texts/87"
+        },
+        {
+          "$ref": "#/texts/88"
+        },
+        {
+          "$ref": "#/texts/89"
+        },
+        {
+          "$ref": "#/texts/90"
+        },
+        {
+          "$ref": "#/texts/91"
+        },
+        {
+          "$ref": "#/texts/92"
+        },
+        {
+          "$ref": "#/texts/93"
+        },
+        {
+          "$ref": "#/texts/94"
+        },
+        {
+          "$ref": "#/texts/95"
+        },
+        {
+          "$ref": "#/texts/96"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/6",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/105"
+        },
+        {
+          "$ref": "#/texts/106"
+        },
+        {
+          "$ref": "#/texts/107"
+        },
+        {
+          "$ref": "#/texts/108"
+        },
+        {
+          "$ref": "#/texts/109"
+        },
+        {
+          "$ref": "#/texts/110"
+        },
+        {
+          "$ref": "#/texts/111"
+        },
+        {
+          "$ref": "#/texts/112"
+        },
+        {
+          "$ref": "#/texts/113"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    }
+  ],
+  "texts": [
+    {
+      "self_ref": "#/texts/0",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 147.074,
+            "t": 669.1698596484375,
+            "r": 463.1758300000001,
+            "b": 610.2722973933943,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            97
+          ]
+        }
+      ],
+      "orig": "Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services",
+      "text": "Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/1",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 213.358,
+            "t": 593.2455246484376,
+            "r": 281.07807,
+            "b": 581.1815054121263,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "Seth Gilbert \u2217",
+      "text": "Seth Gilbert \u2217"
+    },
+    {
+      "self_ref": "#/texts/2",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 266.444,
+            "t": 528.2335886484376,
+            "r": 314.44360000000006,
+            "b": 518.6580645677459,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            8
+          ]
+        }
+      ],
+      "orig": "Abstract",
+      "text": "Abstract",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/3",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 148.71200000000002,
+            "t": 502.69686164843756,
+            "r": 432.1714560000001,
+            "b": 425.4172130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            338
+          ]
+        }
+      ],
+      "orig": "When designing distributed web services, there are three properties that are commonly desired: consistency, availability, and partition tolerance. It is impossible to achieve all three. In this note, we prove this conjecture in the asynchronous network model, and then discuss solutions to this dilemma in the partially synchronous model.",
+      "text": "When designing distributed web services, there are three properties that are commonly desired: consistency, availability, and partition tolerance. It is impossible to achieve all three. In this note, we prove this conjecture in the asynchronous network model, and then discuss solutions to this dilemma in the partially synchronous model."
+    },
+    {
+      "self_ref": "#/texts/4",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 405.87837064843745,
+            "r": 238.83013400000004,
+            "b": 393.28597276947494,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "1 Introduction",
+      "text": "1 Introduction",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/5",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 381.0865246484375,
+            "r": 484.45319300000006,
+            "b": 342.5032130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            157
+          ]
+        }
+      ],
+      "orig": "At PODC 2000, Brewer 1 , in an invited talk [2], made the following conjecture: it is impossible for a web service to provide the following three guarantees:",
+      "text": "At PODC 2000, Brewer 1 , in an invited talk [2], made the following conjecture: it is impossible for a web service to provide the following three guarantees:"
+    },
+    {
+      "self_ref": "#/texts/6",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 142.162,
+            "t": 329.5208616484375,
+            "r": 209.863254,
+            "b": 319.9872130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "\u00b7 Consistency",
+      "text": "Consistency",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/7",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 142.162,
+            "t": 307.00586164843753,
+            "r": 208.22690400000002,
+            "b": 297.4722130374864,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "\u00b7 Availability",
+      "text": "Availability",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/8",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 142.162,
+            "t": 284.48986164843745,
+            "r": 242.67752600000003,
+            "b": 274.95621303748646,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            21
+          ]
+        }
+      ],
+      "orig": "\u00b7 Partition-tolerance",
+      "text": "Partition-tolerance",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/9",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 261.9748616484376,
+            "r": 484.4531930000001,
+            "b": 225.34221303748654,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            227
+          ]
+        }
+      ],
+      "orig": "All three of these properties are desirable - and expected - from real-world web services. In this note, we will first discuss what Brewer meant by the conjecture; next we will formalize these concepts and prove the conjecture;",
+      "text": "All three of these properties are desirable - and expected - from real-world web services. In this note, we will first discuss what Brewer meant by the conjecture; next we will formalize these concepts and prove the conjecture;"
+    },
+    {
+      "self_ref": "#/texts/10",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "footnote",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 215.5619886484376,
+            "r": 484.4568320000001,
+            "b": 194.99918045247205,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            94
+          ]
+        }
+      ],
+      "orig": "\u2217 Laboratory for Computer Science, Massachusetts Institute of Technology, Cambridge, MA 02139.",
+      "text": "\u2217 Laboratory for Computer Science, Massachusetts Institute of Technology, Cambridge, MA 02139."
+    },
+    {
+      "self_ref": "#/texts/11",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "footnote",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 193.64398864843747,
+            "r": 484.45683200000025,
+            "b": 173.08118045247215,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            122
+          ]
+        }
+      ],
+      "orig": "1 Eric Brewer is a professor at the University of California, Berkeley, and the co-founder and Chief Scientist of Inktomi.",
+      "text": "1 Eric Brewer is a professor at the University of California, Berkeley, and the co-founder and Chief Scientist of Inktomi."
+    },
+    {
+      "self_ref": "#/texts/12",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 329.103,
+            "t": 593.2455246484376,
+            "r": 401.12507000000005,
+            "b": 581.1815054121263,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "Nancy Lynch \u2217",
+      "text": "Nancy Lynch \u2217"
+    },
+    {
+      "self_ref": "#/texts/13",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 125.798,
+            "t": 708.5988616484375,
+            "r": 484.45319299999994,
+            "b": 685.5152130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            106
+          ]
+        }
+      ],
+      "orig": "finally, we will describe and attempt to formalize some real-world solutions to this practical difficulty.",
+      "text": "finally, we will describe and attempt to formalize some real-world solutions to this practical difficulty."
+    },
+    {
+      "self_ref": "#/texts/14",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 125.798,
+            "t": 681.4998616484376,
+            "r": 484.4594250000001,
+            "b": 550.0242130374864,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            715
+          ]
+        }
+      ],
+      "orig": "Most web services today attempt to provide strongly consistent data. There has been significant research designing ACID 2 databases, and most of the new frameworks for building distributed web services depend on these databases. Interactions with web services are expected to behave in a transactional manner: operations commit or fail in their entirety (atomic), committed transactions are visible to all future transactions (consistent), uncommitted transactions are isolated from each other (isolated), and once a transaction is committed it is permanent (durable). It is clearly important, for example, that billing information and commercial transaction records be handled with this type of strong consistency.",
+      "text": "Most web services today attempt to provide strongly consistent data. There has been significant research designing ACID 2 databases, and most of the new frameworks for building distributed web services depend on these databases. Interactions with web services are expected to behave in a transactional manner: operations commit or fail in their entirety (atomic), committed transactions are visible to all future transactions (consistent), uncommitted transactions are isolated from each other (isolated), and once a transaction is committed it is permanent (durable). It is clearly important, for example, that billing information and commercial transaction records be handled with this type of strong consistency."
+    },
+    {
+      "self_ref": "#/texts/15",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 125.798,
+            "t": 546.0078616484375,
+            "r": 484.45942499999995,
+            "b": 441.63021303748644,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            583
+          ]
+        }
+      ],
+      "orig": "Web services are similarly expected to be highly available. Every request should succeed and receive a response. When a service goes down, it may well create significant real-world problems; the classic example of this is the potential legal difficulties should the E-Trade web site go down. This problem is exacerbated by the fact that a web-site is most likely to be unavailable when it is most needed. The goal of most web services today is to be as available as the network on which they run: if any service on the network is available, then the web service should be accessible.",
+      "text": "Web services are similarly expected to be highly available. Every request should succeed and receive a response. When a service goes down, it may well create significant real-world problems; the classic example of this is the potential legal difficulties should the E-Trade web site go down. This problem is exacerbated by the fact that a web-site is most likely to be unavailable when it is most needed. The goal of most web services today is to be as available as the network on which they run: if any service on the network is available, then the web service should be accessible."
+    },
+    {
+      "self_ref": "#/texts/16",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 125.798,
+            "t": 437.6148616484375,
+            "r": 484.453193,
+            "b": 346.78621303748656,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            501
+          ]
+        }
+      ],
+      "orig": "Finally, on a highly distributed network, it is desirable to provide some amount of fault-tolerance. When some nodes crash or some communication links fail, it is important that the service still perform as expected. One desirable fault tolerance property is the ability to survive a network partitioning into multiple components. In this note we will not consider stopping failures, though in some cases a stopping failure can be modeled as a node existing in its own unique component of a partition.",
+      "text": "Finally, on a highly distributed network, it is desirable to provide some amount of fault-tolerance. When some nodes crash or some communication links fail, it is important that the service still perform as expected. One desirable fault tolerance property is the ability to survive a network partitioning into multiple components. In this note we will not consider stopping failures, though in some cases a stopping failure can be modeled as a node existing in its own unique component of a partition."
+    },
+    {
+      "self_ref": "#/texts/17",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 125.798,
+            "t": 324.3383706484376,
+            "r": 249.274022,
+            "b": 311.745972769475,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "2 Formal Model",
+      "text": "2 Formal Model",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/18",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 125.798,
+            "t": 297.5948616484376,
+            "r": 484.455702,
+            "b": 274.5122130374866,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            117
+          ]
+        }
+      ],
+      "orig": "In this section, we will formally define what is meant by the terms consistent , available , and partition tolerant .",
+      "text": "In this section, we will formally define what is meant by the terms consistent , available , and partition tolerant ."
+    },
+    {
+      "self_ref": "#/texts/19",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 125.79800000000003,
+            "t": 255.5831446484376,
+            "r": 281.75097500000004,
+            "b": 245.0894797493022,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            23
+          ]
+        }
+      ],
+      "orig": "2.1 Atomic Data Objects",
+      "text": "2.1 Atomic Data Objects",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/20",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 125.79800000000003,
+            "t": 234.2388616484376,
+            "r": 484.4531929999998,
+            "b": 211.15621303748662,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            149
+          ]
+        }
+      ],
+      "orig": "The most natural way of formalizing the idea of a consistent service is as an atomic data object. Atomic [5], or linearizable [4], consistency is the",
+      "text": "The most natural way of formalizing the idea of a consistent service is as an atomic data object. Atomic [5], or linearizable [4], consistency is the"
+    },
+    {
+      "self_ref": "#/texts/21",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "footnote",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 138.235,
+            "t": 200.76898864843747,
+            "r": 298.6118,
+            "b": 191.15766141500808,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            43
+          ]
+        }
+      ],
+      "orig": "2 A tomic, C onsistent, I solated, D urable",
+      "text": "2 A tomic, C onsistent, I solated, D urable"
+    },
+    {
+      "self_ref": "#/texts/22",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 125.798,
+            "t": 710.5495246484376,
+            "r": 484.4579859999999,
+            "b": 550.0242130374864,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            845
+          ]
+        }
+      ],
+      "orig": "condition expected by most web services today. 3 Under this consistency guarantee, there must exist a total order on all operations such that each operation looks as if it were completed at a single instant. This is equivalent to requiring requests of the distributed shared memory to act as if they were executing on a single node, responding to operations one at a time. One important property of an atomic read/write shared memory is that any read operation that begins after a write operation completes must return that value, or the result of a later write operation. This is the consistency guarantee that generally provides the easiest model for users to understand, and is most convenient for those attempting to design a client application that uses the distributed service. See [6] for a more complete definition of atomic consistency.",
+      "text": "condition expected by most web services today. 3 Under this consistency guarantee, there must exist a total order on all operations such that each operation looks as if it were completed at a single instant. This is equivalent to requiring requests of the distributed shared memory to act as if they were executing on a single node, responding to operations one at a time. One important property of an atomic read/write shared memory is that any read operation that begins after a write operation completes must return that value, or the result of a later write operation. This is the consistency guarantee that generally provides the easiest model for users to understand, and is most convenient for those attempting to design a client application that uses the distributed service. See [6] for a more complete definition of atomic consistency."
+    },
+    {
+      "self_ref": "#/texts/23",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 125.798,
+            "t": 531.0951446484376,
+            "r": 293.50273999999996,
+            "b": 520.601479749302,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            26
+          ]
+        }
+      ],
+      "orig": "2.2 Available Data Objects",
+      "text": "2.2 Available Data Objects",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/24",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 125.798,
+            "t": 509.74986164843756,
+            "r": 484.4531930000001,
+            "b": 405.3722130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            582
+          ]
+        }
+      ],
+      "orig": "For a distributed system to be continuously available, every request received by a non-failing node in the system must result in a response. 4 That is, any algorithm used by the service must eventually terminate. In some ways this is a weak definition of availability: it puts no bound on how long the algorithm may run before terminating, and therefore allows unbounded computation. On the other hand, when qualified by the need for partition tolerance, this can be seen as a strong definition of availability: even when severe network failures occur, every request must terminate.",
+      "text": "For a distributed system to be continuously available, every request received by a non-failing node in the system must result in a response. 4 That is, any algorithm used by the service must eventually terminate. In some ways this is a weak definition of availability: it puts no bound on how long the algorithm may run before terminating, and therefore allows unbounded computation. On the other hand, when qualified by the need for partition tolerance, this can be seen as a strong definition of availability: even when severe network failures occur, every request must terminate."
+    },
+    {
+      "self_ref": "#/texts/25",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 125.798,
+            "t": 386.4431446484375,
+            "r": 270.33395,
+            "b": 375.9494797493021,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            23
+          ]
+        }
+      ],
+      "orig": "2.3 Partition Tolerance",
+      "text": "2.3 Partition Tolerance",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/26",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 125.798,
+            "t": 365.0978616484376,
+            "r": 484.45319300000006,
+            "b": 274.2692130374867,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            518
+          ]
+        }
+      ],
+      "orig": "The above definitions of availability and atomicity are qualified by the need to tolerate partitions. In order to model partition tolerance, the network will be allowed to lose arbitrarily many messages sent from one node to another. When a network is partitioned, all messages sent from nodes in one component of the partition to nodes in another component are lost. (And any pattern of message loss can be modeled as a temporary partition separating the communicating nodes at the exact instant the message is lost.)",
+      "text": "The above definitions of availability and atomicity are qualified by the need to tolerate partitions. In order to model partition tolerance, the network will be allowed to lose arbitrarily many messages sent from one node to another. When a network is partitioned, all messages sent from nodes in one component of the partition to nodes in another component are lost. (And any pattern of message loss can be modeled as a temporary partition separating the communicating nodes at the exact instant the message is lost.)"
+    },
+    {
+      "self_ref": "#/texts/27",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "footnote",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 125.798,
+            "t": 263.8829886484375,
+            "r": 484.45855800000004,
+            "b": 210.4356614150081,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            364
+          ]
+        }
+      ],
+      "orig": "3 Discussing atomic consistency is somewhat different than talking about an ACID database, as database consistency refers to transactions, while atomic consistency refers only to a property of a single request/response operation sequence. And it has a different meaning than the A tomic in ACID, as it subsumes the database notions of both A tomic and C onsistent.",
+      "text": "3 Discussing atomic consistency is somewhat different than talking about an ACID database, as database consistency refers to transactions, while atomic consistency refers only to a property of a single request/response operation sequence. And it has a different meaning than the A tomic in ACID, as it subsumes the database notions of both A tomic and C onsistent."
+    },
+    {
+      "self_ref": "#/texts/28",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "footnote",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 125.79800000000003,
+            "t": 209.08798864843754,
+            "r": 484.4559320000001,
+            "b": 177.56718045247214,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            224
+          ]
+        }
+      ],
+      "orig": "4 Brewer originally only required almost all requests to receive a response. As allowing probabilistic availability does not change the result when arbitrary failures occur, for simplicity we are requiring 100% availability.",
+      "text": "4 Brewer originally only required almost all requests to receive a response. As allowing probabilistic availability does not change the result when arbitrary failures occur, for simplicity we are requiring 100% availability."
+    },
+    {
+      "self_ref": "#/texts/29",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 125.798,
+            "t": 708.5988616484375,
+            "r": 484.4600009999999,
+            "b": 577.1222130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            688
+          ]
+        }
+      ],
+      "orig": "The atomicity requirement ( \u00a7 2.1) therefore implies that every response will be atomic, even though arbitrary messages sent as part of the algorithm might not be delivered. The availability requirement ( \u00a7 2.2) implies that every node receiving a request from a client must respond, even though arbitrary messages that are sent may be lost. Note that this is similar to wait-free termination in a pure shared-memory system: even if every other node in the network fails (i.e. the node is in its own unique component of the partition), a valid (atomic) response must be generated. No set of failures less than total network failure is allowed to cause the system to respond incorrectly. 5",
+      "text": "The atomicity requirement ( \u00a7 2.1) therefore implies that every response will be atomic, even though arbitrary messages sent as part of the algorithm might not be delivered. The availability requirement ( \u00a7 2.2) implies that every node receiving a request from a client must respond, even though arbitrary messages that are sent may be lost. Note that this is similar to wait-free termination in a pure shared-memory system: even if every other node in the network fails (i.e. the node is in its own unique component of the partition), a valid (atomic) response must be generated. No set of failures less than total network failure is allowed to cause the system to respond incorrectly. 5"
+    },
+    {
+      "self_ref": "#/texts/30",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 125.79800000000006,
+            "t": 554.6743706484375,
+            "r": 320.71710200000007,
+            "b": 542.081972769475,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            23
+          ]
+        }
+      ],
+      "orig": "3 Asynchronous Networks",
+      "text": "3 Asynchronous Networks",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/31",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 125.79800000000006,
+            "t": 528.2831446484375,
+            "r": 274.6018850000001,
+            "b": 517.7894797493021,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            24
+          ]
+        }
+      ],
+      "orig": "3.1 Impossibility Result",
+      "text": "3.1 Impossibility Result",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/32",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 125.79800000000006,
+            "t": 506.93786164843755,
+            "r": 484.4531929999999,
+            "b": 456.7572130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            237
+          ]
+        }
+      ],
+      "orig": "In proving this conjecture, we will use the asynchronous network model, as formalized by Lynch in [7]. In the asynchronous model, there is no clock, and nodes must make decisions based only on the messages received and local computation.",
+      "text": "In proving this conjecture, we will use the asynchronous network model, as formalized by Lynch in [7]. In the asynchronous model, there is no clock, and nodes must make decisions based only on the messages received and local computation."
+    },
+    {
+      "self_ref": "#/texts/33",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 125.79800000000006,
+            "t": 440.8195886484375,
+            "r": 484.4573710000001,
+            "b": 417.7032130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            140
+          ]
+        }
+      ],
+      "orig": "Theorem 1 It is impossible in the asynchronous network model to implement a read/write data object that guarantees the following properties:",
+      "text": "Theorem 1 It is impossible in the asynchronous network model to implement a read/write data object that guarantees the following properties:"
+    },
+    {
+      "self_ref": "#/texts/34",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 142.16200000000006,
+            "t": 404.72186164843754,
+            "r": 206.62328100000008,
+            "b": 395.1882130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "\u00b7 Availability",
+      "text": "Availability",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/35",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 142.16200000000006,
+            "t": 382.2058616484375,
+            "r": 244.81569000000007,
+            "b": 372.6722130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            20
+          ]
+        }
+      ],
+      "orig": "\u00b7 Atomic consistency",
+      "text": "Atomic consistency",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/36",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 125.79800000000006,
+            "t": 359.69086164843753,
+            "r": 441.428097,
+            "b": 350.1572130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            68
+          ]
+        }
+      ],
+      "orig": "in all fair executions (including those in which messages are lost).",
+      "text": "in all fair executions (including those in which messages are lost)."
+    },
+    {
+      "self_ref": "#/texts/37",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 125.79800000000006,
+            "t": 334.18586164843754,
+            "r": 484.4608750000001,
+            "b": 216.25921303748657,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            689
+          ]
+        }
+      ],
+      "orig": "Proof: We prove this by contradiction. Assume an algorithm A exists that meets the three criteria: atomicity, availability, and partition tolerance. We construct an execution of A in which there exists a request that returns an inconsistent response. The methodology is similar to proofs in Attiya et al. [1] and Lynch [8]. Assume that the network consists of at least two nodes. Thus it can be divided into two disjoint, non-empty sets: { G 1 , G 2 } . The basic idea of the proof is to assume that all messages between G 1 and G 2 are lost. Then if a write occurs in G 1 , and later a read occurs in G 2 , then the read operation cannot return the results of the earlier write operation.",
+      "text": "Proof: We prove this by contradiction. Assume an algorithm A exists that meets the three criteria: atomicity, availability, and partition tolerance. We construct an execution of A in which there exists a request that returns an inconsistent response. The methodology is similar to proofs in Attiya et al. [1] and Lynch [8]. Assume that the network consists of at least two nodes. Thus it can be divided into two disjoint, non-empty sets: { G 1 , G 2 } . The basic idea of the proof is to assume that all messages between G 1 and G 2 are lost. Then if a write occurs in G 1 , and later a read occurs in G 2 , then the read operation cannot return the results of the earlier write operation."
+    },
+    {
+      "self_ref": "#/texts/38",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "footnote",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 206.4789886484375,
+            "r": 484.4559320000003,
+            "b": 174.95718045247213,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            267
+          ]
+        }
+      ],
+      "orig": "5 Brewer pointed out in the talk that partitions of one node are irrelevant: they are equivalent to that node failing. However restricting our attention to partitions containing only components of size greater than one does not change any of the results in this note.",
+      "text": "5 Brewer pointed out in the talk that partitions of one node are irrelevant: they are equivalent to that node failing. However restricting our attention to partitions containing only components of size greater than one does not change any of the results in this note."
+    },
+    {
+      "self_ref": "#/texts/39",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 125.798,
+            "t": 708.5988616484375,
+            "r": 484.46153799999996,
+            "b": 535.3993418242301,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            921
+          ]
+        }
+      ],
+      "orig": "More formally, let v 0 be the initial value of the atomic object. Let \u03b1 1 be the prefix of an execution of A in which a single write of a value not equal to v 0 occurs in G 1 , ending with the termination of the write operation. Assume that no other client requests occur in either G 1 or G 2 . Further, assume that no messages from G 1 are received in G 2 , and no messages from G 2 are received in G 1 . We know that this write completes, by the availability requirement. Similarly, let \u03b1 2 be the prefix of an execution in which a single read occurs in G 2 , and no other client requests occur, ending with the termination of the read operation. During \u03b1 2 no messages from G 2 are received in G 1 , and no messages from G 1 are received in G 2 . Again we know that the read returns a value by the availability requirement. The value returned by this execution must be v 0 , as no write operation has occurred in \u03b1 2 .",
+      "text": "More formally, let v 0 be the initial value of the atomic object. Let \u03b1 1 be the prefix of an execution of A in which a single write of a value not equal to v 0 occurs in G 1 , ending with the termination of the write operation. Assume that no other client requests occur in either G 1 or G 2 . Further, assume that no messages from G 1 are received in G 2 , and no messages from G 2 are received in G 1 . We know that this write completes, by the availability requirement. Similarly, let \u03b1 2 be the prefix of an execution in which a single read occurs in G 2 , and no other client requests occur, ending with the termination of the read operation. During \u03b1 2 no messages from G 2 are received in G 1 , and no messages from G 1 are received in G 2 . Again we know that the read returns a value by the availability requirement. The value returned by this execution must be v 0 , as no write operation has occurred in \u03b1 2 ."
+    },
+    {
+      "self_ref": "#/texts/40",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 125.79800000000012,
+            "t": 532.4588616484375,
+            "r": 484.4560530000001,
+            "b": 428.08121303748646,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            551
+          ]
+        }
+      ],
+      "orig": "Let \u03b1 be an execution beginning with \u03b1 1 and continuing with \u03b1 2 . To the nodes in G 2 , \u03b1 is indistinguishable from \u03b1 2 , as all the messages from G 1 to G 2 are lost (in both \u03b1 1 and \u03b1 2 , which together make up \u03b1 ), and \u03b1 1 does not include any client requests to nodes in G 2 . Therefore in the \u03b1 execution, the read request (from \u03b1 2 ) must still return v 0 . However the read request does not begin until after the write request (from \u03b1 1 ) has completed. This therefore contradicts the atomicity property, proving that no such algorithm exists.",
+      "text": "Let \u03b1 be an execution beginning with \u03b1 1 and continuing with \u03b1 2 . To the nodes in G 2 , \u03b1 is indistinguishable from \u03b1 2 , as all the messages from G 1 to G 2 are lost (in both \u03b1 1 and \u03b1 2 , which together make up \u03b1 ), and \u03b1 1 does not include any client requests to nodes in G 2 . Therefore in the \u03b1 execution, the read request (from \u03b1 2 ) must still return v 0 . However the read request does not begin until after the write request (from \u03b1 1 ) has completed. This therefore contradicts the atomicity property, proving that no such algorithm exists."
+    },
+    {
+      "self_ref": "#/texts/41",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 125.798,
+            "t": 412.5205886484375,
+            "r": 484.457928,
+            "b": 389.40521303748653,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            144
+          ]
+        }
+      ],
+      "orig": "Corollary 1.1 It is impossible in the asynchronous network model to implement a read/write data object that guarantees the following properties:",
+      "text": "Corollary 1.1 It is impossible in the asynchronous network model to implement a read/write data object that guarantees the following properties:"
+    },
+    {
+      "self_ref": "#/texts/42",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 142.162,
+            "t": 376.73786164843756,
+            "r": 315.538737,
+            "b": 367.2042130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            39
+          ]
+        }
+      ],
+      "orig": "\u00b7 Availability, in all fair executions,",
+      "text": "Availability, in all fair executions,",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/43",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 142.162,
+            "t": 354.3478616484376,
+            "r": 484.150472,
+            "b": 344.8142130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            71
+          ]
+        }
+      ],
+      "orig": "\u00b7 Atomic consistency, in fair executions in which no messages are lost.",
+      "text": "Atomic consistency, in fair executions in which no messages are lost.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/44",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 125.798,
+            "t": 329.22086164843756,
+            "r": 484.453193,
+            "b": 251.94121303748648,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            428
+          ]
+        }
+      ],
+      "orig": "Proof: The main idea is that in the asynchronous model an algorithm has no way of determining whether a message has been lost, or has been arbitrarily delayed in the transmission channel. Therefore if there existed an algorithm that guaranteed atomic consistency in executions in which no messages were lost, then there would exist an algorithm that guaranteed atomic consistency in all executions. This would violate Theorem 1.",
+      "text": "Proof: The main idea is that in the asynchronous model an algorithm has no way of determining whether a message has been lost, or has been arbitrarily delayed in the transmission channel. Therefore if there existed an algorithm that guaranteed atomic consistency in executions in which no messages were lost, then there would exist an algorithm that guaranteed atomic consistency in all executions. This would violate Theorem 1."
+    },
+    {
+      "self_ref": "#/texts/45",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 125.798,
+            "t": 247.9258616484375,
+            "r": 484.453472,
+            "b": 170.6462130374864,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            375
+          ]
+        }
+      ],
+      "orig": "More formally, assume for the sake of contradiction that there exists an algorithm A that always terminates, and guarantees atomic consistency in fair executions in which all messages are delivered. Further, Theorem 1 implies that A does not guarantee atomic consistency in all fair executions, so there exists some fair execution \u03b1 of A in which some response is not atomic.",
+      "text": "More formally, assume for the sake of contradiction that there exists an algorithm A that always terminates, and guarantees atomic consistency in fair executions in which all messages are delivered. Further, Theorem 1 implies that A does not guarantee atomic consistency in all fair executions, so there exists some fair execution \u03b1 of A in which some response is not atomic."
+    },
+    {
+      "self_ref": "#/texts/46",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 125.79800000000003,
+            "t": 708.5988616484375,
+            "r": 484.45990099999995,
+            "b": 644.8682130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            390
+          ]
+        }
+      ],
+      "orig": "At some finite point in execution \u03b1 , the algorithm A returns a response that is not atomic. Let \u03b1 \u2032 be the prefix of \u03b1 ending with the invalid response. Next, extend \u03b1 \u2032 to a fair execution \u03b1 \u2032\u2032 , in which all messages are delivered. The execution \u03b1 \u2032\u2032 is now a fair execution in which all messages are delivered. However this execution is not atomic. Therefore no such algorithm A exists.",
+      "text": "At some finite point in execution \u03b1 , the algorithm A returns a response that is not atomic. Let \u03b1 \u2032 be the prefix of \u03b1 ending with the invalid response. Next, extend \u03b1 \u2032 to a fair execution \u03b1 \u2032\u2032 , in which all messages are delivered. The execution \u03b1 \u2032\u2032 is now a fair execution in which all messages are delivered. However this execution is not atomic. Therefore no such algorithm A exists."
+    },
+    {
+      "self_ref": "#/texts/47",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 612.3901446484376,
+            "r": 377.79744500000004,
+            "b": 601.8964797493021,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            39
+          ]
+        }
+      ],
+      "orig": "3.2 Solutions in the Asynchronous Model",
+      "text": "3.2 Solutions in the Asynchronous Model",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/48",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 591.0448616484376,
+            "r": 484.45319299999994,
+            "b": 567.9622130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            156
+          ]
+        }
+      ],
+      "orig": "While it is impossible to provide all three properties: atomicity, availability, and partition tolerance, any two of these three properties can be achieved.",
+      "text": "While it is impossible to provide all three properties: atomicity, availability, and partition tolerance, any two of these three properties can be achieved."
+    },
+    {
+      "self_ref": "#/texts/49",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 548.7145886484376,
+            "r": 311.19645500000007,
+            "b": 539.139064567746,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            32
+          ]
+        }
+      ],
+      "orig": "3.2.1 Atomic, Partition Tolerant",
+      "text": "3.2.1 Atomic, Partition Tolerant",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/50",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 528.0868616484375,
+            "r": 484.45319299999994,
+            "b": 410.1602130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            615
+          ]
+        }
+      ],
+      "orig": "If availability is not required, then it is easy to achieve atomic data and partition tolerance. The trivial system that ignores all requests meets these requirements. However we can provide a stronger liveness criterion: if all the messages in an execution are delivered, the system is available and all operations terminate. A simple centralized algorithm meets these requirements: a single designated node maintains the value of an object. A node receiving a request forwards the request to the designated node, which sends a response. When an acknowledgment is received, the node sends a response to the client.",
+      "text": "If availability is not required, then it is easy to achieve atomic data and partition tolerance. The trivial system that ignores all requests meets these requirements. However we can provide a stronger liveness criterion: if all the messages in an execution are delivered, the system is available and all operations terminate. A simple centralized algorithm meets these requirements: a single designated node maintains the value of an object. A node receiving a request forwards the request to the designated node, which sends a response. When an acknowledgment is received, the node sends a response to the client."
+    },
+    {
+      "self_ref": "#/texts/51",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 406.14386164843756,
+            "r": 484.459425,
+            "b": 355.9632130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            296
+          ]
+        }
+      ],
+      "orig": "Many distributed databases provide this type of guarantee, especially algorithms based on distributed locking or quorums: if certain failure patterns occur, then the liveness condition is weakened and the service no longer returns responses. If there are no failures, then liveness is guaranteed.",
+      "text": "Many distributed databases provide this type of guarantee, especially algorithms based on distributed locking or quorums: if certain failure patterns occur, then the liveness condition is weakened and the service no longer returns responses. If there are no failures, then liveness is guaranteed."
+    },
+    {
+      "self_ref": "#/texts/52",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 336.71558864843746,
+            "r": 262.37868000000003,
+            "b": 327.14006456774587,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            23
+          ]
+        }
+      ],
+      "orig": "3.2.2 Atomic, Available",
+      "text": "3.2.2 Atomic, Available",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/53",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 316.0878616484374,
+            "r": 484.4531930000001,
+            "b": 265.9062130374864,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            257
+          ]
+        }
+      ],
+      "orig": "If there are no partitions, it is clearly possible to provide atomic, available data. In fact, the centralized algorithm described in Section 3.2.1 meets these requirements. Systems that run on intranets and LANs are an example of these types of algorithms.",
+      "text": "If there are no partitions, it is clearly possible to provide atomic, available data. In fact, the centralized algorithm described in Section 3.2.1 meets these requirements. Systems that run on intranets and LANs are an example of these types of algorithms."
+    },
+    {
+      "self_ref": "#/texts/54",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 246.65858864843744,
+            "r": 322.17090900000005,
+            "b": 237.08306456774585,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            35
+          ]
+        }
+      ],
+      "orig": "3.2.3 Available, Partition Tolerant",
+      "text": "3.2.3 Available, Partition Tolerant",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/55",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 226.0308616484374,
+            "r": 484.4572529999999,
+            "b": 188.32434182423003,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            237
+          ]
+        }
+      ],
+      "orig": "It is possible to provide high availability and partition tolerance, if atomic consistency is not required. If there are no consistency requirements, the service can trivially return v 0 , the initial value, in response to every request.",
+      "text": "It is possible to provide high availability and partition tolerance, if atomic consistency is not required. If there are no consistency requirements, the service can trivially return v 0 , the initial value, in response to every request."
+    },
+    {
+      "self_ref": "#/texts/56",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 125.798,
+            "t": 708.5988616484375,
+            "r": 484.453193,
+            "b": 658.4172130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            246
+          ]
+        }
+      ],
+      "orig": "However it is possible to provide weakened consistency in an available, partition tolerant setting. Web caches are one example of a weakly consistent network. In Section 4.3 we consider some of the weaker consistency conditions that are possible.",
+      "text": "However it is possible to provide weakened consistency in an available, partition tolerant setting. Web caches are one example of a weakly consistent network. In Section 4.3 we consider some of the weaker consistency conditions that are possible."
+    },
+    {
+      "self_ref": "#/texts/57",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 125.798,
+            "t": 636.1223706484376,
+            "r": 377.613338,
+            "b": 623.529972769475,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            32
+          ]
+        }
+      ],
+      "orig": "4 Partially Synchronous Networks",
+      "text": "4 Partially Synchronous Networks",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/58",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 125.798,
+            "t": 609.7311446484375,
+            "r": 327.8375000000001,
+            "b": 599.2374797493021,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            31
+          ]
+        }
+      ],
+      "orig": "4.1 Partially Synchronous Model",
+      "text": "4.1 Partially Synchronous Model",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/59",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 125.798,
+            "t": 588.3858616484375,
+            "r": 484.45319299999994,
+            "b": 538.2052130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            264
+          ]
+        }
+      ],
+      "orig": "The most obvious way to try to circumvent the impossibility result of Theorem 1 is to realize that in the real world, most networks are not purely asynchronous. If you allow each node in the network to have a clock, it is possible to build a more powerful service.",
+      "text": "The most obvious way to try to circumvent the impossibility result of Theorem 1 is to realize that in the real world, most networks are not purely asynchronous. If you allow each node in the network to have a clock, it is possible to build a more powerful service."
+    },
+    {
+      "self_ref": "#/texts/60",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 125.798,
+            "t": 534.1898616484375,
+            "r": 484.4594249999999,
+            "b": 389.1642130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            832
+          ]
+        }
+      ],
+      "orig": "For the rest of this paper, we will discuss a partially synchronous model in which every node has a clock, and all clocks increase at the same rate. However, the clocks themselves are not synchronized, in that they may display different values at the same real time. In effect, the clocks act as timers: local state variables that the processes can observe to measure how much time has passed. A local timer can be used to schedule an action to occur a certain interval of time after some other event. Furthermore, assume that every message is either delivered within a given, known time: t msg , or it is lost. Also, every node processes a received message within a given, known time: t local , and local processing takes zero time. This can be formalized as a special case of the General Timed Automata model defined by Lynch [9].",
+      "text": "For the rest of this paper, we will discuss a partially synchronous model in which every node has a clock, and all clocks increase at the same rate. However, the clocks themselves are not synchronized, in that they may display different values at the same real time. In effect, the clocks act as timers: local state variables that the processes can observe to measure how much time has passed. A local timer can be used to schedule an action to occur a certain interval of time after some other event. Furthermore, assume that every message is either delivered within a given, known time: t msg , or it is lost. Also, every node processes a received message within a given, known time: t local , and local processing takes zero time. This can be formalized as a special case of the General Timed Automata model defined by Lynch [9]."
+    },
+    {
+      "self_ref": "#/texts/61",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 125.79800000000006,
+            "t": 370.3881446484375,
+            "r": 274.6018850000001,
+            "b": 359.8944797493021,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            24
+          ]
+        }
+      ],
+      "orig": "4.2 Impossibility Result",
+      "text": "4.2 Impossibility Result",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/62",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 125.79800000000006,
+            "t": 349.0428616484375,
+            "r": 484.45319299999994,
+            "b": 312.4112130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            200
+          ]
+        }
+      ],
+      "orig": "It is still impossible to have an always available, atomic data object when arbitrary messages may be lost, even in the partially synchronous model. That is, the following analogue of Theorem 1 holds:",
+      "text": "It is still impossible to have an always available, atomic data object when arbitrary messages may be lost, even in the partially synchronous model. That is, the following analogue of Theorem 1 holds:"
+    },
+    {
+      "self_ref": "#/texts/63",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 125.79800000000006,
+            "t": 297.4455886484375,
+            "r": 484.45319300000017,
+            "b": 274.3292130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            149
+          ]
+        }
+      ],
+      "orig": "Theorem 2 It is impossible in the partially synchronous network model to implement a read/write data object that guarantees the following properties:",
+      "text": "Theorem 2 It is impossible in the partially synchronous network model to implement a read/write data object that guarantees the following properties:"
+    },
+    {
+      "self_ref": "#/texts/64",
+      "parent": {
+        "$ref": "#/groups/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 142.16200000000006,
+            "t": 262.1578616484376,
+            "r": 206.62328100000008,
+            "b": 252.62421303748647,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "\u00b7 Availability",
+      "text": "Availability",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/65",
+      "parent": {
+        "$ref": "#/groups/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 142.16200000000006,
+            "t": 239.96686164843754,
+            "r": 244.81569000000007,
+            "b": 230.43321303748655,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            20
+          ]
+        }
+      ],
+      "orig": "\u00b7 Atomic consistency",
+      "text": "Atomic consistency",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/66",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 125.79800000000006,
+            "t": 218.26086164843764,
+            "r": 398.6320899999999,
+            "b": 208.72721303748654,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            58
+          ]
+        }
+      ],
+      "orig": "in all executions (even those in which messages are lost).",
+      "text": "in all executions (even those in which messages are lost)."
+    },
+    {
+      "self_ref": "#/texts/67",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 125.79800000000006,
+            "t": 193.7288616484375,
+            "r": 484.4557020000001,
+            "b": 169.5713418242301,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            155
+          ]
+        },
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 125.798,
+            "t": 708.5988616484375,
+            "r": 484.457018,
+            "b": 671.9662130374866,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            156,
+            351
+          ]
+        }
+      ],
+      "orig": "Proof: This proof is rather similar to the proof of Theorem 1. We will follow the same methodology: divide the network into two components, { G 1 , G 2 } , and construct an admissable execution in which a write happens in one component, followed by a read operation in the other component. This read operation can be shown to return inconsistent data.",
+      "text": "Proof: This proof is rather similar to the proof of Theorem 1. We will follow the same methodology: divide the network into two components, { G 1 , G 2 } , and construct an admissable execution in which a write happens in one component, followed by a read operation in the other component. This read operation can be shown to return inconsistent data."
+    },
+    {
+      "self_ref": "#/texts/68",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 125.79799999999994,
+            "t": 667.9508616484376,
+            "r": 484.46230799999995,
+            "b": 495.82721303748644,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            953
+          ]
+        }
+      ],
+      "orig": "More formally, construct execution \u03b1 1 as before in Theorem 1: a single write request and acknowledgment occur in G 1 , and all messages between the two components, { G 1 , G 2 } , are lost. We will construct the second execution, \u03b1 \u2032 2 , slightly differently. Let \u03b1 \u2032 2 be an execution that begins with a long interval of time during which no client requests occur. This interval must be at least as long as the entire duration of \u03b1 1 . Then append to \u03b1 \u2032 2 the events of \u03b1 2 , as defined above in Theorem 1: a single read request and response in G 2 , again assuming all messages between the two components are lost. Finally, construct \u03b1 by superimposing the two executions \u03b1 1 and \u03b1 \u2032 2 . The long interval of time in \u03b1 2 ensures that the write request completes before the read request begins. However, as in Theorem 1, the read request returns the initial value, rather than the new value written by the write request, violating atomic consistency.",
+      "text": "More formally, construct execution \u03b1 1 as before in Theorem 1: a single write request and acknowledgment occur in G 1 , and all messages between the two components, { G 1 , G 2 } , are lost. We will construct the second execution, \u03b1 \u2032 2 , slightly differently. Let \u03b1 \u2032 2 be an execution that begins with a long interval of time during which no client requests occur. This interval must be at least as long as the entire duration of \u03b1 1 . Then append to \u03b1 \u2032 2 the events of \u03b1 2 , as defined above in Theorem 1: a single read request and response in G 2 , again assuming all messages between the two components are lost. Finally, construct \u03b1 by superimposing the two executions \u03b1 1 and \u03b1 \u2032 2 . The long interval of time in \u03b1 2 ensures that the write request completes before the read request begins. However, as in Theorem 1, the read request returns the initial value, rather than the new value written by the write request, violating atomic consistency."
+    },
+    {
+      "self_ref": "#/texts/69",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 125.79800000000003,
+            "t": 476.89814464843755,
+            "r": 425.2109750000001,
+            "b": 466.40447974930214,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            48
+          ]
+        }
+      ],
+      "orig": "4.3 Solutions in the Partially Synchronous Model",
+      "text": "4.3 Solutions in the Partially Synchronous Model",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/70",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 125.79800000000003,
+            "t": 455.55286164843756,
+            "r": 484.45319300000006,
+            "b": 269.88021303748656,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1003
+          ]
+        }
+      ],
+      "orig": "In the partially synchronous model, however, the analogue of Corollary 1.1 does not hold. The proof of this corollary does in fact depend on nodes being unaware of when a message is lost. There are partially synchronous algorithms that will return atomic data when all messages in an execution are delivered (i.e., there are no partitions), and will only return inconsistent (and, in particular, stale) data when messages are lost. One example of such an algorithm is the centralized protocol described in Section 3.2.1, modified to time-out lost messages. On a read (or write ) request, a message is sent to the central node. If a response from the central node is received, then the node delivers the requested data (or an acknowledgment). If no response is received within 2 \u2217 t msg + t local , then the node concludes that the message was lost. The client is then sent a response: either the best known value of the local node, or an acknowledgment. In this case, atomic consistency may be violated.",
+      "text": "In the partially synchronous model, however, the analogue of Corollary 1.1 does not hold. The proof of this corollary does in fact depend on nodes being unaware of when a message is lost. There are partially synchronous algorithms that will return atomic data when all messages in an execution are delivered (i.e., there are no partitions), and will only return inconsistent (and, in particular, stale) data when messages are lost. One example of such an algorithm is the centralized protocol described in Section 3.2.1, modified to time-out lost messages. On a read (or write ) request, a message is sent to the central node. If a response from the central node is received, then the node delivers the requested data (or an acknowledgment). If no response is received within 2 \u2217 t msg + t local , then the node concludes that the message was lost. The client is then sent a response: either the best known value of the local node, or an acknowledgment. In this case, atomic consistency may be violated."
+    },
+    {
+      "self_ref": "#/texts/71",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 125.79800000000003,
+            "t": 250.95114464843755,
+            "r": 342.96057500000006,
+            "b": 240.45747974930214,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            33
+          ]
+        }
+      ],
+      "orig": "4.4 Weaker Consistency Conditions",
+      "text": "4.4 Weaker Consistency Conditions",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/72",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 125.79800000000003,
+            "t": 229.60586164843755,
+            "r": 484.45319300000006,
+            "b": 179.42521303748663,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            301
+          ]
+        },
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 125.798,
+            "t": 708.5988616484375,
+            "r": 484.4531929999999,
+            "b": 631.3192130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            302,
+            687
+          ]
+        }
+      ],
+      "orig": "While it is useful to guarantee that atomic data will be returned in executions in which all messages are delivered (within some time bound), it is equally important to specify what happens in executions in which some of the messages are lost. In this section, we will discuss one possible weaker con- sistency condition that would allow stale data to be returned when there are partitions, yet still place formal requirements on the quality of the stale data returned. This consistency guarantee will require availability and atomic consistency in executions in which no messages are lost, and is therefore impossible to guarantee in the asynchronous model as a result of Corollary 1.1.",
+      "text": "While it is useful to guarantee that atomic data will be returned in executions in which all messages are delivered (within some time bound), it is equally important to specify what happens in executions in which some of the messages are lost. In this section, we will discuss one possible weaker con- sistency condition that would allow stale data to be returned when there are partitions, yet still place formal requirements on the quality of the stale data returned. This consistency guarantee will require availability and atomic consistency in executions in which no messages are lost, and is therefore impossible to guarantee in the asynchronous model as a result of Corollary 1.1."
+    },
+    {
+      "self_ref": "#/texts/73",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 125.798,
+            "t": 627.3028616484376,
+            "r": 484.453193,
+            "b": 577.1222130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            248
+          ]
+        }
+      ],
+      "orig": "In the partially synchronous model it often makes sense to base guarantees on how long an algorithm has had to rectify a situation. This consistency model ensures that if messages are delivered, then eventually some notion of atomicity is restored.",
+      "text": "In the partially synchronous model it often makes sense to base guarantees on how long an algorithm has had to rectify a situation. This consistency model ensures that if messages are delivered, then eventually some notion of atomicity is restored."
+    },
+    {
+      "self_ref": "#/texts/74",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 125.798,
+            "t": 573.1068616484375,
+            "r": 484.462308,
+            "b": 482.27821303748647,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            470
+          ]
+        }
+      ],
+      "orig": "In an atomic execution, we would define a partial order of the read and write operations, and then require that if one operation begins after another one ends, the former does not precede the latter in the partial order. We will define a weaker guarantee, Delayedt consistency, that defines a partial order in a similar manner, but only requires that one operation not precede another if there was an interval between the operations in which all messages were delivered.",
+      "text": "In an atomic execution, we would define a partial order of the read and write operations, and then require that if one operation begins after another one ends, the former does not precede the latter in the partial order. We will define a weaker guarantee, Delayedt consistency, that defines a partial order in a similar manner, but only requires that one operation not precede another if there was an interval between the operations in which all messages were delivered."
+    },
+    {
+      "self_ref": "#/texts/75",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 125.798,
+            "t": 466.3395886484375,
+            "r": 484.451899,
+            "b": 443.22421303748644,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            85
+          ]
+        }
+      ],
+      "orig": "Definition 3 A timed execution, \u03b1 , of a read-write object is Delayedt Consistent if:",
+      "text": "Definition 3 A timed execution, \u03b1 , of a read-write object is Delayedt Consistent if:"
+    },
+    {
+      "self_ref": "#/texts/76",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 138.695,
+            "t": 427.25386164843746,
+            "r": 484.46304899999984,
+            "b": 404.1702130374864,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            126
+          ]
+        }
+      ],
+      "orig": "1. P is a partial order that orders all write operations, and orders all read operations with respect to the write operations.",
+      "text": "P is a partial order that orders all write operations, and orders all read operations with respect to the write operations.",
+      "enumerated": true,
+      "marker": "1."
+    },
+    {
+      "self_ref": "#/texts/77",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 138.69499999999994,
+            "t": 391.18886164843747,
+            "r": 484.454595,
+            "b": 354.55621303748643,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            175
+          ]
+        }
+      ],
+      "orig": "2. The value returned by every read operation is exactly the one written by the previous write operation in P (or the initial value, if there is no such previous write in P ).",
+      "text": "The value returned by every read operation is exactly the one written by the previous write operation in P (or the initial value, if there is no such previous write in P ).",
+      "enumerated": true,
+      "marker": "2."
+    },
+    {
+      "self_ref": "#/texts/78",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 138.69499999999994,
+            "t": 341.5748616484375,
+            "r": 484.45187399999986,
+            "b": 318.4922130374864,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            97
+          ]
+        }
+      ],
+      "orig": "3. The order in P is consistent with the order of read and write requests submitted at each node.",
+      "text": "The order in P is consistent with the order of read and write requests submitted at each node.",
+      "enumerated": true,
+      "marker": "3."
+    },
+    {
+      "self_ref": "#/texts/79",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 138.6949999999999,
+            "t": 305.50986164843744,
+            "r": 484.45575499999995,
+            "b": 268.8782130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            172
+          ]
+        }
+      ],
+      "orig": "4. (Atomicity) If all messages in the execution are delivered, and an operation \u03b8 completes before an operation \u03c6 begins, then \u03c6 does not precede \u03b8 in the partial order P ,",
+      "text": "(Atomicity) If all messages in the execution are delivered, and an operation \u03b8 completes before an operation \u03c6 begins, then \u03c6 does not precede \u03b8 in the partial order P ,",
+      "enumerated": true,
+      "marker": "4."
+    },
+    {
+      "self_ref": "#/texts/80",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 138.69499999999994,
+            "t": 255.89586164843752,
+            "r": 484.461335,
+            "b": 192.16521303748652,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            289
+          ]
+        }
+      ],
+      "orig": "5. (Weakly Consistent) Assume there exists an interval of time longer than t in which no messages are lost. Further, assume an operation, \u03b8 , completes before the interval begins, and another operation, \u03c6 , begins after the interval ends. Then \u03c6 does not precede \u03b8 in the partial order P .",
+      "text": "(Weakly Consistent) Assume there exists an interval of time longer than t in which no messages are lost. Further, assume an operation, \u03b8 , completes before the interval begins, and another operation, \u03c6 , begins after the interval ends. Then \u03c6 does not precede \u03b8 in the partial order P .",
+      "enumerated": true,
+      "marker": "5."
+    },
+    {
+      "self_ref": "#/texts/81",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 125.79800000000002,
+            "t": 708.5988616484375,
+            "r": 484.45942499999995,
+            "b": 644.8682130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            362
+          ]
+        }
+      ],
+      "orig": "This guarantee allows for some stale data when messages are lost, but provides a time limit on how long this inconsistency can continue, once the partition heals. This is related to the idea of eventually consistent data, as described in Fekete et al. [3]; here, however, we want an explicit time bound on how long it will take for the data to become consistent.",
+      "text": "This guarantee allows for some stale data when messages are lost, but provides a time limit on how long this inconsistency can continue, once the partition heals. This is related to the idea of eventually consistent data, as described in Fekete et al. [3]; here, however, we want an explicit time bound on how long it will take for the data to become consistent."
+    },
+    {
+      "self_ref": "#/texts/82",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 125.798,
+            "t": 640.8528616484375,
+            "r": 484.4496179999998,
+            "b": 604.2202130374866,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            159
+          ]
+        }
+      ],
+      "orig": "Avariant of the centralized algorithm described in Section 4.3 is Delayedt consistent. Assume node C is the centralized node. The algorithm behaves as follows:",
+      "text": "Avariant of the centralized algorithm described in Section 4.3 is Delayedt consistent. Assume node C is the centralized node. The algorithm behaves as follows:"
+    },
+    {
+      "self_ref": "#/texts/83",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 142.162,
+            "t": 591.2388616484376,
+            "r": 228.40070200000002,
+            "b": 581.7052130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "\u00b7 read at node A :",
+      "text": "read at node A :",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/84",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 163.132,
+            "t": 568.7228616484375,
+            "r": 412.95525399999997,
+            "b": 559.1892130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            52
+          ]
+        }
+      ],
+      "orig": "1. A sends a request to C for the most recent value.",
+      "text": "A sends a request to C for the most recent value.",
+      "enumerated": true,
+      "marker": "1."
+    },
+    {
+      "self_ref": "#/texts/85",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 163.132,
+            "t": 551.1888616484375,
+            "r": 484.4452169999999,
+            "b": 528.1062130374866,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            78
+          ]
+        }
+      ],
+      "orig": "2. If A receives a response from C , save the value and send it to the client.",
+      "text": "If A receives a response from C , save the value and send it to the client.",
+      "enumerated": true,
+      "marker": "2."
+    },
+    {
+      "self_ref": "#/texts/86",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 163.132,
+            "t": 520.1048616484376,
+            "r": 484.460028,
+            "b": 469.92421303748654,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            216
+          ]
+        }
+      ],
+      "orig": "3. If A concludes that a message was lost (i.e. a timeout occurs), then return the value with the highest sequence number received from C (see below), or the initial-value (if no value has yet been received from C ).",
+      "text": "If A concludes that a message was lost (i.e. a timeout occurs), then return the value with the highest sequence number received from C (see below), or the initial-value (if no value has yet been received from C ).",
+      "enumerated": true,
+      "marker": "3."
+    },
+    {
+      "self_ref": "#/texts/87",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 142.16199999999998,
+            "t": 456.94186164843757,
+            "r": 205.910702,
+            "b": 447.4082130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "\u00b7 write at A :",
+      "text": "write at A :",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/88",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 163.13199999999998,
+            "t": 434.4268616484375,
+            "r": 388.32185599999997,
+            "b": 424.8932130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            45
+          ]
+        }
+      ],
+      "orig": "1. A sends a message to C with the new value.",
+      "text": "A sends a message to C with the new value.",
+      "enumerated": true,
+      "marker": "1."
+    },
+    {
+      "self_ref": "#/texts/89",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 163.13199999999998,
+            "t": 416.8918616484375,
+            "r": 484.4486859999999,
+            "b": 393.8092130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            102
+          ]
+        }
+      ],
+      "orig": "2. If A receives an acknowledgement from C , then A sends an acknowledgement to the client, and stops.",
+      "text": "If A receives an acknowledgement from C , then A sends an acknowledgement to the client, and stops.",
+      "enumerated": true,
+      "marker": "2."
+    },
+    {
+      "self_ref": "#/texts/90",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 163.13199999999998,
+            "t": 385.8088616484375,
+            "r": 484.45275,
+            "b": 362.7262130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            108
+          ]
+        }
+      ],
+      "orig": "3. If A concludes a message was lost (i.e. a timeout occurs), then A sends an acknowledgement to the client.",
+      "text": "If A concludes a message was lost (i.e. a timeout occurs), then A sends an acknowledgement to the client.",
+      "enumerated": true,
+      "marker": "3."
+    },
+    {
+      "self_ref": "#/texts/91",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 163.13199999999998,
+            "t": 354.72586164843756,
+            "r": 484.45275,
+            "b": 331.6422130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            104
+          ]
+        }
+      ],
+      "orig": "4. If A has not yet received an acknowledgement from C , then A sends a message to C with the new value.",
+      "text": "If A has not yet received an acknowledgement from C , then A sends a message to C with the new value.",
+      "enumerated": true,
+      "marker": "4."
+    },
+    {
+      "self_ref": "#/texts/92",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 163.13199999999995,
+            "t": 323.6418616484375,
+            "r": 484.448621,
+            "b": 297.0312130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            111
+          ]
+        }
+      ],
+      "orig": "5. If A concludes a message was lost (i.e. a timeout occurs), A repeats step 4 within t -4 \u2217 t timeout seconds.",
+      "text": "If A concludes a message was lost (i.e. a timeout occurs), A repeats step 4 within t -4 \u2217 t timeout seconds.",
+      "enumerated": true,
+      "marker": "5."
+    },
+    {
+      "self_ref": "#/texts/93",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 142.16199999999998,
+            "t": 287.57686164843756,
+            "r": 283.559702,
+            "b": 278.04321303748657,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            30
+          ]
+        }
+      ],
+      "orig": "\u00b7 New value is received at C :",
+      "text": "New value is received at C :",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/94",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 163.132,
+            "t": 265.06186164843757,
+            "r": 368.018056,
+            "b": 255.52821303748647,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            41
+          ]
+        }
+      ],
+      "orig": "1. C increments its sequence number by 1.",
+      "text": "C increments its sequence number by 1.",
+      "enumerated": true,
+      "marker": "1."
+    },
+    {
+      "self_ref": "#/texts/95",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 163.132,
+            "t": 247.52786164843758,
+            "r": 484.4521869999999,
+            "b": 224.44421303748652,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            67
+          ]
+        }
+      ],
+      "orig": "2. C sends out the new value and the sequence number to every node.",
+      "text": "C sends out the new value and the sequence number to every node.",
+      "enumerated": true,
+      "marker": "2."
+    },
+    {
+      "self_ref": "#/texts/96",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 163.132,
+            "t": 216.44386164843763,
+            "r": 484.460644,
+            "b": 176.28421303748655,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            164
+          ]
+        }
+      ],
+      "orig": "3. If C concludes a message was lost (i.e. a timeout occurs), then C resends the value and sequence number to the missing node within time t -2 \u2217 t timeout seconds.",
+      "text": "If C concludes a message was lost (i.e. a timeout occurs), then C resends the value and sequence number to the missing node within time t -2 \u2217 t timeout seconds.",
+      "enumerated": true,
+      "marker": "3."
+    },
+    {
+      "self_ref": "#/texts/97",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 11,
+          "bbox": {
+            "l": 163.132,
+            "t": 708.5988616484375,
+            "r": 462.22405299999986,
+            "b": 699.0652130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            61
+          ]
+        }
+      ],
+      "orig": "4. Repeat step 3 until every node has acknowledged the value.",
+      "text": "4. Repeat step 3 until every node has acknowledged the value.",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/98",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 11,
+          "bbox": {
+            "l": 125.798,
+            "t": 683.1265886484375,
+            "r": 468.9353999999999,
+            "b": 673.5510645677459,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            68
+          ]
+        }
+      ],
+      "orig": "Theorem 4 The modified centralized algorithm is Delayedt consistent.",
+      "text": "Theorem 4 The modified centralized algorithm is Delayedt consistent."
+    },
+    {
+      "self_ref": "#/texts/99",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 11,
+          "bbox": {
+            "l": 125.79799999999994,
+            "t": 657.5898616484376,
+            "r": 484.45735099999996,
+            "b": 539.6622130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            688
+          ]
+        }
+      ],
+      "orig": "Proof: The ordering of write operations is the order in which the centralized node is notified of the client write operations. The centralized node assigns each a sequence number, and this determines the total ordering of write operations. Each read operation is sequenced after the write operation whose value it returns. If all the messages in an execution are delivered, this algorithm is atomic: the centralized node serializes requests, and ensures that the partial order is correctly respected. If an operation has completed, then the centralized node has already been notified, and therefore no operation that begins later will precede the completed operation in the partial order.",
+      "text": "Proof: The ordering of write operations is the order in which the centralized node is notified of the client write operations. The centralized node assigns each a sequence number, and this determines the total ordering of write operations. Each read operation is sequenced after the write operation whose value it returns. If all the messages in an execution are delivered, this algorithm is atomic: the centralized node serializes requests, and ensures that the partial order is correctly respected. If an operation has completed, then the centralized node has already been notified, and therefore no operation that begins later will precede the completed operation in the partial order."
+    },
+    {
+      "self_ref": "#/texts/100",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 11,
+          "bbox": {
+            "l": 125.798,
+            "t": 535.6468616484375,
+            "r": 484.457983,
+            "b": 458.36721303748647,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            443
+          ]
+        }
+      ],
+      "orig": "If, on the other hand, some messages are lost, the resulting executions might not be atomic. Assume a write occurs at A w , after which an interval of time passes in which all messages are delivered. By the end of the interval, A w will have notified the central node of the new value, and the central node will have notified all other nodes of this new value. Therefore no later operation after this interval will precede the write operation.",
+      "text": "If, on the other hand, some messages are lost, the resulting executions might not be atomic. Assume a write occurs at A w , after which an interval of time passes in which all messages are delivered. By the end of the interval, A w will have notified the central node of the new value, and the central node will have notified all other nodes of this new value. Therefore no later operation after this interval will precede the write operation."
+    },
+    {
+      "self_ref": "#/texts/101",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 11,
+          "bbox": {
+            "l": 125.798,
+            "t": 454.3518616484375,
+            "r": 484.45869200000004,
+            "b": 349.97421303748655,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            597
+          ]
+        }
+      ],
+      "orig": "Assume, then, that a read operation occurs at B r , after which an interval of time passes in which all messages are delivered. B r must have received its value from the central node, C , or from an earlier write operation at B r . In the former case, by the end of this interval C will have ensured that every node has received a value at least as recent as the one returned by B r . In the latter case, by the end of the interval B r will have sent the value to C and C will have forwarded it to every other node. Therefore no later operation after this interval will precede the read operation.",
+      "text": "Assume, then, that a read operation occurs at B r , after which an interval of time passes in which all messages are delivered. B r must have received its value from the central node, C , or from an earlier write operation at B r . In the former case, by the end of this interval C will have ensured that every node has received a value at least as recent as the one returned by B r . In the latter case, by the end of the interval B r will have sent the value to C and C will have forwarded it to every other node. Therefore no later operation after this interval will precede the read operation."
+    },
+    {
+      "self_ref": "#/texts/102",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 11,
+          "bbox": {
+            "l": 125.798,
+            "t": 327.5263706484375,
+            "r": 227.20987399999999,
+            "b": 314.93397276947496,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            12
+          ]
+        }
+      ],
+      "orig": "5 Conclusion",
+      "text": "5 Conclusion",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/103",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 11,
+          "bbox": {
+            "l": 125.798,
+            "t": 300.7828616484376,
+            "r": 484.45319300000006,
+            "b": 182.85621303748644,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            681
+          ]
+        },
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 125.798,
+            "t": 708.5988616484375,
+            "r": 484.4531929999998,
+            "b": 685.5152130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            682,
+            832
+          ]
+        }
+      ],
+      "orig": "In this note, we have shown that it is impossible to reliably provide atomic, consistent data when there are partitions in the network. It is feasible, however, to achieve any two of the three properties: consistency, availability, and partition tolerance. In an asynchronous model, when no clocks are available, the impossibility result is fairly strong: it is impossible to provide consistent data, even allowing stale data to be returned when messages are lost. However in partially synchronous models it is possible to achieve a practical compromise between consistency and availability. In particular, most real-world systems today are forced to settle with returning 'most of the data, most of the time.' Formalizing this idea and studying algorithms for achieving it is an interesting subject for future theoretical research.",
+      "text": "In this note, we have shown that it is impossible to reliably provide atomic, consistent data when there are partitions in the network. It is feasible, however, to achieve any two of the three properties: consistency, availability, and partition tolerance. In an asynchronous model, when no clocks are available, the impossibility result is fairly strong: it is impossible to provide consistent data, even allowing stale data to be returned when messages are lost. However in partially synchronous models it is possible to achieve a practical compromise between consistency and availability. In particular, most real-world systems today are forced to settle with returning 'most of the data, most of the time.' Formalizing this idea and studying algorithms for achieving it is an interesting subject for future theoretical research."
+    },
+    {
+      "self_ref": "#/texts/104",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 125.798,
+            "t": 663.0673706484375,
+            "r": 201.32969000000003,
+            "b": 650.474972769475,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "References",
+      "text": "References",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/105",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 125.798,
+            "t": 636.3248616484375,
+            "r": 484.4541389999998,
+            "b": 586.1442130374866,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            221
+          ]
+        }
+      ],
+      "orig": "[1] Attiya, Bar-Noy, Dolev, Koller, Peleg, and Reischuk. Achievable cases in an asynchronous environment. In 28th Annual Symposium on Foundations of Computer Science , pages 337-346, Los Angeles, California, October 1987.",
+      "text": "Attiya, Bar-Noy, Dolev, Koller, Peleg, and Reischuk. Achievable cases in an asynchronous environment. In 28th Annual Symposium on Foundations of Computer Science , pages 337-346, Los Angeles, California, October 1987.",
+      "enumerated": true,
+      "marker": "[1]"
+    },
+    {
+      "self_ref": "#/texts/106",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 125.798,
+            "t": 573.1618616484375,
+            "r": 484.4531930000002,
+            "b": 550.0792130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            137
+          ]
+        }
+      ],
+      "orig": "[2] Eric A. Brewer. Towards robust distributed systems. (Invited Talk) Principles of Distributed Computing , Portland, Oregon, July 2000.",
+      "text": "Eric A. Brewer. Towards robust distributed systems. (Invited Talk) Principles of Distributed Computing , Portland, Oregon, July 2000.",
+      "enumerated": true,
+      "marker": "[2]"
+    },
+    {
+      "self_ref": "#/texts/107",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 125.798,
+            "t": 537.0968616484375,
+            "r": 484.4531930000001,
+            "b": 500.4652130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            178
+          ]
+        }
+      ],
+      "orig": "[3] Alan Fekete, David Gupta, Victor Luchangco, Nancy Lynch, and Alex Shvartsman. Eventually-serializable data services. Theoretical Computer Science , 220(1):113-156, June 1999.",
+      "text": "Alan Fekete, David Gupta, Victor Luchangco, Nancy Lynch, and Alex Shvartsman. Eventually-serializable data services. Theoretical Computer Science , 220(1):113-156, June 1999.",
+      "enumerated": true,
+      "marker": "[3]"
+    },
+    {
+      "self_ref": "#/texts/108",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 125.798,
+            "t": 487.4828616484375,
+            "r": 484.459618,
+            "b": 450.8512130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            192
+          ]
+        }
+      ],
+      "orig": "[4] Maurice P. Herlihy and Jeannette M. Wing. Linearizability: A correctness condition for concurrent objects. ACM Transactions on Programming Languages and Systems , 12(3):463-492, July 1990.",
+      "text": "Maurice P. Herlihy and Jeannette M. Wing. Linearizability: A correctness condition for concurrent objects. ACM Transactions on Programming Languages and Systems , 12(3):463-492, July 1990.",
+      "enumerated": true,
+      "marker": "[4]"
+    },
+    {
+      "self_ref": "#/texts/109",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 125.798,
+            "t": 437.86886164843753,
+            "r": 484.4605609999999,
+            "b": 414.7862130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            116
+          ]
+        }
+      ],
+      "orig": "[5] Leslie Lamport. On interprocess communication - parts i and ii. Distributed Computing , 1(2):77-101, April 1986.",
+      "text": "Leslie Lamport. On interprocess communication - parts i and ii. Distributed Computing , 1(2):77-101, April 1986.",
+      "enumerated": true,
+      "marker": "[5]"
+    },
+    {
+      "self_ref": "#/texts/110",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 125.79799999999997,
+            "t": 401.80486164843757,
+            "r": 484.4587989999999,
+            "b": 378.7212130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            78
+          ]
+        }
+      ],
+      "orig": "[6] Nancy Lynch. Distributed Algorithms , pages 397-350. Morgan Kaufman, 1996.",
+      "text": "Nancy Lynch. Distributed Algorithms , pages 397-350. Morgan Kaufman, 1996.",
+      "enumerated": true,
+      "marker": "[6]"
+    },
+    {
+      "self_ref": "#/texts/111",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 125.798,
+            "t": 365.73986164843757,
+            "r": 484.4587989999999,
+            "b": 342.65721303748654,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            78
+          ]
+        }
+      ],
+      "orig": "[7] Nancy Lynch. Distributed Algorithms , pages 199-231. Morgan Kaufman, 1996.",
+      "text": "Nancy Lynch. Distributed Algorithms , pages 199-231. Morgan Kaufman, 1996.",
+      "enumerated": true,
+      "marker": "[7]"
+    },
+    {
+      "self_ref": "#/texts/112",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 125.798,
+            "t": 329.6748616484376,
+            "r": 484.46015699999987,
+            "b": 320.1412130374865,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            73
+          ]
+        }
+      ],
+      "orig": "[8] Nancy Lynch. Distributed Algorithms , page 581. Morgan Kaufman, 1996.",
+      "text": "Nancy Lynch. Distributed Algorithms , page 581. Morgan Kaufman, 1996.",
+      "enumerated": true,
+      "marker": "[8]"
+    },
+    {
+      "self_ref": "#/texts/113",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 125.798,
+            "t": 307.15886164843755,
+            "r": 484.4587989999999,
+            "b": 284.07621303748647,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            78
+          ]
+        }
+      ],
+      "orig": "[9] Nancy Lynch. Distributed Algorithms , pages 735-770. Morgan Kaufman, 1996.",
+      "text": "Nancy Lynch. Distributed Algorithms , pages 735-770. Morgan Kaufman, 1996.",
+      "enumerated": true,
+      "marker": "[9]"
+    }
+  ],
+  "pictures": [],
+  "tables": [],
+  "key_value_items": [],
+  "form_items": [],
+  "pages": {
+    "1": {
+      "size": {
+        "width": 595.2760009765625,
+        "height": 841.8900146484375
+      },
+      "page_no": 1
+    },
+    "2": {
+      "size": {
+        "width": 595.2760009765625,
+        "height": 841.8900146484375
+      },
+      "page_no": 2
+    },
+    "3": {
+      "size": {
+        "width": 595.2760009765625,
+        "height": 841.8900146484375
+      },
+      "page_no": 3
+    },
+    "4": {
+      "size": {
+        "width": 595.2760009765625,
+        "height": 841.8900146484375
+      },
+      "page_no": 4
+    },
+    "5": {
+      "size": {
+        "width": 595.2760009765625,
+        "height": 841.8900146484375
+      },
+      "page_no": 5
+    },
+    "6": {
+      "size": {
+        "width": 595.2760009765625,
+        "height": 841.8900146484375
+      },
+      "page_no": 6
+    },
+    "7": {
+      "size": {
+        "width": 595.2760009765625,
+        "height": 841.8900146484375
+      },
+      "page_no": 7
+    },
+    "8": {
+      "size": {
+        "width": 595.2760009765625,
+        "height": 841.8900146484375
+      },
+      "page_no": 8
+    },
+    "9": {
+      "size": {
+        "width": 595.2760009765625,
+        "height": 841.8900146484375
+      },
+      "page_no": 9
+    },
+    "10": {
+      "size": {
+        "width": 595.2760009765625,
+        "height": 841.8900146484375
+      },
+      "page_no": 10
+    },
+    "11": {
+      "size": {
+        "width": 595.2760009765625,
+        "height": 841.8900146484375
+      },
+      "page_no": 11
+    },
+    "12": {
+      "size": {
+        "width": 595.2760009765625,
+        "height": 841.8900146484375
+      },
+      "page_no": 12
+    }
+  }
+}

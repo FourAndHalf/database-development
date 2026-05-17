@@ -1,0 +1,6324 @@
+{
+  "schema_name": "DoclingDocument",
+  "version": "1.10.0",
+  "name": "pig_hive",
+  "origin": {
+    "mimetype": "application/pdf",
+    "binary_hash": 5553720449481818648,
+    "filename": "pig_hive.pdf"
+  },
+  "furniture": {
+    "self_ref": "#/furniture",
+    "children": [],
+    "content_layer": "furniture",
+    "name": "_root_",
+    "label": "unspecified"
+  },
+  "body": {
+    "self_ref": "#/body",
+    "children": [
+      {
+        "$ref": "#/texts/0"
+      },
+      {
+        "$ref": "#/texts/1"
+      },
+      {
+        "$ref": "#/texts/2"
+      },
+      {
+        "$ref": "#/groups/0"
+      },
+      {
+        "$ref": "#/texts/5"
+      },
+      {
+        "$ref": "#/texts/6"
+      },
+      {
+        "$ref": "#/texts/7"
+      },
+      {
+        "$ref": "#/texts/8"
+      },
+      {
+        "$ref": "#/texts/9"
+      },
+      {
+        "$ref": "#/texts/10"
+      },
+      {
+        "$ref": "#/texts/11"
+      },
+      {
+        "$ref": "#/texts/12"
+      },
+      {
+        "$ref": "#/texts/13"
+      },
+      {
+        "$ref": "#/texts/14"
+      },
+      {
+        "$ref": "#/texts/15"
+      },
+      {
+        "$ref": "#/texts/16"
+      },
+      {
+        "$ref": "#/groups/1"
+      },
+      {
+        "$ref": "#/texts/18"
+      },
+      {
+        "$ref": "#/texts/19"
+      },
+      {
+        "$ref": "#/texts/20"
+      },
+      {
+        "$ref": "#/texts/21"
+      },
+      {
+        "$ref": "#/texts/22"
+      },
+      {
+        "$ref": "#/texts/23"
+      },
+      {
+        "$ref": "#/texts/24"
+      },
+      {
+        "$ref": "#/texts/25"
+      },
+      {
+        "$ref": "#/texts/26"
+      },
+      {
+        "$ref": "#/texts/27"
+      },
+      {
+        "$ref": "#/texts/28"
+      },
+      {
+        "$ref": "#/texts/29"
+      },
+      {
+        "$ref": "#/texts/30"
+      },
+      {
+        "$ref": "#/pictures/0"
+      },
+      {
+        "$ref": "#/texts/56"
+      },
+      {
+        "$ref": "#/texts/57"
+      },
+      {
+        "$ref": "#/texts/58"
+      },
+      {
+        "$ref": "#/texts/59"
+      },
+      {
+        "$ref": "#/groups/2"
+      },
+      {
+        "$ref": "#/pictures/1"
+      },
+      {
+        "$ref": "#/texts/141"
+      },
+      {
+        "$ref": "#/groups/3"
+      },
+      {
+        "$ref": "#/texts/144"
+      },
+      {
+        "$ref": "#/texts/145"
+      },
+      {
+        "$ref": "#/texts/146"
+      },
+      {
+        "$ref": "#/texts/147"
+      },
+      {
+        "$ref": "#/groups/4"
+      },
+      {
+        "$ref": "#/texts/151"
+      },
+      {
+        "$ref": "#/texts/152"
+      },
+      {
+        "$ref": "#/texts/153"
+      },
+      {
+        "$ref": "#/groups/5"
+      },
+      {
+        "$ref": "#/texts/161"
+      },
+      {
+        "$ref": "#/groups/6"
+      },
+      {
+        "$ref": "#/texts/164"
+      },
+      {
+        "$ref": "#/groups/7"
+      },
+      {
+        "$ref": "#/texts/169"
+      },
+      {
+        "$ref": "#/texts/170"
+      },
+      {
+        "$ref": "#/texts/171"
+      },
+      {
+        "$ref": "#/texts/172"
+      },
+      {
+        "$ref": "#/groups/8"
+      },
+      {
+        "$ref": "#/texts/177"
+      },
+      {
+        "$ref": "#/texts/178"
+      },
+      {
+        "$ref": "#/texts/179"
+      },
+      {
+        "$ref": "#/groups/9"
+      },
+      {
+        "$ref": "#/texts/186"
+      },
+      {
+        "$ref": "#/texts/187"
+      },
+      {
+        "$ref": "#/groups/10"
+      }
+    ],
+    "content_layer": "body",
+    "name": "_root_",
+    "label": "unspecified"
+  },
+  "groups": [
+    {
+      "self_ref": "#/groups/0",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/3"
+        },
+        {
+          "$ref": "#/texts/4"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/1",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/17"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/2",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/60"
+        },
+        {
+          "$ref": "#/texts/61"
+        },
+        {
+          "$ref": "#/texts/62"
+        },
+        {
+          "$ref": "#/texts/63"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/3",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/142"
+        },
+        {
+          "$ref": "#/texts/143"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/4",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/148"
+        },
+        {
+          "$ref": "#/texts/149"
+        },
+        {
+          "$ref": "#/texts/150"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/5",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/154"
+        },
+        {
+          "$ref": "#/texts/155"
+        },
+        {
+          "$ref": "#/texts/156"
+        },
+        {
+          "$ref": "#/texts/157"
+        },
+        {
+          "$ref": "#/texts/158"
+        },
+        {
+          "$ref": "#/texts/159"
+        },
+        {
+          "$ref": "#/texts/160"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/6",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/162"
+        },
+        {
+          "$ref": "#/texts/163"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/7",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/165"
+        },
+        {
+          "$ref": "#/texts/166"
+        },
+        {
+          "$ref": "#/texts/167"
+        },
+        {
+          "$ref": "#/texts/168"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/8",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/173"
+        },
+        {
+          "$ref": "#/texts/174"
+        },
+        {
+          "$ref": "#/texts/175"
+        },
+        {
+          "$ref": "#/texts/176"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/9",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/180"
+        },
+        {
+          "$ref": "#/texts/181"
+        },
+        {
+          "$ref": "#/texts/182"
+        },
+        {
+          "$ref": "#/texts/183"
+        },
+        {
+          "$ref": "#/texts/184"
+        },
+        {
+          "$ref": "#/texts/185"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/10",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/188"
+        },
+        {
+          "$ref": "#/texts/189"
+        },
+        {
+          "$ref": "#/texts/190"
+        },
+        {
+          "$ref": "#/texts/191"
+        },
+        {
+          "$ref": "#/texts/192"
+        },
+        {
+          "$ref": "#/texts/193"
+        },
+        {
+          "$ref": "#/texts/194"
+        },
+        {
+          "$ref": "#/texts/195"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    }
+  ],
+  "texts": [
+    {
+      "self_ref": "#/texts/0",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 87.987,
+            "t": 720.0224816,
+            "r": 521.7276336,
+            "b": 683.2575824,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            57
+          ]
+        }
+      ],
+      "orig": "Hive - A Warehousing Solution Over a Map-Reduce Framework",
+      "text": "Hive - A Warehousing Solution Over a Map-Reduce Framework",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/1",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 92.90400000000005,
+            "t": 654.3791024,
+            "r": 516.8114815999995,
+            "b": 631.4425423999999,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            131
+          ]
+        }
+      ],
+      "orig": "Ashish Thusoo, Joydeep Sen Sarma, Namit Jain, Zheng Shao, Prasad Chakka, Suresh Anthony, Hao Liu, Pete Wyckoff and Raghotham Murthy",
+      "text": "Ashish Thusoo, Joydeep Sen Sarma, Namit Jain, Zheng Shao, Prasad Chakka, Suresh Anthony, Hao Liu, Pete Wyckoff and Raghotham Murthy"
+    },
+    {
+      "self_ref": "#/texts/2",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 211.49300000000005,
+            "t": 620.1631024,
+            "r": 398.22126879999973,
+            "b": 609.1045423999999,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            33
+          ]
+        },
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 339.22800000000007,
+            "t": 581.9350511999997,
+            "r": 555.9198854400003,
+            "b": 448.5690894340053,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            34,
+            713
+          ]
+        }
+      ],
+      "orig": "Facebook Data Infrastructure Team databases. Each table has a corresponding HDFS directory. The data in a table is serialized and stored in files within that directory. Users can associate tables with the serialization format of the underlying data. Hive provides builtin serialization formats which exploit compression and lazy de-serialization. Users can also add support for new data formats by defining custom serialize and de-serialize methods (called SerDe 's) written in Java. The serialization format of each table is stored in the system catalog and is automatically used by Hive during query compilation and execution. Hive also supports external tables on data stored in HDFS, NFS or local directories.",
+      "text": "Facebook Data Infrastructure Team databases. Each table has a corresponding HDFS directory. The data in a table is serialized and stored in files within that directory. Users can associate tables with the serialization format of the underlying data. Hive provides builtin serialization formats which exploit compression and lazy de-serialization. Users can also add support for new data formats by defining custom serialize and de-serialize methods (called SerDe 's) written in Java. The serialization format of each table is stored in the system catalog and is automatically used by Hive during query compilation and execution. Hive also supports external tables on data stored in HDFS, NFS or local directories."
+    },
+    {
+      "self_ref": "#/texts/3",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 330.13700000000006,
+            "t": 443.9520511999996,
+            "r": 557.6149072000001,
+            "b": 373.0724591999995,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            382
+          ]
+        }
+      ],
+      "orig": "\u00b7 Partitions - Each table can have one or more partitions which determine the distribution of data within sub-directories of the table directory. Suppose data for table T is in the directory /wh/T . If T is partitioned on columns ds and ctry , then data with a particular ds value 20090101 and ctry value US , will be stored in files within the directory /wh/T/ds=20090101/ctry=US .",
+      "text": "Partitions - Each table can have one or more partitions which determine the distribution of data within sub-directories of the table directory. Suppose data for table T is in the directory /wh/T . If T is partitioned on columns ds and ctry , then data with a particular ds value 20090101 and ctry value US , will be stored in files within the directory /wh/T/ds=20090101/ctry=US .",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/4",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 330.13700000000006,
+            "t": 368.73405119999956,
+            "r": 555.9180921600002,
+            "b": 339.9760894340053,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            174
+          ]
+        }
+      ],
+      "orig": "\u00b7 Buckets - Data in each partition may in turn be divided into buckets based on the hash of a column in the table. Each bucket is stored as a file in the partition directory.",
+      "text": "Buckets - Data in each partition may in turn be divided into buckets based on the hash of a column in the table. Each bucket is stored as a file in the partition directory.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/5",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 316.812,
+            "t": 335.35905119999956,
+            "r": 555.91769216,
+            "b": 296.1410894340053,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            210
+          ]
+        }
+      ],
+      "orig": "Hive supports primitive column types (integers, floating point numbers, generic strings, dates and booleans) and nestable collection types array and map . Users can also define their own types programmatically.",
+      "text": "Hive supports primitive column types (integers, floating point numbers, generic strings, dates and booleans) and nestable collection types array and map . Users can also define their own types programmatically."
+    },
+    {
+      "self_ref": "#/texts/6",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 316.812,
+            "t": 284.1840879999995,
+            "r": 429.728864,
+            "b": 273.4363631999995,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "2.2 Query Language",
+      "text": "2.2 Query Language",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/7",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 316.81199999999995,
+            "t": 269.1080511999995,
+            "r": 555.91988544,
+            "b": 167.1250894340052,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            529
+          ]
+        }
+      ],
+      "orig": "Hive provides a SQL-like query language called HiveQL which supports select, project, join, aggregate, union all and sub-queries in the from clause. HiveQL supports data definition (DDL) statements to create tables with specific serialization formats, and partitioning and bucketing columns. Users can load data from external sources and insert query results into Hive tables via the load and insert data manipulation (DML) statements respectively. HiveQL currently does not support updating and deleting rows in existing tables.",
+      "text": "Hive provides a SQL-like query language called HiveQL which supports select, project, join, aggregate, union all and sub-queries in the from clause. HiveQL supports data definition (DDL) statements to create tables with specific serialization formats, and partitioning and bucketing columns. Users can load data from external sources and insert query results into Hive tables via the load and insert data manipulation (DML) statements respectively. HiveQL currently does not support updating and deleting rows in existing tables."
+    },
+    {
+      "self_ref": "#/texts/8",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 316.81199999999995,
+            "t": 164.50005119999946,
+            "r": 555.91809216,
+            "b": 125.28108943400514,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            200
+          ]
+        }
+      ],
+      "orig": "HiveQL supports multi-table insert, where users can perform multiple queries on the same input data using a single HiveQL statement. Hive optimizes these queries by sharing the scan of the input data.",
+      "text": "HiveQL supports multi-table insert, where users can perform multiple queries on the same input data using a single HiveQL statement. Hive optimizes these queries by sharing the scan of the input data."
+    },
+    {
+      "self_ref": "#/texts/9",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 316.81199999999995,
+            "t": 122.65705119999939,
+            "r": 560.6146924799999,
+            "b": 72.97808943400514,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            284
+          ]
+        }
+      ],
+      "orig": "HiveQL is also very extensible. It supports user defined column transformation (UDF) and aggregation (UDAF) functions implemented in Java. In addition, users can embed custom map-reduce scripts written in any language using a simple row-based streaming interface, i.e., read rows from",
+      "text": "HiveQL is also very extensible. It supports user defined column transformation (UDF) and aggregation (UDAF) functions implemented in Java. In addition, users can embed custom map-reduce scripts written in any language using a simple row-based streaming interface, i.e., read rows from"
+    },
+    {
+      "self_ref": "#/texts/10",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.79800000000006,
+            "t": 584.060088,
+            "r": 170.00254400000009,
+            "b": 573.3123631999999,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            15
+          ]
+        }
+      ],
+      "orig": "1. INTRODUCTION",
+      "text": "1. INTRODUCTION",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/11",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.79800000000006,
+            "t": 568.9830512,
+            "r": 292.90588543999996,
+            "b": 477.4610894340056,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            495
+          ]
+        }
+      ],
+      "orig": "The size of data sets being collected and analyzed in the industry for business intelligence is growing rapidly, making traditional warehousing solutions prohibitively expensive. Hadoop [3] is a popular open-source map-reduce implementation which is being used as an alternative to store and process extremely large data sets on commodity hardware. However, the map-reduce programming model is very low level and requires developers to write custom programs which are hard to maintain and reuse.",
+      "text": "The size of data sets being collected and analyzed in the industry for business intelligence is growing rapidly, making traditional warehousing solutions prohibitively expensive. Hadoop [3] is a popular open-source map-reduce implementation which is being used as an alternative to store and process extremely large data sets on commodity hardware. However, the map-reduce programming model is very low level and requires developers to write custom programs which are hard to maintain and reuse."
+    },
+    {
+      "self_ref": "#/texts/12",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.79800000000003,
+            "t": 474.8360511999998,
+            "r": 299.1359072,
+            "b": 310.08908943400553,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            891
+          ]
+        }
+      ],
+      "orig": "In this paper, we present Hive , an open-source data warehousing solution built on top of Hadoop. Hive supports queries expressed in a SQL-like declarative language HiveQL , which are compiled into map-reduce jobs executed on Hadoop. In addition, HiveQL supports custom map-reduce scripts to be plugged into queries. The language includes a type system with support for tables containing primitive types, collections like arrays and maps, and nested compositions of the same. The underlying IO libraries can be extended to query data in custom formats. Hive also includes a system catalog, Hive-Metastore , containing schemas and statistics, which is useful in data exploration and query optimization. In Facebook, the Hive warehouse contains several thousand tables with over 700 terabytes of data and is being used extensively for both reporting and ad-hoc analyses by more than 100 users.",
+      "text": "In this paper, we present Hive , an open-source data warehousing solution built on top of Hadoop. Hive supports queries expressed in a SQL-like declarative language HiveQL , which are compiled into map-reduce jobs executed on Hadoop. In addition, HiveQL supports custom map-reduce scripts to be plugged into queries. The language includes a type system with support for tables containing primitive types, collections like arrays and maps, and nested compositions of the same. The underlying IO libraries can be extended to query data in custom formats. Hive also includes a system catalog, Hive-Metastore , containing schemas and statistics, which is useful in data exploration and query optimization. In Facebook, the Hive warehouse contains several thousand tables with over 700 terabytes of data and is being used extensively for both reporting and ad-hoc analyses by more than 100 users."
+    },
+    {
+      "self_ref": "#/texts/13",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.79800000000003,
+            "t": 307.46405119999974,
+            "r": 292.9064854399999,
+            "b": 247.3240894340055,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            316
+          ]
+        }
+      ],
+      "orig": "The rest of the paper is organized as follows. Section 2 describes the Hive data model and the HiveQL language with an example. Section 3 describes the Hive system architecture and an overview of the query life cycle. Section 4 provides a walk-through of the demonstration. We conclude with future work in Section 5.",
+      "text": "The rest of the paper is organized as follows. Section 2 describes the Hive data model and the HiveQL language with an example. Section 3 describes the Hive system architecture and an overview of the query life cycle. Section 4 provides a walk-through of the demonstration. We conclude with future work in Section 5."
+    },
+    {
+      "self_ref": "#/texts/14",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.79800000000003,
+            "t": 231.60608799999977,
+            "r": 170.37315520000007,
+            "b": 220.85836319999976,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            16
+          ]
+        }
+      ],
+      "orig": "2. HIVE DATABASE",
+      "text": "2. HIVE DATABASE",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/15",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.79800000000003,
+            "t": 209.80008799999973,
+            "r": 140.79599040000002,
+            "b": 199.05236319999972,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "2.1 Data Model",
+      "text": "2.1 Data Model",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/16",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 62.76500000000003,
+            "t": 194.72405119999974,
+            "r": 186.61339999999998,
+            "b": 186.88808943400545,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            31
+          ]
+        }
+      ],
+      "orig": "Data in Hive is organized into:",
+      "text": "Data in Hive is organized into:"
+    },
+    {
+      "self_ref": "#/texts/17",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 67.12300000000003,
+            "t": 182.27105119999965,
+            "r": 292.89960895999997,
+            "b": 174.43508943400548,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            53
+          ]
+        }
+      ],
+      "orig": "\u00b7 Tables -These are analogous to tables in relational",
+      "text": "Tables -These are analogous to tables in relational",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/18",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.79800000000003,
+            "t": 149.41753509999967,
+            "r": 292.9010000000003,
+            "b": 88.77801536637139,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            474
+          ]
+        }
+      ],
+      "orig": "Permission to copy without fee all or part of this material is granted provided that the copies are not made or distributed for direct commercial advantage, the VLDBcopyright notice and the title of the publication and its date appear, and notice is given that copying is by permission of the Very Large Data Base Endowment. To copy otherwise, or to republish, to post on servers or to redistribute to lists, requires a fee and/or special permission from the publisher, ACM.",
+      "text": "Permission to copy without fee all or part of this material is granted provided that the copies are not made or distributed for direct commercial advantage, the VLDBcopyright notice and the title of the publication and its date appear, and notice is given that copying is by permission of the Very Large Data Base Endowment. To copy otherwise, or to republish, to post on servers or to redistribute to lists, requires a fee and/or special permission from the publisher, ACM."
+    },
+    {
+      "self_ref": "#/texts/19",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.79800000000003,
+            "t": 86.78802679999967,
+            "r": 199.90590490000008,
+            "b": 79.81101536637141,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            42
+          ]
+        }
+      ],
+      "orig": "VLDB '09, August 24-28, 2009, Lyon, France",
+      "text": "VLDB '09, August 24-28, 2009, Lyon, France"
+    },
+    {
+      "self_ref": "#/texts/20",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.79800000000003,
+            "t": 77.68653509999967,
+            "r": 276.5782352000001,
+            "b": 70.8450153663714,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            59
+          ]
+        }
+      ],
+      "orig": "Copyright 2009 VLDB Endowment, ACM 000-0-00000-000-0/00/00.",
+      "text": "Copyright 2009 VLDB Endowment, ACM 000-0-00000-000-0/00/00."
+    },
+    {
+      "self_ref": "#/texts/21",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.798,
+            "t": 734.3630512000001,
+            "r": 292.90588543999985,
+            "b": 705.6060894340058,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            130
+          ]
+        }
+      ],
+      "orig": "standard input and write out rows to standard output. This flexibility does come at a cost of converting rows from and to strings.",
+      "text": "standard input and write out rows to standard output. This flexibility does come at a cost of converting rows from and to strings."
+    },
+    {
+      "self_ref": "#/texts/22",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.798,
+            "t": 702.9810512,
+            "r": 292.89931232000004,
+            "b": 684.6840894340057,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            108
+          ]
+        }
+      ],
+      "orig": "We omit more details due to lack of space. For a complete description of HiveQL see the language manual [5].",
+      "text": "We omit more details due to lack of space. For a complete description of HiveQL see the language manual [5]."
+    },
+    {
+      "self_ref": "#/texts/23",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.798,
+            "t": 676.233088,
+            "r": 245.41594560000013,
+            "b": 665.4853631999999,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            31
+          ]
+        }
+      ],
+      "orig": "2.3 Running Example: StatusMeme",
+      "text": "2.3 Running Example: StatusMeme",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/24",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.798,
+            "t": 661.1570512,
+            "r": 292.90588543999996,
+            "b": 601.0170894340057,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            301
+          ]
+        },
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.797999999999995,
+            "t": 597.1377311,
+            "r": 264.3209644000001,
+            "b": 580.0950894340058,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            302,
+            387
+          ]
+        }
+      ],
+      "orig": "We now present a highly simplified application, StatusMeme, inspired by Facebook Lexicon [6]. When Facebook users update their status, the updates are logged into flat files in an NFS directory /logs/status updates which are rotated every day. We load this data into hive on a daily basis into a table status updates(userid int,status string,ds string) using a load statement like below.",
+      "text": "We now present a highly simplified application, StatusMeme, inspired by Facebook Lexicon [6]. When Facebook users update their status, the updates are logged into flat files in an NFS directory /logs/status updates which are rotated every day. We load this data into hive on a daily basis into a table status updates(userid int,status string,ds string) using a load statement like below."
+    },
+    {
+      "self_ref": "#/texts/25",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "code",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.797999999999995,
+            "t": 568.6407310999999,
+            "r": 278.20971467000004,
+            "b": 553.0356377999999,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            99
+          ]
+        }
+      ],
+      "orig": "LOAD DATA LOCAL INPATH '/logs/status_updates' INTO TABLE status_updates PARTITION (ds='2009-03-20')",
+      "text": "LOAD DATA LOCAL INPATH '/logs/status_updates' INTO TABLE status_updates PARTITION (ds='2009-03-20')",
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "code_language": "unknown"
+    },
+    {
+      "self_ref": "#/texts/26",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.798,
+            "t": 541.3980512,
+            "r": 309.26277728,
+            "b": 481.2006377999999,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            374
+          ]
+        }
+      ],
+      "orig": "Each status update record contains the user identifier ( userid ), the actual status string ( status ), and the date ( ds ) when the status update occurred. This table is partitioned on the ds column. Detailed user profile information, like the gender of the user and the school the user is attending, is available in the profiles(userid int,school string,gender int) table.",
+      "text": "Each status update record contains the user identifier ( userid ), the actual status string ( status ), and the date ( ds ) when the status update occurred. This table is partitioned on the ds column. Detailed user profile information, like the gender of the user and the school the user is attending, is available in the profiles(userid int,school string,gender int) table."
+    },
+    {
+      "self_ref": "#/texts/27",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.79799999999997,
+            "t": 478.63405119999993,
+            "r": 292.90581439999994,
+            "b": 376.65108943400577,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            582
+          ]
+        }
+      ],
+      "orig": "We first want to compute daily statistics on the frequency of status updates based on gender and school which the user attends. The following multi-table insert statement generates the daily counts of status updates by school (into school summary(school string,cnt int,ds string) ) and gender (into gender summary(gender int,cnt int,ds string) ) using a single scan of the join of the status updates and profiles tables. Note that the output tables are also partitioned on the ds column, and HiveQL allows users to insert query results into a specific partition of the output table.",
+      "text": "We first want to compute daily statistics on the frequency of status updates based on gender and school which the user attends. The following multi-table insert statement generates the daily counts of status updates by school (into school summary(school string,cnt int,ds string) ) and gender (into gender summary(gender int,cnt int,ds string) ) using a single scan of the join of the status updates and profiles tables. Note that the output tables are also partitioned on the ds column, and HiveQL allows users to insert query results into a specific partition of the output table."
+    },
+    {
+      "self_ref": "#/texts/28",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "code",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.798,
+            "t": 365.19573110000005,
+            "r": 269.73829538,
+            "b": 268.8936378000001,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            369
+          ]
+        }
+      ],
+      "orig": "FROM (SELECT a.status, b.school, b.gender FROM status_updates a JOIN profiles b ON (a.userid = b.userid and a.ds='2009-03-20' ) ) subq1 INSERT OVERWRITE TABLE gender_summary PARTITION(ds='2009-03-20') SELECT subq1.gender, COUNT(1) GROUP BY subq1.gender INSERT OVERWRITE TABLE school_summary PARTITION(ds='2009-03-20') SELECT subq1.school, COUNT(1) GROUP BY subq1.school",
+      "text": "FROM (SELECT a.status, b.school, b.gender FROM status_updates a JOIN profiles b ON (a.userid = b.userid and a.ds='2009-03-20' ) ) subq1 INSERT OVERWRITE TABLE gender_summary PARTITION(ds='2009-03-20') SELECT subq1.gender, COUNT(1) GROUP BY subq1.gender INSERT OVERWRITE TABLE school_summary PARTITION(ds='2009-03-20') SELECT subq1.school, COUNT(1) GROUP BY subq1.school",
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "code_language": "unknown"
+    },
+    {
+      "self_ref": "#/texts/29",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.79799999999997,
+            "t": 257.2560512,
+            "r": 294.2758799999999,
+            "b": 144.53345919999992,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            609
+          ]
+        }
+      ],
+      "orig": "Next, we want to display the ten most popular memes per school as determined by status updates by users who attend that school. We now show how this computation can be done using HiveQLs map-reduce constructs. We parse the result of the join between status updates and profiles tables by plugging in a custom Python mapper script meme-extractor.py which uses sophisticated natural language processing techniques to extract memes from status strings. Since Hive does not yet support the rank aggregation function the top 10 memes per school can then be computed by a simple custom Python reduce script top10.py",
+      "text": "Next, we want to display the ten most popular memes per school as determined by status updates by users who attend that school. We now show how this computation can be done using HiveQLs map-reduce constructs. We parse the result of the join between status updates and profiles tables by plugging in a custom Python mapper script meme-extractor.py which uses sophisticated natural language processing techniques to extract memes from status strings. Since Hive does not yet support the rank aggregation function the top 10 memes per school can then be computed by a simple custom Python reduce script top10.py"
+    },
+    {
+      "self_ref": "#/texts/30",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "code",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 53.79799999999997,
+            "t": 115.42473109999992,
+            "r": 299.37945026999995,
+            "b": 72.9206377999999,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            207
+          ]
+        }
+      ],
+      "orig": "REDUCE subq2.school, subq2.meme, subq2.cnt USING 'top10.py' AS (school,meme,cnt) FROM (SELECT subq1.school, subq1.meme, COUNT(1) AS cnt FROM (MAP b.school, a.status USING 'meme-extractor.py' AS (school,meme)",
+      "text": "REDUCE subq2.school, subq2.meme, subq2.cnt USING 'top10.py' AS (school,meme,cnt) FROM (SELECT subq1.school, subq1.meme, COUNT(1) AS cnt FROM (MAP b.school, a.status USING 'meme-extractor.py' AS (school,meme)",
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "code_language": "unknown"
+    },
+    {
+      "self_ref": "#/texts/31",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 424.6666666666667,
+            "t": 717.3333333333334,
+            "r": 449.0,
+            "b": 707.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            5
+          ]
+        }
+      ],
+      "orig": "JDBC/",
+      "text": "JDBC/"
+    },
+    {
+      "self_ref": "#/texts/32",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 473.0,
+            "t": 717.3333333333334,
+            "r": 491.0,
+            "b": 707.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            3
+          ]
+        }
+      ],
+      "orig": "Web",
+      "text": "Web"
+    },
+    {
+      "self_ref": "#/texts/33",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 380.0,
+            "t": 713.0,
+            "r": 395.3333333333333,
+            "b": 703.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            3
+          ]
+        }
+      ],
+      "orig": "CLI",
+      "text": "CLI"
+    },
+    {
+      "self_ref": "#/texts/34",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 424.3333333333333,
+            "t": 708.3333333333334,
+            "r": 448.33333333333337,
+            "b": 699.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            4
+          ]
+        }
+      ],
+      "orig": "ODBC",
+      "text": "ODBC"
+    },
+    {
+      "self_ref": "#/texts/35",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 474.0,
+            "t": 708.6666666666666,
+            "r": 490.33333333333337,
+            "b": 699.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            3
+          ]
+        }
+      ],
+      "orig": "GUI",
+      "text": "GUI"
+    },
+    {
+      "self_ref": "#/texts/36",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 385.3333333333333,
+            "t": 694.3333333333334,
+            "r": 389.6666666666667,
+            "b": 690.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1
+          ]
+        }
+      ],
+      "orig": "\u4e2a",
+      "text": "\u4e2a"
+    },
+    {
+      "self_ref": "#/texts/37",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 433.6666666666667,
+            "t": 695.6666666666666,
+            "r": 440.66666666666663,
+            "b": 684.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1
+          ]
+        }
+      ],
+      "orig": "\u516c",
+      "text": "\u516c"
+    },
+    {
+      "self_ref": "#/texts/38",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 426.6666666666667,
+            "t": 680.0,
+            "r": 446.66666666666663,
+            "b": 669.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "Thrift",
+      "text": "Thrift"
+    },
+    {
+      "self_ref": "#/texts/39",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 424.3333333333333,
+            "t": 671.0,
+            "r": 448.66666666666663,
+            "b": 660.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "Server",
+      "text": "Server"
+    },
+    {
+      "self_ref": "#/texts/40",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 493.33333333333337,
+            "t": 660.6666666666667,
+            "r": 528.3333333333334,
+            "b": 650.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "Metastore",
+      "text": "Metastore"
+    },
+    {
+      "self_ref": "#/texts/41",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 433.0,
+            "t": 657.0,
+            "r": 440.66666666666663,
+            "b": 644.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1
+          ]
+        }
+      ],
+      "orig": "\u516c",
+      "text": "\u516c"
+    },
+    {
+      "self_ref": "#/texts/42",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 425.3333333333333,
+            "t": 640.0,
+            "r": 448.0,
+            "b": 631.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "Driver",
+      "text": "Driver"
+    },
+    {
+      "self_ref": "#/texts/43",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 419.0,
+            "t": 631.6666666666667,
+            "r": 454.33333333333337,
+            "b": 621.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "(Compiler,",
+      "text": "(Compiler,"
+    },
+    {
+      "self_ref": "#/texts/44",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 419.3333333333333,
+            "t": 623.3333333333333,
+            "r": 454.0,
+            "b": 613.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "Optimizer,",
+      "text": "Optimizer,"
+    },
+    {
+      "self_ref": "#/texts/45",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 420.3333333333333,
+            "t": 614.6666666666666,
+            "r": 452.66666666666663,
+            "b": 604.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "Executor)",
+      "text": "Executor)"
+    },
+    {
+      "self_ref": "#/texts/46",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 510.0,
+            "t": 609.6666666666666,
+            "r": 531.6666666666666,
+            "b": 599.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            4
+          ]
+        }
+      ],
+      "orig": "HIVE",
+      "text": "HIVE"
+    },
+    {
+      "self_ref": "#/texts/47",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 397.0,
+            "t": 570.6666666666666,
+            "r": 412.6666666666667,
+            "b": 560.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            3
+          ]
+        }
+      ],
+      "orig": "Job",
+      "text": "Job"
+    },
+    {
+      "self_ref": "#/texts/48",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 456.33333333333337,
+            "t": 570.6666666666666,
+            "r": 479.0,
+            "b": 560.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            4
+          ]
+        }
+      ],
+      "orig": "Name",
+      "text": "Name"
+    },
+    {
+      "self_ref": "#/texts/49",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 391.6666666666667,
+            "t": 562.0,
+            "r": 419.0,
+            "b": 552.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            7
+          ]
+        }
+      ],
+      "orig": "Tracker",
+      "text": "Tracker"
+    },
+    {
+      "self_ref": "#/texts/50",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 457.33333333333337,
+            "t": 562.0,
+            "r": 478.0,
+            "b": 552.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            4
+          ]
+        }
+      ],
+      "orig": "Node",
+      "text": "Node"
+    },
+    {
+      "self_ref": "#/texts/51",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 398.3333333333333,
+            "t": 528.6666666666666,
+            "r": 434.3333333333333,
+            "b": 520.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "Data Node",
+      "text": "Data Node"
+    },
+    {
+      "self_ref": "#/texts/52",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 413.0,
+            "t": 518.6666666666666,
+            "r": 419.3333333333333,
+            "b": 512.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1
+          ]
+        }
+      ],
+      "orig": "+",
+      "text": "+"
+    },
+    {
+      "self_ref": "#/texts/53",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 407.6666666666667,
+            "t": 512.3333333333334,
+            "r": 426.0,
+            "b": 503.66666666666663,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            4
+          ]
+        }
+      ],
+      "orig": "Task",
+      "text": "Task"
+    },
+    {
+      "self_ref": "#/texts/54",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 402.6666666666667,
+            "t": 504.33333333333337,
+            "r": 429.6666666666667,
+            "b": 494.66666666666663,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            7
+          ]
+        }
+      ],
+      "orig": "Tracker",
+      "text": "Tracker"
+    },
+    {
+      "self_ref": "#/texts/55",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 452.33333333333337,
+            "t": 486.3333333333333,
+            "r": 489.33333333333337,
+            "b": 478.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "HADOOP",
+      "text": "HADOOP"
+    },
+    {
+      "self_ref": "#/texts/56",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "caption",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 371.298,
+            "t": 433.4389504,
+            "r": 501.4309497600001,
+            "b": 425.5685700610951,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            27
+          ]
+        }
+      ],
+      "orig": "Figure 1: Hive Architecture",
+      "text": "Figure 1: Hive Architecture"
+    },
+    {
+      "self_ref": "#/texts/57",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "code",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 316.812,
+            "t": 400.96773110000004,
+            "r": 524.2870676599995,
+            "b": 340.5306378,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            171
+          ]
+        }
+      ],
+      "orig": "FROM status_updates a JOIN profiles b ON (a.userid = b.userid) ) subq1 GROUP BY subq1.school, subq1.meme DISTRIBUTE BY school, meme SORT BY school, meme, cnt desc ) subq2;",
+      "text": "FROM status_updates a JOIN profiles b ON (a.userid = b.userid) ) subq1 GROUP BY subq1.school, subq1.meme DISTRIBUTE BY school, meme SORT BY school, meme, cnt desc ) subq2;",
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "code_language": "unknown"
+    },
+    {
+      "self_ref": "#/texts/58",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 316.812,
+            "t": 323.537088,
+            "r": 468.9180096000001,
+            "b": 312.7893632,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            20
+          ]
+        }
+      ],
+      "orig": "3. HIVE ARCHITECTURE",
+      "text": "3. HIVE ARCHITECTURE",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/59",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 316.812,
+            "t": 308.4600512,
+            "r": 555.9154022400002,
+            "b": 290.1640894340058,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            110
+          ]
+        }
+      ],
+      "orig": "Figure 1 shows the major components of Hive and its interactions with Hadoop. The main components of Hive are:",
+      "text": "Figure 1 shows the major components of Hive and its interactions with Hadoop. The main components of Hive are:"
+    },
+    {
+      "self_ref": "#/texts/60",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 330.137,
+            "t": 285.5729504,
+            "r": 555.9184320000002,
+            "b": 246.32808943400573,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            159
+          ]
+        }
+      ],
+      "orig": "\u00b7 External Interfaces - Hive provides both user interfaces like command line (CLI) and web UI, and application programming interfaces (API) like JDBC and ODBC.",
+      "text": "External Interfaces - Hive provides both user interfaces like command line (CLI) and web UI, and application programming interfaces (API) like JDBC and ODBC.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/61",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 330.137,
+            "t": 241.73795040000005,
+            "r": 555.9198854400001,
+            "b": 160.64908943400565,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            414
+          ]
+        }
+      ],
+      "orig": "\u00b7 The Hive Thrift Server exposes a very simple client API to execute HiveQL statements. Thrift [8] is a framework for cross-language services, where a server written in one language (like Java) can also support clients in other languages. The Thrift Hive clients generated in different languages are used to build common drivers like JDBC (java), ODBC (C++), and scripting drivers written in php, perl, python etc.",
+      "text": "The Hive Thrift Server exposes a very simple client API to execute HiveQL statements. Thrift [8] is a framework for cross-language services, where a server written in one language (like Java) can also support clients in other languages. The Thrift Hive clients generated in different languages are used to build common drivers like JDBC (java), ODBC (C++), and scripting drivers written in php, perl, python etc.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/62",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 330.137,
+            "t": 156.05895039999996,
+            "r": 555.91696672,
+            "b": 127.27408943400565,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            130
+          ]
+        }
+      ],
+      "orig": "\u00b7 The Metastore is the system catalog. All other components of Hive interact with the metastore. For more details see Section 3.1.",
+      "text": "The Metastore is the system catalog. All other components of Hive interact with the metastore. For more details see Section 3.1.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/63",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 330.137,
+            "t": 122.68395039999996,
+            "r": 555.9193129600002,
+            "b": 72.97808943400571,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            270
+          ]
+        }
+      ],
+      "orig": "\u00b7 The Driver manages the life cycle of a HiveQL statement during compilation, optimization and execution. On receiving the HiveQL statement, from the thrift server or other interfaces, it creates a session handle which is later used to keep track of statistics like exe-",
+      "text": "The Driver manages the life cycle of a HiveQL statement during compilation, optimization and execution. On receiving the HiveQL statement, from the thrift server or other interfaces, it creates a session handle which is later used to keep track of statistics like exe-",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/64",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "caption",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 53.798,
+            "t": 333.6479504,
+            "r": 292.9049888,
+            "b": 315.3165700610951,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            72
+          ]
+        }
+      ],
+      "orig": "Figure 2: Query plan with 3 map-reduce jobs for multi-table insert query",
+      "text": "Figure 2: Query plan with 3 map-reduce jobs for multi-table insert query"
+    },
+    {
+      "self_ref": "#/texts/65",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 98.33333333333334,
+            "t": 723.6666666666666,
+            "r": 145.33333333333331,
+            "b": 715.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "FileOutputOperator",
+      "text": "FileOutputOperator"
+    },
+    {
+      "self_ref": "#/texts/66",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 202.0,
+            "t": 723.6666666666666,
+            "r": 249.33333333333334,
+            "b": 715.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "FileOutputOperator",
+      "text": "FileOutputOperator"
+    },
+    {
+      "self_ref": "#/texts/67",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 96.0,
+            "t": 718.0,
+            "r": 147.33333333333331,
+            "b": 709.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            20
+          ]
+        }
+      ],
+      "orig": "table:school_summary",
+      "text": "table:school_summary"
+    },
+    {
+      "self_ref": "#/texts/68",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 199.66666666666666,
+            "t": 717.3333333333334,
+            "r": 252.0,
+            "b": 710.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            20
+          ]
+        }
+      ],
+      "orig": "table:gender_summary",
+      "text": "table:gender_summary"
+    },
+    {
+      "self_ref": "#/texts/69",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 100.66666666666666,
+            "t": 711.6666666666666,
+            "r": 143.0,
+            "b": 704.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            22
+          ]
+        }
+      ],
+      "orig": "[0: string, 1: bigint]",
+      "text": "[0: string, 1: bigint]"
+    },
+    {
+      "self_ref": "#/texts/70",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 208.33333333333334,
+            "t": 711.6666666666666,
+            "r": 243.66666666666666,
+            "b": 704.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            19
+          ]
+        }
+      ],
+      "orig": "[0: int, 1: bigint]",
+      "text": "[0: int, 1: bigint]"
+    },
+    {
+      "self_ref": "#/texts/71",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 103.33333333333334,
+            "t": 695.6666666666666,
+            "r": 140.66666666666669,
+            "b": 688.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "SelectOperator",
+      "text": "SelectOperator"
+    },
+    {
+      "self_ref": "#/texts/72",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 207.66666666666666,
+            "t": 695.6666666666666,
+            "r": 245.0,
+            "b": 688.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "SelectOperator",
+      "text": "SelectOperator"
+    },
+    {
+      "self_ref": "#/texts/73",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 92.33333333333334,
+            "t": 689.0,
+            "r": 151.0,
+            "b": 683.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            27
+          ]
+        }
+      ],
+      "orig": "expressions:[col[o],col[1]]",
+      "text": "expressions:[col[o],col[1]]"
+    },
+    {
+      "self_ref": "#/texts/74",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 197.0,
+            "t": 689.0,
+            "r": 255.33333333333334,
+            "b": 682.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            28
+          ]
+        }
+      ],
+      "orig": "expressions:[col[0], col[1]]",
+      "text": "expressions:[col[0], col[1]]"
+    },
+    {
+      "self_ref": "#/texts/75",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 100.66666666666666,
+            "t": 683.6666666666666,
+            "r": 142.0,
+            "b": 677.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            22
+          ]
+        }
+      ],
+      "orig": "[0: string, 1: bigint]",
+      "text": "[0: string, 1: bigint]"
+    },
+    {
+      "self_ref": "#/texts/76",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 208.66666666666666,
+            "t": 684.0,
+            "r": 243.66666666666666,
+            "b": 676.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            19
+          ]
+        }
+      ],
+      "orig": "[0: int, 1: bigint]",
+      "text": "[0: int, 1: bigint]"
+    },
+    {
+      "self_ref": "#/texts/77",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 65.0,
+            "t": 675.6666666666666,
+            "r": 90.33333333333334,
+            "b": 669.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            8
+          ]
+        }
+      ],
+      "orig": "Reduce 2",
+      "text": "Reduce 2"
+    },
+    {
+      "self_ref": "#/texts/78",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 257.0,
+            "t": 675.6666666666666,
+            "r": 282.0,
+            "b": 669.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            8
+          ]
+        }
+      ],
+      "orig": "Reduce3i",
+      "text": "Reduce3i"
+    },
+    {
+      "self_ref": "#/texts/79",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 100.0,
+            "t": 668.6666666666666,
+            "r": 143.33333333333331,
+            "b": 660.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            15
+          ]
+        }
+      ],
+      "orig": "GroupByOperator",
+      "text": "GroupByOperator"
+    },
+    {
+      "self_ref": "#/texts/80",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 204.33333333333334,
+            "t": 668.6666666666666,
+            "r": 247.33333333333334,
+            "b": 660.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            15
+          ]
+        }
+      ],
+      "orig": "GroupByOperator",
+      "text": "GroupByOperator"
+    },
+    {
+      "self_ref": "#/texts/81",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 95.33333333333334,
+            "t": 662.3333333333333,
+            "r": 148.33333333333331,
+            "b": 655.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            23
+          ]
+        }
+      ],
+      "orig": "aggregations:[count(1)]",
+      "text": "aggregations:[count(1)]"
+    },
+    {
+      "self_ref": "#/texts/82",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 199.33333333333334,
+            "t": 662.3333333333333,
+            "r": 252.66666666666666,
+            "b": 655.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            23
+          ]
+        }
+      ],
+      "orig": "aggregations:[count(1)]",
+      "text": "aggregations:[count(1)]"
+    },
+    {
+      "self_ref": "#/texts/83",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 107.33333333333334,
+            "t": 656.6666666666667,
+            "r": 136.33333333333331,
+            "b": 649.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "keys:[col[0]]",
+      "text": "keys:[col[0]]"
+    },
+    {
+      "self_ref": "#/texts/84",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 211.66666666666666,
+            "t": 656.6666666666667,
+            "r": 240.66666666666666,
+            "b": 649.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "keys: [col[2]]",
+      "text": "keys: [col[2]]"
+    },
+    {
+      "self_ref": "#/texts/85",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 99.33333333333334,
+            "t": 651.0,
+            "r": 143.33333333333331,
+            "b": 644.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "mode: mergepartial",
+      "text": "mode: mergepartial"
+    },
+    {
+      "self_ref": "#/texts/86",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 204.0,
+            "t": 651.6666666666667,
+            "r": 247.66666666666666,
+            "b": 643.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "mode: mergepartial",
+      "text": "mode: mergepartial"
+    },
+    {
+      "self_ref": "#/texts/87",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 100.66666666666666,
+            "t": 645.0,
+            "r": 142.66666666666669,
+            "b": 638.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            22
+          ]
+        }
+      ],
+      "orig": "[0: string, 1: bigint]",
+      "text": "[0: string, 1: bigint]"
+    },
+    {
+      "self_ref": "#/texts/88",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 208.0,
+            "t": 645.6666666666667,
+            "r": 244.0,
+            "b": 638.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            19
+          ]
+        }
+      ],
+      "orig": "[0: int, 1: bigint]",
+      "text": "[0: int, 1: bigint]"
+    },
+    {
+      "self_ref": "#/texts/89",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 96.66666666666666,
+            "t": 627.3333333333333,
+            "r": 146.33333333333331,
+            "b": 619.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "ReduceSinkOperator",
+      "text": "ReduceSinkOperator"
+    },
+    {
+      "self_ref": "#/texts/90",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 200.66666666666666,
+            "t": 627.3333333333333,
+            "r": 250.66666666666666,
+            "b": 619.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "ReduceSinkOperator",
+      "text": "ReduceSinkOperator"
+    },
+    {
+      "self_ref": "#/texts/91",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 100.0,
+            "t": 620.3333333333333,
+            "r": 143.0,
+            "b": 614.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            22
+          ]
+        }
+      ],
+      "orig": "partition cols: col[0]",
+      "text": "partition cols: col[0]"
+    },
+    {
+      "self_ref": "#/texts/92",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 203.66666666666666,
+            "t": 620.6666666666667,
+            "r": 248.33333333333334,
+            "b": 614.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            22
+          ]
+        }
+      ],
+      "orig": "partition cols: col[0]",
+      "text": "partition cols: col[0]"
+    },
+    {
+      "self_ref": "#/texts/93",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 100.33333333333334,
+            "t": 615.3333333333334,
+            "r": 142.33333333333331,
+            "b": 607.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            22
+          ]
+        }
+      ],
+      "orig": "[0: string, 1: bigint]",
+      "text": "[0: string, 1: bigint]"
+    },
+    {
+      "self_ref": "#/texts/94",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 208.33333333333334,
+            "t": 615.3333333333334,
+            "r": 243.66666666666666,
+            "b": 607.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            19
+          ]
+        }
+      ],
+      "orig": "[0: int, 1: bigint]",
+      "text": "[0: int, 1: bigint]"
+    },
+    {
+      "self_ref": "#/texts/95",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 70.33333333333333,
+            "t": 608.0,
+            "r": 87.0,
+            "b": 601.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            5
+          ]
+        }
+      ],
+      "orig": "Map 2",
+      "text": "Map 2"
+    },
+    {
+      "self_ref": "#/texts/96",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 257.33333333333337,
+            "t": 606.3333333333334,
+            "r": 275.0,
+            "b": 599.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            5
+          ]
+        }
+      ],
+      "orig": "Map 3",
+      "text": "Map 3"
+    },
+    {
+      "self_ref": "#/texts/97",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 98.66666666666666,
+            "t": 599.6666666666666,
+            "r": 145.0,
+            "b": 591.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            17
+          ]
+        }
+      ],
+      "orig": "TableScanOperator",
+      "text": "TableScanOperator"
+    },
+    {
+      "self_ref": "#/texts/98",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 203.0,
+            "t": 599.6666666666666,
+            "r": 249.0,
+            "b": 591.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            17
+          ]
+        }
+      ],
+      "orig": "TableScanOperator",
+      "text": "TableScanOperator"
+    },
+    {
+      "self_ref": "#/texts/99",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 108.33333333333334,
+            "t": 592.6666666666666,
+            "r": 134.33333333333331,
+            "b": 586.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "table:tmp1",
+      "text": "table:tmp1"
+    },
+    {
+      "self_ref": "#/texts/100",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 212.66666666666666,
+            "t": 592.6666666666666,
+            "r": 239.33333333333334,
+            "b": 586.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "table:tmp2",
+      "text": "table:tmp2"
+    },
+    {
+      "self_ref": "#/texts/101",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 100.33333333333334,
+            "t": 587.6666666666666,
+            "r": 142.66666666666669,
+            "b": 580.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            22
+          ]
+        }
+      ],
+      "orig": "[0: string, 1: bigint]",
+      "text": "[0: string, 1: bigint]"
+    },
+    {
+      "self_ref": "#/texts/102",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 208.66666666666666,
+            "t": 587.6666666666666,
+            "r": 243.66666666666666,
+            "b": 580.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            19
+          ]
+        }
+      ],
+      "orig": "[0: int, 1: bigint]",
+      "text": "[0: int, 1: bigint]"
+    },
+    {
+      "self_ref": "#/texts/103",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 120.33333333333333,
+            "t": 578.0,
+            "r": 125.0,
+            "b": 573.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1
+          ]
+        }
+      ],
+      "orig": "\u4e2a",
+      "text": "\u4e2a"
+    },
+    {
+      "self_ref": "#/texts/104",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 224.33333333333334,
+            "t": 577.3333333333334,
+            "r": 227.33333333333334,
+            "b": 574.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1
+          ]
+        }
+      ],
+      "orig": "\u4e2a",
+      "text": "\u4e2a"
+    },
+    {
+      "self_ref": "#/texts/105",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 102.0,
+            "t": 553.6666666666666,
+            "r": 148.66666666666669,
+            "b": 545.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "FileOutputOperator",
+      "text": "FileOutputOperator"
+    },
+    {
+      "self_ref": "#/texts/106",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 199.0,
+            "t": 553.6666666666666,
+            "r": 245.33333333333334,
+            "b": 545.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "FileOutputOperator",
+      "text": "FileOutputOperator"
+    },
+    {
+      "self_ref": "#/texts/107",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 104.0,
+            "t": 542.3333333333334,
+            "r": 146.0,
+            "b": 535.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            22
+          ]
+        }
+      ],
+      "orig": "[0: string, 1: bigint]",
+      "text": "[0: string, 1: bigint]"
+    },
+    {
+      "self_ref": "#/texts/108",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 205.0,
+            "t": 542.0,
+            "r": 240.33333333333334,
+            "b": 534.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            19
+          ]
+        }
+      ],
+      "orig": "[0: int, 1: bigint]",
+      "text": "[0: int, 1: bigint]"
+    },
+    {
+      "self_ref": "#/texts/109",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 103.66666666666666,
+            "t": 527.3333333333334,
+            "r": 147.33333333333331,
+            "b": 519.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            15
+          ]
+        }
+      ],
+      "orig": "GroupByOperator",
+      "text": "GroupByOperator"
+    },
+    {
+      "self_ref": "#/texts/110",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 201.33333333333334,
+            "t": 526.6666666666666,
+            "r": 244.0,
+            "b": 520.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            15
+          ]
+        }
+      ],
+      "orig": "GroupByOperator",
+      "text": "GroupByOperator"
+    },
+    {
+      "self_ref": "#/texts/111",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 99.0,
+            "t": 521.0,
+            "r": 152.33333333333331,
+            "b": 513.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            23
+          ]
+        }
+      ],
+      "orig": "aggregations:[count(1)]",
+      "text": "aggregations:[count(1)]"
+    },
+    {
+      "self_ref": "#/texts/112",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 195.66666666666666,
+            "t": 521.0,
+            "r": 249.0,
+            "b": 514.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            23
+          ]
+        }
+      ],
+      "orig": "aggregations:[count(1)]",
+      "text": "aggregations:[count(1)]"
+    },
+    {
+      "self_ref": "#/texts/113",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 111.0,
+            "t": 515.0,
+            "r": 140.0,
+            "b": 508.33333333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "keys: [col[1]]",
+      "text": "keys: [col[1]]"
+    },
+    {
+      "self_ref": "#/texts/114",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 207.0,
+            "t": 516.0,
+            "r": 237.0,
+            "b": 509.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "keys: [col[2]]",
+      "text": "keys: [col[2]]"
+    },
+    {
+      "self_ref": "#/texts/115",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 111.66666666666666,
+            "t": 509.33333333333337,
+            "r": 139.33333333333331,
+            "b": 503.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "mode:hash",
+      "text": "mode:hash"
+    },
+    {
+      "self_ref": "#/texts/116",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 208.33333333333334,
+            "t": 509.66666666666663,
+            "r": 236.33333333333334,
+            "b": 503.33333333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "mode:hash",
+      "text": "mode:hash"
+    },
+    {
+      "self_ref": "#/texts/117",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 104.33333333333334,
+            "t": 504.33333333333337,
+            "r": 146.33333333333331,
+            "b": 496.66666666666663,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            22
+          ]
+        }
+      ],
+      "orig": "[0: string, 1: bigint]",
+      "text": "[0: string, 1: bigint]"
+    },
+    {
+      "self_ref": "#/texts/118",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 204.66666666666666,
+            "t": 504.66666666666663,
+            "r": 240.0,
+            "b": 497.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            19
+          ]
+        }
+      ],
+      "orig": "[0: int, 1: bigint]",
+      "text": "[0: int, 1: bigint]"
+    },
+    {
+      "self_ref": "#/texts/119",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 71.66666666666667,
+            "t": 497.0,
+            "r": 94.66666666666666,
+            "b": 490.33333333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            8
+          ]
+        }
+      ],
+      "orig": "Reduce 1",
+      "text": "Reduce 1"
+    },
+    {
+      "self_ref": "#/texts/120",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 157.66666666666669,
+            "t": 488.3333333333333,
+            "r": 195.0,
+            "b": 481.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "SelectOperator",
+      "text": "SelectOperator"
+    },
+    {
+      "self_ref": "#/texts/121",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 148.66666666666669,
+            "t": 476.6666666666667,
+            "r": 204.33333333333334,
+            "b": 469.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            30
+          ]
+        }
+      ],
+      "orig": "[0: string, 1: string, 2: int]",
+      "text": "[0: string, 1: string, 2: int]"
+    },
+    {
+      "self_ref": "#/texts/122",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 160.0,
+            "t": 459.6666666666667,
+            "r": 192.33333333333334,
+            "b": 452.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            12
+          ]
+        }
+      ],
+      "orig": "JoinOperator",
+      "text": "JoinOperator"
+    },
+    {
+      "self_ref": "#/texts/123",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 146.0,
+            "t": 453.6666666666667,
+            "r": 206.66666666666666,
+            "b": 447.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            28
+          ]
+        }
+      ],
+      "orig": "predicate:col[0.0] =col[1.0]",
+      "text": "predicate:col[0.0] =col[1.0]"
+    },
+    {
+      "self_ref": "#/texts/124",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 125.66666666666667,
+            "t": 448.3333333333333,
+            "r": 227.33333333333334,
+            "b": 440.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            39
+          ]
+        }
+      ],
+      "orig": "[0:int,1:stng,2:string,:int4sting,5:in]",
+      "text": "[0:int,1:stng,2:string,:int4sting,5:in]"
+    },
+    {
+      "self_ref": "#/texts/125",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 106.66666666666666,
+            "t": 430.6666666666667,
+            "r": 156.0,
+            "b": 424.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "ReduceSinkOperator",
+      "text": "ReduceSinkOperator"
+    },
+    {
+      "self_ref": "#/texts/126",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 196.0,
+            "t": 430.6666666666667,
+            "r": 245.66666666666666,
+            "b": 424.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "ReduceSinkOperator",
+      "text": "ReduceSinkOperator"
+    },
+    {
+      "self_ref": "#/texts/127",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 109.33333333333334,
+            "t": 425.0,
+            "r": 153.0,
+            "b": 418.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            21
+          ]
+        }
+      ],
+      "orig": "partition cols:col[0]",
+      "text": "partition cols:col[0]"
+    },
+    {
+      "self_ref": "#/texts/128",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 199.0,
+            "t": 425.0,
+            "r": 242.66666666666666,
+            "b": 418.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            21
+          ]
+        }
+      ],
+      "orig": "partition cols:col[0]",
+      "text": "partition cols:col[0]"
+    },
+    {
+      "self_ref": "#/texts/129",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 104.0,
+            "t": 419.6666666666667,
+            "r": 159.0,
+            "b": 412.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            28
+          ]
+        }
+      ],
+      "orig": "[0:int, 1: string,2: string]",
+      "text": "[0:int, 1: string,2: string]"
+    },
+    {
+      "self_ref": "#/texts/130",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 196.66666666666666,
+            "t": 419.6666666666667,
+            "r": 245.33333333333334,
+            "b": 412.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            24
+          ]
+        }
+      ],
+      "orig": "[0:int, 1: string,2:int]",
+      "text": "[0:int, 1: string,2:int]"
+    },
+    {
+      "self_ref": "#/texts/131",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 72.0,
+            "t": 404.6666666666667,
+            "r": 89.0,
+            "b": 396.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            5
+          ]
+        }
+      ],
+      "orig": "Map 1",
+      "text": "Map 1"
+    },
+    {
+      "self_ref": "#/texts/132",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 114.66666666666666,
+            "t": 402.0,
+            "r": 148.0,
+            "b": 394.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "FilterOperator",
+      "text": "FilterOperator"
+    },
+    {
+      "self_ref": "#/texts/133",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 198.0,
+            "t": 402.3333333333333,
+            "r": 244.33333333333334,
+            "b": 395.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            17
+          ]
+        }
+      ],
+      "orig": "TableScanOperator",
+      "text": "TableScanOperator"
+    },
+    {
+      "self_ref": "#/texts/134",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 97.33333333333334,
+            "t": 396.3333333333333,
+            "r": 165.0,
+            "b": 389.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            29
+          ]
+        }
+      ],
+      "orig": "predicate:col[ds]=2009-03-20'",
+      "text": "predicate:col[ds]=2009-03-20'"
+    },
+    {
+      "self_ref": "#/texts/135",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 205.66666666666666,
+            "t": 395.6666666666667,
+            "r": 236.66666666666666,
+            "b": 389.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "table:profiles",
+      "text": "table:profiles"
+    },
+    {
+      "self_ref": "#/texts/136",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 103.66666666666666,
+            "t": 390.3333333333333,
+            "r": 159.0,
+            "b": 383.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            29
+          ]
+        }
+      ],
+      "orig": "[0:int, 1: string, 2: string]",
+      "text": "[0:int, 1: string, 2: string]"
+    },
+    {
+      "self_ref": "#/texts/137",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 181.66666666666666,
+            "t": 390.3333333333333,
+            "r": 260.33333333333337,
+            "b": 383.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            39
+          ]
+        }
+      ],
+      "orig": "[userid int, school string, gender int]",
+      "text": "[userid int, school string, gender int]"
+    },
+    {
+      "self_ref": "#/texts/138",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 108.0,
+            "t": 373.6666666666667,
+            "r": 154.66666666666669,
+            "b": 366.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            17
+          ]
+        }
+      ],
+      "orig": "TableScanOperator",
+      "text": "TableScanOperator"
+    },
+    {
+      "self_ref": "#/texts/139",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 108.0,
+            "t": 367.6666666666667,
+            "r": 155.33333333333331,
+            "b": 361.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            20
+          ]
+        }
+      ],
+      "orig": "table:status_updates",
+      "text": "table:status_updates"
+    },
+    {
+      "self_ref": "#/texts/140",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 94.33333333333334,
+            "t": 362.6666666666667,
+            "r": 168.33333333333331,
+            "b": 355.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            38
+          ]
+        }
+      ],
+      "orig": "[userid int, status string, ds string]",
+      "text": "[userid int, status string, ds string]"
+    },
+    {
+      "self_ref": "#/texts/141",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 76.214,
+            "t": 289.5340512,
+            "r": 240.40223359999993,
+            "b": 281.6980894340058,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            40
+          ]
+        }
+      ],
+      "orig": "cution time, number of output rows, etc.",
+      "text": "cution time, number of output rows, etc."
+    },
+    {
+      "self_ref": "#/texts/142",
+      "parent": {
+        "$ref": "#/groups/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 67.123,
+            "t": 277.10695039999996,
+            "r": 292.9031955199998,
+            "b": 237.86208943400584,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            201
+          ]
+        }
+      ],
+      "orig": "\u00b7 The Compiler is invoked by the driver upon receiving a HiveQL statement. The compiler translates this statement into a plan which consists of a DAG of mapreduce jobs. For more details see Section 3.2",
+      "text": "The Compiler is invoked by the driver upon receiving a HiveQL statement. The compiler translates this statement into a plan which consists of a DAG of mapreduce jobs. For more details see Section 3.2",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/143",
+      "parent": {
+        "$ref": "#/groups/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 67.12299999999999,
+            "t": 233.24505120000003,
+            "r": 295.8477612799999,
+            "b": 194.0260894340057,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            164
+          ]
+        }
+      ],
+      "orig": "\u00b7 The driver submits the individual map-reduce jobs from the DAG to the Execution Engine in a topological order. Hive currently uses Hadoop as its execution engine.",
+      "text": "The driver submits the individual map-reduce jobs from the DAG to the Execution Engine in a topological order. Hive currently uses Hadoop as its execution engine.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/144",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 53.79799999999997,
+            "t": 189.40905120000002,
+            "r": 275.6742579199999,
+            "b": 181.57308943400574,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            54
+          ]
+        }
+      ],
+      "orig": "We next describe the metastore and compiler in detail.",
+      "text": "We next describe the metastore and compiler in detail."
+    },
+    {
+      "self_ref": "#/texts/145",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 53.79799999999997,
+            "t": 169.116088,
+            "r": 132.25997759999996,
+            "b": 158.36836319999998,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "3.1 Metastore",
+      "text": "3.1 Metastore",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/146",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 53.79799999999997,
+            "t": 154.0390511999999,
+            "r": 292.90409215999995,
+            "b": 83.43908943400572,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            414
+          ]
+        }
+      ],
+      "orig": "The metastore is the system catalog which contains metadata about the tables stored in Hive. This metadata is specified during table creation and reused every time the table is referenced in HiveQL. The metastore distinguishes Hive as a traditional warehousing solution (ala Oracle or DB2) when compared with similar data processing systems built on top of map-reduce like architectures like Pig [7] and Scope [2].",
+      "text": "The metastore is the system catalog which contains metadata about the tables stored in Hive. This metadata is specified during table creation and reused every time the table is referenced in HiveQL. The metastore distinguishes Hive as a traditional warehousing solution (ala Oracle or DB2) when compared with similar data processing systems built on top of map-reduce like architectures like Pig [7] and Scope [2]."
+    },
+    {
+      "self_ref": "#/texts/147",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 62.76499999999997,
+            "t": 80.8140512,
+            "r": 246.23637343999988,
+            "b": 72.97808943400571,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            45
+          ]
+        }
+      ],
+      "orig": "The metastore contains the following objects:",
+      "text": "The metastore contains the following objects:"
+    },
+    {
+      "self_ref": "#/texts/148",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 330.137,
+            "t": 734.3630512,
+            "r": 562.3030656000001,
+            "b": 705.6060894340056,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            118
+          ]
+        }
+      ],
+      "orig": "\u00b7 Database - is a namespace for tables. The database 'default' is used for tables with no user supplied database name.",
+      "text": "Database - is a namespace for tables. The database 'default' is used for tables with no user supplied database name.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/149",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 330.137,
+            "t": 700.9880512,
+            "r": 555.9189888000002,
+            "b": 588.5440894340055,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            581
+          ]
+        }
+      ],
+      "orig": "\u00b7 Table - Metadata for table contains list of columns and their types, owner, storage and SerDe information. It can also contain any user supplied key and value data; this facility can be used to store table statistics in the future. Storage information includes location of the table's data in the underlying file system, data formats and bucketing information. SerDe metadata includes the implementation class of serializer and deserializer methods and any supporting information required by that implementation. All this information can be provided during the creation of table.",
+      "text": "Table - Metadata for table contains list of columns and their types, owner, storage and SerDe information. It can also contain any user supplied key and value data; this facility can be used to store table statistics in the future. Storage information includes location of the table's data in the underlying file system, data formats and bucketing information. SerDe metadata includes the implementation class of serializer and deserializer methods and any supporting information required by that implementation. All this information can be provided during the creation of table.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/150",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 330.137,
+            "t": 583.9270511999998,
+            "r": 555.9189888000001,
+            "b": 544.7090894340055,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            168
+          ]
+        }
+      ],
+      "orig": "\u00b7 Partition - Each partition can have its own columns and SerDe and storage information. This can be used in the future to support schema evolution in a Hive warehouse.",
+      "text": "Partition - Each partition can have its own columns and SerDe and storage information. This can be used in the future to support schema evolution in a Hive warehouse.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/151",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 316.812,
+            "t": 540.0920511999998,
+            "r": 555.9198854400001,
+            "b": 438.10908943400545,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            541
+          ]
+        }
+      ],
+      "orig": "The storage system for the metastore should be optimized for online transactions with random accesses and updates. A file system like HDFS is not suited since it is optimized for sequential scans and not for random access. So, the metastore uses either a traditional relational database (like MySQL, Oracle) or file system (like local, NFS, AFS) and not HDFS. As a result, HiveQL statements which only access metadata objects are executed with very low latency. However, Hive has to explicitly maintain consistency between metadata and data.",
+      "text": "The storage system for the metastore should be optimized for online transactions with random accesses and updates. A file system like HDFS is not suited since it is optimized for sequential scans and not for random access. So, the metastore uses either a traditional relational database (like MySQL, Oracle) or file system (like local, NFS, AFS) and not HDFS. As a result, HiveQL statements which only access metadata objects are executed with very low latency. However, Hive has to explicitly maintain consistency between metadata and data."
+    },
+    {
+      "self_ref": "#/texts/152",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 316.812,
+            "t": 425.65408799999966,
+            "r": 392.189536,
+            "b": 414.9063631999997,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            12
+          ]
+        }
+      ],
+      "orig": "3.2 Compiler",
+      "text": "3.2 Compiler",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/153",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 316.812,
+            "t": 410.5770511999997,
+            "r": 555.9194854400001,
+            "b": 339.9760894340054,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            375
+          ]
+        }
+      ],
+      "orig": "The driver invokes the compiler with the HiveQL string which can be one of DDL, DML or query statements. The compiler converts the string to a plan. The plan consists only of metadata operations in case of DDL statements, and HDFS operations in case of LOAD statements. For insert statements and queries, the plan consists of a directedacyclic graph (DAG) of map-reduce jobs.",
+      "text": "The driver invokes the compiler with the HiveQL string which can be one of DDL, DML or query statements. The compiler converts the string to a plan. The plan consists only of metadata operations in case of DDL statements, and HDFS operations in case of LOAD statements. For insert statements and queries, the plan consists of a directedacyclic graph (DAG) of map-reduce jobs."
+    },
+    {
+      "self_ref": "#/texts/154",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 330.137,
+            "t": 335.35905119999967,
+            "r": 555.9162988800002,
+            "b": 317.06208943400543,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            70
+          ]
+        }
+      ],
+      "orig": "\u00b7 The Parser transforms a query string to a parse tree representation.",
+      "text": "The Parser transforms a query string to a parse tree representation.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/155",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 330.137,
+            "t": 312.4450511999997,
+            "r": 555.9189888000003,
+            "b": 252.30508943400537,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            307
+          ]
+        }
+      ],
+      "orig": "\u00b7 The Semantic Analyzer transforms the parse tree to a block-based internal query representation. It retrieves schema information of the input tables from the metastore. Using this information it verifies column names, expands select * and does type-checking including addition of implicit type conversions.",
+      "text": "The Semantic Analyzer transforms the parse tree to a block-based internal query representation. It retrieves schema information of the input tables from the metastore. Using this information it verifies column names, expands select * and does type-checking including addition of implicit type conversions.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/156",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 330.137,
+            "t": 247.68805119999968,
+            "r": 556.8030758400002,
+            "b": 218.93008943400537,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            137
+          ]
+        }
+      ],
+      "orig": "\u00b7 The Logical Plan Generator converts the internal query representation to a logical plan, which consists of a tree of logical operators.",
+      "text": "The Logical Plan Generator converts the internal query representation to a logical plan, which consists of a tree of logical operators.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/157",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 330.137,
+            "t": 214.31305119999956,
+            "r": 555.91988544,
+            "b": 196.01608943400538,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            95
+          ]
+        }
+      ],
+      "orig": "\u00b7 The Optimizer performs multiple passes over the logical plan and rewrites it in several ways:",
+      "text": "The Optimizer performs multiple passes over the logical plan and rewrites it in several ways:",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/158",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 349.863,
+            "t": 189.40605119999964,
+            "r": 555.9180121600001,
+            "b": 160.64908943400542,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            115
+          ]
+        }
+      ],
+      "orig": "\u00b7 Combines multiple joins which share the join key into a single multi-way join, and hence a single map-reduce job.",
+      "text": "Combines multiple joins which share the join key into a single multi-way join, and hence a single map-reduce job.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/159",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 349.863,
+            "t": 156.03205119999961,
+            "r": 555.91980544,
+            "b": 95.89208943400536,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            235
+          ]
+        }
+      ],
+      "orig": "\u00b7 Adds repartition operators (also known as ReduceSinkOperator) for join, group-by and custom map-reduce operators. These repartition operators mark the boundary between the map phase and a reduce phase during physical plan generation.",
+      "text": "Adds repartition operators (also known as ReduceSinkOperator) for join, group-by and custom map-reduce operators. These repartition operators mark the boundary between the map phase and a reduce phase during physical plan generation.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/160",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 349.863,
+            "t": 91.27405119999958,
+            "r": 556.3448128000002,
+            "b": 72.97808943400537,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            100
+          ]
+        }
+      ],
+      "orig": "\u00b7 Prunes columns early and pushes predicates closer to the table scan operators in order to minimize",
+      "text": "Prunes columns early and pushes predicates closer to the table scan operators in order to minimize",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/161",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 95.94,
+            "t": 734.3630512000001,
+            "r": 292.9031155199999,
+            "b": 726.5270894340058,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            48
+          ]
+        }
+      ],
+      "orig": "the amount of data transfered between operators.",
+      "text": "the amount of data transfered between operators."
+    },
+    {
+      "self_ref": "#/texts/162",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 86.849,
+            "t": 721.9100512000001,
+            "r": 292.9049087999999,
+            "b": 703.6130894340058,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            83
+          ]
+        }
+      ],
+      "orig": "\u00b7 In case of partitioned tables, prunes partitions that are not needed by the query",
+      "text": "In case of partitioned tables, prunes partitions that are not needed by the query",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/163",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 86.849,
+            "t": 698.9960512000001,
+            "r": 292.90042559999995,
+            "b": 680.6990894340058,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            65
+          ]
+        }
+      ],
+      "orig": "\u00b7 In case of sampling queries, prunes buckets that are not needed",
+      "text": "In case of sampling queries, prunes buckets that are not needed",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/164",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 76.214,
+            "t": 674.0890512000001,
+            "r": 268.4796185599999,
+            "b": 666.2530894340058,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            48
+          ]
+        }
+      ],
+      "orig": "Users can also provide hints to the optimizer to",
+      "text": "Users can also provide hints to the optimizer to"
+    },
+    {
+      "self_ref": "#/texts/165",
+      "parent": {
+        "$ref": "#/groups/7"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 86.849,
+            "t": 659.6430512000001,
+            "r": 292.90401216,
+            "b": 641.3470894340057,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            84
+          ]
+        }
+      ],
+      "orig": "\u00b7 add partial aggregation operators to handle large cardinality grouped aggregations",
+      "text": "add partial aggregation operators to handle large cardinality grouped aggregations",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/166",
+      "parent": {
+        "$ref": "#/groups/7"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 86.849,
+            "t": 636.7290512000001,
+            "r": 299.92828991999994,
+            "b": 618.4320894340058,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            66
+          ]
+        }
+      ],
+      "orig": "\u00b7 add repartition operators to handle skew in grouped aggregations",
+      "text": "add repartition operators to handle skew in grouped aggregations",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/167",
+      "parent": {
+        "$ref": "#/groups/7"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 86.849,
+            "t": 613.8150512000001,
+            "r": 292.90490880000004,
+            "b": 595.5180894340058,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            60
+          ]
+        }
+      ],
+      "orig": "\u00b7 perform joins in the map phase instead of the reduce phase",
+      "text": "perform joins in the map phase instead of the reduce phase",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/168",
+      "parent": {
+        "$ref": "#/groups/7"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 67.12299999999999,
+            "t": 588.9090512,
+            "r": 292.90498879999996,
+            "b": 518.3080894340056,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            352
+          ]
+        }
+      ],
+      "orig": "\u00b7 The Physical Plan Generator converts the logical plan into a physical plan, consisting of a DAG of mapreduce jobs. It creates a new map-reduce job for each of the marker operators - repartition and union all in the logical plan. It then assigns portions of the logical plan enclosed between the markers to mappers and reducers of the map-reduce jobs.",
+      "text": "The Physical Plan Generator converts the logical plan into a physical plan, consisting of a DAG of mapreduce jobs. It creates a new map-reduce job for each of the marker operators - repartition and union all in the logical plan. It then assigns portions of the logical plan enclosed between the markers to mappers and reducers of the map-reduce jobs.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/169",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 53.79799999999999,
+            "t": 513.6910512,
+            "r": 292.90558879999986,
+            "b": 401.2470894340056,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            633
+          ]
+        }
+      ],
+      "orig": "In Figure 2, we illustrate the plan of the multi-table insert query in Section 2.3. The nodes in the plan are physical operators and the edges represent the flow of data between operators. The last line in each node represents the output schema of that operator. For lack of space, we do not describe the parameters specified within each operator node. The plan has three map-reduce jobs. Within the same map-reduce job, the portion of the operator tree below the repartition operator (ReduceSinkOperator) is executed by the mapper and the portion above by the reducer. The repartitioning itself is performed by the execution engine.",
+      "text": "In Figure 2, we illustrate the plan of the multi-table insert query in Section 2.3. The nodes in the plan are physical operators and the edges represent the flow of data between operators. The last line in each node represents the output schema of that operator. For lack of space, we do not describe the parameters specified within each operator node. The plan has three map-reduce jobs. Within the same map-reduce job, the portion of the operator tree below the repartition operator (ReduceSinkOperator) is executed by the mapper and the portion above by the reducer. The repartitioning itself is performed by the execution engine."
+    },
+    {
+      "self_ref": "#/texts/170",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 53.79799999999999,
+            "t": 398.6220511999998,
+            "r": 292.90588543999985,
+            "b": 348.94308943400557,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            251
+          ]
+        }
+      ],
+      "orig": "Notice that the first map-reduce job writes to two temporary files to HDFS, tmp1 and tmp2 , which are consumed by the second and third map-reduce jobs respectively. Thus, the second and third map-reduce jobs wait for the first mapreduce job to finish.",
+      "text": "Notice that the first map-reduce job writes to two temporary files to HDFS, tmp1 and tmp2 , which are consumed by the second and third map-reduce jobs respectively. Thus, the second and third map-reduce jobs wait for the first mapreduce job to finish."
+    },
+    {
+      "self_ref": "#/texts/171",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 53.798,
+            "t": 332.0050879999998,
+            "r": 267.86781120000006,
+            "b": 321.2573631999998,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            28
+          ]
+        }
+      ],
+      "orig": "4. DEMONSTRATION DESCRIPTION",
+      "text": "4. DEMONSTRATION DESCRIPTION",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/172",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 62.764,
+            "t": 316.9280511999998,
+            "r": 241.4204166399999,
+            "b": 309.0920894340056,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            44
+          ]
+        }
+      ],
+      "orig": "The demonstration consists of the following:",
+      "text": "The demonstration consists of the following:"
+    },
+    {
+      "self_ref": "#/texts/173",
+      "parent": {
+        "$ref": "#/groups/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 67.123,
+            "t": 304.4750511999998,
+            "r": 297.78301407999993,
+            "b": 254.79608943400558,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            223
+          ]
+        }
+      ],
+      "orig": "\u00b7 Functionality - We demonstrate HiveQL constructs via the StatusMeme application described in Section 2.3. Weexpand the application to include queries which use more HiveQL constructs and showcase the rule-based optimizer.",
+      "text": "Functionality - We demonstrate HiveQL constructs via the StatusMeme application described in Section 2.3. Weexpand the application to include queries which use more HiveQL constructs and showcase the rule-based optimizer.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/174",
+      "parent": {
+        "$ref": "#/groups/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 67.12300000000002,
+            "t": 250.17905119999978,
+            "r": 292.90498880000007,
+            "b": 200.50008943400553,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            216
+          ]
+        }
+      ],
+      "orig": "\u00b7 Tuning - We also demonstrate our query plan viewer which shows how HiveQL queries are translated into physical plans of map-reduce jobs. We show how hints can be used to modify the plans generated by the optimizer.",
+      "text": "Tuning - We also demonstrate our query plan viewer which shows how HiveQL queries are translated into physical plans of map-reduce jobs. We show how hints can be used to modify the plans generated by the optimizer.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/175",
+      "parent": {
+        "$ref": "#/groups/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 67.12300000000002,
+            "t": 195.88205119999975,
+            "r": 292.90140223999987,
+            "b": 167.12508943400553,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            154
+          ]
+        }
+      ],
+      "orig": "\u00b7 User Interface - We show our graphical user interface which allows users to explore a Hive database, author HiveQL queries, and monitor query execution.",
+      "text": "User Interface - We show our graphical user interface which allows users to explore a Hive database, author HiveQL queries, and monitor query execution.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/176",
+      "parent": {
+        "$ref": "#/groups/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 67.12300000000002,
+            "t": 162.50705119999975,
+            "r": 292.90409216,
+            "b": 133.75008943400553,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            136
+          ]
+        }
+      ],
+      "orig": "\u00b7 Scalability - We illustrate the scalability of the system by increasing the sizes of the input data and the complexity of the queries.",
+      "text": "Scalability - We illustrate the scalability of the system by increasing the sizes of the input data and the complexity of the queries.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/177",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 53.798000000000016,
+            "t": 116.81208799999968,
+            "r": 165.92582080000003,
+            "b": 106.06436319999966,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "5. FUTURE WORK",
+      "text": "5. FUTURE WORK",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/178",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 53.798000000000016,
+            "t": 101.7350511999997,
+            "r": 301.4230687999999,
+            "b": 72.97808943400548,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            181
+          ]
+        },
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 316.812,
+            "t": 734.3630511999997,
+            "r": 555.9180921600001,
+            "b": 695.1450894340054,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            182,
+            390
+          ]
+        }
+      ],
+      "orig": "Hive is a first step in building an open-source warehouse over a web-scale map-reduce data processing system (Hadoop). The distinct characteristics of the underlying storage and ex- ecution engines has forced us to revisit techniques for query processing. We have discovered that we have to either modify or rewrite several query processing algorithms to perform efficiently in our setting.",
+      "text": "Hive is a first step in building an open-source warehouse over a web-scale map-reduce data processing system (Hadoop). The distinct characteristics of the underlying storage and ex- ecution engines has forced us to revisit techniques for query processing. We have discovered that we have to either modify or rewrite several query processing algorithms to perform efficiently in our setting."
+    },
+    {
+      "self_ref": "#/texts/179",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 316.812,
+            "t": 692.5200511999997,
+            "r": 555.9198854399999,
+            "b": 621.9190894340053,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            353
+          ]
+        }
+      ],
+      "orig": "Hive is an Apache sub-project, with an active user and developer community both within and outside Facebook. The Hive warehouse instance in Facebook contains over 700 terabytes of usable data and supports over 5000 queries on a daily basis. This demonstration show cases the current capabilities of Hive. There are many important avenues of future work:",
+      "text": "Hive is an Apache sub-project, with an active user and developer community both within and outside Facebook. The Hive warehouse instance in Facebook contains over 700 terabytes of usable data and supports over 5000 queries on a daily basis. This demonstration show cases the current capabilities of Hive. There are many important avenues of future work:"
+    },
+    {
+      "self_ref": "#/texts/180",
+      "parent": {
+        "$ref": "#/groups/9"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 330.137,
+            "t": 617.3020511999996,
+            "r": 555.91540224,
+            "b": 588.5440894340053,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            122
+          ]
+        }
+      ],
+      "orig": "\u00b7 HiveQL currently accepts only a subset of SQL as valid queries. We are working towards making HiveQL subsume SQL syntax.",
+      "text": "HiveQL currently accepts only a subset of SQL as valid queries. We are working towards making HiveQL subsume SQL syntax.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/181",
+      "parent": {
+        "$ref": "#/groups/9"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 330.137,
+            "t": 583.9270511999996,
+            "r": 555.9171955200001,
+            "b": 544.7090894340053,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            202
+          ]
+        }
+      ],
+      "orig": "\u00b7 Hive currently has a na\u00a8 \u0131ve rule-based optimizer with a small number of simple rules. We plan to build a costbased optimizer and adaptive optimization techniques to come up with more efficient plans.",
+      "text": "Hive currently has a na\u00a8 \u0131ve rule-based optimizer with a small number of simple rules. We plan to build a costbased optimizer and adaptive optimization techniques to come up with more efficient plans.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/182",
+      "parent": {
+        "$ref": "#/groups/9"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 330.137,
+            "t": 540.0910511999996,
+            "r": 555.9145056000002,
+            "b": 521.7950894340053,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            100
+          ]
+        }
+      ],
+      "orig": "\u00b7 We are exploring columnar storage and more intelligent data placement to improve scan performance.",
+      "text": "We are exploring columnar storage and more intelligent data placement to improve scan performance.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/183",
+      "parent": {
+        "$ref": "#/groups/9"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 330.137,
+            "t": 517.1770511999995,
+            "r": 555.9198854400005,
+            "b": 373.3510894340052,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            699
+          ]
+        }
+      ],
+      "orig": "\u00b7 We are running performance benchmarks based on [1] to measure our progress as well as compare against other systems [4]. In our preliminary experiments, we have been able to improve the performance of Hadoop itself by 20% compared to [1]. The improvements involved using faster Hadoop data structures to process the data, for example, using Text instead of String . The same queries expressed easily in HiveQL had 20% overhead compared to our optimized hadoop implementation, i.e., Hive's performance is on par with the hadoop code from [1]. Based on these experiments, we have identified several areas for performance improvement and have begun working on them. More details are available in [4].",
+      "text": "We are running performance benchmarks based on [1] to measure our progress as well as compare against other systems [4]. In our preliminary experiments, we have been able to improve the performance of Hadoop itself by 20% compared to [1]. The improvements involved using faster Hadoop data structures to process the data, for example, using Text instead of String . The same queries expressed easily in HiveQL had 20% overhead compared to our optimized hadoop implementation, i.e., Hive's performance is on par with the hadoop code from [1]. Based on these experiments, we have identified several areas for performance improvement and have begun working on them. More details are available in [4].",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/184",
+      "parent": {
+        "$ref": "#/groups/9"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 330.1370000000001,
+            "t": 368.73405119999944,
+            "r": 555.9189888000003,
+            "b": 339.9760894340052,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            150
+          ]
+        }
+      ],
+      "orig": "\u00b7 We are enhancing the JDBC and ODBC drivers for Hive for integration with commercial BI tools which only work with traditional relational warehouses.",
+      "text": "We are enhancing the JDBC and ODBC drivers for Hive for integration with commercial BI tools which only work with traditional relational warehouses.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/185",
+      "parent": {
+        "$ref": "#/groups/9"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 330.1370000000001,
+            "t": 335.35905119999944,
+            "r": 555.9162988800002,
+            "b": 306.6020894340052,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            129
+          ]
+        }
+      ],
+      "orig": "\u00b7 We are exploring methods for multi-query optimization techniques and performing generic n-way joins in a single map-reduce job.",
+      "text": "We are exploring methods for multi-query optimization techniques and performing generic n-way joins in a single map-reduce job.",
+      "enumerated": false,
+      "marker": "\u00b7"
+    },
+    {
+      "self_ref": "#/texts/186",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 316.8120000000001,
+            "t": 301.98405119999944,
+            "r": 555.9136089600001,
+            "b": 273.22708943400517,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            169
+          ]
+        }
+      ],
+      "orig": "We would like to thank our user and developer community for their contributions, with special thanks to Yuntao Jia, Yongqiang He, Dhruba Borthakur and Jeff Hammerbacher.",
+      "text": "We would like to thank our user and developer community for their contributions, with special thanks to Yuntao Jia, Yongqiang He, Dhruba Borthakur and Jeff Hammerbacher."
+    },
+    {
+      "self_ref": "#/texts/187",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 316.8120000000001,
+            "t": 259.27708799999937,
+            "r": 418.1084096000002,
+            "b": 248.52936319999947,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "6. REFERENCES",
+      "text": "6. REFERENCES",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/188",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 316.8120000000001,
+            "t": 244.0020511999994,
+            "r": 555.91399104,
+            "b": 225.70508943400523,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            102
+          ]
+        }
+      ],
+      "orig": "[1] A. Pavlo et. al. A Comparison of Approaches to Large-Scale Data Analysis. Proc. ACM SIGMOD , 2009.",
+      "text": "A. Pavlo et. al. A Comparison of Approaches to Large-Scale Data Analysis. Proc. ACM SIGMOD , 2009.",
+      "enumerated": true,
+      "marker": "[1]"
+    },
+    {
+      "self_ref": "#/texts/189",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 316.81200000000007,
+            "t": 222.0840511999994,
+            "r": 552.6219072,
+            "b": 193.3260894340052,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            129
+          ]
+        }
+      ],
+      "orig": "[2] C.Ronnie et al. SCOPE: Easy and Efficient Parallel Processing of Massive Data Sets. Proc. VLDB Endow. , 1(2):1265-1276, 2008.",
+      "text": "C.Ronnie et al. SCOPE: Easy and Efficient Parallel Processing of Massive Data Sets. Proc. VLDB Endow. , 1(2):1265-1276, 2008.",
+      "enumerated": true,
+      "marker": "[2]"
+    },
+    {
+      "self_ref": "#/texts/190",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 316.81200000000007,
+            "t": 189.7050511999994,
+            "r": 470.09390720000005,
+            "b": 171.12945919999947,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            63
+          ]
+        }
+      ],
+      "orig": "[3] Apache Hadoop. Available at http://wiki.apache.org/hadoop .",
+      "text": "Apache Hadoop. Available at http://wiki.apache.org/hadoop .",
+      "enumerated": true,
+      "marker": "[3]"
+    },
+    {
+      "self_ref": "#/texts/191",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 316.812,
+            "t": 167.78705119999938,
+            "r": 550.1179072,
+            "b": 149.21245919999944,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            93
+          ]
+        }
+      ],
+      "orig": "[4] Hive Performance Benchmark. Available at https://issues.apache.org/jira/browse/HIVE-396 .",
+      "text": "Hive Performance Benchmark. Available at https://issues.apache.org/jira/browse/HIVE-396 .",
+      "enumerated": true,
+      "marker": "[4]"
+    },
+    {
+      "self_ref": "#/texts/192",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 316.812,
+            "t": 145.87005119999935,
+            "r": 564.2399072,
+            "b": 127.29445919999944,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            90
+          ]
+        }
+      ],
+      "orig": "[5] Hive Language Manual. Available at http://wiki.apache.org/hadoop/Hive/LanguageManual .",
+      "text": "Hive Language Manual. Available at http://wiki.apache.org/hadoop/Hive/LanguageManual .",
+      "enumerated": true,
+      "marker": "[5]"
+    },
+    {
+      "self_ref": "#/texts/193",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 316.81199999999995,
+            "t": 123.95205119999946,
+            "r": 479.50890719999995,
+            "b": 105.37645919999943,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            68
+          ]
+        }
+      ],
+      "orig": "[6] Facebook Lexicon. Available at http://www.facebook.com/lexicon .",
+      "text": "Facebook Lexicon. Available at http://www.facebook.com/lexicon .",
+      "enumerated": true,
+      "marker": "[6]"
+    },
+    {
+      "self_ref": "#/texts/194",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 316.81199999999995,
+            "t": 102.03405119999934,
+            "r": 507.80990719999994,
+            "b": 93.91945919999944,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            44
+          ]
+        }
+      ],
+      "orig": "[7] Apache Pig. http://wiki.apache.org/pig .",
+      "text": "Apache Pig. http://wiki.apache.org/pig .",
+      "enumerated": true,
+      "marker": "[7]"
+    },
+    {
+      "self_ref": "#/texts/195",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 316.81199999999995,
+            "t": 90.57705119999946,
+            "r": 555.9149071999999,
+            "b": 82.46245919999944,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            55
+          ]
+        }
+      ],
+      "orig": "[8] Apache Thrift. http://incubator.apache.org/thrift .",
+      "text": "Apache Thrift. http://incubator.apache.org/thrift .",
+      "enumerated": true,
+      "marker": "[8]"
+    }
+  ],
+  "pictures": [
+    {
+      "self_ref": "#/pictures/0",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/31"
+        },
+        {
+          "$ref": "#/texts/32"
+        },
+        {
+          "$ref": "#/texts/33"
+        },
+        {
+          "$ref": "#/texts/34"
+        },
+        {
+          "$ref": "#/texts/35"
+        },
+        {
+          "$ref": "#/texts/36"
+        },
+        {
+          "$ref": "#/texts/37"
+        },
+        {
+          "$ref": "#/texts/38"
+        },
+        {
+          "$ref": "#/texts/39"
+        },
+        {
+          "$ref": "#/texts/40"
+        },
+        {
+          "$ref": "#/texts/41"
+        },
+        {
+          "$ref": "#/texts/42"
+        },
+        {
+          "$ref": "#/texts/43"
+        },
+        {
+          "$ref": "#/texts/44"
+        },
+        {
+          "$ref": "#/texts/45"
+        },
+        {
+          "$ref": "#/texts/46"
+        },
+        {
+          "$ref": "#/texts/47"
+        },
+        {
+          "$ref": "#/texts/48"
+        },
+        {
+          "$ref": "#/texts/49"
+        },
+        {
+          "$ref": "#/texts/50"
+        },
+        {
+          "$ref": "#/texts/51"
+        },
+        {
+          "$ref": "#/texts/52"
+        },
+        {
+          "$ref": "#/texts/53"
+        },
+        {
+          "$ref": "#/texts/54"
+        },
+        {
+          "$ref": "#/texts/55"
+        }
+      ],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 316.7687683105469,
+            "t": 740.0060729980469,
+            "r": 555.5908203125,
+            "b": 444.1761779785156,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/1",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/64"
+        },
+        {
+          "$ref": "#/texts/65"
+        },
+        {
+          "$ref": "#/texts/66"
+        },
+        {
+          "$ref": "#/texts/67"
+        },
+        {
+          "$ref": "#/texts/68"
+        },
+        {
+          "$ref": "#/texts/69"
+        },
+        {
+          "$ref": "#/texts/70"
+        },
+        {
+          "$ref": "#/texts/71"
+        },
+        {
+          "$ref": "#/texts/72"
+        },
+        {
+          "$ref": "#/texts/73"
+        },
+        {
+          "$ref": "#/texts/74"
+        },
+        {
+          "$ref": "#/texts/75"
+        },
+        {
+          "$ref": "#/texts/76"
+        },
+        {
+          "$ref": "#/texts/77"
+        },
+        {
+          "$ref": "#/texts/78"
+        },
+        {
+          "$ref": "#/texts/79"
+        },
+        {
+          "$ref": "#/texts/80"
+        },
+        {
+          "$ref": "#/texts/81"
+        },
+        {
+          "$ref": "#/texts/82"
+        },
+        {
+          "$ref": "#/texts/83"
+        },
+        {
+          "$ref": "#/texts/84"
+        },
+        {
+          "$ref": "#/texts/85"
+        },
+        {
+          "$ref": "#/texts/86"
+        },
+        {
+          "$ref": "#/texts/87"
+        },
+        {
+          "$ref": "#/texts/88"
+        },
+        {
+          "$ref": "#/texts/89"
+        },
+        {
+          "$ref": "#/texts/90"
+        },
+        {
+          "$ref": "#/texts/91"
+        },
+        {
+          "$ref": "#/texts/92"
+        },
+        {
+          "$ref": "#/texts/93"
+        },
+        {
+          "$ref": "#/texts/94"
+        },
+        {
+          "$ref": "#/texts/95"
+        },
+        {
+          "$ref": "#/texts/96"
+        },
+        {
+          "$ref": "#/texts/97"
+        },
+        {
+          "$ref": "#/texts/98"
+        },
+        {
+          "$ref": "#/texts/99"
+        },
+        {
+          "$ref": "#/texts/100"
+        },
+        {
+          "$ref": "#/texts/101"
+        },
+        {
+          "$ref": "#/texts/102"
+        },
+        {
+          "$ref": "#/texts/103"
+        },
+        {
+          "$ref": "#/texts/104"
+        },
+        {
+          "$ref": "#/texts/105"
+        },
+        {
+          "$ref": "#/texts/106"
+        },
+        {
+          "$ref": "#/texts/107"
+        },
+        {
+          "$ref": "#/texts/108"
+        },
+        {
+          "$ref": "#/texts/109"
+        },
+        {
+          "$ref": "#/texts/110"
+        },
+        {
+          "$ref": "#/texts/111"
+        },
+        {
+          "$ref": "#/texts/112"
+        },
+        {
+          "$ref": "#/texts/113"
+        },
+        {
+          "$ref": "#/texts/114"
+        },
+        {
+          "$ref": "#/texts/115"
+        },
+        {
+          "$ref": "#/texts/116"
+        },
+        {
+          "$ref": "#/texts/117"
+        },
+        {
+          "$ref": "#/texts/118"
+        },
+        {
+          "$ref": "#/texts/119"
+        },
+        {
+          "$ref": "#/texts/120"
+        },
+        {
+          "$ref": "#/texts/121"
+        },
+        {
+          "$ref": "#/texts/122"
+        },
+        {
+          "$ref": "#/texts/123"
+        },
+        {
+          "$ref": "#/texts/124"
+        },
+        {
+          "$ref": "#/texts/125"
+        },
+        {
+          "$ref": "#/texts/126"
+        },
+        {
+          "$ref": "#/texts/127"
+        },
+        {
+          "$ref": "#/texts/128"
+        },
+        {
+          "$ref": "#/texts/129"
+        },
+        {
+          "$ref": "#/texts/130"
+        },
+        {
+          "$ref": "#/texts/131"
+        },
+        {
+          "$ref": "#/texts/132"
+        },
+        {
+          "$ref": "#/texts/133"
+        },
+        {
+          "$ref": "#/texts/134"
+        },
+        {
+          "$ref": "#/texts/135"
+        },
+        {
+          "$ref": "#/texts/136"
+        },
+        {
+          "$ref": "#/texts/137"
+        },
+        {
+          "$ref": "#/texts/138"
+        },
+        {
+          "$ref": "#/texts/139"
+        },
+        {
+          "$ref": "#/texts/140"
+        }
+      ],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 57.804603576660156,
+            "t": 739.7899703979492,
+            "r": 288.2984313964844,
+            "b": 344.2188720703125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "$ref": "#/texts/64"
+        }
+      ],
+      "references": [],
+      "footnotes": [],
+      "annotations": []
+    }
+  ],
+  "tables": [],
+  "key_value_items": [],
+  "form_items": [],
+  "pages": {
+    "1": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 1
+    },
+    "2": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 2
+    },
+    "3": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 3
+    },
+    "4": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 4
+    }
+  }
+}
