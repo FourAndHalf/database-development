@@ -12,8 +12,50 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../.
 
 from services.retrieval.query import PaperRetriever
 
+from contextlib import asynccontextmanager
+
+# --- Global State ---
+retriever = None
+llm_pipeline = None
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Load the Retriever and the Local LLM on application startup, and clean up on shutdown."""
+    global retriever, llm_pipeline
+    
+    print("Loading PaperRetriever (Embedder + ChromaDB)...")
+    retriever = PaperRetriever()
+    if not retriever.collection:
+        print("CRITICAL: Failed to connect to ChromaDB. API will not function.")
+    else:
+        print("PaperRetriever loaded successfully.")
+
+    print("\nLoading Local LLM (Qwen2.5-0.5B-Instruct)...")
+    print("This may take a minute on the first run as the model downloads.")
+    
+    model_id = "Qwen/Qwen2.5-0.5B-Instruct"
+    device = 0 if torch.cuda.is_available() else -1
+    
+    tokenizer = AutoTokenizer.from_pretrained(model_id)
+    model = AutoModelForCausalLM.from_pretrained(model_id)
+    
+    llm_pipeline = pipeline(
+        "text-generation", 
+        model=model, 
+        tokenizer=tokenizer, 
+        device=device
+    )
+    print("LLM loaded successfully!\n")
+    
+    yield  # Application runs here
+    
+    # Cleanup on shutdown
+    print("Shutting down resources...")
+    retriever = None
+    llm_pipeline = None
+
 # --- API Definition ---
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
 # --- Pydantic Models for Request/Response ---
 class QueryRequest(BaseModel):
@@ -28,40 +70,6 @@ class Source(BaseModel):
 class QueryResponse(BaseModel):
     answer: str
     sources: list[Source]
-
-# --- Global State ---
-retriever = None
-llm_pipeline = None
-
-@app.on_event("startup")
-def startup_event():
-    """Load the Retriever and the Local LLM on application startup."""
-    global retriever, llm_pipeline
-    
-    print("Loading PaperRetriever (Embedder + ChromaDB)...")
-    retriever = PaperRetriever()
-    if not retriever.collection:
-        print("CRITICAL: Failed to connect to ChromaDB. API will not function.")
-    else:
-        print("PaperRetriever loaded successfully.")
-
-    print("\nLoading Local LLM (Qwen2.5-0.5B-Instruct)...")
-    print("This may take a minute on the first run as the model downloads.")
-    
-    model_id = "Qwen/Qwen2.5-0.5B-Instruct"
-    # Use GPU (0) if available, otherwise fallback to CPU (-1)
-    device = 0 if torch.cuda.is_available() else -1
-    
-    tokenizer = AutoTokenizer.from_pretrained(model_id)
-    model = AutoModelForCausalLM.from_pretrained(model_id)
-    
-    llm_pipeline = pipeline(
-        "text-generation", 
-        model=model, 
-        tokenizer=tokenizer, 
-        device=device
-    )
-    print("LLM loaded successfully!\n")
 
 # --- API Endpoints ---
 @app.post("/api/query", response_model=QueryResponse)
@@ -95,7 +103,7 @@ async def handle_query(request: QueryRequest):
     messages = [
         {
             "role": "system", 
-            "content": "You are a helpful research assistant specializing in databases. Answer the user's question using ONLY the provided context. If the answer is not contained in the context, say 'I don't know based on the provided papers.' Be concise and informative."
+            "content": "You are a helpful research assistant specializing in databases. Answer the user's question using ONLY the provided context. If the answer is not contained in the context, say 'I don't know based on the provided papers.' You MUST format your response using beautifully styled HTML. Never use Markdown. Always use raw HTML tags (like <p>, <ul>, <li>, <strong>). For comparisons or structured data, always use an HTML <table>. Be concise and informative."
         },
         {
             "role": "user", 

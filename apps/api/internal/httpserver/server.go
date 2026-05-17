@@ -40,7 +40,7 @@ func (s *Server) Handler() http.Handler {
 
 func (s *Server) routes() http.Handler {
 	health := handlers.NewHealthHandler()
-	chat := handlers.NewChatHandler(s.cfg.Engine, s.cfg.Store)
+	chat := handlers.NewChatHandler(s.cfg.Logger, s.cfg.Engine, s.cfg.Store)
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /healthz", health.Get)

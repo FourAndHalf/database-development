@@ -34,6 +34,11 @@ func New(connStr string) (*Store, error) {
 		return nil, err
 	}
 
+	// Set connection pool limits
+	db.SetMaxOpenConns(25)
+	db.SetMaxIdleConns(5)
+	db.SetConnMaxLifetime(5 * time.Minute)
+
 	if err := db.Ping(); err != nil {
 		return nil, err
 	}

@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"errors"
+	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -13,12 +14,13 @@ import (
 )
 
 type ChatHandler struct {
+	logger *log.Logger
 	engine rag.Engine
 	store  *store.Store
 }
 
-func NewChatHandler(engine rag.Engine, s *store.Store) *ChatHandler {
-	return &ChatHandler{engine: engine, store: s}
+func NewChatHandler(logger *log.Logger, engine rag.Engine, s *store.Store) *ChatHandler {
+	return &ChatHandler{logger: logger, engine: engine, store: s}
 }
 
 type chatRequest struct {
@@ -40,6 +42,7 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 
 	var req chatRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		h.logger.Printf("Failed to decode chat request: %v", err)
 		writeErr(w, http.StatusBadRequest, "invalid_json")
 		return
 	}
@@ -54,6 +57,7 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 	if conversationID == "" {
 		newID, err := h.store.CreateConversation(ctx, util.TruncateTitle(req.Message, 50))
 		if err != nil {
+			h.logger.Printf("Failed to create conversation: %v", err)
 			writeErr(w, http.StatusInternalServerError, "db_error")
 			return
 		}
@@ -61,6 +65,7 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := h.store.SaveMessage(ctx, conversationID, "user", req.Message); err != nil {
+		h.logger.Printf("Failed to save user message: %v", err)
 		writeErr(w, http.StatusInternalServerError, "db_error")
 		return
 	}
@@ -74,12 +79,13 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 			writeErr(w, http.StatusUnprocessableEntity, "no_answer")
 			return
 		}
+		h.logger.Printf("RAG engine failed to answer: %v", err)
 		writeErr(w, http.StatusInternalServerError, "chat_failed")
 		return
 	}
 
 	if err := h.store.SaveMessage(ctx, conversationID, "assistant", ans.Text); err != nil {
-		// Just log the error in a real app, don't fail the user request here
+		h.logger.Printf("Failed to save assistant message (non-fatal): %v", err)
 	}
 
 	resp := chatResponse{

@@ -10,10 +10,11 @@ type UiMessage = {
   id: string;
   role: Role;
   text: string;
+  displayedText?: string;
+  isTyping?: boolean;
   sources?: Source[];
   latencyMs?: number;
   pending?: boolean;
-  showSources?: boolean;
 };
 
 @Component({
@@ -27,12 +28,6 @@ type UiMessage = {
         
         <!-- Sidebar -->
         <aside class="sidebar">
-          <div class="mac-controls">
-            <div class="mac-dot close"></div>
-            <div class="mac-dot min"></div>
-            <div class="mac-dot max"></div>
-          </div>
-          
           <div class="sidebar-scroll">
             <div class="brand">
               <div class="logo">
@@ -53,14 +48,14 @@ type UiMessage = {
               </a>
               <a class="nav-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                Explore Nexus AI
+                Explore Repository
               </a>
             </nav>
 
             <div class="nav-section">
-              <div class="nav-title">Folder <button class="add-btn">+</button></div>
-              <a class="nav-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> Research Papers</a>
-              <a class="nav-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> Database Ideas</a>
+              <div class="nav-title">Indexed Sources <button class="add-btn">+</button></div>
+              <a class="nav-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> Distributed Systems</a>
+              <a class="nav-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> Consensus Protocols</a>
             </div>
 
             <div class="nav-section">
@@ -71,12 +66,23 @@ type UiMessage = {
             </div>
           </div>
 
-          <div class="promo-box">
-            <div class="promo-header">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              <span>Nexus Pro</span>
+          <div class="system-metrics">
+            <div class="metrics-header">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <span>System Status</span>
             </div>
-            <div class="promo-text">Enjoy features like priority processing, custom AI models, and unlimited access.</div>
+            <div class="metric-row">
+              <span class="m-label">Model</span>
+              <span class="m-val">Qwen-0.5B</span>
+            </div>
+            <div class="metric-row">
+              <span class="m-label">Vector DB</span>
+              <span class="m-val active">Connected</span>
+            </div>
+            <div class="metric-row">
+              <span class="m-label">PostgreSQL</span>
+              <span class="m-val active">Connected</span>
+            </div>
           </div>
         </aside>
 
@@ -108,9 +114,9 @@ type UiMessage = {
                 
                 <div class="composer-toolbar">
                   <div class="toolbar-actions">
-                    <button type="button" class="tool-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button>
-                    <button type="button" class="tool-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></button>
-                    <button type="button" class="tool-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></button>
+                    <button type="button" class="tool-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button>
+                    <button type="button" class="tool-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></button>
+                    <button type="button" class="tool-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
                   </div>
                   <button type="submit" class="tool-btn submit-btn" [disabled]="busy() || !draft.trim()">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
@@ -172,17 +178,19 @@ type UiMessage = {
                     <div class="avatar assistant-avatar">
                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></svg>
                     </div>
-                    <div class="bubble assistant">
-                      <div class="text" [class.pending]="m.pending">{{ m.text }}</div>
-                      <div class="msgMeta" *ngIf="!m.pending">
+                    <div class="bubble assistant" [class.typing]="m.isTyping">
+                      <div class="text" [class.pending]="m.pending">
+                        <span [innerHTML]="m.displayedText !== undefined ? m.displayedText : m.text"></span><span class="cursor" *ngIf="m.isTyping"></span>
+                      </div>
+                      <div class="msgMeta" *ngIf="!m.pending && !m.isTyping">
                         <button class="action-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                         <span *ngIf="m.latencyMs != null">~{{(m.latencyMs / 1000).toFixed(1)}}s</span>
                         <button class="toggleSources" *ngIf="m.sources?.length" (click)="toggleSources(m.id)">
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                          {{ m.showSources ? 'Hide Citations' : ((m.sources?.length ?? 0) + ' Citations') }}
+                          {{ isSourcesExpanded(m.id) ? 'Hide Citations' : ((m.sources?.length ?? 0) + ' Citations') }}
                         </button>
                       </div>
-                      <div class="sources-accordion" [class.expanded]="m.showSources" *ngIf="m.sources?.length">
+                      <div class="sources-accordion" [class.expanded]="isSourcesExpanded(m.id)" *ngIf="m.sources?.length">
                         <div class="sources-inner">
                           <div class="sources">
                             <div class="source" *ngFor="let s of m.sources; let idx = index">
@@ -246,6 +254,7 @@ export class ChatPageComponent {
   private readonly conversationKey = 'db-rag.conversation_id';
   protected readonly conversationId = signal<string>(localStorage.getItem(this.conversationKey) ?? '');
   protected readonly messages = signal<UiMessage[]>([]);
+  protected readonly expandedSourcesByMessageId = signal<Record<string, boolean>>({});
   protected readonly busy = signal(false);
 
   protected greeting = computed(() => {
@@ -254,6 +263,8 @@ export class ChatPageComponent {
     if (hour < 18) return 'Good afternoon';
     return 'Good evening';
   });
+
+  private activeTypewriters: Map<string, any> = new Map();
 
   constructor(private readonly api: ChatApiService) {
     effect(() => {
@@ -268,6 +279,82 @@ export class ChatPageComponent {
     });
   }
 
+  ngOnDestroy() {
+    this.activeTypewriters.forEach(id => clearTimeout(id));
+  }
+
+  private simulateTypewriter(messageId: string, fullText: string) {
+    let currentLength = 0;
+
+    const typeNextChunk = () => {
+      // Check if this typewriter was cancelled (e.g., component destroyed)
+      if (!this.activeTypewriters.has(messageId)) return;
+
+      if (currentLength >= fullText.length) {
+        currentLength = fullText.length;
+        this.activeTypewriters.delete(messageId);
+        
+        // Final update: stop typing state
+        this.messages.update((xs) =>
+          xs.map((m) =>
+            m.id === messageId
+              ? { ...m, displayedText: fullText, isTyping: false }
+              : m
+          )
+        );
+        return;
+      }
+
+      // Fast-forward HTML tags to avoid breaking the DOM during streaming
+      if (fullText[currentLength] === '<') {
+        const closeIndex = fullText.indexOf('>', currentLength);
+        if (closeIndex !== -1) {
+          currentLength = closeIndex + 1;
+        } else {
+          currentLength++;
+        }
+      } else {
+        // Simulate LLM token chunks (2 to 5 characters at a time)
+        currentLength += Math.floor(Math.random() * 4) + 2; 
+      }
+
+      if (currentLength > fullText.length) {
+        currentLength = fullText.length;
+      }
+
+      // Update UI with the new chunk
+      this.messages.update((xs) =>
+        xs.map((m) =>
+          m.id === messageId
+            ? { ...m, displayedText: fullText.substring(0, currentLength) }
+            : m
+        )
+      );
+
+      // Calculate dynamic delay for easing effect
+      // Base delay mimics fast token streaming
+      let nextDelay = Math.random() * 15 + 10; // 10ms - 25ms
+      
+      // Pause slightly on punctuation for a natural reading rhythm
+      const lastChar = fullText[currentLength - 1];
+      if (lastChar === '.' || lastChar === '?' || lastChar === '!') {
+        nextDelay += 150;
+      } else if (lastChar === ',' || lastChar === ':') {
+        nextDelay += 60;
+      } else if (fullText[currentLength - 1] === '>') {
+         // Fast forward immediately after an HTML tag to keep rendering smooth
+         nextDelay = 2;
+      }
+
+      const timerId = setTimeout(typeNextChunk, nextDelay);
+      this.activeTypewriters.set(messageId, timerId);
+    };
+
+    // Start the recursive typing loop
+    const timerId = setTimeout(typeNextChunk, 20);
+    this.activeTypewriters.set(messageId, timerId);
+  }
+
   protected trackById = (_: number, m: UiMessage) => m.id;
 
   protected prefill(text: string) {
@@ -278,13 +365,19 @@ export class ChatPageComponent {
     this.conversationId.set('');
     localStorage.removeItem(this.conversationKey);
     this.messages.set([]);
+    this.expandedSourcesByMessageId.set({});
     this.draft = '';
   }
 
+  protected isSourcesExpanded(messageId: string): boolean {
+    return !!this.expandedSourcesByMessageId()[messageId];
+  }
+
   protected toggleSources(messageId: string) {
-    this.messages.update((xs) =>
-      xs.map((m) => (m.id === messageId ? { ...m, showSources: !m.showSources } : m))
-    );
+    this.expandedSourcesByMessageId.update((state) => ({
+      ...state,
+      [messageId]: !state[messageId]
+    }));
   }
 
   protected onEnter(e: Event) {
@@ -311,7 +404,7 @@ export class ChatPageComponent {
     const assistantMsg: UiMessage = {
       id: assistantId,
       role: 'assistant',
-      text: 'Synthesizing',
+      text: 'Exploring',
       pending: true
     };
 
@@ -328,20 +421,27 @@ export class ChatPageComponent {
       if (!res) throw new Error('no response');
 
       this.conversationId.set(res.conversation_id);
+      
+      // Update message state to begin typing
       this.messages.update((xs) =>
         xs.map((m) =>
           m.id === assistantId
             ? {
                 ...m,
                 text: res.answer,
+                displayedText: '',
+                isTyping: true,
                 sources: res.sources,
                 latencyMs: res.latency_ms,
-                showSources: false,
                 pending: false
               }
             : m
         )
       );
+
+      // Start the typing effect
+      this.simulateTypewriter(assistantId, res.answer);
+
     } catch (err) {
       this.messages.update((xs) =>
         xs.map((m) =>
