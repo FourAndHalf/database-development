@@ -102,13 +102,17 @@ type UiMessage = {
                   <div class="model-selector">
                     Aether 1.0 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
                   </div>
+                  <div class="search-hint">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    Use <span>@web-search</span> for live internet results
+                  </div>
                 </div>
                 <textarea
                   [(ngModel)]="draft"
                   name="draft"
                   class="center-input"
                   rows="2"
-                  placeholder="Ask Aether..."
+                  placeholder="Ask Aether... (Try adding @web-search)"
                   (keydown.enter)="onEnter($event)"
                 ></textarea>
                 
@@ -221,7 +225,7 @@ type UiMessage = {
                     name="draft"
                     class="center-input bottom-input"
                     rows="1"
-                    placeholder="Ask a follow up..."
+                    placeholder="Ask a follow up... (Try @web-search)"
                     (keydown.enter)="onEnter($event)"
                   ></textarea>
                   <div class="composer-toolbar">

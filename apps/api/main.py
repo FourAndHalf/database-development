@@ -84,10 +84,16 @@ async def handle_query(request: QueryRequest):
     if not retriever or not retriever.collection or not llm_pipeline:
         raise HTTPException(status_code=503, detail="Services are not fully initialized.")
 
-    print(f"\nReceived query: {request.query}")
+    # Check if the user explicitly requested a web search
+    use_web_search = "@web-search" in request.query
+    
+    # Clean the query for the vector database and web search
+    clean_query = request.query.replace("@web-search", "").strip()
+
+    print(f"\nReceived query: {request.query} | Use Web: {use_web_search}")
 
     # 1. Retrieve relevant documents from ChromaDB
-    query_embedding = retriever.embedder.embed_text(request.query)
+    query_embedding = retriever.embedder.embed_text(clean_query)
     results = retriever.collection.query(
         query_embeddings=[query_embedding],
         n_results=request.n_results
@@ -106,25 +112,26 @@ async def handle_query(request: QueryRequest):
         for doc, meta, dist in zip(documents, metadatas, distances)
     ]
 
-    # 2. Hybrid RAG: Fetch Live Web Context via DuckDuckGo
+    # 2. Hybrid RAG: Fetch Live Web Context via DuckDuckGo (ONLY IF REQUESTED)
     web_documents = []
-    try:
-        ddgs = DDGS()
-        web_results = list(ddgs.text(request.query, max_results=2))
-        for i, r in enumerate(web_results):
-            web_content = f"Web Source [{r['title']}]: {r['body']}"
-            web_documents.append(web_content)
-            sources.append(
-                Source(
-                    source_file=r['title'],
-                    content=r['body'],
-                    distance=0.0,
-                    url=r['href']
+    if use_web_search:
+        try:
+            ddgs = DDGS()
+            web_results = list(ddgs.text(clean_query, max_results=2))
+            for i, r in enumerate(web_results):
+                web_content = f"Web Source [{r['title']}]: {r['body']}"
+                web_documents.append(web_content)
+                sources.append(
+                    Source(
+                        source_file=r['title'],
+                        content=r['body'],
+                        distance=0.0,
+                        url=r['href']
+                    )
                 )
-            )
-            print(f"Appended web result: {r['href']}")
-    except Exception as e:
-        print(f"Web search failed or rate limited: {e}")
+                print(f"Appended web result: {r['href']}")
+        except Exception as e:
+            print(f"Web search failed or rate limited: {e}")
 
     if not documents and not web_documents:
         return QueryResponse(answer="Could not find any relevant information in the database or the web.", sources=[])
@@ -136,11 +143,11 @@ async def handle_query(request: QueryRequest):
     messages = [
         {
             "role": "system", 
-            "content": "You are a helpful research assistant specializing in databases. Answer the user's question using ONLY the provided context (which includes local research papers and live web results). If the answer is not contained in the context, say 'I don't know based on the provided sources.' You MUST format your response using beautifully styled HTML. Never use Markdown. Always use raw HTML tags (like <p>, <ul>, <li>, <strong>). For comparisons or structured data, always use an HTML <table>. Be concise and informative."
+            "content": "You are a helpful research assistant specializing in databases. Answer the user's question using ONLY the provided context (which includes local research papers and optionally live web results). If the answer is not contained in the context, say 'I don't know based on the provided sources.' You MUST format your response using beautifully styled HTML. Never use Markdown. Always use raw HTML tags (like <p>, <ul>, <li>, <strong>). For comparisons or structured data, always use an HTML <table>. Be concise and informative."
         },
         {
             "role": "user", 
-            "content": f"Context sources:\n{context}\n\nQuestion: {request.query}"
+            "content": f"Context sources:\n{context}\n\nQuestion: {clean_query}"
         }
     ]
     

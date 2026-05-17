@@ -221,6 +221,24 @@
 
 .composer-header {
   margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.search-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-dark);
+}
+.search-hint span {
+  color: var(--accent);
+  background: var(--glass-panel);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--mono, monospace);
+  border: 1px solid var(--glass-border);
 }
 .model-selector {
   display: inline-flex;
