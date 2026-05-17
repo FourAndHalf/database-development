@@ -54,14 +54,17 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 	}
 
 	conversationID := strings.TrimSpace(req.ConversationID)
-	if conversationID == "" {
-		newID, err := h.store.CreateConversation(ctx, util.TruncateTitle(req.Message, 50))
-		if err != nil {
-			h.logger.Printf("Failed to create conversation: %v", err)
-			writeErr(w, http.StatusInternalServerError, "db_error")
-			return
-		}
-		conversationID = newID
+	
+	// Create a valid UUID if none is provided or if it's invalid
+	if conversationID == "" || len(conversationID) != 36 {
+		conversationID = util.NewID()
+	}
+
+	// Ensure the conversation actually exists in the database
+	if err := h.store.EnsureConversation(ctx, conversationID, util.TruncateTitle(req.Message, 50)); err != nil {
+		h.logger.Printf("Failed to ensure conversation: %v", err)
+		writeErr(w, http.StatusInternalServerError, "db_error")
+		return
 	}
 
 	if err := h.store.SaveMessage(ctx, conversationID, "user", req.Message); err != nil {
@@ -107,4 +110,3 @@ func writeJSON(w http.ResponseWriter, status int, v any) {
 	w.WriteHeader(status)
 	_ = json.NewEncoder(w).Encode(v)
 }
-

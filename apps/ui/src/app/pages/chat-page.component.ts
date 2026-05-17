@@ -33,7 +33,7 @@ type UiMessage = {
               <div class="logo">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="brand-icon"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></svg>
               </div>
-              <span class="brand-text">AETHER</span>
+              <span class="brand-text">Aether</span>
             </div>
 
             <button class="new-chat-btn" (click)="newChat()">
@@ -100,7 +100,7 @@ type UiMessage = {
               <form class="center-composer-inner" (ngSubmit)="send()" autocomplete="off">
                 <div class="composer-header">
                   <div class="model-selector">
-                    Nexus 1.0 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    Aether 1.0 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
                   </div>
                 </div>
                 <textarea
@@ -108,7 +108,7 @@ type UiMessage = {
                   name="draft"
                   class="center-input"
                   rows="2"
-                  placeholder="Ask Nexus AI..."
+                  placeholder="Ask Aether..."
                   (keydown.enter)="onEnter($event)"
                 ></textarea>
                 
@@ -141,8 +141,7 @@ type UiMessage = {
               </div>
               <div class="widget w-wide">
                  <div class="w-head"><span class="badge">New</span> Context-Aware Chat <button class="w-close">×</button></div>
-                 <div class="w-text">Nexus automatically retrieves chunks from indexed systems papers to ground your answers, avoiding hallucinations.</div>
-              </div>
+                 <div class="w-text">Aether automatically retrieves chunks from indexed systems papers to ground your answers, avoiding hallucinations.</div>              </div>
             </div>
             
             <div class="recent-chats-header">Your recent chats <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
@@ -168,7 +167,7 @@ type UiMessage = {
           <!-- CHAT VIEW (Active State) -->
           <div class="chat-view" *ngIf="messages().length > 0">
             <header class="chat-header">
-              <div class="header-title">Nexus Research</div>
+              <div class="header-title">Aether</div>
             </header>
             
             <section class="thread" #thread>
@@ -195,12 +194,12 @@ type UiMessage = {
                           <div class="sources">
                             <div class="source" *ngFor="let s of m.sources; let idx = index">
                               <div class="sourceHead">
-                                <span class="sourceTitle">[{{ idx + 1 }}] {{ s.title }}</span>
-                                <span class="sourceMeta">p. {{ s.page }}</span>
+                                <span class="sourceTitle" *ngIf="!s.url">📄 [{{ idx + 1 }}] {{ s.title }}</span>
+                                <span class="sourceTitle" *ngIf="s.url"><a [href]="s.url" target="_blank">🌐 [{{ idx + 1 }}] {{ s.title }}</a></span>
+                                <span class="sourceMeta" *ngIf="!s.url">p. {{ s.page }}</span>
                               </div>
                               <div class="sourceSnippet">"{{ s.snippet }}"</div>
-                            </div>
-                          </div>
+                            </div>                          </div>
                         </div>
                       </div>                    </div>
                   </ng-container>
@@ -227,7 +226,7 @@ type UiMessage = {
                   ></textarea>
                   <div class="composer-toolbar">
                     <div class="model-selector">
-                      Nexus 1.0 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                      Aether 1.0 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
                     </div>
                     <div class="toolbar-actions">
                       <button type="submit" class="tool-btn submit-btn" [disabled]="busy() || !draft.trim()">
@@ -287,14 +286,12 @@ export class ChatPageComponent {
     let currentLength = 0;
 
     const typeNextChunk = () => {
-      // Check if this typewriter was cancelled (e.g., component destroyed)
       if (!this.activeTypewriters.has(messageId)) return;
 
       if (currentLength >= fullText.length) {
         currentLength = fullText.length;
         this.activeTypewriters.delete(messageId);
         
-        // Final update: stop typing state
         this.messages.update((xs) =>
           xs.map((m) =>
             m.id === messageId
@@ -305,22 +302,24 @@ export class ChatPageComponent {
         return;
       }
 
-      // Fast-forward HTML tags to avoid breaking the DOM during streaming
-      if (fullText[currentLength] === '<') {
-        const closeIndex = fullText.indexOf('>', currentLength);
-        if (closeIndex !== -1) {
-          currentLength = closeIndex + 1;
-        } else {
-          currentLength++;
-        }
-      } else {
-        // Simulate LLM token chunks (2 to 5 characters at a time)
-        currentLength += Math.floor(Math.random() * 4) + 2; 
-      }
+      // Calculate next chunk size
+      let nextLength = currentLength + Math.floor(Math.random() * 4) + 2;
+      if (nextLength > fullText.length) nextLength = fullText.length;
 
-      if (currentLength > fullText.length) {
-        currentLength = fullText.length;
+      // Prevent splitting HTML tags: if the chunk lands inside a tag, fast-forward to the end of it
+      const currentSub = fullText.substring(0, nextLength);
+      const lastOpen = currentSub.lastIndexOf('<');
+      const lastClose = currentSub.lastIndexOf('>');
+      
+      if (lastOpen > lastClose) {
+        // We are inside an HTML tag. Find its closing bracket.
+        const nextClose = fullText.indexOf('>', lastOpen);
+        if (nextClose !== -1) {
+          nextLength = nextClose + 1;
+        }
       }
+      
+      currentLength = nextLength;
 
       // Update UI with the new chunk
       this.messages.update((xs) =>
@@ -332,8 +331,7 @@ export class ChatPageComponent {
       );
 
       // Calculate dynamic delay for easing effect
-      // Base delay mimics fast token streaming
-      let nextDelay = Math.random() * 15 + 10; // 10ms - 25ms
+      let nextDelay = Math.random() * 15 + 10;
       
       // Pause slightly on punctuation for a natural reading rhythm
       const lastChar = fullText[currentLength - 1];
@@ -341,7 +339,7 @@ export class ChatPageComponent {
         nextDelay += 150;
       } else if (lastChar === ',' || lastChar === ':') {
         nextDelay += 60;
-      } else if (fullText[currentLength - 1] === '>') {
+      } else if (lastChar === '>') {
          // Fast forward immediately after an HTML tag to keep rendering smooth
          nextDelay = 2;
       }
@@ -350,7 +348,6 @@ export class ChatPageComponent {
       this.activeTypewriters.set(messageId, timerId);
     };
 
-    // Start the recursive typing loop
     const timerId = setTimeout(typeNextChunk, 20);
     this.activeTypewriters.set(messageId, timerId);
   }

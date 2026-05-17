@@ -32,6 +32,7 @@ type pythonSource struct {
 	SourceFile string  `json:"source_file"`
 	Content    string  `json:"content"`
 	Distance   float64 `json:"distance"`
+	URL        string  `json:"url,omitempty"`
 }
 
 type pythonQueryResponse struct {
@@ -73,8 +74,9 @@ func (e *chromaEngine) Answer(ctx context.Context, q Question) (Answer, error) {
 	for i, s := range pyResp.Sources {
 		sources[i] = Source{
 			PaperID: s.SourceFile,
-			Title:   s.SourceFile, // Using filename as title for now
+			Title:   s.SourceFile, // Using filename or web title
 			Snippet: s.Content,
+			URL:     s.URL,
 		}
 	}
 

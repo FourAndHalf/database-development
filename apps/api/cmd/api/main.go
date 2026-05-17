@@ -19,6 +19,7 @@ import (
 func main() {
 	port := envInt("PORT", 8080)
 	uiOrigin := envString("UI_ORIGIN", "http://localhost:4200")
+	ragEngineType := envString("RAG_ENGINE", "mock")
 	pythonServiceURL := envString("PYTHON_SERVICE_URL", "http://localhost:8000")
 
 	logger := log.New(os.Stdout, "api ", log.LstdFlags|log.Lmicroseconds)
@@ -29,7 +30,15 @@ func main() {
 	}
 	defer dbStore.Close()
 
-	engine := rag.NewChromaEngine(pythonServiceURL)
+	var engine rag.Engine
+	switch ragEngineType {
+	case "chroma":
+		engine = rag.NewChromaEngine(pythonServiceURL)
+		logger.Printf("using RAG engine: chroma (python service: %s)", pythonServiceURL)
+	default:
+		engine = rag.NewMockEngine()
+		logger.Printf("using RAG engine: mock")
+	}
 
 	srv := httpserver.New(httpserver.Config{
 		Logger:   logger,
@@ -80,4 +89,3 @@ func envInt(key string, def int) int {
 	}
 	return def
 }
-

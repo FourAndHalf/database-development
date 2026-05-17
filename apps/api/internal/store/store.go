@@ -75,14 +75,16 @@ func (s *Store) migrate() error {
 	return err
 }
 
-func (s *Store) CreateConversation(ctx context.Context, title string) (string, error) {
-	id := uuid.New().String()
-	query := `INSERT INTO conversations (id, title) VALUES ($1, $2)`
+func (s *Store) EnsureConversation(ctx context.Context, id, title string) error {
+	// ON CONFLICT DO NOTHING ensures that if the client sends an ID that 
+	// already exists, we simply proceed. If it doesn't exist (like a cached ID 
+	// from the frontend on a fresh database), it creates it.
+	query := `INSERT INTO conversations (id, title) VALUES ($1, $2) ON CONFLICT (id) DO NOTHING`
 	_, err := s.db.ExecContext(ctx, query, id, title)
 	if err != nil {
-		return "", fmt.Errorf("failed to create conversation: %w", err)
+		return fmt.Errorf("failed to ensure conversation: %w", err)
 	}
-	return id, nil
+	return nil
 }
 
 func (s *Store) SaveMessage(ctx context.Context, conversationID, role, text string) error {
@@ -93,4 +95,13 @@ func (s *Store) SaveMessage(ctx context.Context, conversationID, role, text stri
 		return fmt.Errorf("failed to save message: %w", err)
 	}
 	return nil
+}
+
+func (s *Store) ConversationExists(ctx context.Context, conversationID string) (bool, error) {
+	query := `SELECT EXISTS(SELECT 1 FROM conversations WHERE id = $1)`
+	var exists bool
+	if err := s.db.QueryRowContext(ctx, query, conversationID).Scan(&exists); err != nil {
+		return false, fmt.Errorf("failed to check conversation existence: %w", err)
+	}
+	return exists, nil
 }

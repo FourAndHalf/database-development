@@ -13,6 +13,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../.
 from services.retrieval.query import PaperRetriever
 
 from contextlib import asynccontextmanager
+from duckduckgo_search import DDGS
+import re
 
 # --- Global State ---
 retriever = None
@@ -66,6 +68,7 @@ class Source(BaseModel):
     source_file: str
     content: str
     distance: float
+    url: str | None = None
 
 class QueryResponse(BaseModel):
     answer: str
@@ -94,20 +97,50 @@ async def handle_query(request: QueryRequest):
     metadatas = results.get('metadatas', [[]])[0]
     distances = results.get('distances', [[]])[0]
 
-    if not documents:
-        return QueryResponse(answer="Could not find any relevant information in the database.", sources=[])
+    sources = [
+        Source(
+            source_file=meta.get('source', 'Unknown'),
+            content=doc,
+            distance=dist
+        )
+        for doc, meta, dist in zip(documents, metadatas, distances)
+    ]
 
-    # 2. Construct the prompt for the LLM
-    context = "\n\n---\n\n".join(documents)
+    # 2. Hybrid RAG: Fetch Live Web Context via DuckDuckGo
+    web_documents = []
+    try:
+        ddgs = DDGS()
+        web_results = list(ddgs.text(request.query, max_results=2))
+        for i, r in enumerate(web_results):
+            web_content = f"Web Source [{r['title']}]: {r['body']}"
+            web_documents.append(web_content)
+            sources.append(
+                Source(
+                    source_file=r['title'],
+                    content=r['body'],
+                    distance=0.0,
+                    url=r['href']
+                )
+            )
+            print(f"Appended web result: {r['href']}")
+    except Exception as e:
+        print(f"Web search failed or rate limited: {e}")
+
+    if not documents and not web_documents:
+        return QueryResponse(answer="Could not find any relevant information in the database or the web.", sources=[])
+
+    # 3. Construct the prompt for the LLM
+    all_context_docs = documents + web_documents
+    context = "\n\n---\n\n".join(all_context_docs)
     
     messages = [
         {
             "role": "system", 
-            "content": "You are a helpful research assistant specializing in databases. Answer the user's question using ONLY the provided context. If the answer is not contained in the context, say 'I don't know based on the provided papers.' You MUST format your response using beautifully styled HTML. Never use Markdown. Always use raw HTML tags (like <p>, <ul>, <li>, <strong>). For comparisons or structured data, always use an HTML <table>. Be concise and informative."
+            "content": "You are a helpful research assistant specializing in databases. Answer the user's question using ONLY the provided context (which includes local research papers and live web results). If the answer is not contained in the context, say 'I don't know based on the provided sources.' You MUST format your response using beautifully styled HTML. Never use Markdown. Always use raw HTML tags (like <p>, <ul>, <li>, <strong>). For comparisons or structured data, always use an HTML <table>. Be concise and informative."
         },
         {
             "role": "user", 
-            "content": f"Context documents:\n{context}\n\nQuestion: {request.query}"
+            "content": f"Context sources:\n{context}\n\nQuestion: {request.query}"
         }
     ]
     
@@ -118,29 +151,25 @@ async def handle_query(request: QueryRequest):
         add_generation_prompt=True
     )
     
-    # 3. Generate the synthesized answer
+    # 4. Generate the synthesized answer
     print("Generating answer with LLM...")
     outputs = llm_pipeline(
         prompt, 
-        max_new_tokens=300, 
+        max_new_tokens=400, 
         do_sample=True, 
         temperature=0.3, # Low temperature for factual consistency
         top_p=0.9
     )
     
     # Extract only the generated text (remove the prompt from the output)
-    generated_text = outputs[0]["generated_text"][len(prompt):]
+    generated_text = outputs[0]["generated_text"][len(prompt):].strip()
+    
+    # Aggressively strip Markdown code blocks if the model outputs them, as they break innerHTML
+    generated_text = re.sub(r'^```html\s*', '', generated_text, flags=re.IGNORECASE)
+    generated_text = re.sub(r'^```\s*', '', generated_text)
+    generated_text = re.sub(r'\s*```$', '', generated_text)
+    
     print("Generation complete.")
-
-    # 4. Format sources for the response
-    sources = [
-        Source(
-            source_file=meta.get('source', 'Unknown'),
-            content=doc,
-            distance=dist
-        )
-        for doc, meta, dist in zip(documents, metadatas, distances)
-    ]
     
     return QueryResponse(answer=generated_text.strip(), sources=sources)
 

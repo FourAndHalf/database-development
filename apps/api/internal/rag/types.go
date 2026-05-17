@@ -27,5 +27,6 @@ type Source struct {
 	Title   string `json:"title"`
 	Page    int    `json:"page"`
 	Snippet string `json:"snippet"`
+	URL     string `json:"url,omitempty"`
 }
 

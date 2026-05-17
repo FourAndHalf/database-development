@@ -7,6 +7,7 @@ export type Source = {
   title: string;
   page: number;
   snippet: string;
+  url?: string;
 };
 
 export type ChatMessage = {
