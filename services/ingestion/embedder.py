@@ -71,8 +71,7 @@ if __name__ == "__main__":
     sample_text = "Bigtable is a distributed storage system for structured data."
     vector = embedder.embed_text(sample_text)
     
-    print(f"
-Sample text: {sample_text}")
+    print(f"\nSample text: {sample_text}")
     print(f"Vector length: {len(vector)}")
     print(f"Vector preview (first 5): {vector[:5]}")
     
@@ -81,6 +80,5 @@ Sample text: {sample_text}")
         "Consistency models in distributed systems"
     ]
     batch_vectors = embedder.embed_batch(batch_texts)
-    print(f"
-Batch processing for {len(batch_vectors)} texts successful.")
+    print(f"\nBatch processing for {len(batch_vectors)} texts successful.")
     print(f"First vector preview: {batch_vectors[0][:5]}")

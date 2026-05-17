@@ -4,9 +4,7 @@ import json
 from tqdm import tqdm
 import textwrap
 
-# --- (Code from lines 1-3 continues here) ---
-
-from embedder import Embedder # Assuming same-directory import
+from embedder import Embedder 
 
 # --- Configuration ---
 # Path to the directory where ChromaDB will store its data.
@@ -27,10 +25,8 @@ class Vectorizer:
 
     def __init__(self):
         """Initializes the Embedder and ChromaDB client."""
-        # Initialize the mock embedder.
         self.embedder = Embedder()
         
-        # Initialize the ChromaDB client.
         self.client = chromadb.PersistentClient(path=DB_PATH)
         
         # Get or create the collection.

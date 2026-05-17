@@ -5,3 +5,6 @@ sentence-transformers
 tqdm
 chromadb
 faiss-cpu
+fastapi
+uvicorn[standard]
+python-multipart
