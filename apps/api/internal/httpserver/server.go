@@ -6,11 +6,13 @@ import (
 
 	"database-development/apps/api/internal/handlers"
 	"database-development/apps/api/internal/rag"
+	"database-development/apps/api/internal/store"
 )
 
 type Config struct {
 	Logger   *log.Logger
 	Engine   rag.Engine
+	Store    *store.Store
 	UIOrigin string
 }
 
@@ -38,7 +40,7 @@ func (s *Server) Handler() http.Handler {
 
 func (s *Server) routes() http.Handler {
 	health := handlers.NewHealthHandler()
-	chat := handlers.NewChatHandler(s.cfg.Engine)
+	chat := handlers.NewChatHandler(s.cfg.Engine, s.cfg.Store)
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /healthz", health.Get)

@@ -8,15 +8,17 @@ import (
 	"time"
 
 	"database-development/apps/api/internal/rag"
+	"database-development/apps/api/internal/store"
 	"database-development/apps/api/internal/util"
 )
 
 type ChatHandler struct {
 	engine rag.Engine
+	store  *store.Store
 }
 
-func NewChatHandler(engine rag.Engine) *ChatHandler {
-	return &ChatHandler{engine: engine}
+func NewChatHandler(engine rag.Engine, s *store.Store) *ChatHandler {
+	return &ChatHandler{engine: engine, store: s}
 }
 
 type chatRequest struct {
@@ -34,6 +36,7 @@ type chatResponse struct {
 
 func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 	start := time.Now()
+	ctx := r.Context()
 
 	var req chatRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -49,10 +52,20 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 
 	conversationID := strings.TrimSpace(req.ConversationID)
 	if conversationID == "" {
-		conversationID = util.NewID()
+		newID, err := h.store.CreateConversation(ctx, util.TruncateTitle(req.Message, 50))
+		if err != nil {
+			writeErr(w, http.StatusInternalServerError, "db_error")
+			return
+		}
+		conversationID = newID
 	}
 
-	ans, err := h.engine.Answer(r.Context(), rag.Question{
+	if err := h.store.SaveMessage(ctx, conversationID, "user", req.Message); err != nil {
+		writeErr(w, http.StatusInternalServerError, "db_error")
+		return
+	}
+
+	ans, err := h.engine.Answer(ctx, rag.Question{
 		ConversationID: conversationID,
 		Message:        req.Message,
 	})
@@ -63,6 +76,10 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 		}
 		writeErr(w, http.StatusInternalServerError, "chat_failed")
 		return
+	}
+
+	if err := h.store.SaveMessage(ctx, conversationID, "assistant", ans.Text); err != nil {
+		// Just log the error in a real app, don't fail the user request here
 	}
 
 	resp := chatResponse{

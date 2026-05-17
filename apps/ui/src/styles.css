@@ -1,72 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
-  color-scheme: light;
+  --glass-bg: rgba(20, 18, 22, 0.6);
+  --glass-sidebar: rgba(10, 8, 12, 0.4);
+  --glass-panel: rgba(255, 255, 255, 0.03);
+  --glass-panel-hover: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-focus: rgba(255, 255, 255, 0.2);
+  
+  --text-main: rgba(255, 255, 255, 0.95);
+  --text-muted: rgba(255, 255, 255, 0.55);
+  --text-dark: rgba(255, 255, 255, 0.3);
+  
+  --accent: #8b5cf6;
+  --accent-light: rgba(139, 92, 246, 0.2);
 
-  --bg: #f6f7fb;
-  --surface: #ffffff;
-  --surface-2: #fbfcff;
-  --border: rgba(15, 23, 42, 0.10);
-  --text: rgba(15, 23, 42, 0.92);
-  --muted: rgba(15, 23, 42, 0.62);
-  --muted-2: rgba(15, 23, 42, 0.42);
-
-  --accent: #4f46e5;
-  --accent-2: #2563eb;
-
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 1px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.10);
-
-  --radius: 16px;
-  --radius-sm: 12px;
-
-  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-:root[data-theme='dark'] {
-  color-scheme: dark;
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-  --bg: #0b0f19;
-  --surface: rgba(255, 255, 255, 0.04);
-  --surface-2: rgba(255, 255, 255, 0.06);
-  --border: rgba(255, 255, 255, 0.10);
-  --text: rgba(255, 255, 255, 0.92);
-  --muted: rgba(255, 255, 255, 0.66);
-  --muted-2: rgba(255, 255, 255, 0.46);
-
-  --accent: #7c83ff;
-  --accent-2: #60a5fa;
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.40);
-  --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.45);
-}
-
-html,
-body {
+html, body {
   height: 100%;
+  width: 100%;
 }
 
 body {
-  margin: 0;
-  background: radial-gradient(1200px 800px at 18% -10%, rgba(79, 70, 229, 0.10), transparent 60%),
-    radial-gradient(900px 600px at 95% 0%, rgba(37, 99, 235, 0.08), transparent 55%),
-    var(--bg);
-  color: var(--text);
-  font-family: var(--sans);
-  text-rendering: optimizeLegibility;
+  background-color: #110e13;
+  /* Simulating a premium macOS desktop wallpaper */
+  background-image: 
+    radial-gradient(circle at 15% 30%, rgba(220, 90, 60, 0.35) 0%, transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(60, 120, 220, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(120, 60, 180, 0.25) 0%, transparent 60%);
+  color: var(--text-main);
+  font-family: var(--font-main);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-a {
+button, input, textarea {
+  font-family: inherit;
   color: inherit;
+  border: none;
+  outline: none;
+  background: none;
 }
 
-button,
-input,
-textarea {
-  font: inherit;
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 }

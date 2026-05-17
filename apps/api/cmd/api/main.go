@@ -13,6 +13,7 @@ import (
 
 	"database-development/apps/api/internal/httpserver"
 	"database-development/apps/api/internal/rag"
+	"database-development/apps/api/internal/store"
 )
 
 func main() {
@@ -21,11 +22,19 @@ func main() {
 	pythonServiceURL := envString("PYTHON_SERVICE_URL", "http://localhost:8000")
 
 	logger := log.New(os.Stdout, "api ", log.LstdFlags|log.Lmicroseconds)
+	
+	dbStore, err := store.New("postgres://nexus:password@localhost:5434/nexus_db?sslmode=disable")
+	if err != nil {
+		logger.Fatalf("failed to connect to db: %v", err)
+	}
+	defer dbStore.Close()
+
 	engine := rag.NewChromaEngine(pythonServiceURL)
 
 	srv := httpserver.New(httpserver.Config{
 		Logger:   logger,
 		Engine:   engine,
+		Store:    dbStore,
 		UIOrigin: uiOrigin,
 	})
 

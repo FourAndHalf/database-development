@@ -1,0 +1,57 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-east-1
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deploy dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Deploy application components
+        run: |
+          echo "Deploy app/services here (ECS/EKS/Lambda/Terraform apply)."
+          echo "Environment: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}"
+
+      - name: Rebuild search index metadata and warm cache
+        env:
+          OPENSEARCH_URL: ${{ secrets.OPENSEARCH_URL }}
+          OPENSEARCH_INDEX: ${{ secrets.OPENSEARCH_INDEX }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
+        run: |
+          echo "Run index alias switch, mapping check, and cache warmup here."
+          echo "OpenSearch: ${OPENSEARCH_URL} / ${OPENSEARCH_INDEX}"
+
+      - name: Post-deploy smoke test
+        run: |
+          echo "Add health and retrieval smoke tests here."

@@ -12,3 +12,11 @@ func NewID() string {
 	return hex.EncodeToString(b[:])
 }
 
+// TruncateTitle truncates a string to a given length, appending an ellipsis if needed.
+func TruncateTitle(s string, max int) string {
+	if len(s) > max {
+		return s[:max] + "..."
+	}
+	return s
+}
+
