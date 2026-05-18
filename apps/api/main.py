@@ -21,7 +21,7 @@ from prometheus_fastapi_instrumentator import Instrumentator
 
 # --- Observability ---
 # Phoenix local server (optional for production, usually external)
-session = px.launch_app() 
+# session = px.launch_app() 
 register()
 
 # --- Global State ---
@@ -68,7 +68,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 # 4. Instrument FastAPI with Prometheus
-Instrumentator().instrument(app).bootstrap()
+Instrumentator().instrument(app).expose(app)
 
 # --- Pydantic Models for Request/Response ---
 class QueryRequest(BaseModel):

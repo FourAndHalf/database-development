@@ -41,10 +41,11 @@ func main() {
 	}
 
 	srv := httpserver.New(httpserver.Config{
-		Logger:   logger,
-		Engine:   engine,
-		Store:    dbStore,
-		UIOrigin: uiOrigin,
+		Logger:           logger,
+		Engine:           engine,
+		Store:            dbStore,
+		UIOrigin:         uiOrigin,
+		PythonServiceURL: pythonServiceURL,
 	})
 
 	httpServer := &http.Server{

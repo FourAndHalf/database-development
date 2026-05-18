@@ -128,15 +128,18 @@ func (s *Store) GetPaperWithMetadata(ctx context.Context, paperID string) (*Pape
 	return &pd, nil
 }
 
-func (s *Store) SearchPapers(ctx context.Context, query string) ([]Paper, error) {
+func (s *Store) SearchPapers(ctx context.Context, query string) ([]PaperDetail, error) {
 	sqlQuery := `
-		SELECT DISTINCT p.id, p.title, p.filename, p.url, p.created_at, p.updated_at
+		SELECT 
+			p.id, p.title, p.filename, p.url, p.created_at, p.updated_at,
+			COALESCE(json_agg(json_build_object('id', a.id, 'name', a.name)) FILTER (WHERE a.id IS NOT NULL), '[]') as authors
 		FROM papers p
 		LEFT JOIN paper_authors pa ON p.id = pa.paper_id
 		LEFT JOIN authors a ON pa.author_id = a.id
 		WHERE p.title ILIKE $1 OR a.name ILIKE $1
+		GROUP BY p.id
 		ORDER BY p.title ASC
-		LIMIT 20
+		LIMIT 30
 	`
 	rows, err := s.db.QueryContext(ctx, sqlQuery, "%"+query+"%")
 	if err != nil {
@@ -144,13 +147,17 @@ func (s *Store) SearchPapers(ctx context.Context, query string) ([]Paper, error)
 	}
 	defer rows.Close()
 
-	var papers []Paper
+	var papers []PaperDetail
 	for rows.Next() {
-		var p Paper
-		if err := rows.Scan(&p.ID, &p.Title, &p.Filename, &p.URL, &p.CreatedAt, &p.UpdatedAt); err != nil {
+		var pd PaperDetail
+		var authorsJSON []byte
+		if err := rows.Scan(&pd.ID, &pd.Title, &pd.Filename, &pd.URL, &pd.CreatedAt, &pd.UpdatedAt, &authorsJSON); err != nil {
 			return nil, fmt.Errorf("failed to scan paper: %w", err)
 		}
-		papers = append(papers, p)
+		if err := json.Unmarshal(authorsJSON, &pd.Authors); err != nil {
+			return nil, fmt.Errorf("failed to unmarshal authors: %w", err)
+		}
+		papers = append(papers, pd)
 	}
 	return papers, nil
 }

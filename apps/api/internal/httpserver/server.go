@@ -11,10 +11,11 @@ import (
 )
 
 type Config struct {
-	Logger   *log.Logger
-	Engine   rag.Engine
-	Store    *store.Store
-	UIOrigin string
+	Logger           *log.Logger
+	Engine           rag.Engine
+	Store            *store.Store
+	UIOrigin         string
+	PythonServiceURL string
 }
 
 type Server struct {
