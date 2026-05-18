@@ -25,15 +25,35 @@ func NewChatHandler(logger *log.Logger, engine rag.Engine, s *store.Store) *Chat
 
 type chatRequest struct {
 	ConversationID string `json:"conversation_id"`
+	UserID         string `json:"user_id"`
 	Message        string `json:"message"`
 }
 
 type chatResponse struct {
 	ConversationID string        `json:"conversation_id"`
+	UserID         string        `json:"user_id,omitempty"`
 	Answer         string        `json:"answer"`
 	Sources        []rag.Source  `json:"sources,omitempty"`
 	LatencyMs      int64         `json:"latency_ms"`
 	Mock           bool          `json:"mock"`
+}
+
+func (h *ChatHandler) GetConversation(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	id := r.PathValue("id")
+	if id == "" {
+		writeErr(w, http.StatusBadRequest, "missing_conversation_id")
+		return
+	}
+
+	msgs, err := h.store.GetConversationMessages(ctx, id)
+	if err != nil {
+		h.logger.Printf("Failed to get messages for conversation %s: %v", id, err)
+		writeErr(w, http.StatusInternalServerError, "db_error")
+		return
+	}
+
+	writeJSON(w, http.StatusOK, msgs)
 }
 
 func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
@@ -54,14 +74,22 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 	}
 
 	conversationID := strings.TrimSpace(req.ConversationID)
+	userID := strings.TrimSpace(req.UserID)
 	
 	// Create a valid UUID if none is provided or if it's invalid
 	if conversationID == "" || len(conversationID) != 36 {
 		conversationID = util.NewID()
 	}
 
+	// For demonstration, if no user ID is provided, we'll skip the constraint 
+	// or use a 'guest' UUID. Real systems would use an auth token.
+	if userID == "" {
+		// Mock guest user ID
+		userID = "00000000-0000-0000-0000-000000000000"
+	}
+
 	// Ensure the conversation actually exists in the database
-	if err := h.store.EnsureConversation(ctx, conversationID, util.TruncateTitle(req.Message, 50)); err != nil {
+	if err := h.store.EnsureConversation(ctx, conversationID, userID, util.TruncateTitle(req.Message, 50)); err != nil {
 		h.logger.Printf("Failed to ensure conversation: %v", err)
 		writeErr(w, http.StatusInternalServerError, "db_error")
 		return
@@ -93,6 +121,7 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 
 	resp := chatResponse{
 		ConversationID: conversationID,
+		UserID:         userID,
 		Answer:         ans.Text,
 		Sources:        ans.Sources,
 		LatencyMs:      time.Since(start).Milliseconds(),

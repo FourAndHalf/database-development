@@ -19,7 +19,7 @@ import (
 func main() {
 	port := envInt("PORT", 8080)
 	uiOrigin := envString("UI_ORIGIN", "http://localhost:4200")
-	ragEngineType := envString("RAG_ENGINE", "mock")
+	ragEngineType := envString("RAG_ENGINE", "chroma")
 	pythonServiceURL := envString("PYTHON_SERVICE_URL", "http://localhost:8000")
 
 	logger := log.New(os.Stdout, "api ", log.LstdFlags|log.Lmicroseconds)

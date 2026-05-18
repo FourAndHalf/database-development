@@ -14,20 +14,6 @@ type Store struct {
 	db *sql.DB
 }
 
-type Conversation struct {
-	ID        string
-	Title     string
-	CreatedAt time.Time
-}
-
-type Message struct {
-	ID             string
-	ConversationID string
-	Role           string
-	Text           string
-	CreatedAt      time.Time
-}
-
 func New(connStr string) (*Store, error) {
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
@@ -57,8 +43,15 @@ func (s *Store) Close() error {
 
 func (s *Store) migrate() error {
 	query := `
+	CREATE TABLE IF NOT EXISTS users (
+		id UUID PRIMARY KEY,
+		email TEXT UNIQUE NOT NULL,
+		created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+	);
+
 	CREATE TABLE IF NOT EXISTS conversations (
 		id UUID PRIMARY KEY,
+		user_id UUID REFERENCES users(id) ON DELETE CASCADE,
 		title TEXT NOT NULL,
 		created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 	);
@@ -69,18 +62,48 @@ func (s *Store) migrate() error {
 		role TEXT NOT NULL,
 		text TEXT NOT NULL,
 		created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+		);
+
+		CREATE TABLE IF NOT EXISTS papers (
+		id UUID PRIMARY KEY,
+		title TEXT NOT NULL,
+		filename TEXT UNIQUE NOT NULL,
+		url TEXT,
+		created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+		updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+	);
+
+	CREATE TABLE IF NOT EXISTS authors (
+		id UUID PRIMARY KEY,
+		name TEXT NOT NULL UNIQUE
+	);
+
+	CREATE TABLE IF NOT EXISTS paper_authors (
+		paper_id UUID REFERENCES papers(id) ON DELETE CASCADE,
+		author_id UUID REFERENCES authors(id) ON DELETE CASCADE,
+		PRIMARY KEY (paper_id, author_id)
+	);
+
+	CREATE TABLE IF NOT EXISTS paper_metadata (
+		paper_id UUID PRIMARY KEY REFERENCES papers(id) ON DELETE CASCADE,
+		data JSONB NOT NULL DEFAULT '{}'::jsonb,
+		updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 	);
 	`
 	_, err := s.db.Exec(query)
 	return err
 }
 
-func (s *Store) EnsureConversation(ctx context.Context, id, title string) error {
-	// ON CONFLICT DO NOTHING ensures that if the client sends an ID that 
-	// already exists, we simply proceed. If it doesn't exist (like a cached ID 
-	// from the frontend on a fresh database), it creates it.
-	query := `INSERT INTO conversations (id, title) VALUES ($1, $2) ON CONFLICT (id) DO NOTHING`
-	_, err := s.db.ExecContext(ctx, query, id, title)
+func (s *Store) EnsureConversation(ctx context.Context, id, userID, title string) error {
+	var userVal interface{}
+	if userID != "" && userID != "00000000-0000-0000-0000-000000000000" {
+		userVal = userID
+	} else {
+		userVal = nil
+	}
+
+	query := `INSERT INTO conversations (id, user_id, title) VALUES ($1, $2, $3) ON CONFLICT (id) DO NOTHING`
+	_, err := s.db.ExecContext(ctx, query, id, userVal, title)
 	if err != nil {
 		return fmt.Errorf("failed to ensure conversation: %w", err)
 	}
@@ -95,6 +118,30 @@ func (s *Store) SaveMessage(ctx context.Context, conversationID, role, text stri
 		return fmt.Errorf("failed to save message: %w", err)
 	}
 	return nil
+}
+
+func (s *Store) GetConversationMessages(ctx context.Context, conversationID string) ([]Message, error) {
+	query := `
+		SELECT id, conversation_id, role, text, created_at
+		FROM messages
+		WHERE conversation_id = $1
+		ORDER BY created_at ASC
+	`
+	rows, err := s.db.QueryContext(ctx, query, conversationID)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get messages: %w", err)
+	}
+	defer rows.Close()
+
+	var msgs []Message
+	for rows.Next() {
+		var m Message
+		if err := rows.Scan(&m.ID, &m.ConversationID, &m.Role, &m.Text, &m.CreatedAt); err != nil {
+			return nil, fmt.Errorf("failed to scan message: %w", err)
+		}
+		msgs = append(msgs, m)
+	}
+	return msgs, nil
 }
 
 func (s *Store) ConversationExists(ctx context.Context, conversationID string) (bool, error) {

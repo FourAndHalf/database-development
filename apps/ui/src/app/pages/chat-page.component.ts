@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild, afterRenderEffect, computed, effect, signal } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, afterRenderEffect, computed, effect, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChatApiService, Source } from '../services/chat-api.service';
 import { firstValueFrom } from 'rxjs';
@@ -108,6 +108,7 @@ type UiMessage = {
                   </div>
                 </div>
                 <textarea
+                  #centerInput
                   [(ngModel)]="draft"
                   name="draft"
                   class="center-input"
@@ -178,7 +179,7 @@ type UiMessage = {
               <div class="threadInner">
                 <div class="row" *ngFor="let m of messages(); trackBy: trackById" [class.user]="m.role === 'user'">
                   <ng-container *ngIf="m.role === 'assistant'; else userRow">
-                    <div class="avatar assistant-avatar">
+                    <div class="avatar assistant-avatar" [class.exploring]="m.pending">
                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></svg>
                     </div>
                     <div class="bubble assistant" [class.typing]="m.isTyping">
@@ -221,6 +222,7 @@ type UiMessage = {
               <form class="center-composer bottom" (ngSubmit)="send()" autocomplete="off">
                 <div class="center-composer-inner bottom-inner">
                   <textarea
+                    #bottomInput
                     [(ngModel)]="draft"
                     name="draft"
                     class="center-input bottom-input"
@@ -251,6 +253,8 @@ type UiMessage = {
 })
 export class ChatPageComponent {
   @ViewChild('thread', { static: false }) private readonly threadEl?: ElementRef<HTMLElement>;
+  @ViewChild('centerInput', { static: false }) private readonly centerInput?: ElementRef<HTMLTextAreaElement>;
+  @ViewChild('bottomInput', { static: false }) private readonly bottomInput?: ElementRef<HTMLTextAreaElement>;
 
   protected draft = '';
 
@@ -259,6 +263,23 @@ export class ChatPageComponent {
   protected readonly messages = signal<UiMessage[]>([]);
   protected readonly expandedSourcesByMessageId = signal<Record<string, boolean>>({});
   protected readonly busy = signal(false);
+
+  @HostListener('window:keydown', ['$event'])
+  onGlobalKeydown(e: KeyboardEvent) {
+    // Only focus if not already focused on an input/textarea
+    const target = e.target as HTMLElement;
+    const isInput = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable;
+    
+    // Ignore control keys, function keys, etc.
+    if (isInput || e.ctrlKey || e.metaKey || e.altKey || e.key.length > 1) {
+      return;
+    }
+
+    const input = this.messages().length === 0 ? this.centerInput : this.bottomInput;
+    if (input) {
+      input.nativeElement.focus();
+    }
+  }
 
   protected greeting = computed(() => {
     const hour = new Date().getHours();

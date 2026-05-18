@@ -501,6 +501,33 @@
   color: var(--accent);
   background: var(--glass-panel);
   border: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+}
+
+.assistant-avatar.exploring {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+}
+
+.assistant-avatar.exploring svg path {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: infinity-flow 2s ease-in-out infinite;
+}
+
+@keyframes infinity-flow {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0.5;
+  }
+  50% {
+    stroke-dashoffset: 50;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.5;
+  }
 }
 
 .bubble {
@@ -551,39 +578,56 @@
 .text table {
   width: 100%;
   border-collapse: collapse;
-  margin: 16px 0;
+  margin: 20px 0;
   font-size: 14px;
-  border-radius: 8px;
+  border-radius: 12px;
+  border-style: hidden; /* Hide the outer border to let the container shadow and cell borders shine */
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15), 0 8px 32px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--glass-border);
 }
 .text th, .text td {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--glass-border);
-  border-right: 1px solid var(--glass-border);
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.15); /* More visible border */
   text-align: left;
-}
-.text th:last-child, .text td:last-child {
-  border-right: none;
-}
-.text tr:last-child td {
-  border-bottom: none;
+  line-height: 1.5;
 }
 .text th {
   background: rgba(139, 92, 246, 0.15);
-  font-weight: 600;
+  backdrop-filter: blur(8px);
+  font-weight: 700;
   color: var(--text-main);
   text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 0.05em;
+  font-size: 11px;
+  letter-spacing: 0.1em;
 }
 .text td {
-  background: var(--glass-panel);
+  background: rgba(255, 255, 255, 0.03);
   color: var(--text-muted);
 }
+.text tr:hover td {
+  background: rgba(255, 255, 255, 0.06);
+}
 .text tr:nth-child(even) td {
-  background: var(--glass-panel-hover);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.text code {
+  font-family: var(--mono, monospace);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--accent);
+}
+
+.text blockquote {
+  margin: 16px 0;
+  padding: 12px 20px;
+  border-left: 4px solid var(--accent);
+  background: rgba(139, 92, 246, 0.05);
+  border-radius: 0 12px 12px 0;
+  color: var(--text-muted);
+  font-style: italic;
 }
 
 .cursor {
