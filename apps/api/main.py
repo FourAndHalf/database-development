@@ -15,6 +15,14 @@ from services.retrieval.query import PaperRetriever
 from contextlib import asynccontextmanager
 from duckduckgo_search import DDGS
 import re
+import phoenix as px
+from phoenix.otel import register
+from prometheus_fastapi_instrumentator import Instrumentator
+
+# --- Observability ---
+# Phoenix local server (optional for production, usually external)
+session = px.launch_app() 
+register()
 
 # --- Global State ---
 retriever = None
@@ -58,6 +66,9 @@ async def lifespan(app: FastAPI):
 
 # --- API Definition ---
 app = FastAPI(lifespan=lifespan)
+
+# 4. Instrument FastAPI with Prometheus
+Instrumentator().instrument(app).bootstrap()
 
 # --- Pydantic Models for Request/Response ---
 class QueryRequest(BaseModel):
@@ -143,7 +154,27 @@ async def handle_query(request: QueryRequest):
     messages = [
         {
             "role": "system", 
-            "content": "You are a helpful research assistant specializing in databases. Answer the user's question using ONLY the provided context (which includes local research papers and optionally live web results). If the answer is not contained in the context, say 'I don't know based on the provided sources.' You MUST format your response using beautifully styled HTML. Never use Markdown. Always use raw HTML tags (like <p>, <ul>, <li>, <strong>). For comparisons or structured data, always use an HTML <table>. Be concise and informative."
+            "content": """You are Aether, an elite research architect specializing in the deep internals of distributed systems and databases.
+Your goal is to provide EXHAUSTIVE, multi-layered research syntheses. Do not just answer the question—provide a comprehensive report.
+
+YOUR RESPONSE MUST BE A VALID JSON OBJECT:
+{
+  "main": "A primary, high-fidelity technical deep-dive (min 300 words). Use <p>, <strong>, and BEAUTIFUL COLORFUL SVG diagrams or HTML/CSS workflows for complex concepts.",
+  "tabs": [
+    {"title": "History & Evolution", "content": "A detailed chronological account of how this concept originated (citing specific papers), its evolution, and the specific problems it solved in the history of computer science."},
+    {"title": "Technical Internals", "content": "Deep technical analysis including data structures, algorithmic complexity, and specific trade-offs (e.g., CAP theorem implications). Use <table> for data-heavy comparisons."},
+    {"title": "Related Breakthroughs", "content": "Information on 2-3 related technologies or papers that were influenced by or influenced this topic."}
+  ]
+}
+
+VISUAL & CONTENT RULES:
+- Use <svg> for intricate diagrams. Use vibrant gradients and clean lines.
+- For workflows, use flexbox-based HTML 'step' cards with connector arrows.
+- Be academically rigorous. Reference the provided paper contexts by name where possible.
+- If context is missing for a specific tab, use the available information to provide the best possible historical or technical deduction.
+- NEVER use Markdown. ONLY raw HTML/SVG.
+
+Your synthesis should feel like a premium, published research briefing."""
         },
         {
             "role": "user", 
@@ -159,20 +190,20 @@ async def handle_query(request: QueryRequest):
     )
     
     # 4. Generate the synthesized answer
-    print("Generating answer with LLM...")
+    print("Generating elite hyper-informative synthesis...")
     outputs = llm_pipeline(
         prompt, 
-        max_new_tokens=400, 
+        max_new_tokens=2000, # Significantly increased for exhaustive reports
         do_sample=True, 
-        temperature=0.3, # Low temperature for factual consistency
-        top_p=0.9
+        temperature=0.15,
+        top_p=0.95
     )
     
-    # Extract only the generated text (remove the prompt from the output)
+    # Extract only the generated text
     generated_text = outputs[0]["generated_text"][len(prompt):].strip()
     
-    # Aggressively strip Markdown code blocks if the model outputs them, as they break innerHTML
-    generated_text = re.sub(r'^```html\s*', '', generated_text, flags=re.IGNORECASE)
+    # Clean up any potential markdown code block wrappers
+    generated_text = re.sub(r'^```json\s*', '', generated_text, flags=re.IGNORECASE)
     generated_text = re.sub(r'^```\s*', '', generated_text)
     generated_text = re.sub(r'\s*```$', '', generated_text)
     
@@ -182,6 +213,11 @@ async def handle_query(request: QueryRequest):
 
 # --- Static File Serving ---
 app.mount("/static", StaticFiles(directory="apps/ui"), name="static")
+
+# Mount PDF directory for viewing
+pdf_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/raw_pdfs'))
+if os.path.exists(pdf_dir):
+    app.mount("/pdfs", StaticFiles(directory=pdf_dir), name="pdfs")
 
 @app.get("/")
 async def read_index():

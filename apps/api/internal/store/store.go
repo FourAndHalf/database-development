@@ -10,6 +10,10 @@ import (
 	_ "github.com/lib/pq"
 )
 
+type contextKey string
+
+const UserIDKey contextKey = "user_id"
+
 type Store struct {
 	db *sql.DB
 }
@@ -46,6 +50,7 @@ func (s *Store) migrate() error {
 	CREATE TABLE IF NOT EXISTS users (
 		id UUID PRIMARY KEY,
 		email TEXT UNIQUE NOT NULL,
+		password_hash TEXT,
 		created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 	);
 

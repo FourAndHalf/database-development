@@ -2,10 +2,35 @@ package store
 
 import (
 	"context"
+	"database/sql"
 	"fmt"
 
 	"github.com/google/uuid"
 )
+
+func (s *Store) CreateUser(ctx context.Context, email, passwordHash string) (string, error) {
+	id := uuid.New().String()
+	query := `INSERT INTO users (id, email, password_hash) VALUES ($1, $2, $3) RETURNING id`
+	var actualID string
+	err := s.db.QueryRowContext(ctx, query, id, email, passwordHash).Scan(&actualID)
+	if err != nil {
+		return "", fmt.Errorf("failed to create user: %w", err)
+	}
+	return actualID, nil
+}
+
+func (s *Store) GetUserByEmail(ctx context.Context, email string) (*User, error) {
+	query := `SELECT id, email, password_hash, created_at FROM users WHERE email = $1`
+	var u User
+	err := s.db.QueryRowContext(ctx, query, email).Scan(&u.ID, &u.Email, &u.PasswordHash, &u.CreatedAt)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, nil
+		}
+		return nil, fmt.Errorf("failed to get user: %w", err)
+	}
+	return &u, nil
+}
 
 func (s *Store) UpsertUser(ctx context.Context, email string) (string, error) {
 	id := uuid.New().String()

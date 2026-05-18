@@ -74,31 +74,27 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 	}
 
 	conversationID := strings.TrimSpace(req.ConversationID)
-	userID := strings.TrimSpace(req.UserID)
-	
-	// Create a valid UUID if none is provided or if it's invalid
 	if conversationID == "" || len(conversationID) != 36 {
 		conversationID = util.NewID()
 	}
 
-	// For demonstration, if no user ID is provided, we'll skip the constraint 
-	// or use a 'guest' UUID. Real systems would use an auth token.
-	if userID == "" {
-		// Mock guest user ID
-		userID = "00000000-0000-0000-0000-000000000000"
-	}
+	// Extract userID from context (set by authMiddleware)
+	userID, _ := ctx.Value(store.UserIDKey).(string)
+	isAuth := userID != ""
 
-	// Ensure the conversation actually exists in the database
-	if err := h.store.EnsureConversation(ctx, conversationID, userID, util.TruncateTitle(req.Message, 50)); err != nil {
-		h.logger.Printf("Failed to ensure conversation: %v", err)
-		writeErr(w, http.StatusInternalServerError, "db_error")
-		return
-	}
+	if isAuth {
+		// Ensure the conversation actually exists in the database
+		if err := h.store.EnsureConversation(ctx, conversationID, userID, util.TruncateTitle(req.Message, 50)); err != nil {
+			h.logger.Printf("Failed to ensure conversation: %v", err)
+			writeErr(w, http.StatusInternalServerError, "db_error")
+			return
+		}
 
-	if err := h.store.SaveMessage(ctx, conversationID, "user", req.Message); err != nil {
-		h.logger.Printf("Failed to save user message: %v", err)
-		writeErr(w, http.StatusInternalServerError, "db_error")
-		return
+		if err := h.store.SaveMessage(ctx, conversationID, "user", req.Message); err != nil {
+			h.logger.Printf("Failed to save user message: %v", err)
+			writeErr(w, http.StatusInternalServerError, "db_error")
+			return
+		}
 	}
 
 	ans, err := h.engine.Answer(ctx, rag.Question{
@@ -115,8 +111,10 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := h.store.SaveMessage(ctx, conversationID, "assistant", ans.Text); err != nil {
-		h.logger.Printf("Failed to save assistant message (non-fatal): %v", err)
+	if isAuth {
+		if err := h.store.SaveMessage(ctx, conversationID, "assistant", ans.Text); err != nil {
+			h.logger.Printf("Failed to save assistant message (non-fatal): %v", err)
+		}
 	}
 
 	resp := chatResponse{

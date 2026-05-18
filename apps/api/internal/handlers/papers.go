@@ -63,3 +63,18 @@ func (h *PaperHandler) PutMetadata(w http.ResponseWriter, r *http.Request) {
 
 	writeJSON(w, http.StatusOK, map[string]string{"status": "updated"})
 }
+
+func (h *PaperHandler) SearchPapers(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	query := r.URL.Query().Get("q")
+
+	papers, err := h.store.SearchPapers(ctx, query)
+	if err != nil {
+		h.logger.Printf("Failed to search papers: %v", err)
+		writeErr(w, http.StatusInternalServerError, "db_error")
+		return
+	}
+
+	writeJSON(w, http.StatusOK, papers)
+}
+

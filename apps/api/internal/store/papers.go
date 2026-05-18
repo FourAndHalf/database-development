@@ -127,3 +127,31 @@ func (s *Store) GetPaperWithMetadata(ctx context.Context, paperID string) (*Pape
 
 	return &pd, nil
 }
+
+func (s *Store) SearchPapers(ctx context.Context, query string) ([]Paper, error) {
+	sqlQuery := `
+		SELECT DISTINCT p.id, p.title, p.filename, p.url, p.created_at, p.updated_at
+		FROM papers p
+		LEFT JOIN paper_authors pa ON p.id = pa.paper_id
+		LEFT JOIN authors a ON pa.author_id = a.id
+		WHERE p.title ILIKE $1 OR a.name ILIKE $1
+		ORDER BY p.title ASC
+		LIMIT 20
+	`
+	rows, err := s.db.QueryContext(ctx, sqlQuery, "%"+query+"%")
+	if err != nil {
+		return nil, fmt.Errorf("failed to search papers: %w", err)
+	}
+	defer rows.Close()
+
+	var papers []Paper
+	for rows.Next() {
+		var p Paper
+		if err := rows.Scan(&p.ID, &p.Title, &p.Filename, &p.URL, &p.CreatedAt, &p.UpdatedAt); err != nil {
+			return nil, fmt.Errorf("failed to scan paper: %w", err)
+		}
+		papers = append(papers, p)
+	}
+	return papers, nil
+}
+

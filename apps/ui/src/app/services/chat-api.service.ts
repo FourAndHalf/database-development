@@ -23,12 +23,35 @@ export type ChatResponse = {
   mock: boolean;
 };
 
+export type Conversation = {
+  id: string;
+  user_id: string;
+  title: string;
+  created_at: string;
+};
+
 @Injectable({ providedIn: 'root' })
 export class ChatApiService {
   constructor(private readonly http: HttpClient) {}
 
   chat(body: ChatMessage): Observable<ChatResponse> {
     return this.http.post<ChatResponse>('/v1/chat', body);
+  }
+
+  getHistory(userId: string): Observable<Conversation[]> {
+    return this.http.get<Conversation[]>(`/v1/users/${userId}/history`);
+  }
+
+  deleteChat(userId: string, conversationId: string): Observable<any> {
+    return this.http.delete(`/v1/users/${userId}/chats/${conversationId}`);
+  }
+
+  getMessages(conversationId: string): Observable<any[]> {
+    return this.http.get<any[]>(`/v1/chat/${conversationId}`);
+  }
+
+  searchPapers(query: string): Observable<any[]> {
+    return this.http.get<any[]>(`/v1/papers?q=${encodeURIComponent(query)}`);
   }
 }
 
