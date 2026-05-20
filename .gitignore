@@ -1,8 +1,9 @@
 # Project-specific Data
-# data/raw_pdfs/
-# data/chunks/
-# data/embeddings/
-# data/parsed/
+data/raw_pdfs/
+data/chunks/
+data/embeddings/
+data/parsed/
+data/chromadb/
 
 # Temporary files and logs
 temp/

@@ -40,20 +40,30 @@ async def lifespan(app: FastAPI):
     else:
         print("PaperRetriever loaded successfully.")
 
-    print("\nLoading Local LLM (Qwen2.5-0.5B-Instruct)...")
+    print("\nLoading Local LLM (Llama-3.2-3B-Instruct) in 4-bit precision...")
     print("This may take a minute on the first run as the model downloads.")
     
-    model_id = "Qwen/Qwen2.5-0.5B-Instruct"
+    model_id = "unsloth/Llama-3.2-3B-Instruct"
     device = 0 if torch.cuda.is_available() else -1
     
+    from transformers import BitsAndBytesConfig
+    bnb_config = BitsAndBytesConfig(
+        load_in_4bit=True,
+        bnb_4bit_compute_dtype=torch.float16,
+        bnb_4bit_quant_type="nf4",
+    )
+    
     tokenizer = AutoTokenizer.from_pretrained(model_id)
-    model = AutoModelForCausalLM.from_pretrained(model_id)
+    model = AutoModelForCausalLM.from_pretrained(
+        model_id,
+        quantization_config=bnb_config,
+        device_map="auto"
+    )
     
     llm_pipeline = pipeline(
         "text-generation", 
         model=model, 
-        tokenizer=tokenizer, 
-        device=device
+        tokenizer=tokenizer
     )
     print("LLM loaded successfully!\n")
     
@@ -154,25 +164,34 @@ async def handle_query(request: QueryRequest):
     messages = [
         {
             "role": "system", 
-            "content": """You are Aether, an elite research architect specializing in the deep internals of distributed systems and databases.
-Your goal is to provide EXHAUSTIVE, multi-layered research syntheses. Do not just answer the question—provide a comprehensive report.
+            "content": """You are Aether, an elite research architect specializing in distributed systems and databases. You are chained with OpenUI capabilities to generate stunning, interactive UI components and data visualizations.
+Your goal is to provide EXHAUSTIVE, multi-layered research syntheses. DO NOT output plain walls of text. You MUST prioritize bullet points, HTML tables, and OpenUI-style SVG graphs.
 
-YOUR RESPONSE MUST BE A VALID JSON OBJECT:
-{
-  "main": "A primary, high-fidelity technical deep-dive (min 300 words). Use <p>, <strong>, and BEAUTIFUL COLORFUL SVG diagrams or HTML/CSS workflows for complex concepts.",
-  "tabs": [
-    {"title": "History & Evolution", "content": "A detailed chronological account of how this concept originated (citing specific papers), its evolution, and the specific problems it solved in the history of computer science."},
-    {"title": "Technical Internals", "content": "Deep technical analysis including data structures, algorithmic complexity, and specific trade-offs (e.g., CAP theorem implications). Use <table> for data-heavy comparisons."},
-    {"title": "Related Breakthroughs", "content": "Information on 2-3 related technologies or papers that were influenced by or influenced this topic."}
-  ]
-}
+You MUST structure your response using these EXACT XML tags. Do NOT use JSON.
+
+<main>
+A high-fidelity technical deep-dive. 
+- Use <ul> and <li> for perfectly articulated, concise bullet points.
+- Use BEAUTIFUL COLORFUL SVG diagrams to illustrate architectures.
+- Use OpenUI-styled SVG bar charts, line graphs, or scatter plots to provide deep insights into quantitative measures (e.g., latency, throughput, scale). Ensure these graphs are visually stunning and clearly labeled.
+- Use <table> for comparisons.
+</main>
+<tab title="History & Evolution">
+Chronological account (citing papers), evolution, and problems solved. Use HTML bullet points and timelines.
+</tab>
+<tab title="Technical Internals">
+Deep technical analysis. MUST include at least one <table> or <svg> diagram showing data structures, algorithmic complexity, or architecture.
+</tab>
+<tab title="Quantitative & Trade-offs">
+Focus on CAP theorem, PACELC, performance metrics. USE OpenUI-styled SVG CHARTS to show quantitative measures. Use <table> for trade-offs.
+</tab>
 
 VISUAL & CONTENT RULES:
-- Use <svg> for intricate diagrams. Use vibrant gradients and clean lines.
-- For workflows, use flexbox-based HTML 'step' cards with connector arrows.
+- NEVER use Markdown (no **, no ##, no `). ONLY use raw HTML (e.g., <strong>, <code>, <ul>, <li>, <h3>) and <svg>.
+- For SVGs, use vibrant gradients, clean lines, text labels, proper <viewBox>, and make them visually stunning (emulating OpenUI component generation).
+- Prioritize bullet points, HTML tables, and SVGs over large blocks of plain text.
 - Be academically rigorous. Reference the provided paper contexts by name where possible.
 - If context is missing for a specific tab, use the available information to provide the best possible historical or technical deduction.
-- NEVER use Markdown. ONLY raw HTML/SVG.
 
 Your synthesis should feel like a premium, published research briefing."""
         },
@@ -193,7 +212,7 @@ Your synthesis should feel like a premium, published research briefing."""
     print("Generating elite hyper-informative synthesis...")
     outputs = llm_pipeline(
         prompt, 
-        max_new_tokens=2000, # Significantly increased for exhaustive reports
+        max_new_tokens=2000,
         do_sample=True, 
         temperature=0.15,
         top_p=0.95
@@ -202,14 +221,44 @@ Your synthesis should feel like a premium, published research briefing."""
     # Extract only the generated text
     generated_text = outputs[0]["generated_text"][len(prompt):].strip()
     
-    # Clean up any potential markdown code block wrappers
-    generated_text = re.sub(r'^```json\s*', '', generated_text, flags=re.IGNORECASE)
-    generated_text = re.sub(r'^```\s*', '', generated_text)
-    generated_text = re.sub(r'\s*```$', '', generated_text)
+    # Parse the XML tags into a structured JSON string
+    import json
     
+    tabs = []
+    for tab_match in re.finditer(r'<tab\s+title="([^"]+)">(.*?)</tab>', generated_text, re.DOTALL | re.IGNORECASE):
+        tabs.append({"title": tab_match.group(1), "content": tab_match.group(2).strip()})
+        
+    main_match = re.search(r'<main>(.*?)</main>', generated_text, re.DOTALL | re.IGNORECASE)
+    
+    if main_match:
+        main_content = main_match.group(1).strip()
+        # Remove any nested tabs from the main content so they don't duplicate
+        main_content = re.sub(r'<tab\s+title="[^"]+">.*?</tab>', '', main_content, flags=re.DOTALL | re.IGNORECASE).strip()
+        if not main_content:
+            main_content = "See tabs for details."
+    else:
+        # If no <main> tag, take everything that isn't a tab
+        main_content = re.sub(r'<tab\s+title="[^"]+">.*?</tab>', '', generated_text, flags=re.DOTALL | re.IGNORECASE).strip()
+        if not main_content:
+            main_content = "See tabs for details."
+        
+    if main_content != "See tabs for details." or tabs:
+        structured_data = {
+            "main": main_content,
+            "tabs": tabs
+        }
+    else:
+        # Fallback: if the LLM ignored all tags, just wrap the whole response in the expected JSON structure
+        structured_data = {
+            "main": generated_text,
+            "tabs": []
+        }
+        
+    final_answer = json.dumps(structured_data)
+
     print("Generation complete.")
     
-    return QueryResponse(answer=generated_text.strip(), sources=sources)
+    return QueryResponse(answer=final_answer, sources=sources)
 
 # --- Static File Serving ---
 app.mount("/static", StaticFiles(directory="apps/ui"), name="static")

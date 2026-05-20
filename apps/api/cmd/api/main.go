@@ -52,9 +52,9 @@ func main() {
 		Addr:              ":" + strconv.Itoa(port),
 		Handler:           srv.Handler(),
 		ReadHeaderTimeout: 5 * time.Second,
-		ReadTimeout:       30 * time.Second,
-		WriteTimeout:      30 * time.Second,
-		IdleTimeout:       60 * time.Second,
+		ReadTimeout:       600 * time.Second,
+		WriteTimeout:      600 * time.Second,
+		IdleTimeout:       600 * time.Second,
 	}
 
 	go func() {

@@ -331,6 +331,18 @@
 .assistant-avatar { color: var(--accent); background: var(--glass-panel); border: 1px solid var(--glass-border); }
 .assistant-avatar.exploring { border-color: var(--accent); box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); }
 
+.assistant-avatar.exploring svg path {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: infinity-flow 2s ease-in-out infinite;
+}
+
+@keyframes infinity-flow {
+  0% { stroke-dashoffset: 100; opacity: 0.5; }
+  50% { stroke-dashoffset: 50; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.5; }
+}
+
 /* User Bubble - Refined */
 .bubble.user {
   background: rgba(139, 92, 246, 0.1);
@@ -353,7 +365,27 @@
 .bubble.user:hover .copy-query-btn { opacity: 1; }
 
 /* Assistant Synthesis Content */
-.bubble.assistant { display: flex; flex-direction: column; gap: 20px; }
+.bubble.assistant { display: flex; flex-direction: column; gap: 20px; padding-top: 8px; }
+
+.text.pending {
+  color: var(--text-muted);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+.text.pending::after {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  animation: typing-dots 1.5s infinite steps(4, end);
+}
+@keyframes typing-dots {
+  0% { content: ""; }
+  25% { content: "."; }
+  50% { content: ".."; }
+  75% { content: "..."; }
+  100% { content: ""; }
+}
 
 .tab-bar {
   display: flex; gap: 6px; padding: 4px;
@@ -378,6 +410,25 @@
 /* Rich Technical Content Styling */
 .text p { margin-bottom: 16px; }
 .text strong { color: white; font-weight: 600; }
+.text h3, .text h4 { color: white; font-weight: 700; margin: 24px 0 12px 0; letter-spacing: -0.02em; }
+.text h3 { font-size: 18px; }
+.text h4 { font-size: 15px; color: var(--accent); }
+
+.text ul, .text ol {
+  margin: 16px 0 16px 24px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.text li {
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  padding-left: 4px;
+}
+.text li::marker {
+  color: var(--accent);
+}
 
 .text table {
   width: 100%; border-collapse: collapse; margin: 24px 0;
@@ -387,6 +438,20 @@
 .text th, .text td { padding: 14px 18px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: left; }
 .text th { background: rgba(139, 92, 246, 0.1); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; }
 .text tr:nth-child(even) { background: rgba(255, 255, 255, 0.01); }
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: var(--accent);
+  margin-left: 4px;
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
 
 .text svg {
   max-width: 100%; height: auto; margin: 24px 0; display: block;

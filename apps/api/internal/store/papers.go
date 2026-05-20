@@ -80,7 +80,7 @@ func (s *Store) UpdateMetadata(ctx context.Context, paperID string, data map[str
 
 func (s *Store) GetPaperWithMetadata(ctx context.Context, paperID string) (*PaperDetail, error) {
 	paperQuery := `
-		SELECT p.id, p.title, p.filename, p.url, p.created_at, p.updated_at, m.data
+		SELECT p.id, p.title, p.filename, COALESCE(p.url, '') as url, p.created_at, p.updated_at, m.data
 		FROM papers p
 		LEFT JOIN paper_metadata m ON p.id = m.paper_id
 		WHERE p.id = $1
@@ -131,7 +131,7 @@ func (s *Store) GetPaperWithMetadata(ctx context.Context, paperID string) (*Pape
 func (s *Store) SearchPapers(ctx context.Context, query string) ([]PaperDetail, error) {
 	sqlQuery := `
 		SELECT 
-			p.id, p.title, p.filename, p.url, p.created_at, p.updated_at,
+			p.id, p.title, p.filename, COALESCE(p.url, '') as url, p.created_at, p.updated_at,
 			COALESCE(json_agg(json_build_object('id', a.id, 'name', a.name)) FILTER (WHERE a.id IS NOT NULL), '[]') as authors
 		FROM papers p
 		LEFT JOIN paper_authors pa ON p.id = pa.paper_id

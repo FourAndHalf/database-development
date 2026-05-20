@@ -3,6 +3,7 @@ import { Component, ElementRef, HostListener, ViewChild, afterRenderEffect, comp
 import { FormsModule } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { AuthService } from '../../services/auth.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ChatApiService, Conversation, Source } from '../../services/chat-api.service';
 import { firstValueFrom } from 'rxjs';
@@ -52,6 +53,7 @@ export class ChatPageComponent implements OnDestroy {
   protected readonly auth = inject(AuthService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private readonly sanitizer = inject(DomSanitizer);
 
   protected draft = '';
 
@@ -245,10 +247,11 @@ export class ChatPageComponent implements OnDestroy {
     void this.send();
   }
 
-  protected getActiveContent(m: UiMessage): string {
-    if (m.isTyping) return m.displayedText || '';
-    if (m.tabs && m.tabs.length > 0) return m.tabs[m.activeTabIdx ?? 0].content;
-    return m.text;
+  protected getActiveContent(m: UiMessage): SafeHtml {
+    let content = m.text;
+    if (m.isTyping) content = m.displayedText || '';
+    else if (m.tabs && m.tabs.length > 0) content = m.tabs[m.activeTabIdx ?? 0].content;
+    return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 
   protected async send() {

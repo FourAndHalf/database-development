@@ -1,0 +1,246 @@
+{
+  "bigtable-osdi06.pdf": {
+    "title": "Bigtable: A Distributed Storage System for Structured Data",
+    "author": "Fay Chang et al."
+  },
+  "omega_flexible_scalable_multi_database_concurrency_control.pdf": {
+    "title": "Omega Flexible Scalable Multi Database Concurrency Control",
+    "author": "Unknown Author"
+  },
+  "pacelc_theorem.pdf": {
+    "title": "PACELC Theorem",
+    "author": "Daniel J. Abadi"
+  },
+  "c_store_a_column_oriented_dbms.pdf": {
+    "title": "C Store A Column Oriented Dbms",
+    "author": "Unknown Author"
+  },
+  "dynamo_amazons_highly_available_key_value_store.pdf": {
+    "title": "Dynamo: Amazon's Highly Available Key-Value Store",
+    "author": "Giuseppe DeCandia et al."
+  },
+  "pnuts_yahoos_hosted_data_serving_platform.pdf": {
+    "title": "Pnuts Yahoos Hosted Data Serving Platform",
+    "author": "Unknown Author"
+  },
+  "megastore_and_megastore_extended_consistency.pdf": {
+    "title": "Megastore And Megastore Extended Consistency",
+    "author": "Unknown Author"
+  },
+  "wisckey.pdf": {
+    "title": "Wisckey",
+    "author": "Unknown Author"
+  },
+  "viewstamped_replication.pdf": {
+    "title": "Viewstamped Replication",
+    "author": "Unknown Author"
+  },
+  "WiredTiger__A_High_Performance_NoSQL_Database_Engine.pdf": {
+    "title": "Wiredtiger A High Performance Nosql Database Engine",
+    "author": "Unknown Author"
+  },
+  "the_chubby_lock_service_for_loosely_coupled_distributed_systems.pdf": {
+    "title": "The Chubby Lock Service for Loosely-Coupled Distributed Systems",
+    "author": "Mike Burrows"
+  },
+  "global_secondary_indexes_in_f1.pdf": {
+    "title": "Global Secondary Indexes In F1",
+    "author": "Unknown Author"
+  },
+  "cassandra_a_decentralized_structured_storage_system.pdf": {
+    "title": "Cassandra: A Decentralized Structured Storage System",
+    "author": "Avinash Lakshman, Prashant Malik"
+  },
+  "viewstamped_replication_revisited.pdf": {
+    "title": "Viewstamped Replication Revisited",
+    "author": "Unknown Author"
+  },
+  "bigtable_vs_cassandra_vs_dynamo.pdf": {
+    "title": "Bigtable Vs Cassandra Vs Dynamo",
+    "author": "Unknown Author"
+  },
+  "Amazon_SimpleDB.pdf": {
+    "title": "Amazon Simpledb",
+    "author": "Unknown Author"
+  },
+  "dremel_interactive_analysis_of_web_scale_datasets.pdf": {
+    "title": "Dremel: Interactive Analysis of Web-Scale Datasets",
+    "author": "Sergey Melnik et al."
+  },
+  "pig_hive.pdf": {
+    "title": "Pig Hive",
+    "author": "Unknown Author"
+  },
+  "evolution_of_development_priorities_in_key_value_stores_serving_large_scale_applications_the_rocksdb_experience.pdf": {
+    "title": "Evolution Of Development Priorities In Key Value Stores Serving Large Scale Applications The Rocksdb Experience",
+    "author": "Unknown Author"
+  },
+  "TPC_C__TPC_H_Benchmarks.pdf": {
+    "title": "Tpc C Tpc H Benchmarks",
+    "author": "Unknown Author"
+  },
+  "chain_replication_for_supporting_high_throughput_and_availability.pdf": {
+    "title": "Chain Replication For Supporting High Throughput And Availability",
+    "author": "Unknown Author"
+  },
+  "systemml_spark_sql.pdf": {
+    "title": "Systemml Spark Sql",
+    "author": "Unknown Author"
+  },
+  "bigTable-paper.pdf": {
+    "title": "Bigtable Paper",
+    "author": "Unknown Author"
+  },
+  "wisckey_separating_keys_from_values_in_ssd_conscious_storage.pdf": {
+    "title": "Wisckey Separating Keys From Values In Ssd Conscious Storage",
+    "author": "Unknown Author"
+  },
+  "paxos_made_practical.pdf": {
+    "title": "Paxos Made Practical",
+    "author": "Unknown Author"
+  },
+  "line.pdf": {
+    "title": "Line",
+    "author": "Unknown Author"
+  },
+  "spanner_googles_globally_distributed_database.pdf": {
+    "title": "Spanner: Google's Globally Distributed Database",
+    "author": "James C. Corbett et al."
+  },
+  "tapir.pdf": {
+    "title": "Tapir",
+    "author": "Unknown Author"
+  },
+  "redblue_consistency.pdf": {
+    "title": "Redblue Consistency",
+    "author": "Unknown Author"
+  },
+  "secondary_indexes_in_distributed_dbs.pdf": {
+    "title": "Secondary Indexes In Distributed Dbs",
+    "author": "Unknown Author"
+  },
+  "google_file_system.pdf": {
+    "title": "The Google File System",
+    "author": "Sanjay Ghemawat et al."
+  },
+  "consistency_without_partition.pdf": {
+    "title": "Consistency Without Partition",
+    "author": "Unknown Author"
+  },
+  "rocksdb_evolution_of_development_priorities_in_a_key_value_store.pdf": {
+    "title": "Rocksdb Evolution Of Development Priorities In A Key Value Store",
+    "author": "Unknown Author"
+  },
+  "TPC_C__TPC_H__TPC_DS.pdf": {
+    "title": "Tpc C Tpc H Tpc Ds",
+    "author": "Unknown Author"
+  },
+  "megastore_scalable_highly_available_storage_for_interactive_services.pdf": {
+    "title": "Megastore Scalable Highly Available Storage For Interactive Services",
+    "author": "Unknown Author"
+  },
+  "pacelc.pdf": {
+    "title": "PACELC Theorem",
+    "author": "Daniel J. Abadi"
+  },
+  "paxos_made_simple.pdf": {
+    "title": "Paxos Made Simple",
+    "author": "Leslie Lamport"
+  },
+  "calvin_fast_distributed_transactions.pdf": {
+    "title": "Calvin Fast Distributed Transactions",
+    "author": "Unknown Author"
+  },
+  "madlib_scalable_sql_analytics.pdf": {
+    "title": "Madlib Scalable Sql Analytics",
+    "author": "Unknown Author"
+  },
+  "totalstore_combining_paxos_with_batch_processing.pdf": {
+    "title": "Totalstore Combining Paxos With Batch Processing",
+    "author": "Unknown Author"
+  },
+  "calm_theorem.pdf": {
+    "title": "Calm Theorem",
+    "author": "Unknown Author"
+  },
+  "Riak__A_Distributed__Eventually_Consistent_Key_Value_Data_Store.pdf": {
+    "title": "Riak A Distributed Eventually Consistent Key Value Data Store",
+    "author": "Unknown Author"
+  },
+  "bigtable_a_distributed_storage_system_for_structured_data.pdf": {
+    "title": "Bigtable A Distributed Storage System For Structured Data",
+    "author": "Unknown Author"
+  },
+  "f1_a_distributed_sql_database_that_scales.pdf": {
+    "title": "F1 A Distributed Sql Database That Scales",
+    "author": "Unknown Author"
+  },
+  "the_bigdawg_polystore_system_and_architecture.pdf": {
+    "title": "The Bigdawg Polystore System And Architecture",
+    "author": "Unknown Author"
+  },
+  "hyperdex.pdf": {
+    "title": "Hyperdex",
+    "author": "Unknown Author"
+  },
+  "the_chubby_lock_service.pdf": {
+    "title": "The Chubby Lock Service for Loosely-Coupled Distributed Systems",
+    "author": "Mike Burrows"
+  },
+  "cap_theorem.pdf": {
+    "title": "Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services",
+    "author": "Seth Gilbert, Nancy Lynch"
+  },
+  "zookeeper_wait_free_coordination_for_internet_scale_systems.pdf": {
+    "title": "ZooKeeper: Wait-free Coordination for Internet-scale Systems",
+    "author": "Patrick Hunt et al."
+  },
+  "spanners_consistency.pdf": {
+    "title": "Spanner: Google's Globally Distributed Database",
+    "author": "James C. Corbett et al."
+  },
+  "TPCC__TPC_DS__TPC_H.pdf": {
+    "title": "Tpcc Tpc Ds Tpc H",
+    "author": "Unknown Author"
+  },
+  "silt.pdf": {
+    "title": "Silt",
+    "author": "Unknown Author"
+  },
+  "amazon_dynamodb_a_scalable_predictably_performant_and_fully_managed_nosql_database_service.pdf": {
+    "title": "Dynamo: Amazon's Highly Available Key-Value Store",
+    "author": "Giuseppe DeCandia et al."
+  },
+  "consistent_hashing.pdf": {
+    "title": "Consistent Hashing",
+    "author": "Unknown Author"
+  },
+  "HBase__The_Hadoop_Database.pdf": {
+    "title": "Hbase The Hadoop Database",
+    "author": "Unknown Author"
+  },
+  "ycsb_yahoo_cloud_serving_benchmark.pdf": {
+    "title": "Ycsb Yahoo Cloud Serving Benchmark",
+    "author": "Unknown Author"
+  },
+  "raft_in_search_of_an_understandable_consensus_algorithm.pdf": {
+    "title": "In Search of an Understandable Consensus Algorithm (Raft)",
+    "author": "Diego Ongaro, John Ousterhout"
+  },
+  "numas_in_network_query_processing.pdf": {
+    "title": "Numas In Network Query Processing",
+    "author": "Unknown Author"
+  },
+  "flexible_paxos.pdf": {
+    "title": "Flexible Paxos",
+    "author": "Unknown Author"
+  },
+  "oltp_bench.pdf": {
+    "title": "Oltp Bench",
+    "author": "Unknown Author"
+  },
+  "Aerospike.pdf": {
+    "title": "Aerospike",
+    "author": "Unknown Author"
+  }
+}

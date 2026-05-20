@@ -18,7 +18,7 @@ func NewChromaEngine(pythonServiceURL string) Engine {
 	return &chromaEngine{
 		pythonServiceURL: pythonServiceURL,
 		httpClient: &http.Client{
-			Timeout: 30 * time.Second,
+			Timeout: 600 * time.Second,
 		},
 	}
 }
