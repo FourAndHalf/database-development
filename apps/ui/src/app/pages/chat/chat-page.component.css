@@ -242,6 +242,7 @@
   display: inline-flex; align-items: center; gap: 6px;
   padding: 6px 12px; background: rgba(255, 255, 255, 0.05);
   border-radius: 8px; font-size: 12px; font-weight: 600; color: var(--text-muted);
+  transition: all 0.2s ease;
 }
 
 .center-input {
@@ -502,3 +503,74 @@
   .shell { grid-template-columns: 1fr; }
   .sidebar { display: none; }
 }
+
+.model-dropdown {
+  background: transparent;
+  color: inherit;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 20px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255, 255, 255, 0.55)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 14px;
+}
+
+.model-dropdown:hover {
+  color: var(--text-main);
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255, 255, 255, 0.95)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+.model-dropdown option {
+  background: #141216; /* Match the dark theme background */
+  color: var(--text-main);
+  font-weight: 500;
+  padding: 8px;
+}
+
+.model-selector:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+.suggestion-hint {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  font-size: 11px;
+  color: var(--text-dark);
+  background: rgba(139, 92, 246, 0.1);
+  padding: 4px 8px;
+  border-radius: 6px;
+  pointer-events: none;
+  animation: fadeIn 0.2s ease-out;
+}
+.suggestion-hint span {
+  color: var(--accent);
+  font-weight: 600;
+}
+.suggestion-hint kbd {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 10px;
+}
+.bottom-hint {
+  bottom: 10px;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

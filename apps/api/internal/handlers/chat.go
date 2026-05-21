@@ -27,18 +27,19 @@ type chatRequest struct {
 	ConversationID string `json:"conversation_id"`
 	UserID         string `json:"user_id"`
 	Message        string `json:"message"`
+	Model          string `json:"model"`
 }
 
 type chatResponse struct {
-	ConversationID string        `json:"conversation_id"`
-	UserID         string        `json:"user_id,omitempty"`
-	Answer         string        `json:"answer"`
-	Sources        []rag.Source  `json:"sources,omitempty"`
-	LatencyMs      int64         `json:"latency_ms"`
-	Mock           bool          `json:"mock"`
+	ConversationID string       `json:"conversation_id"`
+	UserID         string       `json:"user_id,omitempty"`
+	Answer         string       `json:"answer"`
+	Sources        []rag.Source `json:"sources,omitempty"`
+	LatencyMs      int64        `json:"latency_ms"`
+	Mock           bool         `json:"mock"`
 }
 
-func (h *ChatHandler) GetConversation(w http.ResponseWriter, r *http.Request) {
+func (h *ChatHandler) GetMessages(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	id := r.PathValue("id")
 	if id == "" {
@@ -100,6 +101,7 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 	ans, err := h.engine.Answer(ctx, rag.Question{
 		ConversationID: conversationID,
 		Message:        req.Message,
+		Model:          req.Model,
 	})
 	if err != nil {
 		if errors.Is(err, rag.ErrNoAnswer) {

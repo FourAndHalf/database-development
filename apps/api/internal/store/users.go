@@ -19,10 +19,22 @@ func (s *Store) CreateUser(ctx context.Context, email, passwordHash string) (str
 	return actualID, nil
 }
 
-func (s *Store) GetUserByEmail(ctx context.Context, email string) (*User, error) {
-	query := `SELECT id, email, password_hash, created_at FROM users WHERE email = $1`
+func (s *Store) GetUserByID(ctx context.Context, id string) (*User, error) {
+	query := `SELECT id, email, password_hash, type_id, created_at FROM users WHERE id = $1`
 	var u User
-	err := s.db.QueryRowContext(ctx, query, email).Scan(&u.ID, &u.Email, &u.PasswordHash, &u.CreatedAt)
+	err := s.db.QueryRowContext(ctx, query, id).Scan(&u.ID, &u.Email, &u.PasswordHash, &u.TypeID, &u.CreatedAt)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, nil
+		}
+		return nil, fmt.Errorf("failed to get user: %w", err)
+	}
+	return &u, nil
+}
+func (s *Store) GetUserByEmail(ctx context.Context, email string) (*User, error) {
+	query := `SELECT id, email, password_hash, type_id, created_at FROM users WHERE email = $1`
+	var u User
+	err := s.db.QueryRowContext(ctx, query, email).Scan(&u.ID, &u.Email, &u.PasswordHash, &u.TypeID, &u.CreatedAt)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			return nil, nil

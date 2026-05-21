@@ -7,6 +7,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ChatApiService, Conversation, Source } from '../../services/chat-api.service';
 import { firstValueFrom } from 'rxjs';
+import { ToastService } from '../../services/toast.service';
 
 type Role = 'user' | 'assistant';
 
@@ -54,8 +55,10 @@ export class ChatPageComponent implements OnDestroy {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly toast = inject(ToastService);
 
   protected draft = '';
+  protected suggestion = '';
 
   private readonly conversationKey = 'db-rag.conversation_id';
   protected readonly conversationId = signal<string>(localStorage.getItem(this.conversationKey) ?? '');
@@ -63,6 +66,27 @@ export class ChatPageComponent implements OnDestroy {
   protected readonly history = signal<Conversation[]>([]);
   protected readonly expandedSourcesByMessageId = signal<Record<string, boolean>>({});
   protected readonly busy = signal(false);
+  protected readonly selectedModel = signal<'aether-1.0' | 'aether-2.0'>('aether-2.0');
+
+  constructor() {
+    if (this.auth.isAuthenticated()) {
+      this.fetchHistory();
+    }
+    afterRenderEffect(() => this.scrollToBottom());
+
+    // Load conversation if id is in query params
+    this.route.paramMap.subscribe(async params => {
+      const id = params.get('id');
+      if (id) {
+        this.conversationId.set(id);
+        await this.loadConversation(id);
+      }
+    });
+  }
+  
+  ngOnDestroy() {
+    // Clean up subscriptions if any
+  }
 
   @HostListener('window:keydown', ['$event'])
   onGlobalKeydown(e: KeyboardEvent) {
@@ -79,172 +103,37 @@ export class ChatPageComponent implements OnDestroy {
     }
   }
 
-  protected greeting = computed(() => {
-    const hour = new Date().getHours();
-    if (hour < 12) return 'Good morning';
-    if (hour < 18) return 'Good afternoon';
-    return 'Good evening';
-  });
-
-  private activeTypewriters: Map<string, any> = new Map();
-
-  constructor() {
-    // Check for query params to prefill from Explore page
-    this.route.queryParams.subscribe(params => {
-      if (params['q']) {
-        this.draft = params['q'];
-        void this.send();
-        // Clear params after use
-        void this.router.navigate([], { 
-          relativeTo: this.route, 
-          queryParams: { q: null }, 
-          queryParamsHandling: 'merge' 
-        });
-      }
-    });
-
-    effect(() => {
-      const id = this.conversationId();
-      if (id) localStorage.setItem(this.conversationKey, id);
-      else localStorage.removeItem(this.conversationKey);
-    });
-
-    effect(() => {
-      if (this.auth.isAuthenticated()) {
-        this.fetchHistory();
+  onDraftChange(val: string) {
+    this.draft = val;
+    // Autocomplete logic for @web-search
+    const match = val.match(/(^|\s)(@[wW]?[eE]?[bB]?[-\s]?[sS]?[eE]?[aA]?[rR]?[cC]?[hH]?)$/);
+    if (match) {
+      const typed = match[2].toLowerCase();
+      if ('@web-search'.startsWith(typed) && typed !== '@web-search') {
+        this.suggestion = '@web-search'.substring(typed.length);
       } else {
-        this.history.set([]);
+        this.suggestion = '';
       }
-    });
-
-    afterRenderEffect(() => {
-      void this.messages();
-      this.scrollToBottom();
-    });
-  }
-
-  logout() {
-    this.auth.logout();
-    this.newChat();
-  }
-
-  async fetchHistory() {
-    const user = this.auth.user();
-    if (!user) return;
-    try {
-      const h = await firstValueFrom(this.api.getHistory(user.id));
-      this.history.set(h || []);
-    } catch (err) {
-      console.error('Failed to fetch history:', err);
+    } else {
+      this.suggestion = '';
     }
-  }
-
-  async deleteChat(e: Event, id: string) {
-    e.stopPropagation();
-    const user = this.auth.user();
-    if (!user) return;
-    try {
-      await firstValueFrom(this.api.deleteChat(user.id, id));
-      if (this.conversationId() === id) this.newChat();
-      await this.fetchHistory();
-    } catch (err) {
-      console.error('Failed to delete chat:', err);
-    }
-  }
-
-  async loadConversation(id: string) {
-    if (this.busy()) return;
-    this.busy.set(true);
-    try {
-      const msgs = await firstValueFrom(this.api.getMessages(id));
-      this.conversationId.set(id);
-      this.messages.set(msgs.map(m => ({
-        id: m.id,
-        role: m.role as Role,
-        text: m.text,
-        pending: false
-      })));
-    } catch (err) {
-      console.error('Failed to load conversation:', err);
-    } finally {
-      this.busy.set(false);
-    }
-  }
-
-  ngOnDestroy() {
-    this.activeTypewriters.forEach(id => clearTimeout(id));
-  }
-
-  private simulateTypewriter(messageId: string, fullText: string) {
-    let currentLength = 0;
-    const typeNextChunk = () => {
-      if (!this.activeTypewriters.has(messageId)) return;
-      if (currentLength >= fullText.length) {
-        this.activeTypewriters.delete(messageId);
-        this.messages.update((xs) => xs.map((m) => m.id === messageId ? { ...m, displayedText: fullText, isTyping: false } : m));
-        return;
-      }
-      let nextLength = currentLength + Math.floor(Math.random() * 4) + 2;
-      if (nextLength > fullText.length) nextLength = fullText.length;
-      
-      // Handle HTML tags: if the chunk lands inside a tag, fast-forward to the end of it
-      const currentSub = fullText.substring(0, nextLength);
-      const lastOpen = currentSub.lastIndexOf('<');
-      const lastClose = currentSub.lastIndexOf('>');
-      if (lastOpen > lastClose) {
-        const nextClose = fullText.indexOf('>', lastOpen);
-        if (nextClose !== -1) nextLength = nextClose + 1;
-      }
-      
-      currentLength = nextLength;
-      this.messages.update((xs) => xs.map((m) => m.id === messageId ? { ...m, displayedText: fullText.substring(0, currentLength) } : m));
-      
-      let nextDelay = Math.random() * 15 + 10;
-      const lastChar = fullText[currentLength - 1];
-      if (['.', '?', '!'].includes(lastChar)) nextDelay += 150;
-      else if ([',', ':'].includes(lastChar)) nextDelay += 60;
-      else if (lastChar === '>') nextDelay = 2;
-      
-      const timerId = setTimeout(typeNextChunk, nextDelay);
-      this.activeTypewriters.set(messageId, timerId);
-    };
-    const initialTimerId = setTimeout(typeNextChunk, 20);
-    this.activeTypewriters.set(messageId, initialTimerId);
-  }
-
-  protected trackById = (_: number, m: UiMessage) => m.id;
-
-  protected copyToClipboard(m: UiMessage) {
-    void navigator.clipboard.writeText(m.text);
-    m.copied = true;
-    setTimeout(() => m.copied = false, 2000);
-  }
-
-  protected prefill(text: string) {
-    this.draft = text;
-    if (this.centerInput) this.centerInput.nativeElement.focus();
-  }
-
-  protected newChat() {
-    this.conversationId.set('');
-    this.messages.set([]);
-    this.expandedSourcesByMessageId.set({});
-    this.draft = '';
-  }
-
-  protected isSourcesExpanded(messageId: string): boolean {
-    return !!this.expandedSourcesByMessageId()[messageId];
-  }
-
-  protected toggleSources(messageId: string) {
-    this.expandedSourcesByMessageId.update((state) => ({ ...state, [messageId]: !state[messageId] }));
   }
 
   protected onEnter(e: Event) {
     const ke = e as KeyboardEvent;
-    if (ke.shiftKey) return;
-    ke.preventDefault();
-    void this.send();
+    
+    if (ke.key === 'Tab' && this.suggestion) {
+      ke.preventDefault();
+      this.draft += this.suggestion + ' ';
+      this.suggestion = '';
+      return;
+    }
+
+    if (ke.key === 'Enter') {
+      if (ke.shiftKey) return;
+      ke.preventDefault();
+      void this.send();
+    }
   }
 
   protected getActiveContent(m: UiMessage): SafeHtml {
@@ -252,6 +141,102 @@ export class ChatPageComponent implements OnDestroy {
     if (m.isTyping) content = m.displayedText || '';
     else if (m.tabs && m.tabs.length > 0) content = m.tabs[m.activeTabIdx ?? 0].content;
     return this.sanitizer.bypassSecurityTrustHtml(content);
+  }
+
+  protected newChat() {
+    this.messages.set([]);
+    this.conversationId.set('');
+    localStorage.removeItem(this.conversationKey);
+    this.router.navigate(['/chat']);
+  }
+  
+  protected async fetchHistory() {
+    const user = this.auth.user();
+    if (!user) return;
+    try {
+      const history = await firstValueFrom(this.api.getHistory(user.id));
+      this.history.set(history);
+    } catch (err) {
+      console.error('Failed to fetch history:', err);
+      this.toast.error('Failed to fetch chat history.');
+    }
+  }
+
+  protected async loadConversation(id: string) {
+    this.messages.set([]);
+    this.busy.set(true);
+    this.conversationId.set(id);
+    localStorage.setItem(this.conversationKey, id);
+    this.router.navigate(['/chat', { id }]);
+
+    try {
+      const res = await firstValueFrom(this.api.getMessages(id));
+      this.messages.set(res.map((m: any) => ({
+        id: m.id,
+        role: m.role,
+        text: m.content,
+      })));
+    } catch (err) {
+      console.error('Failed to load conversation:', err);
+      this.toast.error('Failed to load conversation.');
+    } finally {
+      this.busy.set(false);
+    }
+  }
+
+  protected async deleteConversation(id: string) {
+    if (!confirm('Are you sure you want to delete this chat?')) return;
+    const user = this.auth.user();
+    if (!user) return;
+    try {
+      await firstValueFrom(this.api.deleteChat(user.id, id));
+      this.history.update(h => h.filter(c => c.id !== id));
+      if (this.conversationId() === id) {
+        this.newChat();
+      }
+      this.toast.success('Chat deleted successfully.');
+    } catch (err) {
+      console.error('Failed to delete chat:', err);
+      this.toast.error('Failed to delete chat.');
+    }
+  }
+
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['/auth']);
+  }
+
+  greeting() {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning';
+    if (hour < 18) return 'Good afternoon';
+    return 'Good evening';
+  }
+
+  prefill(query: string) {
+    this.draft = query;
+    const input = this.messages().length === 0 ? this.centerInput : this.bottomInput;
+    if (input) {
+      input.nativeElement.focus();
+    }
+  }
+
+  toggleSources(messageId: string) {
+    this.expandedSourcesByMessageId.update(s => ({ ...s, [messageId]: !s[messageId] }));
+  }
+
+  isSourcesExpanded(messageId: string): boolean {
+    return this.expandedSourcesByMessageId()[messageId] ?? false;
+  }
+
+  copyToClipboard(m: UiMessage) {
+    navigator.clipboard.writeText(m.text);
+    m.copied = true;
+    setTimeout(() => {
+      m.copied = false;
+      // This is needed to trigger change detection
+      this.messages.update(msgs => [...msgs]);
+    }, 1500);
   }
 
   protected async send() {
@@ -280,7 +265,8 @@ export class ChatPageComponent implements OnDestroy {
       const res = await firstValueFrom(
         this.api.chat({ 
           conversation_id: this.conversationId() || undefined, 
-          message 
+          message,
+          model: this.selectedModel()
         })
       );
       if (!res) throw new Error('no response');
@@ -315,6 +301,7 @@ export class ChatPageComponent implements OnDestroy {
 
     } catch (err) {
       this.messages.update((xs) => xs.map((m) => m.id === assistantId ? { ...m, text: 'Failed to synthesize answer.', pending: false } : m));
+      this.toast.error('Failed to get an answer from the assistant.');
     } finally {
       this.busy.set(false);
     }
@@ -324,5 +311,27 @@ export class ChatPageComponent implements OnDestroy {
     const el = this.threadEl?.nativeElement;
     if (!el) return;
     el.scrollTop = el.scrollHeight;
+  }
+
+  private simulateTypewriter(messageId: string, text: string) {
+    let i = 0;
+    const interval = setInterval(() => {
+      this.messages.update(xs => xs.map(m => {
+        if (m.id === messageId) {
+          return { ...m, displayedText: text.substring(0, i) };
+        }
+        return m;
+      }));
+      i++;
+      if (i > text.length) {
+        clearInterval(interval);
+        this.messages.update(xs => xs.map(m => {
+          if (m.id === messageId) {
+            return { ...m, isTyping: false };
+          }
+          return m;
+        }));
+      }
+    }, 20);
   }
 }

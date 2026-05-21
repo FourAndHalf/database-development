@@ -3,6 +3,7 @@ package httpserver
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"database-development/apps/api/internal/handlers"
 	"database-development/apps/api/internal/rag"
@@ -42,7 +43,7 @@ func (s *Server) Handler() http.Handler {
 func (s *Server) routes() http.Handler {
 	health := handlers.NewHealthHandler()
 	chat := handlers.NewChatHandler(s.cfg.Logger, s.cfg.Engine, s.cfg.Store)
-	papers := handlers.NewPaperHandler(s.cfg.Logger, s.cfg.Store)
+	papers := handlers.NewPaperHandler(s.cfg.Logger, s.cfg.Engine, s.cfg.Store)
 	users := handlers.NewUserHandler(s.cfg.Logger, s.cfg.Store)
 	auth := handlers.NewAuthHandler(s.cfg.Logger, s.cfg.Store)
 
@@ -57,19 +58,24 @@ func (s *Server) routes() http.Handler {
 
 	mux.HandleFunc("OPTIONS /v1/chat", preflightHandler(s.cfg.UIOrigin))
 	mux.HandleFunc("POST /v1/chat", chat.Post)
-	mux.HandleFunc("GET /v1/chat/{id}", chat.GetConversation)
+	mux.HandleFunc("GET /v1/chat/{id}", chat.GetMessages)
 
 	mux.HandleFunc("OPTIONS /v1/papers", preflightHandler(s.cfg.UIOrigin))
 	mux.HandleFunc("GET /v1/papers", papers.SearchPapers)
+	mux.HandleFunc("POST /v1/papers", papers.UploadPaper)
 	mux.HandleFunc("OPTIONS /v1/papers/{id}", preflightHandler(s.cfg.UIOrigin))
 	mux.HandleFunc("GET /v1/papers/{id}", papers.GetPaper)
 	mux.HandleFunc("PUT /v1/papers/{id}/metadata", papers.PutMetadata)
+	mux.HandleFunc("DELETE /v1/papers/{id}", papers.DeletePaper)
 
-	// Proxy PDFs to Python Service
-	mux.HandleFunc("GET /pdfs/{filename}", func(w http.ResponseWriter, r *http.Request) {
-		filename := r.PathValue("filename")
-		http.Redirect(w, r, s.cfg.PythonServiceURL+"/pdfs/"+filename, http.StatusTemporaryRedirect)
-	})
+	// Serve PDFs statically from the Go Gateway
+	// Use environment variable for data path, fallback to relative path for dev
+	dataPath := "../../data"
+	if envDataPath := os.Getenv("DATA_DIR"); envDataPath != "" {
+		dataPath = envDataPath
+	}
+	fs := http.FileServer(http.Dir(dataPath + "/raw_pdfs"))
+	mux.Handle("GET /pdfs/", http.StripPrefix("/pdfs/", fs))
 
 	mux.HandleFunc("OPTIONS /v1/users", preflightHandler(s.cfg.UIOrigin))
 	mux.HandleFunc("PUT /v1/users", users.PutUser)
@@ -87,4 +93,3 @@ func (s *Server) routes() http.Handler {
 		corsMiddleware(s.cfg.UIOrigin),
 	)
 }
-

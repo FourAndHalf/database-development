@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"database-development/apps/api/internal/store"
@@ -11,7 +12,15 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-var jwtSecret = []byte("aether-secret-key") // In production, use an environment variable
+var jwtSecret = getJwtSecret()
+
+func getJwtSecret() []byte {
+	secret := os.Getenv("JWT_SECRET")
+	if secret == "" {
+		return []byte("aether-secret-key") // Fallback for dev
+	}
+	return []byte(secret)
+}
 
 type AuthHandler struct {
 	logger *log.Logger
@@ -28,9 +37,10 @@ type authRequest struct {
 }
 
 type authResponse struct {
-	Token string `json:"token"`
-	Email string `json:"email"`
-	ID    string `json:"id"`
+	Token  string `json:"token"`
+	Email  string `json:"email"`
+	ID     string `json:"id"`
+	TypeID int    `json:"type_id"`
 }
 
 func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {
@@ -68,9 +78,10 @@ func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	writeJSON(w, http.StatusCreated, authResponse{
-		Token: token,
-		Email: req.Email,
-		ID:    id,
+		Token:  token,
+		Email:  req.Email,
+		ID:     id,
+		TypeID: 1, // Default type_id is 1 (standard)
 	})
 }
 
@@ -107,9 +118,10 @@ func (h *AuthHandler) Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	writeJSON(w, http.StatusOK, authResponse{
-		Token: token,
-		Email: u.Email,
-		ID:    u.ID,
+		Token:  token,
+		Email:  u.Email,
+		ID:     u.ID,
+		TypeID: u.TypeID,
 	})
 }
 

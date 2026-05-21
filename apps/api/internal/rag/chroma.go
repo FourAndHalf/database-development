@@ -24,8 +24,9 @@ func NewChromaEngine(pythonServiceURL string) Engine {
 }
 
 type pythonQueryRequest struct {
-	Query     string `json:"query"`
-	NResults  int    `json:"n_results"`
+	Query    string `json:"query"`
+	NResults int    `json:"n_results"`
+	Model    string `json:"model"`
 }
 
 type pythonSource struct {
@@ -44,6 +45,7 @@ func (e *chromaEngine) Answer(ctx context.Context, q Question) (Answer, error) {
 	reqBody, err := json.Marshal(pythonQueryRequest{
 		Query:    q.Message,
 		NResults: 5,
+		Model:    q.Model,
 	})
 	if err != nil {
 		return Answer{}, err
@@ -85,4 +87,23 @@ func (e *chromaEngine) Answer(ctx context.Context, q Question) (Answer, error) {
 		Sources: sources,
 		Mock:    false,
 	}, nil
+}
+
+func (e *chromaEngine) DeleteDocument(ctx context.Context, filename string) error {
+	req, err := http.NewRequestWithContext(ctx, "DELETE", e.pythonServiceURL+"/api/papers/"+filename, nil)
+	if err != nil {
+		return err
+	}
+
+	resp, err := e.httpClient.Do(req)
+	if err != nil {
+		return fmt.Errorf("failed to call python service to delete: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("python service returned status: %s", resp.Status)
+	}
+
+	return nil
 }

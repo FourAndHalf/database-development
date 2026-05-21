@@ -9,11 +9,13 @@ var ErrNoAnswer = errors.New("no answer")
 
 type Engine interface {
 	Answer(ctx context.Context, q Question) (Answer, error)
+	DeleteDocument(ctx context.Context, filename string) error
 }
 
 type Question struct {
 	ConversationID string
 	Message        string
+	Model          string
 }
 
 type Answer struct {
@@ -29,4 +31,3 @@ type Source struct {
 	Snippet string `json:"snippet"`
 	URL     string `json:"url,omitempty"`
 }
-

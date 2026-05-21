@@ -12,6 +12,66 @@ services:
       - "5434:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - rag-network
+
+  python-rag-engine:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile.python
+    container_name: rag-python-engine
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data # Mount data directory for ChromaDB and PDFs
+    networks:
+      - rag-network
+    # Optional: If you want to use GPU for the local LLM, uncomment below
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+  go-api-gateway:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile.go
+    container_name: rag-go-api
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - UI_ORIGIN=http://localhost:4200 # Or your external UI URL
+      - RAG_ENGINE=chroma
+      - PYTHON_SERVICE_URL=http://python-rag-engine:8000
+      - DB_URL=postgres://nexus:password@postgres:5432/nexus_db?sslmode=disable
+      - DATA_DIR=/app/data
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - postgres
+      - python-rag-engine
+    networks:
+      - rag-network
+
+  angular-ui:
+    build:
+      context: .
+      dockerfile: apps/ui/Dockerfile
+    container_name: rag-angular-ui
+    ports:
+      - "4200:80" # Map host 4200 to container 80 (Nginx)
+    depends_on:
+      - go-api-gateway
+    networks:
+      - rag-network
 
 volumes:
   pgdata:
+
+networks:
+  rag-network:
+    driver: bridge

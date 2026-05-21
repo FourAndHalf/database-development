@@ -19,4 +19,3 @@ func TruncateTitle(s string, max int) string {
 	}
 	return s
 }
-

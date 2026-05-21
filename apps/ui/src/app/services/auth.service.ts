@@ -6,6 +6,7 @@ export type AuthResponse = {
   token: string;
   email: string;
   id: string;
+  type_id: number;
 };
 
 export type AuthRequest = {

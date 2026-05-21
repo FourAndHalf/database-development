@@ -60,7 +60,7 @@ func (h *UserHandler) DeleteChat(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	userID := r.PathValue("id")
 	conversationID := r.PathValue("conversation_id")
-	
+
 	if userID == "" || conversationID == "" {
 		writeErr(w, http.StatusBadRequest, "missing_ids")
 		return

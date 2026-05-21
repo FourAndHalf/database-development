@@ -128,6 +128,18 @@ func (s *Store) GetPaperWithMetadata(ctx context.Context, paperID string) (*Pape
 	return &pd, nil
 }
 
+func (s *Store) DeletePaper(ctx context.Context, id string) (string, error) {
+	var filename string
+	err := s.db.QueryRowContext(ctx, "DELETE FROM papers WHERE id = $1 RETURNING filename", id).Scan(&filename)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return "", nil // Paper not found
+		}
+		return "", fmt.Errorf("failed to delete paper: %w", err)
+	}
+	return filename, nil
+}
+
 func (s *Store) SearchPapers(ctx context.Context, query string) ([]PaperDetail, error) {
 	sqlQuery := `
 		SELECT 
@@ -161,4 +173,3 @@ func (s *Store) SearchPapers(ctx context.Context, query string) ([]PaperDetail, 
 	}
 	return papers, nil
 }
-

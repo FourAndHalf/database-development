@@ -23,8 +23,9 @@ func main() {
 	pythonServiceURL := envString("PYTHON_SERVICE_URL", "http://localhost:8000")
 
 	logger := log.New(os.Stdout, "api ", log.LstdFlags|log.Lmicroseconds)
-	
-	dbStore, err := store.New("postgres://nexus:password@localhost:5434/nexus_db?sslmode=disable")
+
+	dbURL := envString("DB_URL", "postgres://nexus:password@localhost:5434/nexus_db?sslmode=disable")
+	dbStore, err := store.New(dbURL)
 	if err != nil {
 		logger.Fatalf("failed to connect to db: %v", err)
 	}
@@ -52,9 +53,9 @@ func main() {
 		Addr:              ":" + strconv.Itoa(port),
 		Handler:           srv.Handler(),
 		ReadHeaderTimeout: 5 * time.Second,
-		ReadTimeout:       600 * time.Second,
-		WriteTimeout:      600 * time.Second,
-		IdleTimeout:       600 * time.Second,
+		ReadTimeout:       120 * time.Second,
+		WriteTimeout:      120 * time.Second,
+		IdleTimeout:       120 * time.Second,
 	}
 
 	go func() {

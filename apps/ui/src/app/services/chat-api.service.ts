@@ -13,6 +13,7 @@ export type Source = {
 export type ChatMessage = {
   conversation_id?: string;
   message: string;
+  model?: string;
 };
 
 export type ChatResponse = {
@@ -52,6 +53,14 @@ export class ChatApiService {
 
   searchPapers(query: string): Observable<any[]> {
     return this.http.get<any[]>(`/v1/papers?q=${encodeURIComponent(query)}`);
+  }
+
+  deletePaper(id: string): Observable<any> {
+    return this.http.delete(`/v1/papers/${id}`);
+  }
+
+  uploadPaper(data: FormData): Observable<any> {
+    return this.http.post(`/v1/papers`, data);
   }
 }
 

@@ -1,0 +1,58 @@
+# Ignore version control
+.git
+.gitignore
+.github
+
+# Ignore Python virtual environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+.nox/
+.mypy_cache/
+.ruff_cache/
+
+# Ignore Go build outputs and caches
+apps/api/main
+apps/api/*.test
+apps/api/c.out
+
+# Ignore Node/Angular dependencies and build outputs
+apps/ui/node_modules/
+apps/ui/dist/
+apps/ui/.angular/
+npm-debug.log
+yarn-error.log
+
+# Ignore IDE and OS specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+.gemini/
+
+# IMPORTANT: Ignore the large local data directory
+# This contains raw PDFs, ChromaDB state, and parsed chunks.
+# This should be mounted as a volume at runtime, NEVER baked into the image.
+data/
+
+# Ignore local temporary/experiment folders
+temp/
+experiments/*/results/
+
+# Ignore local environment variable files
+*.env
+*.env.local
+.env

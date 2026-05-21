@@ -44,3 +44,6 @@ func (m *mockEngine) Answer(ctx context.Context, q Question) (Answer, error) {
 	}, nil
 }
 
+func (m *mockEngine) DeleteDocument(ctx context.Context, filename string) error {
+	return nil
+}

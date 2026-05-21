@@ -26,12 +26,12 @@ register()
 
 # --- Global State ---
 retriever = None
-llm_pipeline = None
+llm_pipelines = {}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Load the Retriever and the Local LLM on application startup, and clean up on shutdown."""
-    global retriever, llm_pipeline
+    """Load the Retriever and the Local LLMs on application startup, and clean up on shutdown."""
+    global retriever, llm_pipelines
     
     print("Loading PaperRetriever (Embedder + ChromaDB)...")
     retriever = PaperRetriever()
@@ -40,39 +40,50 @@ async def lifespan(app: FastAPI):
     else:
         print("PaperRetriever loaded successfully.")
 
-    print("\nLoading Local LLM (Llama-3.2-3B-Instruct) in 4-bit precision...")
-    print("This may take a minute on the first run as the model downloads.")
-    
-    model_id = "unsloth/Llama-3.2-3B-Instruct"
-    device = 0 if torch.cuda.is_available() else -1
-    
     from transformers import BitsAndBytesConfig
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,
         bnb_4bit_compute_dtype=torch.float16,
         bnb_4bit_quant_type="nf4",
     )
+
+    print("\nLoading Aether 1.0 (Qwen2.5-0.5B-Instruct)...")
+    qwen_id = "Qwen/Qwen2.5-0.5B-Instruct"
+    qwen_tokenizer = AutoTokenizer.from_pretrained(qwen_id)
+    qwen_model = AutoModelForCausalLM.from_pretrained(
+        qwen_id,
+        device_map="auto" # 0.5B is small, usually fits fine without 4-bit, but can use standard settings
+    )
+    llm_pipelines["aether-1.0"] = pipeline(
+        "text-generation", 
+        model=qwen_model, 
+        tokenizer=qwen_tokenizer
+    )
+
+    print("\nLoading Aether 2.0 (Qwen2.5-1.5B-Instruct) in 4-bit precision...")
+    print("This may take a minute on the first run as the model downloads.")
     
-    tokenizer = AutoTokenizer.from_pretrained(model_id)
-    model = AutoModelForCausalLM.from_pretrained(
-        model_id,
+    aether2_id = "Qwen/Qwen2.5-1.5B-Instruct"
+    aether2_tokenizer = AutoTokenizer.from_pretrained(aether2_id)
+    aether2_model = AutoModelForCausalLM.from_pretrained(
+        aether2_id,
         quantization_config=bnb_config,
         device_map="auto"
     )
     
-    llm_pipeline = pipeline(
+    llm_pipelines["aether-2.0"] = pipeline(
         "text-generation", 
-        model=model, 
-        tokenizer=tokenizer
+        model=aether2_model, 
+        tokenizer=aether2_tokenizer
     )
-    print("LLM loaded successfully!\n")
+    print("LLMs loaded successfully!\n")
     
     yield  # Application runs here
     
     # Cleanup on shutdown
     print("Shutting down resources...")
     retriever = None
-    llm_pipeline = None
+    llm_pipelines = {}
 
 # --- API Definition ---
 app = FastAPI(lifespan=lifespan)
@@ -83,7 +94,8 @@ Instrumentator().instrument(app).expose(app)
 # --- Pydantic Models for Request/Response ---
 class QueryRequest(BaseModel):
     query: str
-    n_results: int = 3
+    n_results: int = 5
+    model: str = "aether-2.0"
 
 class Source(BaseModel):
     source_file: str
@@ -102,7 +114,7 @@ async def handle_query(request: QueryRequest):
     Handles a user's query, retrieves relevant context, and uses a local LLM
     to synthesize a conversational answer.
     """
-    if not retriever or not retriever.collection or not llm_pipeline:
+    if not retriever or not retriever.collection or not llm_pipelines:
         raise HTTPException(status_code=503, detail="Services are not fully initialized.")
 
     # Check if the user explicitly requested a web search
@@ -161,39 +173,43 @@ async def handle_query(request: QueryRequest):
     all_context_docs = documents + web_documents
     context = "\n\n---\n\n".join(all_context_docs)
     
+    selected_model = request.model if request.model in llm_pipelines else "aether-2.0"
+    active_pipeline = llm_pipelines[selected_model]
+    
     messages = [
         {
             "role": "system", 
-            "content": """You are Aether, an elite research architect specializing in distributed systems and databases. You are chained with OpenUI capabilities to generate stunning, interactive UI components and data visualizations.
-Your goal is to provide EXHAUSTIVE, multi-layered research syntheses. DO NOT output plain walls of text. You MUST prioritize bullet points, HTML tables, and OpenUI-style SVG graphs.
+            "content": """You are Aether, an elite research architect specializing in distributed systems. You provide EXHAUSTIVE technical syntheses. 
+DO NOT use Markdown (no **, no ##, no `). Use ONLY raw HTML (<strong>, <code>, <ul>, <li>, <table>, <h3>) and <svg>.
 
-You MUST structure your response using these EXACT XML tags. Do NOT use JSON.
+Your response MUST follow this structure using these EXACT XML tags:
 
 <main>
-A high-fidelity technical deep-dive. 
-- Use <ul> and <li> for perfectly articulated, concise bullet points.
-- Use BEAUTIFUL COLORFUL SVG diagrams to illustrate architectures.
-- Use OpenUI-styled SVG bar charts, line graphs, or scatter plots to provide deep insights into quantitative measures (e.g., latency, throughput, scale). Ensure these graphs are visually stunning and clearly labeled.
-- Use <table> for comparisons.
+A high-fidelity technical summary of the core concepts.
+- Use <ul> and <li> for concise technical points.
+- You MUST include a <svg> architecture diagram. 
+  SVG RULES:
+  - Use <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">.
+  - Architecture boxes: <rect x="..." y="50" width="160" height="100" rx="10" fill="rgba(139, 92, 246, 0.2)" stroke="#8b5cf6" stroke-width="2" />.
+  - Text inside boxes: <text x="..." y="105" text-anchor="middle" fill="white" font-size="14" font-family="Inter, sans-serif">...</text>.
+  - Connectors: <line x1="..." y1="100" x2="..." y2="100" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrowhead)" />.
 </main>
 <tab title="History & Evolution">
-Chronological account (citing papers), evolution, and problems solved. Use HTML bullet points and timelines.
+Detailed chronological account and the problems this technology solved. Use HTML lists.
 </tab>
 <tab title="Technical Internals">
-Deep technical analysis. MUST include at least one <table> or <svg> diagram showing data structures, algorithmic complexity, or architecture.
+Deep-dive into algorithms and data structures. You MUST include an HTML <table> for complexity or component comparisons.
 </tab>
 <tab title="Quantitative & Trade-offs">
-Focus on CAP theorem, PACELC, performance metrics. USE OpenUI-styled SVG CHARTS to show quantitative measures. Use <table> for trade-offs.
+Focus on CAP/PACELC, performance, and specific engineering trade-offs. 
 </tab>
 
-VISUAL & CONTENT RULES:
-- NEVER use Markdown (no **, no ##, no `). ONLY use raw HTML (e.g., <strong>, <code>, <ul>, <li>, <h3>) and <svg>.
-- For SVGs, use vibrant gradients, clean lines, text labels, proper <viewBox>, and make them visually stunning (emulating OpenUI component generation).
-- Prioritize bullet points, HTML tables, and SVGs over large blocks of plain text.
-- Be academically rigorous. Reference the provided paper contexts by name where possible.
-- If context is missing for a specific tab, use the available information to provide the best possible historical or technical deduction.
-
-Your synthesis should feel like a premium, published research briefing."""
+CONTENT QUALITY RULES:
+1. EXHAUSTIVE: Do not give short answers. Provide deep technical insight for EVERY tag.
+2. CITATION-FIRST: Reference the provided paper names directly in your text.
+3. NO HALLUCINATION: If the context doesn't contain a specific detail, state that it's an architectural deduction based on general principles of the system.
+4. VISUALS: Prioritize <table> and <svg> over plain text. Ensure SVGs have proper spacing so text does not overlap.
+"""
         },
         {
             "role": "user", 
@@ -201,16 +217,16 @@ Your synthesis should feel like a premium, published research briefing."""
         }
     ]
     
-    # Format the prompt using Qwen's specific chat template
-    prompt = llm_pipeline.tokenizer.apply_chat_template(
+    # Format the prompt using the model's specific chat template
+    prompt = active_pipeline.tokenizer.apply_chat_template(
         messages, 
         tokenize=False, 
         add_generation_prompt=True
     )
     
     # 4. Generate the synthesized answer
-    print("Generating elite hyper-informative synthesis...")
-    outputs = llm_pipeline(
+    print(f"Generating elite hyper-informative synthesis using {selected_model}...")
+    outputs = active_pipeline(
         prompt, 
         max_new_tokens=2000,
         do_sample=True, 
@@ -263,10 +279,22 @@ Your synthesis should feel like a premium, published research briefing."""
 # --- Static File Serving ---
 app.mount("/static", StaticFiles(directory="apps/ui"), name="static")
 
-# Mount PDF directory for viewing
-pdf_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/raw_pdfs'))
-if os.path.exists(pdf_dir):
-    app.mount("/pdfs", StaticFiles(directory=pdf_dir), name="pdfs")
+# Removed PDF static mounting, now handled by Go API Gateway
+
+@app.delete("/api/papers/{filename}")
+async def delete_paper(filename: str):
+    """Deletes all chunks associated with a specific PDF filename from the vector database."""
+    if not retriever or not retriever.collection:
+        raise HTTPException(status_code=503, detail="Vector database not initialized.")
+    
+    try:
+        # ChromaDB allows deleting by metadata matches
+        retriever.collection.delete(where={"source": filename})
+        print(f"Deleted vectors for source: {filename}")
+        return {"status": "success", "deleted": filename}
+    except Exception as e:
+        print(f"Error deleting vectors for {filename}: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/")
 async def read_index():

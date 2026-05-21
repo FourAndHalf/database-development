@@ -2,17 +2,17 @@ package httpserver
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"runtime/debug"
 	"strings"
 	"sync"
 	"time"
-	"fmt"
 
-	"golang.org/x/time/rate"
-	"github.com/golang-jwt/jwt/v5"
 	"context"
+	"github.com/golang-jwt/jwt/v5"
+	"golang.org/x/time/rate"
 
 	"database-development/apps/api/internal/store"
 	"github.com/prometheus/client_golang/prometheus"
@@ -221,4 +221,3 @@ func writeJSON(w http.ResponseWriter, status int, v any) {
 	w.WriteHeader(status)
 	_ = json.NewEncoder(w).Encode(v)
 }
-
