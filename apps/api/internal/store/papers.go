@@ -140,9 +140,10 @@ func (s *Store) DeletePaper(ctx context.Context, id string) (string, error) {
 	return filename, nil
 }
 
-func (s *Store) SearchPapers(ctx context.Context, query string) ([]PaperDetail, error) {
+func (s *Store) SearchPapers(ctx context.Context, query string, page, pageSize int) (*PaginatedPapers, error) {
+	offset := (page - 1) * pageSize
 	sqlQuery := `
-		SELECT 
+		SELECT
 			p.id, p.title, p.filename, COALESCE(p.url, '') as url, p.created_at, p.updated_at,
 			COALESCE(json_agg(json_build_object('id', a.id, 'name', a.name)) FILTER (WHERE a.id IS NOT NULL), '[]') as authors
 		FROM papers p
@@ -151,9 +152,9 @@ func (s *Store) SearchPapers(ctx context.Context, query string) ([]PaperDetail, 
 		WHERE p.title ILIKE $1 OR a.name ILIKE $1
 		GROUP BY p.id
 		ORDER BY p.title ASC
-		LIMIT 30
+		LIMIT $2 OFFSET $3
 	`
-	rows, err := s.db.QueryContext(ctx, sqlQuery, "%"+query+"%")
+	rows, err := s.db.QueryContext(ctx, sqlQuery, "%"+query+"%", pageSize, offset)
 	if err != nil {
 		return nil, fmt.Errorf("failed to search papers: %w", err)
 	}
@@ -171,5 +172,21 @@ func (s *Store) SearchPapers(ctx context.Context, query string) ([]PaperDetail, 
 		}
 		papers = append(papers, pd)
 	}
-	return papers, nil
+
+	countQuery := `
+		SELECT COUNT(DISTINCT p.id)
+		FROM papers p
+		LEFT JOIN paper_authors pa ON p.id = pa.paper_id
+		LEFT JOIN authors a ON pa.author_id = a.id
+		WHERE p.title ILIKE $1 OR a.name ILIKE $1
+	`
+	var total int
+	if err := s.db.QueryRowContext(ctx, countQuery, "%"+query+"%").Scan(&total); err != nil {
+		return nil, fmt.Errorf("failed to count papers: %w", err)
+	}
+
+	return &PaginatedPapers{
+		Papers: papers,
+		Total:  total,
+	}, nil
 }

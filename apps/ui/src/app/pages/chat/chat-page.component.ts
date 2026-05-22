@@ -82,6 +82,13 @@ export class ChatPageComponent implements OnDestroy {
         await this.loadConversation(id);
       }
     });
+
+    this.route.queryParamMap.subscribe(async params => {
+      const q = params.get('q');
+      if (q) {
+        this.prefill(q);
+      }
+    });
   }
   
   ngOnDestroy() {
@@ -155,7 +162,7 @@ export class ChatPageComponent implements OnDestroy {
     if (!user) return;
     try {
       const history = await firstValueFrom(this.api.getHistory(user.id));
-      this.history.set(history);
+      this.history.set(history || []);
     } catch (err) {
       console.error('Failed to fetch history:', err);
       this.toast.error('Failed to fetch chat history.');

@@ -52,3 +52,8 @@ type PaperDetail struct {
 	Authors  []Author               `json:"authors"`
 	Metadata map[string]interface{} `json:"metadata"`
 }
+
+type PaginatedPapers struct {
+	Papers []PaperDetail `json:"papers"`
+	Total  int           `json:"total"`
+}

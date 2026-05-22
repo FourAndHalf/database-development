@@ -110,7 +110,7 @@
               <div class="input-wrapper">
                 <textarea
                   #centerInput
-                  [ngModel]="draft"
+                                    [(ngModel)]="draft"
                   (ngModelChange)="onDraftChange($event)"
                   name="draft"
                   class="center-input"
@@ -263,7 +263,7 @@
                 <div class="input-wrapper">
                   <textarea
                     #bottomInput
-                    [ngModel]="draft"
+                                      [(ngModel)]="draft"
                     (ngModelChange)="onDraftChange($event)"
                     name="draft"
                     class="center-input bottom-input"

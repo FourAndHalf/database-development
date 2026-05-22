@@ -51,8 +51,8 @@ export class ChatApiService {
     return this.http.get<any[]>(`/v1/chat/${conversationId}`);
   }
 
-  searchPapers(query: string): Observable<any[]> {
-    return this.http.get<any[]>(`/v1/papers?q=${encodeURIComponent(query)}`);
+  searchPapers(query: string, page: number, pageSize: number): Observable<any> {
+    return this.http.get<any>(`/v1/papers?q=${encodeURIComponent(query)}&page=${page}&pageSize=${pageSize}`);
   }
 
   deletePaper(id: string): Observable<any> {

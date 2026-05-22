@@ -10,6 +10,7 @@
         <div class="search-box">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input 
+            #searchInput
             type="text" 
             placeholder="Search papers by title, author, or keywords..." 
             [ngModel]="query()" 
@@ -20,28 +21,32 @@
 
       <main class="explore-content">
         <div class="filters">
-          <span class="results-count">{{ results().length }} papers found</span>
-          <div class="filter-group">
-            <button class="upload-btn" *ngIf="isAdmin()" (click)="showUpload = true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              Upload Paper
-            </button>
-          </div>
-        </div>
+          <span class="results-count">{{ total() }} papers found</span>
+                    <div class="filter-group">
+                      @if (isAdmin()) {
+                        <button class="upload-btn" (click)="showUpload = true">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                          Upload Paper
+                        </button>
+                      }
+                    </div>
+                  </div>
 
-        <div class="paper-grid">
-          @for (p of results(); track p.id) {
+                  <div class="paper-grid">
+                    @for (p of results(); track p.id) {
             <div class="paper-card">
               <div class="p-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
               </div>
               <div class="p-details">
                 <h3 class="p-title">{{ p.title }}</h3>
-                <div class="p-authors" *ngIf="p.authors?.length">
-                  @for (a of p.authors; track a.id) {
-                    <span>{{ a.name }}{{ !$last ? ', ' : '' }}</span>
-                  }
-                </div>
+                @if (p.authors?.length) {
+                  <div class="p-authors">
+                    @for (a of p.authors; track a.id) {
+                      <span>{{ a.name }}{{ !$last ? ', ' : '' }}</span>
+                    }
+                  </div>
+                }
                 <div class="p-meta">
                   <span class="p-filename">{{ p.filename }}</span>
                   <span class="p-date">{{ p.created_at | date:'mediumDate' }}</span>
@@ -51,13 +56,18 @@
                 <a class="view-pdf-btn" [href]="getViewerUrl(p.filename)" target="_blank">
                   Open PDF
                 </a>
-                <button class="synth-btn" [routerLink]="['/chat']" [queryParams]="{ q: 'Summarize ' + p.title }">
+                <button class="synth-btn" (click)="synthesize(p.title)">
                   Synthesize
                 </button>
-                <button *ngIf="isAdmin()" class="delete-btn" (click)="deletePaper(p.id, p.title)" [disabled]="busyDelete() === p.id">
-                  <svg *ngIf="busyDelete() !== p.id" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                  <span class="loader" *ngIf="busyDelete() === p.id"></span>
-                </button>
+                @if (isAdmin()) {
+                  <button class="delete-btn" (click)="deletePaper(p.id, p.title)" [disabled]="busyDelete() === p.id">
+                    @if (busyDelete() !== p.id) {
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    } @else {
+                      <span class="loader"></span>
+                    }
+                  </button>
+                }
               </div>
             </div>
           } @empty {
@@ -67,38 +77,48 @@
             </div>
           }
         </div>
+        
+        @if (totalPages() > 1) {
+          <div class="pagination-controls">
+            <button (click)="prevPage()" [disabled]="currentPage() === 1">Previous</button>
+            <span>Page {{ currentPage() }} of {{ totalPages() }}</span>
+            <button (click)="nextPage()" [disabled]="currentPage() === totalPages()">Next</button>
+          </div>
+        }
       </main>
       
       <!-- Upload Modal (Admin Only) -->
-      <div class="modal-overlay" *ngIf="showUpload">
-        <div class="modal">
-          <h2>Upload Research Paper</h2>
-          <form (ngSubmit)="upload()" #upForm="ngForm">
-            <div class="form-group">
-              <label>Paper Title</label>
-              <input type="text" name="title" [(ngModel)]="upData.title" required>
-            </div>
-            <div class="form-group">
-              <label>Authors (comma separated)</label>
-              <input type="text" name="authors" [(ngModel)]="upData.authors">
-            </div>
-            <div class="form-group">
-              <label>Tags (comma separated)</label>
-              <input type="text" name="tags" [(ngModel)]="upData.tags">
-            </div>
-            <div class="form-group">
-              <label>PDF File</label>
-              <input type="file" accept="application/pdf" (change)="onFileSelected($event)" required>
-            </div>
-            <div class="form-actions">
-              <button type="button" class="btn-ghost" (click)="showUpload = false">Cancel</button>
-              <button type="submit" class="btn-primary" [disabled]="!upForm.form.valid || !upData.file || uploading">
-                {{ uploading ? 'Uploading...' : 'Upload & Process' }}
-              </button>
-            </div>
-          </form>
+      @if (showUpload) {
+        <div class="modal-overlay">
+          <div class="modal">
+            <h2>Upload Research Paper</h2>
+            <form (ngSubmit)="upload()" #upForm="ngForm">
+              <div class="form-group">
+                <label>Paper Title</label>
+                <input type="text" name="title" [(ngModel)]="upData.title" required>
+              </div>
+              <div class="form-group">
+                <label>Authors (comma separated)</label>
+                <input type="text" name="authors" [(ngModel)]="upData.authors">
+              </div>
+              <div class="form-group">
+                <label>Tags (comma separated)</label>
+                <input type="text" name="tags" [(ngModel)]="upData.tags">
+              </div>
+              <div class="form-group">
+                <label>PDF File</label>
+                <input type="file" accept="application/pdf" (change)="onFileSelected($event)" required>
+              </div>
+              <div class="form-actions">
+                <button type="button" class="btn-ghost" (click)="showUpload = false">Cancel</button>
+                <button type="submit" class="btn-primary" [disabled]="!upForm.form.valid || !upData.file || uploading">
+                  {{ uploading ? 'Uploading...' : 'Upload & Process' }}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      }
 
     </div>
   

@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"database-development/apps/api/internal/rag"
@@ -62,7 +63,7 @@ func (h *PaperHandler) DeletePaper(w http.ResponseWriter, r *http.Request) {
 	}
 
 	user, err := h.store.GetUserByID(ctx, userID)
-	if err != nil || user == nil || user.TypeID != 2 {
+	if err != nil || user == nil || user.TypeID == 2 {
 		writeErr(w, http.StatusForbidden, "forbidden_admin_only")
 		return
 	}
@@ -101,7 +102,7 @@ func (h *PaperHandler) UploadPaper(w http.ResponseWriter, r *http.Request) {
 	}
 
 	user, err := h.store.GetUserByID(ctx, userID)
-	if err != nil || user == nil || user.TypeID != 2 {
+	if err != nil || user == nil || user.TypeID == 2 {
 		writeErr(w, http.StatusForbidden, "forbidden_admin_only")
 		return
 	}
@@ -234,13 +235,21 @@ func (h *PaperHandler) PutMetadata(w http.ResponseWriter, r *http.Request) {
 func (h *PaperHandler) SearchPapers(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	query := r.URL.Query().Get("q")
+	page, _ := strconv.Atoi(r.URL.Query().Get("page"))
+	if page < 1 {
+		page = 1
+	}
+	pageSize, _ := strconv.Atoi(r.URL.Query().Get("pageSize"))
+	if pageSize < 1 {
+		pageSize = 10
+	}
 
-	papers, err := h.store.SearchPapers(ctx, query)
+	paginatedResult, err := h.store.SearchPapers(ctx, query, page, pageSize)
 	if err != nil {
 		h.logger.Printf("Failed to search papers: %v", err)
 		writeErr(w, http.StatusInternalServerError, "db_error")
 		return
 	}
 
-	writeJSON(w, http.StatusOK, papers)
+	writeJSON(w, http.StatusOK, paginatedResult)
 }

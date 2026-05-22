@@ -1,120 +1,117 @@
-# 🗄️ Database Research RAG (Retrieval-Augmented Generation)
+# 🗄️ Database Research RAG System
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Go 1.23+](https://img.shields.io/badge/go-1.23+-00ADD8.svg)](https://golang.org/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![CI/CD Pipeline](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-orange)](https://github.com/features/actions)
-[![Infrastructure: AWS](https://img.shields.io/badge/Infra-AWS-232F3E.svg?logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
+[![Angular 20](https://img.shields.io/badge/Angular-20-DD0031.svg)](https://angular.io/)
 
-An authoritative RAG system designed to synthesize decades of database research. This project parses foundational papers (e.g., DynamoDB, Spanner, Cassandra) and provides high-fidelity, grounded answers to complex questions about distributed systems, consistency models, and storage engine architectures.
+A scalable Retrieval-Augmented Generation (RAG) system designed to index, query, and synthesize information from foundational database research papers. By leveraging modern microservices, it bridges the gap between raw academic research and actionable engineering insights.
 
 ## 🚀 Overview
 
-This system serves as a "living encyclopedia" for database engineering. By leveraging a Retrieval-Augmented Generation (RAG) architecture, it bridges the gap between raw academic research and actionable engineering insights.
-
-### Key Capabilities
-- **Foundational Knowledge:** Rooted in "Base Truth" papers from Google, Amazon, Facebook, and academia.
-- **Deep Semantic Search:** Moves beyond keyword matching to understand concepts like *quorum intersections*, *linearizability*, and *LSM-tree compaction*.
-- **Grounded Generation:** Every response is backed by citations from the source PDFs, eliminating LLM hallucinations.
+This project serves as a "living encyclopedia" for database engineering. Built on a multi-language microservices architecture, it processes dense academic PDFs using Docling, stores embeddings in ChromaDB, and uses high-performance API gateways to serve a modern Angular frontend.
 
 ---
 
-## 🏛️ Architectural Design
+## 🏛️ Current Architecture Design
 
-The project follows a modular pipeline architecture designed for scalability and high precision.
+The project uses a containerized, decoupled microservices architecture designed for high precision and scalability.
 
-### 1. Ingestion & Processing (`/services/ingestion`)
-- **Document Preprocessing (Docling):** High-fidelity extraction of text, layout, tables, and citations from academic PDFs.
-- **Intelligent Chunking:** Context-aware splitting of documents to preserve semantic boundaries (e.g., keeping a Paxos algorithm description intact).
-- **Embedding:** Multi-stage embedding using state-of-the-art models to map database concepts into vector space.
+### 1. Presentation Layer (UI)
+- **Angular UI (`/apps/ui`):** A modern, responsive web frontend built with **Angular (v20)**. It serves as the primary interface for users to submit research queries, explore papers, and view AI-generated, citation-backed answers. It is served behind an **Nginx** reverse proxy in production.
 
-### 2. Retrieval Engine (`/services/retrieval`)
-- **Hybrid Search:** Combines dense vector retrieval (semantic) with sparse keyword search (BM25) for precise technical terminology.
-- **Reranking:** Employs a cross-encoder reranker to ensure the most relevant 3-5 segments are provided to the LLM.
-- **Vector Store:** Scalable storage using high-performance vector databases (OpenSearch/Pinecone) hosted on AWS.
+### 2. API Gateway & Core Backend (Go)
+- **Go API Gateway (`/apps/api`):** A high-throughput REST API written in **Go 1.23**. It acts as the central orchestrator, handling:
+  - User Authentication (JWT-based).
+  - Rate Limiting and Telemetry (Prometheus).
+  - Request orchestration between the UI, the PostgreSQL database, and the Python RAG Engine.
+  - PostgreSQL interaction for managing user metadata, chat history, and document states.
 
-### 3. LLM Orchestration (`/services/llm`)
-- **Prompt Engineering:** Specialized system prompts that enforce "citation-first" answering.
-- **Source Grounding:** Validation layer to ensure every claim corresponds to a retrieved chunk.
+### 3. RAG Engine & AI Services (Python)
+- **FastAPI Service (`/apps/api/main.py`):** A Python-based AI service responsible for the heavy lifting of the RAG pipeline.
+  - **Ingestion & Parsing:** Uses **Docling** for high-fidelity extraction of text, tables, and citations from academic PDFs.
+  - **Embedding:** Utilizes local **Sentence-Transformers** (e.g., `BAAI/bge-small-en-v1.5`) to generate dense semantic vectors, avoiding expensive API calls for high-volume ingestion.
+  - **Vector Storage:** Stores and queries embeddings using **ChromaDB**.
+  - **LLM Integration:** Combines retrieved contexts with powerful prompts to generate grounded answers using external LLM APIs (e.g., OpenAI, Anthropic).
 
----
-
-## 📚 Knowledge Base (The "Base Truth")
-
-The system is currently indexed with over 50 foundational papers, including:
-
-| Category | Key Papers |
-| :--- | :--- |
-| **Distributed Consensus** | Paxos Made Simple, Raft, Viewstamped Replication, EPaxos |
-| **NoSQL & Key-Value** | Dynamo (Amazon), Bigtable (Google), Cassandra (Facebook), RocksDB |
-| **Distributed SQL** | Spanner (Google), CockroachDB, F1, Aurora |
-| **Theory & Theorems** | CAP Theorem, CALM Theorem, PACELC, Consistent Hashing |
-| **Storage Engines** | The LSM-Tree, Bitcask, WiscKey, C-Store (Columnar) |
-| **Analytical Systems** | Dremel, Hive, Spark SQL, Madlib |
-
-*(See `/data/raw_pdfs/` for the complete library)*
+### 4. Data & Storage Layer
+- **PostgreSQL (15):** Relational database managing application state (users, auth, chat logs).
+- **ChromaDB:** Local vector database storing embedded document chunks for semantic search.
+- **Local File System:** Manages raw PDFs, parsed JSONs, and embedding artifacts in the `/data` directory.
 
 ---
 
-## 📊 Performance Metrics (Projected)
+## ⚙️ How It Works
 
-We optimize for three core RAG metrics to ensure authoritative performance:
-
-- **Retrieval Recall@5:** `> 92%` — Ensuring the correct research context is found within the top 5 results.
-- **Faithfulness (Groundedness):** `> 98%` — Measured via RAGAS, ensuring the LLM does not hallucinate beyond the provided papers.
-- **Answer Relevancy:** `> 90%` — Ensuring technical depth matches the user's intent.
-
----
-
-## 🛠️ Tech Stack & DevOps
-
-- **Data Pipeline:** Python 3.9+
-- **Document Preprocessor:** Docling
-- **API Backend:** Python (gRPC / Protocol Buffers)
-- **Frontend UI:** Angular
-- **Cloud:** AWS (S3 for raw PDFs, Lambda for processing, OpenSearch for Vector Search)
-- **CI/CD:** Automated testing and deployment pipelines via GitHub Actions/Terraform.
-- **Infrastructure as Code (IaC):** Managed via `/infra/terraform`.
+1. **Document Ingestion (`scripts/` & `services/ingestion/`):** Raw PDFs of research papers are downloaded into `/data/raw_pdfs`. The system uses Docling to accurately parse the structure (headings, paragraphs, tables) and convert them to parsed JSON representations.
+2. **Chunking & Embedding:** The parsed documents are broken down into semantically meaningful chunks (Hierarchical Chunking). The Python engine uses a local Sentence-Transformer model to convert these text chunks into dense numeric vectors.
+3. **Vector Storage:** The vectors, along with metadata (paper title, chunk index), are stored in ChromaDB for rapid similarity search.
+4. **Query Execution:** 
+   - A user submits a query via the **Angular UI**.
+   - The **Go API Gateway** authenticates the user, logs the query in PostgreSQL, and forwards the request to the **Python RAG Engine**.
+   - The Python engine embeds the user's query, performs a semantic search against ChromaDB to find the most relevant document chunks, and optionally reranks them.
+   - The retrieved context is formatted into a strict prompt and sent to an LLM to generate a grounded, cited response.
+   - The answer is streamed back through the Go Gateway to the UI.
 
 ---
 
-## 🛠️ Getting Started
+## 💻 Installation & Setup
+
+You can run the entire multi-service application locally using Docker Compose.
 
 ### Prerequisites
-- Python 3.9+
-- AWS CLI configured
-- Docker (optional, for local vector store)
+- **Docker** & **Docker Compose**
+- **Git**
+- (Optional) **Python 3.9+** and **Go 1.23+** if running services manually outside of Docker.
 
-### Installation
+### Local Deployment Steps
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/your-org/database-development.git
+   cd database-development
+   ```
+
+2. **Configure Environment Variables:**
+   Copy the example environment file and adjust any keys (like external LLM API keys if required by the python service).
+   ```bash
+   cp configs/service.env.example .env
+   ```
+
+3. **Start the Infrastructure via Docker Compose:**
+   This command will build the Go API, Python RAG Engine, and Angular UI containers, and spin up PostgreSQL.
+   ```bash
+   docker-compose up --build -d
+   ```
+
+4. **Verify the Services:**
+   Check that all containers are running successfully:
+   ```bash
+   docker-compose ps
+   ```
+
+### Accessing the Application
+Once the containers are up and running, you can access the different layers of the system:
+
+- **Frontend UI:** [http://localhost:4200](http://localhost:4200)
+- **Go API Gateway:** [http://localhost:8080](http://localhost:8080)
+- **Python RAG Engine:** [http://localhost:8000](http://localhost:8000)
+- **PostgreSQL Database:** `localhost:5434` (Credentials specified in `docker-compose.yml`)
+
+---
+
+## 🛑 Stopping the System
+
+To gracefully stop and remove the containers:
 ```bash
-git clone https://github.com/your-repo/database-development-rag.git
-cd database-development-rag
-pip install -r requirements.txt
+docker-compose down
 ```
-
-### Ingestion Pipeline
-To parse the current PDF library and update the vector store:
-```bash
-python scripts/download_files.py
-python services/ingestion/pdf_parser.py
-```
-`pdf_parser.py` should run the Docling-based preprocessing path before chunking/embedding.
+*(Note: If you want to wipe the database and vector store volumes, run `docker-compose down -v`)*
 
 ---
 
-## 📄 Documentation
+## 📚 Further Documentation
 
-- `docs/rag-tools-and-plugins-integration.md` — comprehensive RAG tools/plugins integration guide with step-by-step setup.
-- `docs/aws-mlops-pipeline-for-rag.md` — AWS MLOps architecture and execution playbook for this RAG system.
-
----
-
-## 🛣️ Roadmap
-- [ ] **Phase 1:** Data Collection & Parsing (Current)
-- [ ] **Phase 2:** Hybrid Search Implementation & Evaluation
-- [ ] **Phase 3:** AWS Deployment with automated CI/CD
-- [ ] **Phase 4:** UI/UX Interface for interactive research exploration
-
----
-
-## 🤝 Contribution
-Contributions are welcome! Please see the `ai/governance/` directory for rules on adding new papers or modifying the retrieval strategy.
+- `/docs`: Contains advanced integration playbooks and AWS deployment strategies.
+- `/ai`: Contains system prompts, governance rules, and prompt engineering evaluation details.
+- `/experiments`: Scripts used for evaluating chunking, embedding models, and reranking strategies.

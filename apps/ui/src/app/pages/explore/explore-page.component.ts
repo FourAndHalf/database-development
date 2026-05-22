@@ -1,8 +1,8 @@
+import { Component, signal, computed, inject, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, signal, effect, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { ChatApiService, Conversation } from '../../services/chat-api.service';
+import { Router, RouterModule } from '@angular/router';
+import { ChatApiService } from '../../services/chat-api.service';
 import { AuthService } from '../../services/auth.service';
 import { ToastService } from '../../services/toast.service';
 import { firstValueFrom } from 'rxjs';
@@ -11,18 +11,20 @@ import { firstValueFrom } from 'rxjs';
   standalone: true,
   selector: 'app-explore-page',
   imports: [CommonModule, FormsModule, RouterModule],
-    templateUrl: './explore-page.component.html',
+  templateUrl: './explore-page.component.html',
   styleUrl: './explore-page.component.css'
 })
 export class ExplorePageComponent {
+  @ViewChild('searchInput', { static: false }) private readonly searchInput?: ElementRef<HTMLInputElement>;
+
   private readonly api = inject(ChatApiService);
   private readonly auth = inject(AuthService);
   private readonly toast = inject(ToastService);
-  
+  private readonly router = inject(Router);
+
   query = signal('');
   results = signal<any[]>([]);
   busyDelete = signal<string | null>(null);
-
   showUpload = false;
   uploading = false;
   upData = {
@@ -32,8 +34,34 @@ export class ExplorePageComponent {
     file: null as File | null
   };
 
+  // Pagination state
+  pageSize = 10;
+  currentPage = signal(1);
+  total = signal(0);
+  totalPages = computed(() => Math.ceil(this.total() / this.pageSize));
+
   constructor() {
     this.search();
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onGlobalKeydown(e: KeyboardEvent) {
+    const target = e.target as HTMLElement;
+    const isInput = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable;
+    
+    if (isInput || e.ctrlKey || e.metaKey || e.altKey || e.key.length > 1) {
+      return;
+    }
+
+    if (this.searchInput) {
+      this.searchInput.nativeElement.focus();
+    }
+  }
+
+  synthesize(title: string) {
+    const query = `Summarize ${title}`;
+    this.query.set(query);
+    this.router.navigate(['/chat'], { queryParams: { q: query } });
   }
 
   isAdmin(): boolean {
@@ -43,10 +71,25 @@ export class ExplorePageComponent {
 
   async search() {
     try {
-      const res = await firstValueFrom(this.api.searchPapers(this.query()));
-      this.results.set(res || []);
+      const res = await firstValueFrom(this.api.searchPapers(this.query(), this.currentPage(), this.pageSize));
+      this.results.set(res.papers || []);
+      this.total.set(res.total || 0);
     } catch (err) {
       console.error('Failed to search papers:', err);
+    }
+  }
+
+  nextPage() {
+    if (this.currentPage() < this.totalPages()) {
+      this.currentPage.update(p => p + 1);
+      this.search();
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage() > 1) {
+      this.currentPage.update(p => p - 1);
+      this.search();
     }
   }
 

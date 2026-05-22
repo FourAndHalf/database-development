@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { ChatPageComponent } from './pages/chat/chat-page.component';
-import { AuthComponent } from './pages/auth.component';
+import { AuthComponent } from './pages/auth/auth-page.component';
 import { ExplorePageComponent } from './pages/explore/explore-page.component';
 
 export const routes: Routes = [
