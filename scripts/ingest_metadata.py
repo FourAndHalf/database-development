@@ -3,6 +3,9 @@ import json
 import uuid
 import psycopg2
 from psycopg2.extras import RealDictCursor, Json
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DB_URL = "postgres://nexus:password@localhost:5434/nexus_db"
 
@@ -10,7 +13,7 @@ def ingest_metadata():
     conn = psycopg2.connect(DB_URL)
     cur = conn.cursor(cursor_factory=RealDictCursor)
     
-    parsed_dir = "data/parsed"
+    parsed_dir = os.getenv("LOCAL_PARSED_DIR", "data/parsed")
     files = [f for f in os.listdir(parsed_dir) if f.endswith(".json")]
     
     print(f"Found {len(files)} files to ingest.")

@@ -18,7 +18,7 @@ services:
   python-rag-engine:
     build:
       context: .
-      dockerfile: apps/api/Dockerfile.python
+      dockerfile: apps/api_python/Dockerfile.python
     container_name: rag-python-engine
     ports:
       - "8000:8000"
@@ -38,7 +38,7 @@ services:
   go-api-gateway:
     build:
       context: .
-      dockerfile: apps/api/Dockerfile.go
+      dockerfile: apps/api-go/Dockerfile.go
     container_name: rag-go-api
     ports:
       - "8080:8080"

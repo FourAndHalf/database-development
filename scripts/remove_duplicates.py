@@ -4,6 +4,11 @@ import os
 import re
 from pathlib import Path
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 def generate_filename(title: str) -> str:
     """Generates a clean filename from a title."""
     clean_title = re.sub(r"[^\w\s-]", "", title).strip().lower()
@@ -24,7 +29,7 @@ def find_and_remove_duplicates():
         print("No papers found in the JSON file.")
         return
 
-    output_dir = Path("data/raw_pdfs")
+    output_dir = Path(os.getenv("LOCAL_RAW_PDFS_DIR", "data/raw_pdfs"))
     if not output_dir.exists():
         print(f"Output directory not found: {output_dir}")
         return

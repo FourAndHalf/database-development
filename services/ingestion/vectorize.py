@@ -6,13 +6,18 @@ import textwrap
 
 from embedder import Embedder 
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # --- Configuration ---
 # Path to the directory where ChromaDB will store its data.
 DB_PATH = "data/chromadb"
 # Name of the collection to store the embeddings in.
 COLLECTION_NAME = "database_papers"
 # Directory containing the parsed JSON files.
-INPUT_DATA_DIR = "data/parsed"
+INPUT_DATA_DIR = os.getenv("LOCAL_PARSED_DIR", "data/parsed")
+
 
 class Vectorizer:
     """

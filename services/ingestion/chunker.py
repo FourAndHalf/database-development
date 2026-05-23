@@ -4,8 +4,10 @@ import argparse
 import json
 import logging
 import sys
+import os
 from pathlib import Path
 from typing import Any, Dict, List
+from dotenv import load_dotenv
 
 # Docling imports for reading the parsed documents and chunking them.
 from docling.datamodel.document import DoclingDocument
@@ -126,6 +128,8 @@ def main():
     """
     Main tool entry point. Allows chunking a single parsed file or a batch directory.
     """
+    load_dotenv()
+    
     parser = argparse.ArgumentParser(
         description="Tool for semantic chunking of parsed Docling JSON documents."
     )

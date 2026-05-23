@@ -26,12 +26,12 @@ class PaperRetriever:
         # Connect to the existing persistent database.
         try:
             client = chromadb.PersistentClient(path=DB_PATH)
-            self.collection = client.get_collection(name=COLLECTION_NAME)
+            # Use get_or_create_collection to ensure the API doesn't crash if the DB is empty
+            self.collection = client.get_or_create_collection(name=COLLECTION_NAME)
             print(f"Successfully connected to ChromaDB collection '{COLLECTION_NAME}'.")
             print(f"Total entries in collection: {self.collection.count()}")
         except Exception as e:
             print(f"Error connecting to ChromaDB: {e}")
-            print(f"Please ensure you have run the 'vectorize.py' script successfully.")
             self.collection = None
 
     def query(self, query_text: str, n_results: int = 5):
