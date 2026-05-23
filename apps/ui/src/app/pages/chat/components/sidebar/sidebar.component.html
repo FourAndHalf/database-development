@@ -1,0 +1,79 @@
+<aside class="sidebar">
+  <div class="sidebar-scroll">
+    <div class="brand">
+      <div class="logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="brand-icon"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></svg>
+      </div>
+      <span class="brand-text">Aether</span>
+    </div>
+
+    <button class="new-chat-btn" (click)="newChat.emit()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      New synthesis
+    </button>
+
+    <nav class="nav-menu">
+      <a class="nav-item active">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <a class="nav-item" routerLink="/explore">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Explore Repository
+      </a>
+    </nav>
+
+    @if (auth.isAuthenticated() && history.length > 0) {
+      <div class="nav-section">
+        <div class="nav-title">History</div>
+        <div class="history-list">
+          @for (c of history; track c.id) {
+            <div class="nav-item history-item" (click)="loadConversation.emit(c.id)" [class.active]="conversationId === c.id">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span class="h-title">{{ c.title }}</span>
+              <button class="del-chat" (click)="$event.stopPropagation(); deleteConversation.emit(c.id)">×</button>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="sidebar-footer">
+    @if (!auth.isAuthenticated()) {
+      <div class="auth-box">
+        <p>Sign in to save research history.</p>
+        <button class="auth-btn" routerLink="/auth">Sign In</button>
+      </div>
+    } @else {
+      <div class="auth-box authenticated">
+        <div class="user-info">
+          <div class="user-avatar">{{ auth.user()?.email?.charAt(0)?.toUpperCase() }}</div>
+          <div class="user-details">
+            <span class="u-email" [title]="auth.user()?.email">{{ auth.user()?.email }}</span>
+            <button class="logout-link" (click)="logout.emit()">Sign Out</button>
+          </div>
+        </div>
+      </div>
+    }
+
+    <div class="system-metrics">
+      <div class="metrics-header">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <span>System Status</span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Model</span>
+        <span class="m-val">{{ selectedModel === 'aether-1.0' ? 'Qwen (0.5B)' : 'Qwen (1.5B)' }}</span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Vector DB</span>
+        <span class="m-val active">Connected</span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">PostgreSQL</span>
+        <span class="m-val active">Connected</span>
+      </div>
+    </div>
+  </div>
+</aside>
