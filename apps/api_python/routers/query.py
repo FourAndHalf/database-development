@@ -2,8 +2,8 @@ import re
 import json
 from fastapi import APIRouter, HTTPException
 from duckduckgo_search import DDGS
-from apps.api_python_python.models import QueryRequest, QueryResponse, Source
-from apps.api_python_python import state
+from apps.api_python.models import QueryRequest, QueryResponse, Source
+from apps.api_python import state
 
 router = APIRouter()
 
