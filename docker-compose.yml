@@ -66,8 +66,8 @@ services:
     restart: always
     environment:
       - PORT=8080
-      - UI_ORIGIN=* # Allowed for EC2 deployment
-      - RAG_ENGINE=chroma # Must be chroma to use the Python engine
+      - UI_ORIGIN=https://aether-rag-pipeline.duckdns.org
+      - RAG_ENGINE=chroma
       - PYTHON_SERVICE_URL=http://python-rag-engine:8000
       - DB_URL=postgres://nexus:password@postgres:5432/nexus_db?sslmode=disable
       - UPLOAD_PATH=/app/uploads

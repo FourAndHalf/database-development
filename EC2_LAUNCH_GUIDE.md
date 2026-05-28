@@ -38,14 +38,24 @@ This layout ensures that your EBS data is isolated from the application code and
 
 The internal services (Postgres, Qdrant, API) are protected behind the **Caddy Reverse Proxy** and are only reachable via the internal Docker network.
 
-## 3. Reverse Proxy Routing
+## 3. Reverse Proxy & Domain Routing
 
-We use Caddy to route traffic based on URL paths:
-- `http://your-ec2-ip/` -> Angular UI
-- `http://your-ec2-ip/api/` -> Go API Gateway
-- `http://your-ec2-ip/jenkins` -> Jenkins CI/CD
+We use Caddy to handle SSL and route traffic to your DuckDNS domain:
+- **Domain:** `https://aether-rag-pipeline.duckdns.org`
+- **Routing:**
+  - `/` -> Angular UI
+  - `/api/` -> Go API Gateway
+  - `/jenkins` -> Jenkins CI/CD
+
+Caddy will automatically provision an SSL certificate via Let's Encrypt once the domain points to your EC2 IP.
 
 ## 4. Server Initialization (The "Must-Dos")
+...
+### C. Configure DuckDNS
+Ensure your DuckDNS token is running on the EC2 instance to keep the IP updated:
+```bash
+echo url="https://www.duckdns.org/update?domains=aether-rag-pipeline&token=YOUR_TOKEN&ip=" | curl -k -K -
+```
 
 ### A. Install Docker
 ```bash
