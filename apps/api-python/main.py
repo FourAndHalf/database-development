@@ -14,8 +14,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../.
 from services.retrieval.query import PaperRetriever
 import phoenix as px
 from phoenix.otel import register
-from apps.api_python import state
-from apps.api_python.routers import query, papers
+import state
+from routers import query, papers
 
 # --- Observability ---
 register()

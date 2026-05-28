@@ -18,7 +18,7 @@ pipeline {
             parallel {
                 stage('Python Lint') {
                     steps {
-                        sh 'pip install flake8 && flake8 services/ apps/api_python/'
+                        sh 'pip install flake8 && flake8 services/ apps/api-python/'
                     }
                 }
                 stage('Go Lint') {

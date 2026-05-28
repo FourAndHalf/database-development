@@ -37,7 +37,7 @@ services:
   python-rag-engine:
     build:
       context: .
-      dockerfile: apps/api_python/Dockerfile.python
+      dockerfile: apps/api-python/Dockerfile.python
     container_name: rag-python-engine
     restart: always
     environment:

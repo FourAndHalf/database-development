@@ -2,8 +2,8 @@ import re
 import json
 from fastapi import APIRouter, HTTPException
 from duckduckgo_search import DDGS
-from apps.api_python.models import QueryRequest, QueryResponse, Source
-from apps.api_python import state
+from models import QueryRequest, QueryResponse, Source
+import state
 
 router = APIRouter()
 
@@ -124,17 +124,39 @@ CONTENT QUALITY RULES:
     )
     
     # 4. Generate the synthesized answer
-    print(f"Generating elite hyper-informative synthesis using {selected_model}...")
-    outputs = active_pipeline(
-        prompt, 
-        max_new_tokens=2000,
-        do_sample=True, 
-        temperature=0.15,
-        top_p=0.95
-    )
-    
-    # Extract only the generated text
-    generated_text = outputs[0]["generated_text"][len(prompt):].strip()
+    use_groq = os.getenv("USE_GROQ", "false").lower() == "true"
+    groq_api_key = os.getenv("GROQ_API_KEY")
+
+    if use_groq and groq_api_key:
+        print(f"Generating synthesis using Groq (Llama-3.1-70b)...")
+        try:
+            from openai import OpenAI
+            client = OpenAI(base_url="https://api.groq.com/openai/v1", api_key=groq_api_key)
+            
+            completion = client.chat.completions.create(
+                model="llama-3.1-70b-versatile",
+                messages=messages,
+                temperature=0.15,
+                max_tokens=2000
+            )
+            generated_text = completion.choices[0].message.content
+        except Exception as e:
+            print(f"Groq API failed, falling back to local model: {e}")
+            generated_text = generate_local(active_pipeline, prompt)
+    else:
+        print(f"Generating synthesis using local model {selected_model}...")
+        generated_text = generate_local(active_pipeline, prompt)
+
+    # Helper function for local generation
+    def generate_local(pipeline, prompt):
+        outputs = pipeline(
+            prompt, 
+            max_new_tokens=2000,
+            do_sample=True, 
+            temperature=0.15,
+            top_p=0.95
+        )
+        return outputs[0]["generated_text"][len(prompt):].strip()
     
     tabs = []
     for tab_match in re.finditer(r'<tab\s+title="([^"]+)">(.*?)</tab>', generated_text, re.DOTALL | re.IGNORECASE):
