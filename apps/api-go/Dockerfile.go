@@ -3,29 +3,33 @@ FROM golang:1.23-alpine AS builder
 
 WORKDIR /app
 
-# Copy the entire project for context (or just the required app)
-COPY . .
+# 1. Copy only go.mod and go.sum first to leverage layer caching
+COPY apps/api-go/go.mod apps/api-go/go.sum ./apps/api-go/
 
-# Move to the Go API directory
+# 2. Download dependencies
 WORKDIR /app/apps/api-go
-
-# Download dependencies
 RUN go mod download
 
-# Build the Go app
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main ./cmd/api
+# 3. Copy the source code only after dependencies are downloaded
+WORKDIR /app
+COPY apps/api-go/ ./apps/api-go/
+
+# 4. Build the Go app
+WORKDIR /app/apps/api-go
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o main ./cmd/api
 
 # Run stage
 FROM alpine:latest
 
-RUN apk --no-cache add ca-certificates
+# Install runtime security certificates
+RUN apk --no-cache add ca-certificates tzdata
 
 WORKDIR /root/
 
-# Copy the Pre-built binary file from the builder stage
+# Copy only the compiled binary from the builder stage
 COPY --from=builder /app/apps/api-go/main .
 
-# Expose port 8080 to the outside world
+# Expose port 8080
 EXPOSE 8080
 
 # Command to run the executable
