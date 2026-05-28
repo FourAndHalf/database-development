@@ -6,7 +6,7 @@ The project is a containerized RAG application with these main parts:
 
 - Angular UI.
 - Go API gateway.
-- Python FastAPI RAG engine (with Ollama).
+- Python FastAPI RAG engine (running Qwen 0.5B/1.5B via Transformers).
 - PostgreSQL for users, chats, papers, and metadata.
 - Qdrant for vector search.
 - Jenkins for self-hosted CI/CD.

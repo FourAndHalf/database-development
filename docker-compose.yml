@@ -34,19 +34,6 @@ services:
         limits:
           memory: 512M
 
-  ollama:
-    image: ollama/ollama:latest
-    container_name: rag-ollama
-    restart: always
-    volumes:
-      - ./data/models:/root/.ollama
-    networks:
-      - rag-network
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-
   python-rag-engine:
     build:
       context: .
@@ -57,8 +44,8 @@ services:
       - QDRANT_HOST=qdrant
       - QDRANT_PORT=6333
       - VECTOR_BACKEND=qdrant
-      - OLLAMA_HOST=http://ollama:11434
       - UPLOAD_PATH=/app/uploads
+      - HF_HOME=/app/data/models # Persistent storage for HF models
     volumes:
       - ./uploads:/app/uploads
       - ./data:/app/data
@@ -66,11 +53,10 @@ services:
       - rag-network
     depends_on:
       - qdrant
-      - ollama
     deploy:
       resources:
         limits:
-          memory: 1G
+          memory: 2.5G # Increased to accommodate local LLMs
 
   go-api-gateway:
     build:
