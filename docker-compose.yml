@@ -15,6 +15,10 @@ services:
       - pgdata:/var/lib/postgresql/data
     networks:
       - rag-network
+    deploy:
+      resources:
+        limits:
+          memory: 512M
 
   qdrant:
     image: qdrant/qdrant:latest
@@ -27,6 +31,10 @@ services:
       - qdrant_data:/qdrant/storage
     networks:
       - rag-network
+    deploy:
+      resources:
+        limits:
+          memory: 512M
 
   python-rag-engine:
     build:
@@ -44,6 +52,10 @@ services:
       - rag-network
     depends_on:
       - qdrant
+    deploy:
+      resources:
+        limits:
+          memory: 2G
 
   go-api-gateway:
     build:
@@ -65,6 +77,10 @@ services:
       - python-rag-engine
     networks:
       - rag-network
+    deploy:
+      resources:
+        limits:
+          memory: 256M
 
   angular-ui:
     build:
@@ -78,6 +94,10 @@ services:
       - go-api-gateway
     networks:
       - rag-network
+    deploy:
+      resources:
+        limits:
+          memory: 128M
 
   jenkins:
     image: jenkins/jenkins:lts
@@ -93,6 +113,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - rag-network
+    deploy:
+      resources:
+        limits:
+          memory: 1G
 
 volumes:
   pgdata:
