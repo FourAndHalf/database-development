@@ -3,8 +3,8 @@
     <div class="composer-header">
       <div class="model-selector">
         <select [ngModel]="selectedModel" (ngModelChange)="selectedModelChange.emit($event)" name="modelSelect" class="model-dropdown">
-          <option value="aether-1.0">Aether 1.0 (Fast)</option>
-          <option value="aether-2.0">Aether 2.0 (Deep)</option>
+          <option value="aether-1.0">Aether 1.0 (8B)</option>
+          <option value="aether-2.0">Aether 2.0 (70B)</option>
         </select>
       </div>
       <div class="search-hint">
@@ -41,8 +41,8 @@
     } @else {
       <div class="model-selector">
         <select [ngModel]="selectedModel" (ngModelChange)="selectedModelChange.emit($event)" name="bottomModelSelect" class="model-dropdown">
-          <option value="aether-1.0">Aether 1.0</option>
-          <option value="aether-2.0">Aether 2.0</option>
+          <option value="aether-1.0">Version 1</option>
+          <option value="aether-2.0">Version 2</option>
         </select>
       </div>
     }
