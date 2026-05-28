@@ -7,32 +7,26 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from services.ingestion.embedder import Embedder
-
-# --- Configuration ---
-# Must match the path and collection name used in vectorize.py
-DB_PATH = "data/chromadb"
-COLLECTION_NAME = "database_papers"
+from services.retrieval.vector_store import get_vector_store
 
 class PaperRetriever:
     """
-    Handles querying the ChromaDB collection to retrieve relevant document chunks.
+    Handles querying the vector database to retrieve relevant document chunks.
     """
 
     def __init__(self):
-        """Initializes the Embedder and connects to the ChromaDB."""
-        # The same mock embedder is used to turn the query into a vector.
+        """Initializes the Embedder and connects to the VectorStore."""
+        # The same embedder is used to turn the query into a vector.
         self.embedder = Embedder()
         
-        # Connect to the existing persistent database.
+        # Connect to the vector store (ChromaDB or Qdrant).
         try:
-            client = chromadb.PersistentClient(path=DB_PATH)
-            # Use get_or_create_collection to ensure the API doesn't crash if the DB is empty
-            self.collection = client.get_or_create_collection(name=COLLECTION_NAME)
-            print(f"Successfully connected to ChromaDB collection '{COLLECTION_NAME}'.")
-            print(f"Total entries in collection: {self.collection.count()}")
+            self.vector_store = get_vector_store()
+            print(f"Successfully connected to VectorStore.")
+            print(f"Total entries in collection: {self.vector_store.count()}")
         except Exception as e:
-            print(f"Error connecting to ChromaDB: {e}")
-            self.collection = None
+            print(f"Error connecting to VectorStore: {e}")
+            self.vector_store = None
 
     def query(self, query_text: str, n_results: int = 5):
         """
@@ -42,8 +36,8 @@ class PaperRetriever:
             query_text: The user's question or query.
             n_results: The number of results to retrieve.
         """
-        if not self.collection:
-            print("Retriever is not connected to a collection. Cannot query.")
+        if not self.vector_store:
+            print("Retriever is not connected to a vector store. Cannot query.")
             return
 
         print(f"\n{'='*20}\n🔍 Querying for: '{query_text}'\n{'='*20}")
@@ -51,8 +45,8 @@ class PaperRetriever:
         # 1. Convert the query text into a vector.
         query_embedding = self.embedder.embed_text(query_text)
         
-        # 2. Perform the similarity search in ChromaDB.
-        results = self.collection.query(
+        # 2. Perform the similarity search.
+        results = self.vector_store.query(
             query_embeddings=[query_embedding],
             n_results=n_results
         )

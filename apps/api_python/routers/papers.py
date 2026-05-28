@@ -6,12 +6,12 @@ router = APIRouter()
 @router.delete("/papers/{filename}")
 async def delete_paper(filename: str):
     """Deletes all chunks associated with a specific PDF filename from the vector database."""
-    if not state.retriever or not state.retriever.collection:
+    if not state.retriever or not state.retriever.vector_store:
         raise HTTPException(status_code=503, detail="Vector database not initialized.")
     
     try:
-        # ChromaDB allows deleting by metadata matches
-        state.retriever.collection.delete(where={"source": filename})
+        # Use the generic delete method
+        state.retriever.vector_store.delete(filename=filename)
         print(f"Deleted vectors for source: {filename}")
         return {"status": "success", "deleted": filename}
     except Exception as e:

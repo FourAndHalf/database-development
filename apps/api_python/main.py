@@ -24,10 +24,10 @@ register()
 async def lifespan(app: FastAPI):
     """Load the Retriever and the Local LLMs on application startup, and clean up on shutdown."""
     
-    print("Loading PaperRetriever (Embedder + ChromaDB)...")
+    print("Loading PaperRetriever (Embedder + VectorStore)...")
     state.retriever = PaperRetriever()
-    if not state.retriever.collection:
-        print("CRITICAL: Failed to connect to ChromaDB. API will not function.")
+    if not state.retriever.vector_store:
+        print("CRITICAL: Failed to connect to VectorStore. API will not function.")
     else:
         print("PaperRetriever loaded successfully.")
 

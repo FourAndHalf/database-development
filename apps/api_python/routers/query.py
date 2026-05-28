@@ -13,7 +13,7 @@ async def handle_query(request: QueryRequest):
     Handles a user's query, retrieves relevant context, and uses a local LLM
     to synthesize a conversational answer.
     """
-    if not state.retriever or not state.retriever.collection or not state.llm_pipelines:
+    if not state.retriever or not state.retriever.vector_store or not state.llm_pipelines:
         raise HTTPException(status_code=503, detail="Services are not fully initialized.")
 
     # Check if the user explicitly requested a web search
@@ -24,9 +24,9 @@ async def handle_query(request: QueryRequest):
 
     print(f"\nReceived query: {request.query} | Use Web: {use_web_search}")
 
-    # 1. Retrieve relevant documents from ChromaDB
+    # 1. Retrieve relevant documents from the vector store
     query_embedding = state.retriever.embedder.embed_text(clean_query)
-    results = state.retriever.collection.query(
+    results = state.retriever.vector_store.query(
         query_embeddings=[query_embedding],
         n_results=request.n_results
     )

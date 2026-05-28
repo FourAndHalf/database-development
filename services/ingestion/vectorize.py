@@ -4,17 +4,14 @@ import json
 from tqdm import tqdm
 import textwrap
 
-from embedder import Embedder 
+from services.ingestion.embedder import Embedder 
+from services.retrieval.vector_store import get_vector_store
 
 from dotenv import load_dotenv
 
 load_dotenv()
 
 # --- Configuration ---
-# Path to the directory where ChromaDB will store its data.
-DB_PATH = "data/chromadb"
-# Name of the collection to store the embeddings in.
-COLLECTION_NAME = "database_papers"
 # Directory containing the parsed JSON files.
 INPUT_DATA_DIR = os.getenv("LOCAL_PARSED_DIR", "data/parsed")
 
@@ -25,18 +22,14 @@ class Vectorizer:
     1. Loads parsed documents.
     2. Chunks the documents into smaller text segments.
     3. Embeds the text chunks into vectors.
-    4. Stores the chunks, embeddings, and metadata in a ChromaDB collection.
+    4. Stores the chunks, embeddings, and metadata in a VectorStore (ChromaDB or Qdrant).
     """
 
     def __init__(self):
-        """Initializes the Embedder and ChromaDB client."""
+        """Initializes the Embedder and VectorStore."""
         self.embedder = Embedder()
-        
-        self.client = chromadb.PersistentClient(path=DB_PATH)
-        
-        # Get or create the collection.
-        self.collection = self.client.get_or_create_collection(name=COLLECTION_NAME)
-        print(f"ChromaDB collection '{COLLECTION_NAME}' loaded/created.")
+        self.vector_store = get_vector_store()
+        print(f"VectorStore initialized.")
 
     def chunk_text(self, text, chunk_size=512, chunk_overlap=50):
         """
@@ -92,8 +85,8 @@ class Vectorizer:
             ids = [f"{filename}-{i}" for i in range(len(chunks))]
             metadatas = [{"source": filename, "chunk_number": i} for i in range(len(chunks))]
 
-            # 4. Add to the ChromaDB collection.
-            self.collection.add(
+            # 4. Add to the VectorStore.
+            self.vector_store.add(
                 embeddings=embeddings,
                 documents=chunks,
                 metadatas=metadatas,
@@ -102,7 +95,7 @@ class Vectorizer:
             
         print("\nVectorization complete!")
         print(f"Total documents processed: {len(files_to_process)}")
-        print(f"Total entries in collection: {self.collection.count()}")
+        print(f"Total entries in collection: {self.vector_store.count()}")
 
 if __name__ == "__main__":
     vectorizer = Vectorizer()
