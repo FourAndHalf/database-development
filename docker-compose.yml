@@ -45,7 +45,7 @@ services:
       - QDRANT_PORT=6333
       - VECTOR_BACKEND=qdrant
       - UPLOAD_PATH=/app/uploads
-      - HF_HOME=/app/data/models # Persistent storage for HF models
+      - GROQ_API_KEY=${GROQ_API_KEY}
     volumes:
       - ./uploads:/app/uploads
       - ./data:/app/data
@@ -56,7 +56,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 2.5G # Increased to accommodate local LLMs
+          memory: 1G # Reduced now that local LLMs are removed
 
   go-api-gateway:
     build:

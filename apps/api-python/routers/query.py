@@ -1,20 +1,26 @@
 import re
 import json
+import os
 from fastapi import APIRouter, HTTPException
 from duckduckgo_search import DDGS
-from models import QueryRequest, QueryResponse, Source
-import state
+from apps.api_python.models import QueryRequest, QueryResponse, Source
+from apps.api_python import state
+from openai import OpenAI
 
 router = APIRouter()
 
 @router.post("/query", response_model=QueryResponse)
 async def handle_query(request: QueryRequest):
     """
-    Handles a user's query, retrieves relevant context, and uses a local LLM
+    Handles a user's query, retrieves relevant context, and uses Groq API
     to synthesize a conversational answer.
     """
-    if not state.retriever or not state.retriever.vector_store or not state.llm_pipelines:
+    if not state.retriever or not state.retriever.vector_store:
         raise HTTPException(status_code=503, detail="Services are not fully initialized.")
+
+    groq_api_key = os.getenv("GROQ_API_KEY")
+    if not groq_api_key:
+        raise HTTPException(status_code=500, detail="GROQ_API_KEY is not configured.")
 
     # Check if the user explicitly requested a web search
     use_web_search = "@web-search" in request.query
@@ -72,9 +78,6 @@ async def handle_query(request: QueryRequest):
     all_context_docs = documents + web_documents
     context = "\n\n---\n\n".join(all_context_docs)
     
-    selected_model = request.model if request.model in state.llm_pipelines else "aether-2.0"
-    active_pipeline = state.llm_pipelines[selected_model]
-    
     messages = [
         {
             "role": "system", 
@@ -116,48 +119,22 @@ CONTENT QUALITY RULES:
         }
     ]
     
-    # Format the prompt using the model's specific chat template
-    prompt = active_pipeline.tokenizer.apply_chat_template(
-        messages, 
-        tokenize=False, 
-        add_generation_prompt=True
-    )
-    
-    # 4. Generate the synthesized answer
-    use_groq = os.getenv("USE_GROQ", "false").lower() == "true"
-    groq_api_key = os.getenv("GROQ_API_KEY")
-
-    if use_groq and groq_api_key:
-        print(f"Generating synthesis using Groq (Llama-3.1-70b)...")
-        try:
-            from openai import OpenAI
-            client = OpenAI(base_url="https://api.groq.com/openai/v1", api_key=groq_api_key)
-            
-            completion = client.chat.completions.create(
-                model="llama-3.1-70b-versatile",
-                messages=messages,
-                temperature=0.15,
-                max_tokens=2000
-            )
-            generated_text = completion.choices[0].message.content
-        except Exception as e:
-            print(f"Groq API failed, falling back to local model: {e}")
-            generated_text = generate_local(active_pipeline, prompt)
-    else:
-        print(f"Generating synthesis using local model {selected_model}...")
-        generated_text = generate_local(active_pipeline, prompt)
-
-    # Helper function for local generation
-    def generate_local(pipeline, prompt):
-        outputs = pipeline(
-            prompt, 
-            max_new_tokens=2000,
-            do_sample=True, 
+    # 4. Generate the synthesized answer using Groq
+    print(f"Generating synthesis using Groq (Llama-3.1-70b)...")
+    try:
+        client = OpenAI(base_url="https://api.groq.com/openai/v1", api_key=groq_api_key)
+        
+        completion = client.chat.completions.create(
+            model="llama-3.1-70b-versatile",
+            messages=messages,
             temperature=0.15,
-            top_p=0.95
+            max_tokens=2000
         )
-        return outputs[0]["generated_text"][len(prompt):].strip()
-    
+        generated_text = completion.choices[0].message.content
+    except Exception as e:
+        print(f"Groq API call failed: {e}")
+        raise HTTPException(status_code=502, detail=f"Groq API error: {str(e)}")
+
     tabs = []
     for tab_match in re.finditer(r'<tab\s+title="([^"]+)">(.*?)</tab>', generated_text, re.DOTALL | re.IGNORECASE):
         tabs.append({"title": tab_match.group(1), "content": tab_match.group(2).strip()})
