@@ -3,39 +3,38 @@ FROM python:3.10-slim AS builder
 
 WORKDIR /app
 
-# Install build dependencies only needed for installation
+# Install build dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies into a virtual environment or local path
+# Optimize pip for CPU-only (Saves GBs of GPU library space)
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+
+# Install application dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir --user -r requirements.txt
-RUN pip install --no-cache-dir --user uvicorn[standard]
 
 # Final Stage
 FROM python:3.10-slim
 
 WORKDIR /app
 
-# Install minimal runtime system dependencies (e.g., libgomp for faiss/chroma)
 RUN apt-get update && apt-get install -y \
     libgomp1 \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy only the installed python packages from the builder stage
+# Copy ONLY installed packages
 COPY --from=builder /root/.local /root/.local
-
-# Ensure the local bin is in PATH
 ENV PATH=/root/.local/bin:$PATH
 
-# Copy the rest of the application code
-COPY . .
+# SURGICAL COPY: Only copy what this specific service needs
+COPY apps/api-python/ ./apps/api-python/
+COPY services/ ./services/
+COPY requirements.txt .
 
-# Expose the port the app runs on
 EXPOSE 8000
 
-# Command to run the application using --app-dir to handle the hyphenated directory
 CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--app-dir", "apps/api-python"]
