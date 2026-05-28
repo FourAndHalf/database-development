@@ -41,7 +41,7 @@ services:
     container_name: rag-python-engine
     restart: always
     environment:
-      - QDRANT_HOST=qdrant
+      - QDRANT_HOST=rag-qdrant
       - QDRANT_PORT=6333
       - VECTOR_BACKEND=qdrant
       - UPLOAD_PATH=/app/uploads
@@ -51,6 +51,7 @@ services:
       - ./data:/app/data
     networks:
       - rag-network
+      - observability
     depends_on:
       - qdrant
     deploy:
@@ -68,8 +69,8 @@ services:
       - PORT=8080
       - UI_ORIGIN=https://aether-rag-pipeline.duckdns.org
       - RAG_ENGINE=chroma
-      - PYTHON_SERVICE_URL=http://python-rag-engine:8000
-      - DB_URL=postgres://nexus:password@postgres:5432/nexus_db?sslmode=disable
+      - PYTHON_SERVICE_URL=http://rag-python-engine:8000
+      - DB_URL=postgres://nexus:password@nexus_postgres:5432/nexus_db?sslmode=disable
       - UPLOAD_PATH=/app/uploads
     volumes:
       - ./uploads:/app/uploads
@@ -78,6 +79,7 @@ services:
       - python-rag-engine
     networks:
       - rag-network
+      - observability
     deploy:
       resources:
         limits:
@@ -89,9 +91,9 @@ services:
       dockerfile: apps/ui/Dockerfile
     container_name: rag-angular-ui
     restart: always
-    # Port 4200 removed - will be served via Reverse Proxy on 80
     networks:
       - rag-network
+      - observability
     deploy:
       resources:
         limits:
@@ -105,39 +107,19 @@ services:
     user: root
     environment:
       - JENKINS_OPTS=--prefix=/jenkins
-    # Port 8081 removed from public exposure - access via proxy
     volumes:
       - ./data/jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - rag-network
+      - observability
     deploy:
       resources:
         limits:
           memory: 1G
 
-  reverse-proxy:
-    image: caddy:2-alpine
-    container_name: rag-proxy
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
-    networks:
-      - rag-network
-    depends_on:
-      - angular-ui
-      - go-api-gateway
-      - jenkins
-
-volumes:
-  caddy_data:
-  caddy_config:
-
 networks:
   rag-network:
     driver: bridge
+  observability:
+    external: true
