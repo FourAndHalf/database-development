@@ -4,6 +4,7 @@ services:
   postgres:
     image: postgres:15-alpine
     container_name: nexus_postgres
+    restart: always
     environment:
       POSTGRES_USER: nexus
       POSTGRES_PASSWORD: password
@@ -15,37 +16,45 @@ services:
     networks:
       - rag-network
 
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: rag-qdrant
+    restart: always
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    networks:
+      - rag-network
+
   python-rag-engine:
     build:
       context: .
       dockerfile: apps/api_python/Dockerfile.python
     container_name: rag-python-engine
-    ports:
-      - "8000:8000"
+    restart: always
+    environment:
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      - VECTOR_BACKEND=qdrant
     volumes:
-      - ./data:/app/data # Mount data directory for ChromaDB and PDFs
+      - ./data:/app/data
     networks:
       - rag-network
-    # Optional: If you want to use GPU for the local LLM, uncomment below
-    # deploy:
-    #   resources:
-    #     reservations:
-    #       devices:
-    #         - driver: nvidia
-    #           count: 1
-    #           capabilities: [gpu]
+    depends_on:
+      - qdrant
 
   go-api-gateway:
     build:
       context: .
       dockerfile: apps/api-go/Dockerfile.go
     container_name: rag-go-api
-    ports:
-      - "8080:8080"
+    restart: always
     environment:
       - PORT=8080
-      - UI_ORIGIN=http://localhost:4200 # Or your external UI URL
-      - RAG_ENGINE=chroma
+      - UI_ORIGIN=http://localhost:4200
+      - RAG_ENGINE=qdrant
       - PYTHON_SERVICE_URL=http://python-rag-engine:8000
       - DB_URL=postgres://nexus:password@postgres:5432/nexus_db?sslmode=disable
       - DATA_DIR=/app/data
@@ -62,15 +71,33 @@ services:
       context: .
       dockerfile: apps/ui/Dockerfile
     container_name: rag-angular-ui
+    restart: always
     ports:
-      - "4200:80" # Map host 4200 to container 80 (Nginx)
+      - "4200:80"
     depends_on:
       - go-api-gateway
     networks:
       - rag-network
 
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: rag-jenkins
+    restart: always
+    privileged: true
+    user: root
+    ports:
+      - "8081:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - rag-network
+
 volumes:
   pgdata:
+  qdrant_data:
+  jenkins_home:
 
 networks:
   rag-network:
