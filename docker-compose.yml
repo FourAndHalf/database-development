@@ -70,7 +70,7 @@ services:
       - UI_ORIGIN=https://aether-rag-pipeline.duckdns.org
       - RAG_ENGINE=chroma
       - PYTHON_SERVICE_URL=http://rag-python-engine:8000
-      - DB_URL=postgres://nexus:password@nexus_postgres:5432/nexus_db?sslmode=disable
+      - DB_URL=postgres://nexus:PinkFloyd@nexus_postgres:5432/nexus_db?sslmode=disable
       - UPLOAD_PATH=/app/uploads
       - OTEL_EXPORTER_OTLP_ENDPOINT=otel.observability.duckdns.org:4317
     volumes:
