@@ -14,6 +14,7 @@ import (
 	"database-development/apps/api-go/internal/httpserver"
 	"database-development/apps/api-go/internal/rag"
 	"database-development/apps/api-go/internal/store"
+	"database-development/apps/api-go/internal/telemetry"
 )
 
 func main() {
@@ -23,6 +24,21 @@ func main() {
 	pythonServiceURL := envString("PYTHON_SERVICE_URL", "http://localhost:8000")
 
 	logger := log.New(os.Stdout, "api ", log.LstdFlags|log.Lmicroseconds)
+
+	// OpenTelemetry Initialization
+	otelCtx, otelStop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer otelStop()
+
+	shutdown, err := telemetry.InitTracer(otelCtx)
+	if err != nil {
+		logger.Printf("warning: failed to initialize telemetry: %v", err)
+	} else {
+		defer func() {
+			if err := shutdown(context.Background()); err != nil {
+				logger.Printf("error shutting down tracer: %v", err)
+			}
+		}()
+	}
 
 	dbURL := envString("DB_URL", "postgres://nexus:password@localhost:5434/nexus_db?sslmode=disable")
 	dbStore, err := store.New(dbURL)
@@ -65,14 +81,12 @@ func main() {
 		}
 	}()
 
-	stop := make(chan os.Signal, 1)
-	signal.Notify(stop, syscall.SIGINT, syscall.SIGTERM)
-	<-stop
+	<-otelCtx.Done()
 	logger.Printf("shutting down...")
 
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	_ = httpServer.Shutdown(ctx)
+	_ = httpServer.Shutdown(shutdownCtx)
 }
 
 func envString(key, def string) string {

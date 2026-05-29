@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: nexus_db
     ports:
-      - "5435:5432" # Mapped to 5435 to avoid conflict with existing Host Postgres on 5432
+      - "5435:5432"
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
     networks:
@@ -24,7 +24,6 @@ services:
     image: qdrant/qdrant:latest
     container_name: rag-qdrant
     restart: always
-    # Port 6333/6334 removed from public exposure - internal only
     volumes:
       - ./data/qdrant:/qdrant/storage
     networks:
@@ -46,18 +45,19 @@ services:
       - VECTOR_BACKEND=qdrant
       - UPLOAD_PATH=/app/uploads
       - GROQ_API_KEY=${GROQ_API_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel.observability.duckdns.org:4317
     volumes:
       - ./uploads:/app/uploads
       - ./data:/app/data
     networks:
       - rag-network
-      - observability
     depends_on:
       - qdrant
     deploy:
       resources:
         limits:
-          memory: 1G # Reduced now that local LLMs are removed
+          memory: 1G
 
   go-api-gateway:
     build:
@@ -72,6 +72,7 @@ services:
       - PYTHON_SERVICE_URL=http://rag-python-engine:8000
       - DB_URL=postgres://nexus:password@nexus_postgres:5432/nexus_db?sslmode=disable
       - UPLOAD_PATH=/app/uploads
+      - OTEL_EXPORTER_OTLP_ENDPOINT=otel.observability.duckdns.org:4317
     volumes:
       - ./uploads:/app/uploads
     depends_on:
@@ -79,7 +80,6 @@ services:
       - python-rag-engine
     networks:
       - rag-network
-      - observability
     deploy:
       resources:
         limits:
@@ -93,7 +93,6 @@ services:
     restart: always
     networks:
       - rag-network
-      - observability
     deploy:
       resources:
         limits:
@@ -112,7 +111,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - rag-network
-      - observability
     deploy:
       resources:
         limits:
@@ -127,10 +125,7 @@ services:
       - jenkins
     networks:
       - rag-network
-    # Note: Define SMEE_URL in your .env file (e.g., SMEE_URL=https://smee.io/your-unique-id)
 
 networks:
   rag-network:
     driver: bridge
-  observability:
-    external: true

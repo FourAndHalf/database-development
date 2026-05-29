@@ -9,6 +9,7 @@ import (
 	"database-development/apps/api-go/internal/rag"
 	"database-development/apps/api-go/internal/store"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
 
 type Config struct {
@@ -38,7 +39,7 @@ func New(cfg Config) *Server {
 }
 
 func (s *Server) Handler() http.Handler {
-	return s.mux
+	return otelhttp.NewHandler(s.mux, "rag-go-api")
 }
 func (s *Server) routes() http.Handler {
 	health := handlers.NewHealthHandler()
