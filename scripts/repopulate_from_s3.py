@@ -20,7 +20,7 @@ from services.ingestion.vectorize import Vectorizer
 load_dotenv()
 
 # --- Configuration ---
-DB_URL = os.getenv("DB_URL", "postgres://nexus:password@localhost:5435/nexus_db")
+DB_URL = os.getenv("DB_URL", "postgres://nexus:PinkFloyd@localhost:5435/nexus_db")
 S3_BUCKET = os.getenv("AWS_S3_BUCKET_NAME")
 S3_PREFIX = os.getenv("S3_RAW_PDFS_PREFIX", "raw_pdfs/")
 LOCAL_PARSED_DIR = Path(os.getenv("LOCAL_PARSED_DIR", "data/parsed"))
