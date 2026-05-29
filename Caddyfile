@@ -1,6 +1,6 @@
 aether-rag-pipeline.duckdns.org {
     # Serve Jenkins
-    handle_path /jenkins* {
+    handle /jenkins* {
         reverse_proxy jenkins:8080
     }
 

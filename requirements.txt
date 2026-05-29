@@ -13,3 +13,6 @@ boto3
 python-dotenv
 openai
 google-generativeai
+psycopg2-binary
+numpy
+pandas

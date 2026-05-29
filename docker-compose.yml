@@ -118,6 +118,17 @@ services:
         limits:
           memory: 1G
 
+  smee:
+    image: node:alpine
+    container_name: rag-smee
+    restart: always
+    command: npx smee-client -u ${SMEE_URL} -t http://jenkins:8080/jenkins/github-webhook/
+    depends_on:
+      - jenkins
+    networks:
+      - rag-network
+    # Note: Define SMEE_URL in your .env file (e.g., SMEE_URL=https://smee.io/your-unique-id)
+
 networks:
   rag-network:
     driver: bridge
