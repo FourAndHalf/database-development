@@ -40,7 +40,7 @@ func main() {
 		}()
 	}
 
-	dbURL := envString("DB_URL", "postgres://nexus:password@localhost:5434/nexus_db?sslmode=disable")
+	dbURL := envString("DB_URL", "postgres://nexus:PinkFloyd@localhost:5434/nexus_db?sslmode=disable")
 	dbStore, err := store.New(dbURL)
 	if err != nil {
 		logger.Fatalf("failed to connect to db: %v", err)
