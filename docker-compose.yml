@@ -170,10 +170,12 @@ services:
           memory: 1G
 
   smee:
-    image: ghcr.io/probot/smee-client:latest
+    build:
+      context: .
+      dockerfile: apps/smee/Dockerfile.smee
     container_name: rag-smee
     restart: always
-    command: ["smee", "--url", "${SMEE_URL}", "--target", "http://jenkins:8080/jenkins/github-webhook/"]
+    command: ["--url", "${SMEE_URL}", "--target", "http://jenkins:8080/jenkins/github-webhook/"]
     depends_on:
       - jenkins
     networks:
