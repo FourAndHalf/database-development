@@ -16,7 +16,6 @@ services:
     depends_on:
       - go-api-gateway
       - angular-ui
-      - jenkins
     deploy:
       resources:
         limits:
@@ -46,19 +45,6 @@ services:
         limits:
           memory: 512M
 
-  qdrant:
-    image: qdrant/qdrant:v1.9.0
-    container_name: rag-qdrant
-    restart: always
-    volumes:
-      - ./data/qdrant:/qdrant/storage
-    networks:
-      - rag-network
-    deploy:
-      resources:
-        limits:
-          memory: 512M
-
   python-rag-engine:
     build:
       context: .
@@ -66,9 +52,7 @@ services:
     container_name: rag-python-engine
     restart: always
     environment:
-      - QDRANT_HOST=rag-qdrant
-      - QDRANT_PORT=6333
-      - VECTOR_BACKEND=qdrant
+      - CHROMA_DB_PATH=/app/data/chromadb
       - UPLOAD_PATH=/app/uploads
       - GROQ_API_KEY=${GROQ_API_KEY}
       - GEMINI_API_KEY=${GEMINI_API_KEY}
@@ -78,9 +62,6 @@ services:
       - ./data:/app/data
     networks:
       - rag-network
-    depends_on:
-      qdrant:
-        condition: service_started
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://localhost:8000/health || exit 1"]
       interval: 30s
@@ -101,7 +82,7 @@ services:
     environment:
       - PORT=8080
       - UI_ORIGIN=${UI_ORIGIN:-*}
-      - RAG_ENGINE=qdrant
+      - RAG_ENGINE=chroma
       - PYTHON_SERVICE_URL=http://rag-python-engine:8000
       - DB_URL=postgres://nexus:${POSTGRES_PASSWORD}@nexus_postgres:5432/nexus_db?sslmode=disable
       - UPLOAD_PATH=/app/uploads
@@ -144,40 +125,6 @@ services:
       resources:
         limits:
           memory: 128M
-
-  jenkins:
-    image: jenkins/jenkins:lts
-    container_name: rag-jenkins
-    restart: always
-    privileged: true
-    user: root
-    environment:
-      - JENKINS_OPTS=--prefix=/jenkins
-    volumes:
-      - ./data/jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - rag-network
-    deploy:
-      resources:
-        limits:
-          memory: 1G
-
-  smee:
-    build:
-      context: .
-      dockerfile: apps/smee/Dockerfile.smee
-    container_name: rag-smee
-    restart: always
-    command: ["--url", "${SMEE_URL}", "--target", "http://jenkins:8080/jenkins/github-webhook/"]
-    depends_on:
-      - jenkins
-    networks:
-      - rag-network
-    deploy:
-      resources:
-        limits:
-          memory: 64M
 
 networks:
   rag-network:

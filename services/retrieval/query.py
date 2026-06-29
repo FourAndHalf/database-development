@@ -19,7 +19,7 @@ class PaperRetriever:
         # The same embedder is used to turn the query into a vector.
         self.embedder = Embedder()
         
-        # Connect to the vector store (ChromaDB or Qdrant).
+        # Connect to the vector store (ChromaDB).
         try:
             self.vector_store = get_vector_store()
             print(f"Successfully connected to VectorStore.")

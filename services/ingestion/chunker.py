@@ -3,15 +3,23 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import re
 import sys
 import os
 from pathlib import Path
 from typing import Any, Dict, List
 from dotenv import load_dotenv
 
+import numpy as np
+
+# Allow running this file directly (python services/ingestion/chunker.py).
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+
 # Docling imports for reading the parsed documents and chunking them.
 from docling.datamodel.document import DoclingDocument
 from docling.chunking import HierarchicalChunker
+
+from services.ingestion.embedder import Embedder
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -23,18 +31,94 @@ class DocumentChunker:
     chunking strategy.
     """
     
-    def __init__(self, output_dir: Path):
+    def __init__(
+        self,
+        output_dir: Path,
+        target_tokens: int = 512,
+        overlap_ratio: float = 0.15,
+        min_tokens: int = 64,
+        breakpoint_percentile: int = 15,
+    ):
         """
         Initializes the DocumentChunker.
 
         Args:
             output_dir: The directory where the chunked JSON files will be saved.
+            target_tokens: Soft upper bound on tokens per semantic sub-chunk.
+            overlap_ratio: Fraction of target_tokens carried over from the
+                previous sub-chunk (0.15 -> ~15% overlap).
+            min_tokens: A sub-chunk smaller than this is not split off early.
+            breakpoint_percentile: Consecutive-sentence similarities below this
+                percentile are treated as semantic boundaries.
         """
         self.output_dir = output_dir
         self.output_dir.mkdir(parents=True, exist_ok=True)
+        self.target_tokens = target_tokens
+        self.overlap_ratio = overlap_ratio
+        self.min_tokens = min_tokens
+        self.breakpoint_percentile = breakpoint_percentile
+
         # The HierarchicalChunker intelligently splits based on the document's
         # internal structure (headings, lists, tables) discovered by Docling.
+        # We then refine each structural chunk by semantic similarity below.
         self.chunker = HierarchicalChunker()
+        # bge-m3 — also used to find semantic boundaries between sentences.
+        self.embedder = Embedder()
+
+    def _count_tokens(self, text: str) -> int:
+        """Counts model tokens for a piece of text (bge-m3 tokenizer)."""
+        return len(self.embedder.model.tokenizer.encode(text, add_special_tokens=False))
+
+    def _semantic_split(self, text: str) -> List[str]:
+        """
+        Splits a single structural chunk into semantically coherent sub-chunks
+        with token-budgeted boundaries and ~overlap_ratio overlap. Never crosses
+        the boundaries of the structural chunk it was given.
+        """
+        sentences = [s.strip() for s in re.split(r'(?<=[.!?])\s+', text) if s.strip()]
+        if len(sentences) <= 1:
+            return [text.strip()] if text.strip() else []
+
+        token_counts = [self._count_tokens(s) for s in sentences]
+        embeddings = np.array(self.embedder.embed_batch(sentences))
+        # Embeddings are normalized, so dot product == cosine similarity.
+        sims = [float(np.dot(embeddings[i], embeddings[i + 1])) for i in range(len(sentences) - 1)]
+        threshold = float(np.percentile(sims, self.breakpoint_percentile)) if sims else 0.0
+
+        # 1. Group sentences into segments at semantic shifts / size limits.
+        segments: List[List[str]] = []
+        current: List[str] = []
+        current_tokens = 0
+        for i, sentence in enumerate(sentences):
+            current.append(sentence)
+            current_tokens += token_counts[i]
+            is_last = i == len(sentences) - 1
+            semantic_break = i < len(sims) and sims[i] < threshold
+            size_break = current_tokens >= self.target_tokens
+            if is_last or ((semantic_break or size_break) and current_tokens >= self.min_tokens):
+                segments.append(current)
+                current = []
+                current_tokens = 0
+        if current:  # merge any tail remainder into the last segment
+            segments[-1].extend(current) if segments else segments.append(current)
+
+        # 2. Re-attach ~overlap_ratio of the previous segment's tail sentences.
+        budget = int(self.target_tokens * self.overlap_ratio)
+        result: List[str] = []
+        for idx, seg in enumerate(segments):
+            if idx == 0:
+                result.append(" ".join(seg))
+                continue
+            overlap_sents: List[str] = []
+            acc = 0
+            for s in reversed(segments[idx - 1]):
+                t = self._count_tokens(s)
+                if acc + t > budget and overlap_sents:
+                    break
+                overlap_sents.insert(0, s)
+                acc += t
+            result.append(" ".join(overlap_sents + seg))
+        return result
 
     def _extract_paper_title(self, doc: DoclingDocument) -> str:
         """Attempts to extract a readable paper title from the document."""
@@ -79,38 +163,39 @@ class DocumentChunker:
             raw_chunks = list(self.chunker.chunk(doc))
             
             formatted_chunks = []
-            
-            for i, chunk in enumerate(raw_chunks):
-                # We need to adhere strictly to the JSON format defined in 
-                # ai/retrieval/chunking_strategy.md
-                
+            chunk_index = 0
+
+            for chunk in raw_chunks:
                 # Extract headings for context injection
                 section = "General"
                 if hasattr(chunk.meta, 'headings') and chunk.meta.headings:
                     # Often headings looks like "1. INTRODUCTION". We could clean it,
                     # but keeping it raw is safer for context.
-                    section = chunk.meta.headings[0] 
-                
-                # Contextual Header Injection as per Strategy Step 4
-                contextual_header = f"[Paper: {paper_title}] [Section: {section}]\n"
-                full_content = contextual_header + chunk.text
+                    section = chunk.meta.headings[0]
 
-                # Construct the strictly required JSON format
-                chunk_data = {
-                    "chunk_id": f"{json_path.stem}_chunk_{i:04d}",
-                    "paper": paper_title,
-                    "section": section,
-                    # We might not have a reliable subsection without deeper analysis
-                    # of the headings hierarchy, so we use a default for now.
-                    "subsection": "", 
-                    "content": full_content,
-                    # Concepts extraction is typically done by an LLM pass or 
-                    # specific NLP entity extraction. We leave an empty list 
-                    # to fulfill the schema contract for now.
-                    "concepts": [] 
-                }
-                
-                formatted_chunks.append(chunk_data)
+                # Refine the structural chunk into semantic sub-chunks with overlap.
+                for sub_text in self._semantic_split(chunk.text):
+                    # Contextual Header Injection as per Strategy Step 4
+                    contextual_header = f"[Paper: {paper_title}] [Section: {section}]\n"
+                    full_content = contextual_header + sub_text
+
+                    # Construct the strictly required JSON format
+                    chunk_data = {
+                        "chunk_id": f"{json_path.stem}_chunk_{chunk_index:04d}",
+                        "paper": paper_title,
+                        "section": section,
+                        # We might not have a reliable subsection without deeper analysis
+                        # of the headings hierarchy, so we use a default for now.
+                        "subsection": "",
+                        "content": full_content,
+                        # Concepts extraction is typically done by an LLM pass or
+                        # specific NLP entity extraction. We leave an empty list
+                        # to fulfill the schema contract for now.
+                        "concepts": []
+                    }
+
+                    formatted_chunks.append(chunk_data)
+                    chunk_index += 1
 
             # Save the formatted chunks to the output directory
             output_file = self.output_dir / f"{json_path.stem}_chunks.json"

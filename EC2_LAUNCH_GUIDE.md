@@ -8,12 +8,9 @@ This guide explains how to deploy this RAG application on a **single AWS EC2 ins
 |-------------------|-----------------------------|-------------------------------|
 | `caddy`           | `caddy:2-alpine`            | SSL termination & routing     |
 | `postgres`        | `postgres:15-alpine`        | User, chat, paper metadata DB |
-| `qdrant`          | `qdrant/qdrant:v1.9.0`      | Vector search                 |
-| `python-rag-engine` | local build               | FastAPI RAG (Groq Llama)      |
+| `python-rag-engine` | local build               | FastAPI RAG (Groq Llama) + embedded ChromaDB vector store |
 | `go-api-gateway`  | local build                 | API gateway                   |
 | `angular-ui`      | local build                 | Frontend                      |
-| `jenkins`         | `jenkins/jenkins:lts`       | CI/CD                         |
-| `smee`            | `ghcr.io/probot/smee-client`| GitHub webhook relay          |
 
 ---
 
@@ -41,7 +38,7 @@ Only open these ports on your EC2 Security Group:
 | `443` | `0.0.0.0/0`  | HTTPS (Caddy-managed SSL)     |
 
 > [!CAUTION]
-> **Do NOT open** Postgres (`5432`/`5435`), Qdrant (`6333`), or the Go API (`8080`) ports to the internet. All internal services are protected behind Caddy on the Docker network.
+> **Do NOT open** Postgres (`5432`/`5435`) or the Go API (`8080`) ports to the internet. All internal services are protected behind Caddy on the Docker network.
 
 ---
 
@@ -90,7 +87,7 @@ echo '/swapfile swap swap defaults 0 0' | sudo tee -a /etc/fstab
 ```bash
 cd ~/database-development   # project root
 mkdir -p uploads backups
-mkdir -p data/{postgres,qdrant,jenkins_home}
+mkdir -p data/{postgres,chromadb}
 mkdir -p data/caddy/{data,config,logs}
 ```
 
@@ -112,7 +109,6 @@ GEMINI_API_KEY=...
 AWS_ACCESS_KEY_ID=...
 AWS_SECRET_ACCESS_KEY=...
 AWS_S3_BUCKET_NAME=...
-SMEE_URL=https://smee.io/your-channel-id
 ```
 
 > [!WARNING]
@@ -134,8 +130,8 @@ This script installs Docker, configures swap, creates directories, validates `.e
 ### Method B — Manual
 
 ```bash
-# Pull pre-built images (postgres, qdrant, caddy, jenkins)
-docker compose pull caddy postgres qdrant jenkins
+# Pull pre-built images (postgres, caddy)
+docker compose pull caddy postgres
 
 # Build application images in parallel
 docker compose build --parallel python-rag-engine go-api-gateway angular-ui
@@ -157,12 +153,6 @@ Once deployed and DNS is pointing to your EC2 IP:
 |------------|--------------------------------------------------|
 | App UI     | `https://aether-rag-pipeline.duckdns.org`        |
 | API Health | `https://aether-rag-pipeline.duckdns.org/healthz`|
-| Jenkins    | `https://aether-rag-pipeline.duckdns.org/jenkins`|
-
-**Jenkins initial admin password:**
-```bash
-docker exec rag-jenkins cat /var/jenkins_home/secrets/initialAdminPassword
-```
 
 ---
 
@@ -199,5 +189,4 @@ docker compose down
 | `go-api-gateway` exits immediately | Postgres not ready | Check `docker compose ps` — postgres needs to be `healthy` first. Healthchecks ensure this automatically. |
 | `python-rag-engine` OOM killed | Not enough RAM | Enable swap (Section 4B) or upgrade instance. |
 | Caddy fails to get SSL cert | DNS not resolving yet | Wait 1–5 min after updating DuckDNS. Port 80/443 must be open in Security Group. |
-| `smee` container keeps restarting | `SMEE_URL` not set in `.env` | Set a real Smee.io channel URL in `.env`. |
-| `qdrant` unhealthy | Slow startup | Normal on cold start — healthcheck retries for 30 s × 5 times. |
+| `python-rag-engine` unhealthy | Slow startup (model load) | Normal on cold start — healthcheck retries for 30 s × 5 times. |

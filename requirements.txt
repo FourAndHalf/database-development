@@ -3,7 +3,6 @@ docling
 sentence-transformers
 tqdm
 chromadb
-qdrant-client
 fastapi
 uvicorn[standard]
 python-multipart

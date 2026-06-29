@@ -49,7 +49,7 @@ fi
 # ── 2. Create required data directories ──────────────────────────────────────
 info "Creating data directories..."
 mkdir -p uploads backups
-mkdir -p data/{postgres,qdrant,jenkins_home}
+mkdir -p data/{postgres,chromadb}
 mkdir -p data/caddy/{data,config,logs}
 chmod 755 uploads backups
 
@@ -89,7 +89,7 @@ fi
 
 # ── 5. Build and start services ───────────────────────────────────────────────
 info "Building images and starting services (this may take several minutes on first run)..."
-docker compose pull caddy postgres qdrant jenkins 2>/dev/null || true
+docker compose pull caddy postgres 2>/dev/null || true
 docker compose build --parallel python-rag-engine go-api-gateway angular-ui
 docker compose up -d
 
@@ -119,12 +119,7 @@ docker compose ps
 echo ""
 info "Service URLs (once DNS propagates to this IP):"
 echo "  App UI   → https://aether-rag-pipeline.duckdns.org"
-echo "  Jenkins  → https://aether-rag-pipeline.duckdns.org/jenkins"
 echo "  Health   → https://aether-rag-pipeline.duckdns.org/healthz"
-echo ""
-info "Jenkins initial password:"
-docker exec rag-jenkins cat /var/jenkins_home/secrets/initialAdminPassword 2>/dev/null \
-  || warn "Jenkins not ready yet — check with: docker logs rag-jenkins"
 echo ""
 info "Monitor resources:  docker stats"
 info "View logs:          docker compose logs -f [service-name]"

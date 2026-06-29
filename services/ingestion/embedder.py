@@ -9,7 +9,7 @@ class Embedder:
     generating dense vector embeddings for text.
     """
 
-    def __init__(self, model_name: str = "BAAI/bge-small-en-v1.5"):
+    def __init__(self, model_name: str = "BAAI/bge-m3"):
         """
         Initializes the Embedder with a specified Sentence-Transformers model.
 

@@ -18,7 +18,7 @@ docker exec nexus_postgres pg_dump -U nexus nexus_db > "/tmp/${BACKUP_FILE}"
 if [ $? -eq 0 ]; then
     echo "Backup successful. Uploading to S3..."
     
-    # 2. Upload to S3 (assuming aws-cli is available on the host/jenkins)
+    # 2. Upload to S3 (assuming aws-cli is available on the host)
     aws s3 cp "/tmp/${BACKUP_FILE}" "${S3_PATH}"
     
     if [ $? -eq 0 ]; then

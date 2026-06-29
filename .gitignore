@@ -4,8 +4,6 @@ data/chunks/
 data/embeddings/
 data/parsed/
 data/chromadb/
-data/qdrant/
-data/jenkins_home/
 
 # Temporary files and logs
 temp/
@@ -135,6 +133,9 @@ celerybeat.pid
 
 # Environments
 .env
+.env.*
+!.env.example
+*.bak
 .venv
 env/
 venv/

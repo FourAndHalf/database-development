@@ -1,9 +1,4 @@
 aether-rag-pipeline.duckdns.org {
-    # Serve Jenkins
-    handle /jenkins* {
-        reverse_proxy jenkins:8080
-    }
-
     # API Routes (v1, healthz, pdfs)
     handle /v1/* {
         reverse_proxy go-api-gateway:8080
