@@ -23,7 +23,14 @@ func Prometheus() Middleware {
 			ww := &statusWriter{ResponseWriter: w, status: http.StatusOK}
 			next.ServeHTTP(ww, r)
 			duration := time.Since(start).Seconds()
-			httpDuration.WithLabelValues(r.URL.Path, r.Method, fmt.Sprintf("%d", ww.status)).Observe(duration)
+			// Label on the matched route pattern (e.g. "GET /v1/papers/{id}"), not the
+			// raw path, so IDs don't explode metric cardinality. Falls back to
+			// "unmatched" for paths with no registered handler.
+			route := r.Pattern
+			if route == "" {
+				route = "unmatched"
+			}
+			httpDuration.WithLabelValues(route, r.Method, fmt.Sprintf("%d", ww.status)).Observe(duration)
 		})
 	}
 }

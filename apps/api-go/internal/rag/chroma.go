@@ -7,6 +7,9 @@ import (
 	"fmt"
 	"net/http"
 	"time"
+
+	"database-development/apps/api-go/internal/middleware"
+	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
 
 type chromaEngine struct {
@@ -19,6 +22,9 @@ func NewChromaEngine(pythonServiceURL string) Engine {
 		pythonServiceURL: pythonServiceURL,
 		httpClient: &http.Client{
 			Timeout: 600 * time.Second,
+			// otelhttp injects the W3C traceparent header so the Python engine
+			// continues the same trace instead of starting a disconnected one.
+			Transport: otelhttp.NewTransport(http.DefaultTransport),
 		},
 	}
 }
@@ -56,6 +62,9 @@ func (e *chromaEngine) Answer(ctx context.Context, q Question) (Answer, error) {
 		return Answer{}, err
 	}
 	req.Header.Set("Content-Type", "application/json")
+	if rid := middleware.RequestIDFromContext(ctx); rid != "" {
+		req.Header.Set("X-Request-ID", rid)
+	}
 
 	resp, err := e.httpClient.Do(req)
 	if err != nil {
@@ -93,6 +102,9 @@ func (e *chromaEngine) DeleteDocument(ctx context.Context, filename string) erro
 	req, err := http.NewRequestWithContext(ctx, "DELETE", e.pythonServiceURL+"/api/papers/"+filename, nil)
 	if err != nil {
 		return err
+	}
+	if rid := middleware.RequestIDFromContext(ctx); rid != "" {
+		req.Header.Set("X-Request-ID", rid)
 	}
 
 	resp, err := e.httpClient.Do(req)

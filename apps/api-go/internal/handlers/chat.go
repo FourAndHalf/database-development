@@ -11,6 +11,8 @@ import (
 	"database-development/apps/api-go/internal/rag"
 	"database-development/apps/api-go/internal/store"
 	"database-development/apps/api-go/internal/util"
+	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/trace"
 )
 
 type ChatHandler struct {
@@ -82,6 +84,14 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 	// Extract userID from context (set by authMiddleware)
 	userID, _ := ctx.Value(store.UserIDKey).(string)
 	isAuth := userID != ""
+
+	// Enrich the server span so chats are filterable in OpenObserve.
+	trace.SpanFromContext(ctx).SetAttributes(
+		attribute.String("chat.conversation_id", conversationID),
+		attribute.String("chat.model", req.Model),
+		attribute.Bool("chat.authenticated", isAuth),
+		attribute.Int("chat.message_len", len(req.Message)),
+	)
 
 	if isAuth {
 		// Ensure the conversation actually exists in the database

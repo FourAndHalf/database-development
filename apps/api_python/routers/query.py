@@ -1,14 +1,20 @@
 import re
 import json
 import os
+import logging
 from fastapi import APIRouter, HTTPException
 from duckduckgo_search import DDGS
+from opentelemetry import trace
 from apps.api_python.models import QueryRequest, QueryResponse, Source
 from apps.api_python import state
 from openai import OpenAI
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 
 router = APIRouter()
+log = logging.getLogger("rag.query")
+# Infra spans (retrieve/rerank/web) go to the global provider -> OpenObserve.
+tracer = trace.get_tracer("rag.query")
 
 # Only rerank scores at/above this (sigmoid 0-1) are trusted enough to answer from.
 RERANK_THRESHOLD = float(os.getenv("RERANK_THRESHOLD", "0.5"))
@@ -34,26 +40,30 @@ def _not_found_answer(query: str, web_searched: bool) -> str:
 
 
 async def generate_with_gemini(messages, model_name=None):
-    """Primary generator using Google Gemini (free tier)."""
+    """Primary generator using Google Gemini (free tier) via the google-genai SDK.
+
+    OpenInference auto-instruments this client, so the call is captured as an LLM
+    span (prompt/model/tokens) on the Phoenix provider.
+    """
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
         raise Exception("GEMINI_API_KEY not configured.")
 
     model_name = model_name or os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
-    print(f"Attempting Gemini ({model_name})...")
-    genai.configure(api_key=api_key)
-    model = genai.GenerativeModel(model_name)
+    log.info("Attempting Gemini (%s)", model_name)
+    client = genai.Client(api_key=api_key)
 
     # Convert OpenAI-style messages to a single Gemini prompt.
     system_instruction = messages[0]["content"]
     user_input = messages[1]["content"]
 
-    response = model.generate_content(
-        f"System Instructions:\n{system_instruction}\n\nUser Query:\n{user_input}",
-        generation_config=genai.types.GenerationConfig(
+    response = client.models.generate_content(
+        model=model_name,
+        contents=f"System Instructions:\n{system_instruction}\n\nUser Query:\n{user_input}",
+        config=types.GenerateContentConfig(
             temperature=0.15,
             max_output_tokens=2000,
-        )
+        ),
     )
     return response.text
 
@@ -70,7 +80,7 @@ def generate_with_groq(messages, model: str):
     }
     groq_model = model_map.get(model, "llama-3.1-70b-versatile")
 
-    print(f"Falling back to Groq ({groq_model})...")
+    log.info("Falling back to Groq (%s)", groq_model)
     client = OpenAI(base_url="https://api.groq.com/openai/v1", api_key=groq_api_key)
     completion = client.chat.completions.create(
         model=groq_model,
@@ -96,42 +106,54 @@ async def handle_query(request: QueryRequest):
     clean_query = request.query.replace("@web-search", "").strip()
 
     # 1. Retrieve a broad candidate pool from the vector store.
-    query_embedding = state.retriever.embedder.embed_text(clean_query)
-    results = state.retriever.vector_store.query(
-        query_embeddings=[query_embedding],
-        n_results=CANDIDATE_POOL
-    )
-    documents = results.get('documents', [[]])[0]
-    metadatas = results.get('metadatas', [[]])[0]
-    distances = results.get('distances', [[]])[0]
+    with tracer.start_as_current_span("rag.retrieve") as span:
+        span.set_attribute("rag.web_search", use_web_search)
+        span.set_attribute("rag.candidate_pool", CANDIDATE_POOL)
+        query_embedding = state.retriever.embedder.embed_text(clean_query)
+        results = state.retriever.vector_store.query(
+            query_embeddings=[query_embedding],
+            n_results=CANDIDATE_POOL
+        )
+        documents = results.get('documents', [[]])[0]
+        metadatas = results.get('metadatas', [[]])[0]
+        distances = results.get('distances', [[]])[0]
+        span.set_attribute("rag.candidates_returned", len(documents))
 
     # 2. Rerank with the cross-encoder and keep only chunks above threshold.
     sources = []
     kept_documents = []
-    if documents:
-        ranked = state.reranker.rerank(clean_query, documents, top_k=request.n_results)
-        for r in ranked:
-            if r["score"] < RERANK_THRESHOLD:
-                continue
-            i = r["index"]
-            kept_documents.append(documents[i])
-            sources.append(Source(
-                source_file=metadatas[i].get('source', 'Unknown'),
-                content=documents[i],
-                distance=distances[i],
-            ))
+    with tracer.start_as_current_span("rag.rerank") as span:
+        span.set_attribute("rag.rerank_threshold", RERANK_THRESHOLD)
+        span.set_attribute("rag.top_k", request.n_results)
+        if documents:
+            ranked = state.reranker.rerank(clean_query, documents, top_k=request.n_results)
+            span.set_attribute("rag.top_score", ranked[0]["score"] if ranked else 0.0)
+            for r in ranked:
+                if r["score"] < RERANK_THRESHOLD:
+                    continue
+                i = r["index"]
+                kept_documents.append(documents[i])
+                sources.append(Source(
+                    source_file=metadatas[i].get('source', 'Unknown'),
+                    content=documents[i],
+                    distance=distances[i],
+                ))
+        span.set_attribute("rag.chunks_kept", len(kept_documents))
 
     # 3. Optional web context (explicit user request bypasses the threshold gate).
     web_documents = []
     if use_web_search:
-        try:
-            ddgs = DDGS()
-            web_results = list(ddgs.text(clean_query, max_results=2))
-            for r in web_results:
-                web_documents.append(f"Web Source [{r['title']}]: {r['body']}")
-                sources.append(Source(source_file=r['title'], content=r['body'], distance=0.0, url=r['href']))
-        except Exception as e:
-            print(f"Web search failed: {e}")
+        with tracer.start_as_current_span("rag.web_search") as span:
+            try:
+                ddgs = DDGS()
+                web_results = list(ddgs.text(clean_query, max_results=2))
+                for r in web_results:
+                    web_documents.append(f"Web Source [{r['title']}]: {r['body']}")
+                    sources.append(Source(source_file=r['title'], content=r['body'], distance=0.0, url=r['href']))
+                span.set_attribute("rag.web_results", len(web_documents))
+            except Exception as e:
+                span.record_exception(e)
+                log.warning("Web search failed: %s", e)
 
     # 4. Nothing relevant cleared the bar -> personalized not-found, no hallucinating.
     if not kept_documents and not web_documents:
@@ -154,11 +176,11 @@ async def handle_query(request: QueryRequest):
     try:
         generated_text = await generate_with_gemini(messages)
     except Exception as e:
-        print(f"Gemini failed or rate limited: {e}")
+        log.warning("Gemini failed or rate limited: %s", e)
         try:
             generated_text = generate_with_groq(messages, request.model)
         except Exception as groq_err:
-            print(f"Groq fallback also failed: {groq_err}")
+            log.error("Groq fallback also failed: %s", groq_err)
             raise HTTPException(status_code=502, detail="Both Gemini and Groq services are unavailable.")
 
     # 7. Parse Structure

@@ -81,6 +81,7 @@ func (s *Server) routes() http.Handler {
 	return middleware.Chain(
 		mux,
 		middleware.Recover(s.cfg.Logger),
+		middleware.RequestID(),
 		middleware.RequestLog(s.cfg.Logger),
 		middleware.Prometheus(),
 		middleware.Auth(s.cfg.Logger),

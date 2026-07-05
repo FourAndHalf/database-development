@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"strings"
 
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
@@ -13,20 +14,44 @@ import (
 	semconv "go.opentelemetry.io/otel/semconv/v1.24.0"
 )
 
+// parseHeaders turns "k1=v1,k2=v2" into a map for OTLP metadata (e.g. OpenObserve
+// Authorization / organization / stream-name headers).
+func parseHeaders(raw string) map[string]string {
+	headers := map[string]string{}
+	for _, pair := range strings.Split(raw, ",") {
+		pair = strings.TrimSpace(pair)
+		k, v, ok := strings.Cut(pair, "=")
+		if !ok {
+			continue
+		}
+		headers[strings.TrimSpace(k)] = strings.TrimSpace(v)
+	}
+	return headers
+}
+
+// InitTracer wires all Go API traces to OpenObserve (the API-observability
+// platform). Endpoint is OPENOBSERVE_OTLP_ENDPOINT (falling back to the standard
+// OTEL_EXPORTER_OTLP_ENDPOINT); if neither is set, tracing is disabled but the
+// propagator is still installed so trace_ids exist and cross-service context flows.
 func InitTracer(ctx context.Context) (func(context.Context) error, error) {
-	endpoint := os.Getenv("OTEL_EXPORTER_OTLP_ENDPOINT")
+	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{}))
+
+	endpoint := os.Getenv("OPENOBSERVE_OTLP_ENDPOINT")
 	if endpoint == "" {
-		endpoint = "otel.observability.duckdns.org:4317"
+		endpoint = os.Getenv("OTEL_EXPORTER_OTLP_ENDPOINT")
 	}
-	
+	if endpoint == "" {
+		// No collector configured: no exporter, no noisy connection errors.
+		return func(context.Context) error { return nil }, nil
+	}
+
 	// Strip http:// if present for the gRPC exporter
-	if len(endpoint) > 7 && endpoint[:7] == "http://" {
-		endpoint = endpoint[7:]
-	}
+	endpoint = strings.TrimPrefix(endpoint, "http://")
 
 	exporter, err := otlptracegrpc.New(ctx,
 		otlptracegrpc.WithEndpoint(endpoint),
 		otlptracegrpc.WithInsecure(),
+		otlptracegrpc.WithHeaders(parseHeaders(os.Getenv("OPENOBSERVE_OTLP_HEADERS"))),
 	)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create OTLP trace exporter: %w", err)
@@ -47,7 +72,6 @@ func InitTracer(ctx context.Context) (func(context.Context) error, error) {
 		sdktrace.WithResource(res),
 	)
 	otel.SetTracerProvider(tp)
-	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{}))
 
 	return tp.Shutdown, nil
 }

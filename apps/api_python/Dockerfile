@@ -33,10 +33,11 @@ COPY --from=builder /root/.local /root/.local
 ENV PATH=/root/.local/bin:$PATH
 
 # SURGICAL COPY: Only copy what this specific service needs
-COPY apps/api-python/ ./apps/api-python/
+COPY apps/api_python/ ./apps/api_python/
 COPY services/ ./services/
 COPY requirements.txt .
 
 EXPOSE 8000
 
-CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--app-dir", "apps/api-python"]
+# Package-style run from /app (project root) so absolute `apps.api_python.*` imports resolve.
+CMD ["python", "-m", "uvicorn", "apps.api_python.main:app", "--host", "0.0.0.0", "--port", "8000"]

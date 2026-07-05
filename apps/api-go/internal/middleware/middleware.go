@@ -22,7 +22,10 @@ func RequestLog(logger *log.Logger) Middleware {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			start := time.Now()
 			next.ServeHTTP(w, r)
-			logger.Printf("%s %s (%s)", r.Method, r.URL.Path, time.Since(start))
+			logger.Printf("%s %s [trace_id=%s request_id=%s] (%s)",
+				r.Method, r.URL.Path,
+				TraceIDFromContext(r.Context()), RequestIDFromContext(r.Context()),
+				time.Since(start))
 		})
 	}
 }
