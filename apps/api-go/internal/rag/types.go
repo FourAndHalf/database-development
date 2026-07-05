@@ -12,10 +12,16 @@ type Engine interface {
 	DeleteDocument(ctx context.Context, filename string) error
 }
 
+type Turn struct {
+	Role string `json:"role"`
+	Text string `json:"text"`
+}
+
 type Question struct {
 	ConversationID string
 	Message        string
 	Model          string
+	History        []Turn
 }
 
 type Answer struct {

@@ -25,7 +25,7 @@ func (h *PaperHandler) DeletePaper(w http.ResponseWriter, r *http.Request) {
 	}
 
 	user, err := h.store.GetUserByID(ctx, userID)
-	if err != nil || user == nil || user.TypeID != 2 {
+	if err != nil || user == nil || !user.IsAdmin {
 		writeErr(w, http.StatusForbidden, "forbidden_admin_only")
 		return
 	}

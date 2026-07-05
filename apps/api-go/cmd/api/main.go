@@ -18,7 +18,7 @@ import (
 )
 
 func main() {
-	port := envInt("PORT", 8080)
+	port := envInt("PORT", 8081)
 	uiOrigin := envString("UI_ORIGIN", "http://localhost:4200")
 	ragEngineType := envString("RAG_ENGINE", "chroma")
 	pythonServiceURL := envString("PYTHON_SERVICE_URL", "http://localhost:8000")

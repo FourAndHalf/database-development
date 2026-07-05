@@ -46,29 +46,10 @@ func (s *Store) Close() error {
 }
 
 func (s *Store) migrate() error {
+	// The users & papers schema is owned by scripts/schema.sql (canonical).
+	// migrate() only ensures the legacy chat tables still used by the
+	// not-yet-migrated chat flow; these are removed in the chat->requests slice.
 	query := `
-	CREATE TABLE IF NOT EXISTS user_types (
-		id SERIAL PRIMARY KEY,
-		name TEXT UNIQUE NOT NULL
-	);
-
-	INSERT INTO user_types (id, name) VALUES (1, 'standard'), (2, 'admin') ON CONFLICT (id) DO NOTHING;
-
-	CREATE TABLE IF NOT EXISTS users (
-		id UUID PRIMARY KEY,
-		email TEXT UNIQUE NOT NULL,
-		password_hash TEXT,
-		type_id INTEGER REFERENCES user_types(id) DEFAULT 1,
-		created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-	);
-
-	DO $$ 
-	BEGIN 
-		IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'users' AND column_name = 'type_id') THEN 
-			ALTER TABLE users ADD COLUMN type_id INTEGER REFERENCES user_types(id) DEFAULT 1; 
-		END IF; 
-	END $$;
-
 	CREATE TABLE IF NOT EXISTS conversations (
 		id UUID PRIMARY KEY,
 		user_id UUID REFERENCES users(id) ON DELETE CASCADE,

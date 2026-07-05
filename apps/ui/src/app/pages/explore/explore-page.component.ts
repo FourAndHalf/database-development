@@ -66,7 +66,7 @@ export class ExplorePageComponent {
 
   isAdmin(): boolean {
     const user = this.auth.user();
-    return !!user && user.type_id === 2;
+    return !!user && user.is_admin === true;
   }
 
   async search() {

@@ -6,12 +6,14 @@ export type AuthResponse = {
   token: string;
   email: string;
   id: string;
-  type_id: number;
+  username?: string;
+  is_admin: boolean;
 };
 
 export type AuthRequest = {
   email: string;
   password?: string;
+  username?: string;
 };
 
 @Injectable({ providedIn: 'root' })

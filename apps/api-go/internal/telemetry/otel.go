@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
+	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp"
 	"go.opentelemetry.io/otel/propagation"
 	"go.opentelemetry.io/otel/sdk/resource"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
@@ -24,7 +24,10 @@ func parseHeaders(raw string) map[string]string {
 		if !ok {
 			continue
 		}
-		headers[strings.TrimSpace(k)] = strings.TrimSpace(v)
+		// Trim surrounding quotes so a quoted env value (e.g. via docker env_file)
+		// doesn't corrupt the header, e.g. authorization="Basic ...".
+		v = strings.Trim(strings.TrimSpace(v), `"`)
+		headers[strings.TrimSpace(k)] = v
 	}
 	return headers
 }
@@ -45,13 +48,19 @@ func InitTracer(ctx context.Context) (func(context.Context) error, error) {
 		return func(context.Context) error { return nil }, nil
 	}
 
-	// Strip http:// if present for the gRPC exporter
-	endpoint = strings.TrimPrefix(endpoint, "http://")
+	// The OTEL ingress (Caddy -> otel-collector:4318) speaks OTLP/HTTP, not gRPC.
+	// Strip the scheme; the HTTP exporter takes host:port and posts to /v1/traces.
+	endpoint = strings.TrimPrefix(strings.TrimPrefix(endpoint, "https://"), "http://")
 
-	exporter, err := otlptracegrpc.New(ctx,
-		otlptracegrpc.WithEndpoint(endpoint),
-		otlptracegrpc.WithInsecure(),
-		otlptracegrpc.WithHeaders(parseHeaders(os.Getenv("OPENOBSERVE_OTLP_HEADERS"))),
+	headers := os.Getenv("OPENOBSERVE_OTLP_HEADERS")
+	if headers == "" {
+		headers = os.Getenv("OTEL_EXPORTER_OTLP_HEADERS")
+	}
+
+	exporter, err := otlptracehttp.New(ctx,
+		otlptracehttp.WithEndpoint(endpoint),
+		otlptracehttp.WithInsecure(),
+		otlptracehttp.WithHeaders(parseHeaders(headers)),
 	)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create OTLP trace exporter: %w", err)

@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"database-development/apps/api-go/internal/store"
@@ -34,13 +35,15 @@ func NewAuthHandler(logger *log.Logger, s *store.Store) *AuthHandler {
 type authRequest struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
+	Username string `json:"username"`
 }
 
 type authResponse struct {
-	Token  string `json:"token"`
-	Email  string `json:"email"`
-	ID     string `json:"id"`
-	TypeID int    `json:"type_id"`
+	Token    string `json:"token"`
+	Email    string `json:"email"`
+	ID       string `json:"id"`
+	Username string `json:"username,omitempty"`
+	IsAdmin  bool   `json:"is_admin"`
 }
 
 func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {
@@ -63,7 +66,12 @@ func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	id, err := h.store.CreateUser(ctx, req.Email, string(hash))
+	var username *string
+	if u := strings.TrimSpace(req.Username); u != "" {
+		username = &u
+	}
+
+	id, err := h.store.CreateUser(ctx, req.Email, string(hash), username)
 	if err != nil {
 		h.logger.Printf("Failed to create user: %v", err)
 		writeErr(w, http.StatusConflict, "user_already_exists")
@@ -77,12 +85,11 @@ func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	writeJSON(w, http.StatusCreated, authResponse{
-		Token:  token,
-		Email:  req.Email,
-		ID:     id,
-		TypeID: 1, // Default type_id is 1 (standard)
-	})
+	resp := authResponse{Token: token, Email: req.Email, ID: id, IsAdmin: false}
+	if username != nil {
+		resp.Username = *username
+	}
+	writeJSON(w, http.StatusCreated, resp)
 }
 
 func (h *AuthHandler) Login(w http.ResponseWriter, r *http.Request) {
@@ -110,6 +117,11 @@ func (h *AuthHandler) Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Bump login_count + last_login_at (schema trigger helper); non-fatal.
+	if err := h.store.RecordLogin(ctx, u.ID); err != nil {
+		h.logger.Printf("Failed to record login for %s (non-fatal): %v", u.ID, err)
+	}
+
 	token, err := createToken(u.ID, u.Email)
 	if err != nil {
 		h.logger.Printf("Failed to create token: %v", err)
@@ -117,12 +129,11 @@ func (h *AuthHandler) Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	writeJSON(w, http.StatusOK, authResponse{
-		Token:  token,
-		Email:  u.Email,
-		ID:     u.ID,
-		TypeID: u.TypeID,
-	})
+	resp := authResponse{Token: token, Email: u.Email, ID: u.ID, IsAdmin: u.IsAdmin}
+	if u.Username != nil {
+		resp.Username = *u.Username
+	}
+	writeJSON(w, http.StatusOK, resp)
 }
 
 func createToken(userID, email string) (string, error) {

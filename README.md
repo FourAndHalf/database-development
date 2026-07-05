@@ -94,7 +94,7 @@ You can run the entire multi-service application locally using Docker Compose.
 Once the containers are up and running, you can access the different layers of the system:
 
 - **Frontend UI:** [http://localhost:4200](http://localhost:4200)
-- **Go API Gateway:** [http://localhost:8080](http://localhost:8080)
+- **Go API Gateway:** [http://localhost:8081](http://localhost:8081)
 - **Python RAG Engine:** [http://localhost:8000](http://localhost:8000)
 - **PostgreSQL Database:** `localhost:5434` (Credentials specified in `docker-compose.yml`)
 

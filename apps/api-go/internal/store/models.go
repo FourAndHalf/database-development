@@ -7,8 +7,10 @@ import (
 type User struct {
 	ID           string    `json:"id"`
 	Email        string    `json:"email"`
+	Username     *string   `json:"username,omitempty"`
 	PasswordHash string    `json:"-"`
-	TypeID       int       `json:"type_id"`
+	IsAdmin      bool      `json:"is_admin"`
+	LoginCount   int       `json:"login_count"`
 	CreatedAt    time.Time `json:"created_at"`
 }
 

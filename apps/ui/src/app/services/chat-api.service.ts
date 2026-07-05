@@ -10,10 +10,16 @@ export type Source = {
   url?: string;
 };
 
+export type HistoryTurn = {
+  role: 'user' | 'assistant';
+  text: string;
+};
+
 export type ChatMessage = {
   conversation_id?: string;
   message: string;
   model?: string;
+  history?: HistoryTurn[];
 };
 
 export type ChatResponse = {

@@ -12,6 +12,12 @@
           <p class="auth-sub">{{ isLogin() ? 'Enter your credentials to access your history.' : 'Create an account to save your research.' }}</p>
 
           <form (ngSubmit)="submit()" class="auth-form">
+            @if (!isLogin()) {
+              <div class="input-group">
+                <label>Username <span class="optional">(optional)</span></label>
+                <input type="text" name="username" [(ngModel)]="username" placeholder="researcher" autocomplete="username">
+              </div>
+            }
             <div class="input-group">
               <label>Email</label>
               <input type="email" name="email" [(ngModel)]="email" placeholder="researcher@aether.ai" required>

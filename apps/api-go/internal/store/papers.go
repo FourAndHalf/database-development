@@ -80,15 +80,26 @@ func (s *Store) UpdateMetadata(ctx context.Context, paperID string, data map[str
 
 func (s *Store) GetPaperWithMetadata(ctx context.Context, paperID string) (*PaperDetail, error) {
 	paperQuery := `
-		SELECT p.id, p.title, p.filename, COALESCE(p.url, '') as url, p.created_at, p.updated_at, m.data
+		SELECT p.id, p.title,
+			COALESCE(p.original_filename, '') AS filename,
+			COALESCE(p.storage_uri, '') AS url,
+			p.created_at, p.updated_at,
+			json_strip_nulls(json_build_object(
+				'abstract', p.abstract, 'doi', p.doi, 'venue', p.venue,
+				'published_date', p.published_date, 'status', p.status,
+				'source_type', p.source_type, 'chunk_count', p.chunk_count
+			)) AS meta,
+			COALESCE((
+				SELECT json_agg(json_build_object('id', ord::text, 'name', a) ORDER BY ord)
+				FROM unnest(p.authors) WITH ORDINALITY AS t(a, ord)
+			), '[]') AS authors
 		FROM papers p
-		LEFT JOIN paper_metadata m ON p.id = m.paper_id
 		WHERE p.id = $1
 	`
 	var pd PaperDetail
-	var metadataJSON []byte
+	var metadataJSON, authorsJSON []byte
 	err := s.db.QueryRowContext(ctx, paperQuery, paperID).Scan(
-		&pd.ID, &pd.Title, &pd.Filename, &pd.URL, &pd.CreatedAt, &pd.UpdatedAt, &metadataJSON,
+		&pd.ID, &pd.Title, &pd.Filename, &pd.URL, &pd.CreatedAt, &pd.UpdatedAt, &metadataJSON, &authorsJSON,
 	)
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -97,32 +108,14 @@ func (s *Store) GetPaperWithMetadata(ctx context.Context, paperID string) (*Pape
 		return nil, fmt.Errorf("failed to get paper: %w", err)
 	}
 
+	pd.Metadata = make(map[string]interface{})
 	if metadataJSON != nil {
 		if err := json.Unmarshal(metadataJSON, &pd.Metadata); err != nil {
 			return nil, fmt.Errorf("failed to unmarshal metadata: %w", err)
 		}
-	} else {
-		pd.Metadata = make(map[string]interface{})
 	}
-
-	authorQuery := `
-		SELECT a.id, a.name
-		FROM authors a
-		JOIN paper_authors pa ON a.id = pa.author_id
-		WHERE pa.paper_id = $1
-	`
-	rows, err := s.db.QueryContext(ctx, authorQuery, paperID)
-	if err != nil {
-		return nil, fmt.Errorf("failed to get paper authors: %w", err)
-	}
-	defer rows.Close()
-
-	for rows.Next() {
-		var a Author
-		if err := rows.Scan(&a.ID, &a.Name); err != nil {
-			return nil, fmt.Errorf("failed to scan author: %w", err)
-		}
-		pd.Authors = append(pd.Authors, a)
+	if err := json.Unmarshal(authorsJSON, &pd.Authors); err != nil {
+		return nil, fmt.Errorf("failed to unmarshal authors: %w", err)
 	}
 
 	return &pd, nil
@@ -130,7 +123,7 @@ func (s *Store) GetPaperWithMetadata(ctx context.Context, paperID string) (*Pape
 
 func (s *Store) DeletePaper(ctx context.Context, id string) (string, error) {
 	var filename string
-	err := s.db.QueryRowContext(ctx, "DELETE FROM papers WHERE id = $1 RETURNING filename", id).Scan(&filename)
+	err := s.db.QueryRowContext(ctx, "DELETE FROM papers WHERE id = $1 RETURNING COALESCE(original_filename, '')", id).Scan(&filename)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			return "", nil // Paper not found
@@ -142,15 +135,20 @@ func (s *Store) DeletePaper(ctx context.Context, id string) (string, error) {
 
 func (s *Store) SearchPapers(ctx context.Context, query string, page, pageSize int) (*PaginatedPapers, error) {
 	offset := (page - 1) * pageSize
+	// authors is a text[] column; expand it into [{id,name}] objects so the
+	// response shape matches what the UI already renders.
 	sqlQuery := `
 		SELECT
-			p.id, p.title, p.filename, COALESCE(p.url, '') as url, p.created_at, p.updated_at,
-			COALESCE(json_agg(json_build_object('id', a.id, 'name', a.name)) FILTER (WHERE a.id IS NOT NULL), '[]') as authors
+			p.id, p.title,
+			COALESCE(p.original_filename, '') AS filename,
+			COALESCE(p.storage_uri, '') AS url,
+			p.created_at, p.updated_at,
+			COALESCE((
+				SELECT json_agg(json_build_object('id', ord::text, 'name', a) ORDER BY ord)
+				FROM unnest(p.authors) WITH ORDINALITY AS t(a, ord)
+			), '[]') AS authors
 		FROM papers p
-		LEFT JOIN paper_authors pa ON p.id = pa.paper_id
-		LEFT JOIN authors a ON pa.author_id = a.id
-		WHERE p.title ILIKE $1 OR a.name ILIKE $1
-		GROUP BY p.id
+		WHERE p.title ILIKE $1 OR array_to_string(p.authors, ' ') ILIKE $1
 		ORDER BY p.title ASC
 		LIMIT $2 OFFSET $3
 	`
@@ -174,11 +172,9 @@ func (s *Store) SearchPapers(ctx context.Context, query string, page, pageSize i
 	}
 
 	countQuery := `
-		SELECT COUNT(DISTINCT p.id)
+		SELECT COUNT(*)
 		FROM papers p
-		LEFT JOIN paper_authors pa ON p.id = pa.paper_id
-		LEFT JOIN authors a ON pa.author_id = a.id
-		WHERE p.title ILIKE $1 OR a.name ILIKE $1
+		WHERE p.title ILIKE $1 OR array_to_string(p.authors, ' ') ILIKE $1
 	`
 	var total int
 	if err := s.db.QueryRowContext(ctx, countQuery, "%"+query+"%").Scan(&total); err != nil {

@@ -18,6 +18,7 @@ export class AuthComponent {
 
   email = '';
   password = '';
+  username = '';
 
   constructor(
     private readonly auth: AuthService,
@@ -35,9 +36,9 @@ export class AuthComponent {
     this.busy.set(true);
     this.error.set('');
 
-    const obs = this.isLogin() 
+    const obs = this.isLogin()
       ? this.auth.login({ email: this.email, password: this.password })
-      : this.auth.register({ email: this.email, password: this.password });
+      : this.auth.register({ email: this.email, password: this.password, username: this.username });
 
     obs.subscribe({
       next: () => {

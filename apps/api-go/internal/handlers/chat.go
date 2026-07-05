@@ -26,10 +26,11 @@ func NewChatHandler(logger *log.Logger, engine rag.Engine, s *store.Store) *Chat
 }
 
 type chatRequest struct {
-	ConversationID string `json:"conversation_id"`
-	UserID         string `json:"user_id"`
-	Message        string `json:"message"`
-	Model          string `json:"model"`
+	ConversationID string     `json:"conversation_id"`
+	UserID         string     `json:"user_id"`
+	Message        string     `json:"message"`
+	Model          string     `json:"model"`
+	History        []rag.Turn `json:"history"`
 }
 
 type chatResponse struct {
@@ -112,6 +113,7 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 		ConversationID: conversationID,
 		Message:        req.Message,
 		Model:          req.Model,
+		History:        req.History,
 	})
 	if err != nil {
 		if errors.Is(err, rag.ErrNoAnswer) {

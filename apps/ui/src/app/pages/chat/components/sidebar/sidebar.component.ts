@@ -16,7 +16,6 @@ export class SidebarComponent {
 
   @Input() history: Conversation[] = [];
   @Input() conversationId = '';
-  @Input() selectedModel = 'aether-2.0';
 
   @Output() newChat = new EventEmitter<void>();
   @Output() loadConversation = new EventEmitter<string>();

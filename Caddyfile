@@ -1,13 +1,13 @@
 aether-rag-pipeline.duckdns.org {
     # API Routes (v1, healthz, pdfs)
     handle /v1/* {
-        reverse_proxy go-api-gateway:8080
+        reverse_proxy go-api-gateway:8081
     }
     handle /healthz {
-        reverse_proxy go-api-gateway:8080
+        reverse_proxy go-api-gateway:8081
     }
     handle /pdfs/* {
-        reverse_proxy go-api-gateway:8080
+        reverse_proxy go-api-gateway:8081
     }
 
     # All other requests go to the Angular UI

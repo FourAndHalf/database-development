@@ -10,7 +10,7 @@ npm install
 npm start
 ```
 
-This uses `proxy.conf.json` so the UI can call the backend at `http://localhost:8080` without CORS issues.
+This uses `proxy.conf.json` so the UI can call the backend at `http://localhost:8081` without CORS issues.
 
 ## Notes
 - Backend endpoint: `POST /v1/chat`

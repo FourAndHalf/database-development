@@ -3,7 +3,6 @@
     <app-chat-sidebar
       [history]="history()"
       [conversationId]="conversationId()"
-      [selectedModel]="selectedModel()"
       (newChat)="newChat()"
       (loadConversation)="loadConversation($event)"
       (deleteConversation)="deleteConversation($event)"
@@ -25,7 +24,6 @@
               #centerComposer
               [isBottom]="false"
               [(draft)]="draft"
-              [(selectedModel)]="selectedModel"
               [busy]="busy()"
               (send)="send()"
             ></app-chat-composer>
@@ -86,7 +84,6 @@
                 #bottomComposer
                 [isBottom]="true"
                 [(draft)]="draft"
-                [(selectedModel)]="selectedModel"
                 [busy]="busy()"
                 (send)="send()"
               ></app-chat-composer>

@@ -21,6 +21,42 @@ RERANK_THRESHOLD = float(os.getenv("RERANK_THRESHOLD", "0.5"))
 # Broad first-stage pool handed to the cross-encoder before it narrows to n_results.
 CANDIDATE_POOL = int(os.getenv("RETRIEVAL_CANDIDATE_POOL", "20"))
 
+# Shared formatting contract: push the models toward visual, diagram-rich answers.
+FORMAT_RULES = (
+    "MAKE ANSWERS VISUAL AND EASY TO UNDERSTAND — favour structure and diagrams over walls of text:\n"
+    "- Open with a one-sentence direct answer, then expand.\n"
+    "- Use semantic HTML: <h3> headings, <p>, <strong>/<em>, <ul>/<li>, <ol>, and <table> "
+    "with <thead>/<tbody> for any comparison or tradeoff. Use <code>/<pre> for code, keys, or formulas, "
+    "and <blockquote> for the key takeaway.\n"
+    "- Whenever a concept has structure (architecture, data flow, request/replication path, a sequence, "
+    "a timeline, a tradeoff space, or a state machine), DRAW IT as an inline <svg>. Use "
+    "<svg viewBox='0 0 640 360' width='100%'> with labelled <rect>/<circle> nodes, <text> labels, and "
+    "<line>/<path> arrows. Keep every diagram self-contained (no external URLs, no <img>). Use clear, "
+    "high-contrast colours that read on a dark UI.\n"
+    "- Prefer several small, focused visuals over one dense one.\n\n"
+    "OUTPUT CONTRACT — follow EXACTLY, output ONLY these tags (no markdown fences, no text outside them):\n"
+    "- Wrap the primary answer in a single <main>...</main>.\n"
+    "- Add zero or more <tab title=\"...\">...</tab> blocks for supplementary depth "
+    "(good tab titles: 'Diagram', 'Architecture', 'Deep Dive', 'Comparison', 'Example', 'Tradeoffs')."
+)
+
+def _grounded_system(context: str) -> str:
+    return (
+        "You are Aether, an elite research architect specializing in distributed systems and databases. "
+        "Answer the user's question grounded in the CONTEXT below. If the context is insufficient for part "
+        "of the question, say so briefly rather than inventing facts.\n\n"
+        f"CONTEXT:\n{context}\n\n{FORMAT_RULES}"
+    )
+
+def _followup_system() -> str:
+    return (
+        "You are Aether, an elite research architect. No NEW source documents were retrieved for this turn — "
+        "this is a follow-up about the conversation so far (e.g. reformat it, visualize it as a diagram/table, "
+        "simplify, or expand a previous answer). Fulfil it using the conversation history. Do not introduce new "
+        "factual claims beyond what the conversation has already established.\n\n"
+        f"{FORMAT_RULES}"
+    )
+
 
 def _not_found_answer(query: str, web_searched: bool) -> str:
     """Builds a personalized 'no relevant data' message instead of hallucinating."""
@@ -49,20 +85,28 @@ async def generate_with_gemini(messages, model_name=None):
     if not api_key:
         raise Exception("GEMINI_API_KEY not configured.")
 
-    model_name = model_name or os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+    model_name = model_name or os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
     log.info("Attempting Gemini (%s)", model_name)
     client = genai.Client(api_key=api_key)
 
-    # Convert OpenAI-style messages to a single Gemini prompt.
+    # messages[0] is the system prompt; the rest is the multi-turn conversation
+    # (history + current question). Map to Gemini's contents/roles ('assistant'->'model').
     system_instruction = messages[0]["content"]
-    user_input = messages[1]["content"]
+    contents = []
+    for m in messages[1:]:
+        role = "model" if m["role"] == "assistant" else "user"
+        contents.append({"role": role, "parts": [{"text": m["content"]}]})
+    # Gemini requires the first content to be a 'user' turn.
+    while contents and contents[0]["role"] == "model":
+        contents.pop(0)
 
     response = client.models.generate_content(
         model=model_name,
-        contents=f"System Instructions:\n{system_instruction}\n\nUser Query:\n{user_input}",
+        contents=contents,
         config=types.GenerateContentConfig(
             temperature=0.15,
-            max_output_tokens=2000,
+            max_output_tokens=4000,
+            system_instruction=system_instruction,
         ),
     )
     return response.text
@@ -75,10 +119,10 @@ def generate_with_groq(messages, model: str):
         raise Exception("GROQ_API_KEY not configured for fallback.")
 
     model_map = {
-        "aether-1.0": "llama3-8b-8192",          # Aether 1.0 (8B)
-        "aether-2.0": "llama-3.1-70b-versatile",  # Aether 2.0 (70B)
+        "aether-1.0": "llama-3.1-8b-instant",     # Aether 1.0 (8B)
+        "aether-2.0": "llama-3.3-70b-versatile",  # Aether 2.0 (70B)
     }
-    groq_model = model_map.get(model, "llama-3.1-70b-versatile")
+    groq_model = model_map.get(model, "llama-3.3-70b-versatile")
 
     log.info("Falling back to Groq (%s)", groq_model)
     client = OpenAI(base_url="https://api.groq.com/openai/v1", api_key=groq_api_key)
@@ -86,7 +130,7 @@ def generate_with_groq(messages, model: str):
         model=groq_model,
         messages=messages,
         temperature=0.15,
-        max_tokens=2000
+        max_tokens=4000
     )
     return completion.choices[0].message.content
 
@@ -155,22 +199,26 @@ async def handle_query(request: QueryRequest):
                 span.record_exception(e)
                 log.warning("Web search failed: %s", e)
 
-    # 4. Nothing relevant cleared the bar -> personalized not-found, no hallucinating.
-    if not kept_documents and not web_documents:
+    # 4. Gate. Grounded answer if chunks/web cleared the bar. Otherwise, if there IS
+    #    prior conversation, treat this as a follow-up (reformat/visualize/expand) and
+    #    answer from history. Only refuse when there's nothing to work from at all.
+    has_context = bool(kept_documents or web_documents)
+    history = request.history or []
+    if not has_context and not history:
         return QueryResponse(answer=_not_found_answer(clean_query, use_web_search), sources=[])
 
-    # 5. Construct Prompt
-    context = "\n\n---\n\n".join(kept_documents + web_documents)
-    messages = [
-        {
-            "role": "system",
-            "content": f"You are Aether, an elite research architect. Context:\n{context}\n\nRULES: Use HTML (<strong>, <code>, <ul>, <li>, <table>, <h3>) and <svg> diagrams. Follow EXACT XML structure: <main>...</main> and <tab title='...'>...</tab> tags."
-        },
-        {
-            "role": "user",
-            "content": f"Question: {clean_query}"
-        }
-    ]
+    # 5. Construct the multi-turn prompt: system + conversation history + current query.
+    if has_context:
+        context = "\n\n---\n\n".join(kept_documents + web_documents)
+        system_content = _grounded_system(context)
+    else:
+        system_content = _followup_system()
+
+    messages = [{"role": "system", "content": system_content}]
+    for turn in history:
+        role = "assistant" if turn.role == "assistant" else "user"
+        messages.append({"role": role, "content": turn.text})
+    messages.append({"role": "user", "content": clean_query})
 
     # 6. Generation: Gemini primary -> Groq fallback.
     try:

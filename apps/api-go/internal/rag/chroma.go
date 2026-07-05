@@ -33,6 +33,7 @@ type pythonQueryRequest struct {
 	Query    string `json:"query"`
 	NResults int    `json:"n_results"`
 	Model    string `json:"model"`
+	History  []Turn `json:"history,omitempty"`
 }
 
 type pythonSource struct {
@@ -52,6 +53,7 @@ func (e *chromaEngine) Answer(ctx context.Context, q Question) (Answer, error) {
 		Query:    q.Message,
 		NResults: 5,
 		Model:    q.Model,
+		History:  q.History,
 	})
 	if err != nil {
 		return Answer{}, err

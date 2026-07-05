@@ -10,7 +10,7 @@ go run ./cmd/api
 ```
 
 Env vars:
-- `PORT` (default `8080`)
+- `PORT` (default `8081`)
 - `UI_ORIGIN` (default `http://localhost:4200`) used for CORS
 - `RAG_ENGINE` (default `mock`) set to `chroma` to call the Python retrieval service
 - `PYTHON_SERVICE_URL` (default `http://localhost:8000`) used when `RAG_ENGINE=chroma`

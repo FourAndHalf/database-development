@@ -36,7 +36,6 @@ export class ChatPageComponent implements OnDestroy {
   protected readonly messages = signal<UiMessage[]>([]);
   protected readonly history = signal<Conversation[]>([]);
   protected readonly busy = signal(false);
-  protected readonly selectedModel = signal<'aether-1.0' | 'aether-2.0'>('aether-2.0');
   protected readonly greeting = getGreeting;
 
   constructor() {
@@ -152,6 +151,16 @@ export class ChatPageComponent implements OnDestroy {
     this.draft = '';
     this.busy.set(true);
 
+    // Snapshot the conversation so far as working memory (before adding this turn),
+    // so the engine can resolve follow-ups like "make an HTML view of this".
+    const history = this.messages()
+      .filter((m) => !m.pending && !m.isTyping && m.text)
+      .slice(-8)
+      .map((m) => ({
+        role: m.role,
+        text: (m.text || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 1500),
+      }));
+
     const userMsg: UiMessage = { id: crypto.randomUUID(), role: 'user', text: message };
     const assistantId = crypto.randomUUID();
     const assistantMsg: UiMessage = { id: assistantId, role: 'assistant', text: 'Exploring', pending: true };
@@ -160,10 +169,10 @@ export class ChatPageComponent implements OnDestroy {
 
     try {
       const res = await firstValueFrom(
-        this.api.chat({ 
-          conversation_id: this.conversationId() || undefined, 
+        this.api.chat({
+          conversation_id: this.conversationId() || undefined,
           message,
-          model: this.selectedModel()
+          history
         })
       );
       if (!res) throw new Error('no response');

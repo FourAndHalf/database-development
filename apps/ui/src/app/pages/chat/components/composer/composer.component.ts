@@ -14,11 +14,9 @@ export class ComposerComponent {
 
   @Input() isBottom = false;
   @Input() draft = '';
-  @Input() selectedModel = 'aether-2.0';
   @Input() busy = false;
 
   @Output() draftChange = new EventEmitter<string>();
-  @Output() selectedModelChange = new EventEmitter<string>();
   @Output() send = new EventEmitter<void>();
 
   suggestion = '';

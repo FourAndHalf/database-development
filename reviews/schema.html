@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RAG Pipeline — PostgreSQL Schema</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1d212b; --line:#2a2f3a;
+    --ink:#e6e9ef; --muted:#9aa4b2; --accent:#5aa9ff; --accent2:#7ee0b4;
+    --pk:#ffd479; --fk:#ff9db1; --enum:#c9a0ff; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  header{padding:32px 28px 20px;border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#141821,#0f1115)}
+  header h1{margin:0 0 6px;font-size:22px;letter-spacing:.2px}
+  header p{margin:0;color:var(--muted);font-size:13.5px}
+  .wrap{max-width:1120px;margin:0 auto;padding:24px 28px 60px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .pill{font:12px var(--mono);background:var(--panel2);border:1px solid var(--line);
+    color:var(--muted);padding:4px 10px;border-radius:999px}
+  h2{font-size:15px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);
+    margin:34px 0 14px;font-weight:600}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .card > h3{margin:0;padding:13px 16px;font:600 15px var(--mono);
+    background:var(--panel2);border-bottom:1px solid var(--line);display:flex;
+    align-items:center;justify-content:space-between}
+  .card > h3 .cnt{font:11px var(--mono);color:var(--muted);font-weight:400}
+  table{width:100%;border-collapse:collapse;font:12.5px var(--mono)}
+  td{padding:6px 16px;border-bottom:1px solid #20242e;vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .col{color:var(--ink)}
+  .typ{color:var(--muted);text-align:right;white-space:nowrap}
+  .tag{display:inline-block;font:10px var(--mono);padding:1px 6px;border-radius:5px;
+    margin-right:5px;vertical-align:middle}
+  .t-pk{background:rgba(255,212,121,.14);color:var(--pk);border:1px solid rgba(255,212,121,.3)}
+  .t-fk{background:rgba(255,157,177,.13);color:var(--fk);border:1px solid rgba(255,157,177,.3)}
+  .t-uq{background:rgba(90,169,255,.13);color:var(--accent);border:1px solid rgba(90,169,255,.3)}
+  .t-ix{background:rgba(126,224,180,.12);color:var(--accent2);border:1px solid rgba(126,224,180,.3)}
+  .note{color:var(--muted);font-size:11.5px;padding:10px 16px;border-top:1px dashed var(--line)}
+  .enums{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .enum{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .enum b{font:600 13px var(--mono);color:var(--enum)}
+  .enum .vals{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+  .enum .vals span{font:11px var(--mono);background:var(--panel2);border:1px solid var(--line);
+    color:var(--ink);padding:2px 8px;border-radius:6px}
+  .rels{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 4px}
+  .rel{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid #20242e;
+    font:12.5px var(--mono);flex-wrap:wrap}
+  .rel:last-child{border-bottom:none}
+  .rel .from{color:var(--fk)}
+  .rel .to{color:var(--accent)}
+  .rel .arr{color:var(--muted)}
+  .rel .on{margin-left:auto;font:10.5px var(--mono);color:var(--muted);
+    background:var(--panel2);border:1px solid var(--line);padding:2px 8px;border-radius:6px}
+  .trig{font:12px var(--mono);color:var(--muted)}
+  .trig code{color:var(--accent2)}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0 0;font-size:11.5px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  a{color:var(--accent)}
+  footer{color:var(--muted);font-size:12px;margin-top:40px;padding-top:16px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header>
+  <h1>RAG Pipeline — PostgreSQL Schema</h1>
+  <p>Relational system-of-record for the research-paper RAG stack. Chunks &amp; vectors live in ChromaDB; Postgres links back via <code>paper_id</code>.</p>
+  <div class="meta">
+    <span class="pill">db: nexus_db</span>
+    <span class="pill">host: localhost:5434</span>
+    <span class="pill">PostgreSQL 14+</span>
+    <span class="pill">4 tables · 4 enums · 4 triggers</span>
+    <span class="pill">source: scripts/schema.sql</span>
+  </div>
+  <div class="legend">
+    <span><b class="tag t-pk">PK</b> primary key</span>
+    <span><b class="tag t-fk">FK</b> foreign key</span>
+    <span><b class="tag t-uq">UQ</b> unique</span>
+    <span><b class="tag t-ix">IX</b> indexed</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <h2>Enumerated Types</h2>
+  <div class="enums">
+    <div class="enum"><b>paper_source</b><div class="vals"><span>curated</span><span>user_upload</span></div></div>
+    <div class="enum"><b>paper_visibility</b><div class="vals"><span>private</span><span>public</span><span>shared</span></div></div>
+    <div class="enum"><b>ingest_status</b><div class="vals"><span>pending</span><span>processing</span><span>completed</span><span>failed</span></div></div>
+    <div class="enum"><b>request_status</b><div class="vals"><span>pending</span><span>completed</span><span>failed</span></div></div>
+  </div>
+
+  <h2>Tables</h2>
+  <div class="grid">
+
+    <!-- users -->
+    <div class="card">
+      <h3>users <span class="cnt">14 cols</span></h3>
+      <table>
+        <tr><td class="col"><span class="tag t-pk">PK</span>id</td><td class="typ">uuid</td></tr>
+        <tr><td class="col"><span class="tag t-uq">UQ</span>email</td><td class="typ">text</td></tr>
+        <tr><td class="col"><span class="tag t-uq">UQ</span>username</td><td class="typ">text</td></tr>
+        <tr><td class="col">full_name</td><td class="typ">text</td></tr>
+        <tr><td class="col">password_hash</td><td class="typ">text</td></tr>
+        <tr><td class="col"><span class="tag t-ix">IX</span>region</td><td class="typ">text</td></tr>
+        <tr><td class="col">login_count</td><td class="typ">integer</td></tr>
+        <tr><td class="col">last_login_at</td><td class="typ">timestamptz</td></tr>
+        <tr><td class="col">papers_uploaded_count</td><td class="typ">integer</td></tr>
+        <tr><td class="col">requests_count</td><td class="typ">integer</td></tr>
+        <tr><td class="col">is_active</td><td class="typ">boolean</td></tr>
+        <tr><td class="col">created_at</td><td class="typ">timestamptz</td></tr>
+        <tr><td class="col">updated_at</td><td class="typ">timestamptz</td></tr>
+      </table>
+      <div class="note">Activity counters kept in sync by triggers + <code>record_login(uuid)</code> helper. Store a hash in <code>password_hash</code>, never the raw password.</div>
+    </div>
+
+    <!-- papers -->
+    <div class="card">
+      <h3>papers <span class="cnt">23 cols</span></h3>
+      <table>
+        <tr><td class="col"><span class="tag t-pk">PK</span>id</td><td class="typ">uuid</td></tr>
+        <tr><td class="col">title</td><td class="typ">text</td></tr>
+        <tr><td class="col"><span class="tag t-ix">IX</span>authors</td><td class="typ">text[] · gin</td></tr>
+        <tr><td class="col">abstract</td><td class="typ">text</td></tr>
+        <tr><td class="col"><span class="tag t-uq">UQ</span>doi</td><td class="typ">text</td></tr>
+        <tr><td class="col">venue</td><td class="typ">text</td></tr>
+        <tr><td class="col">published_date</td><td class="typ">date</td></tr>
+        <tr><td class="col">source_url</td><td class="typ">text</td></tr>
+        <tr><td class="col">storage_uri</td><td class="typ">text</td></tr>
+        <tr><td class="col"><span class="tag t-ix">IX</span>source_type</td><td class="typ">paper_source</td></tr>
+        <tr><td class="col"><span class="tag t-fk">FK</span><span class="tag t-ix">IX</span>uploaded_by</td><td class="typ">uuid → users</td></tr>
+        <tr><td class="col">visibility</td><td class="typ">paper_visibility</td></tr>
+        <tr><td class="col">original_filename</td><td class="typ">text</td></tr>
+        <tr><td class="col">mime_type</td><td class="typ">text</td></tr>
+        <tr><td class="col">file_size_bytes</td><td class="typ">bigint</td></tr>
+        <tr><td class="col"><span class="tag t-ix">IX</span>checksum_sha256</td><td class="typ">char(64)</td></tr>
+        <tr><td class="col"><span class="tag t-ix">IX</span>status</td><td class="typ">ingest_status</td></tr>
+        <tr><td class="col"><span class="tag t-ix">IX</span>ingested_at</td><td class="typ">timestamptz</td></tr>
+        <tr><td class="col">chunk_count</td><td class="typ">integer</td></tr>
+        <tr><td class="col">error_message</td><td class="typ">text</td></tr>
+        <tr><td class="col">created_at</td><td class="typ">timestamptz</td></tr>
+        <tr><td class="col">updated_at</td><td class="typ">timestamptz</td></tr>
+      </table>
+      <div class="note">Repo paper → <code>source_type='curated'</code>, <code>uploaded_by NULL</code>. User upload → <code>'user_upload'</code> + user. Chunks/vectors keyed by <code>id</code> in ChromaDB metadata.</div>
+    </div>
+
+    <!-- requests -->
+    <div class="card">
+      <h3>requests <span class="cnt">10 cols</span></h3>
+      <table>
+        <tr><td class="col"><span class="tag t-pk">PK</span>id</td><td class="typ">uuid</td></tr>
+        <tr><td class="col"><span class="tag t-fk">FK</span><span class="tag t-ix">IX</span>user_id</td><td class="typ">uuid → users</td></tr>
+        <tr><td class="col">query_text</td><td class="typ">text</td></tr>
+        <tr><td class="col">answer_text</td><td class="typ">text</td></tr>
+        <tr><td class="col">status</td><td class="typ">request_status</td></tr>
+        <tr><td class="col">model_name</td><td class="typ">text</td></tr>
+        <tr><td class="col">params</td><td class="typ">jsonb</td></tr>
+        <tr><td class="col">web_search_used</td><td class="typ">boolean</td></tr>
+        <tr><td class="col">latency_ms</td><td class="typ">integer</td></tr>
+        <tr><td class="col"><span class="tag t-ix">IX</span>created_at</td><td class="typ">timestamptz</td></tr>
+      </table>
+      <div class="note">A saved user query + its generated answer. <code>ON DELETE CASCADE</code> from users.</div>
+    </div>
+
+    <!-- request_retrievals -->
+    <div class="card">
+      <h3>request_retrievals <span class="cnt">8 cols</span></h3>
+      <table>
+        <tr><td class="col"><span class="tag t-pk">PK</span>id</td><td class="typ">uuid</td></tr>
+        <tr><td class="col"><span class="tag t-fk">FK</span><span class="tag t-ix">IX</span>request_id</td><td class="typ">uuid → requests</td></tr>
+        <tr><td class="col"><span class="tag t-fk">FK</span><span class="tag t-ix">IX</span>paper_id</td><td class="typ">uuid → papers</td></tr>
+        <tr><td class="col"><span class="tag t-ix">IX</span>chroma_chunk_id</td><td class="typ">text</td></tr>
+        <tr><td class="col">snippet</td><td class="typ">text</td></tr>
+        <tr><td class="col">rank</td><td class="typ">integer</td></tr>
+        <tr><td class="col">score</td><td class="typ">double precision</td></tr>
+        <tr><td class="col">created_at</td><td class="typ">timestamptz</td></tr>
+      </table>
+      <div class="note">Which Chroma chunks fed each answer — traceability / eval. <code>UNIQUE(request_id, chroma_chunk_id)</code>. Cached <code>snippet</code> avoids a Chroma round-trip for display.</div>
+    </div>
+
+  </div>
+
+  <h2>Relationships</h2>
+  <div class="rels">
+    <div class="rel"><span class="from">papers.uploaded_by</span><span class="arr">→</span><span class="to">users.id</span><span class="on">ON DELETE SET NULL</span></div>
+    <div class="rel"><span class="from">requests.user_id</span><span class="arr">→</span><span class="to">users.id</span><span class="on">ON DELETE CASCADE</span></div>
+    <div class="rel"><span class="from">request_retrievals.request_id</span><span class="arr">→</span><span class="to">requests.id</span><span class="on">ON DELETE CASCADE</span></div>
+    <div class="rel"><span class="from">request_retrievals.paper_id</span><span class="arr">→</span><span class="to">papers.id</span><span class="on">ON DELETE SET NULL</span></div>
+  </div>
+
+  <h2>Triggers &amp; Functions</h2>
+  <div class="rels">
+    <div class="rel"><span class="trig"><code>set_updated_at()</code> — BEFORE UPDATE on <b>users</b>, <b>papers</b> → refresh <code>updated_at</code></span></div>
+    <div class="rel"><span class="trig"><code>bump_papers_count()</code> — AFTER INSERT/DELETE on <b>papers</b> → keep <code>users.papers_uploaded_count</code> in sync</span></div>
+    <div class="rel"><span class="trig"><code>bump_requests_count()</code> — AFTER INSERT/DELETE on <b>requests</b> → keep <code>users.requests_count</code> in sync</span></div>
+    <div class="rel"><span class="trig"><code>record_login(uuid)</code> — helper: bump <code>login_count</code> + set <code>last_login_at</code> at successful login</span></div>
+  </div>
+
+  <footer>
+    Generated for review · applied to <code>nexus_db</code> on <code>localhost:5434</code> · canonical DDL in <code>scripts/schema.sql</code>.
+  </footer>
+</div>
+</body>
+</html>

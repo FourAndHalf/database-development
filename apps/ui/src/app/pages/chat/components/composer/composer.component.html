@@ -1,12 +1,6 @@
 <form class="center-composer-inner" [class.bottom-inner]="isBottom" (ngSubmit)="onSubmit()" autocomplete="off">
   @if (!isBottom) {
     <div class="composer-header">
-      <div class="model-selector">
-        <select [ngModel]="selectedModel" (ngModelChange)="selectedModelChange.emit($event)" name="modelSelect" class="model-dropdown">
-          <option value="aether-1.0">Aether 1.0 (8B)</option>
-          <option value="aether-2.0">Aether 2.0 (70B)</option>
-        </select>
-      </div>
       <div class="search-hint">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         Use <span>@web-search</span> for live internet results
@@ -38,15 +32,8 @@
       <div class="toolbar-actions">
         <button type="button" class="tool-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button>
       </div>
-    } @else {
-      <div class="model-selector">
-        <select [ngModel]="selectedModel" (ngModelChange)="selectedModelChange.emit($event)" name="bottomModelSelect" class="model-dropdown">
-          <option value="aether-1.0">Version 1</option>
-          <option value="aether-2.0">Version 2</option>
-        </select>
-      </div>
     }
-    
+
     <button type="submit" class="tool-btn submit-btn" [disabled]="busy || !draft.trim()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>

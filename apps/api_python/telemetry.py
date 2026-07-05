@@ -22,7 +22,7 @@ from opentelemetry import trace
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
-from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 
 from openinference.instrumentation.google_genai import GoogleGenAIInstrumentor
 from openinference.instrumentation.openai import OpenAIInstrumentor
@@ -39,17 +39,35 @@ def _parse_headers(raw: str) -> dict:
         if not pair or "=" not in pair:
             continue
         k, v = pair.split("=", 1)
-        headers[k.strip()] = v.strip()
+        # Strip surrounding quotes so a quoted value (e.g. via docker env_file)
+        # doesn't corrupt the header, e.g. authorization="Basic ...".
+        headers[k.strip()] = v.strip().strip('"')
     return headers
 
 
+def _traces_url(endpoint: str) -> str:
+    """Normalize an OTLP endpoint into an OTLP/HTTP traces URL.
+
+    The ingress (Caddy -> otel-collector:4318) speaks OTLP/HTTP, so the exporter
+    posts to <endpoint>/v1/traces. Accepts bare host:port or a full URL.
+    """
+    ep = endpoint.strip().rstrip("/")
+    if not ep.startswith(("http://", "https://")):
+        ep = "http://" + ep
+    if not ep.endswith("/v1/traces"):
+        ep = ep + "/v1/traces"
+    return ep
+
+
 def _build_provider(endpoint: str, headers: dict) -> TracerProvider:
-    """A TracerProvider that batches spans to a single OTLP/gRPC endpoint."""
-    provider = TracerProvider(resource=Resource(attributes={
+    """A TracerProvider that batches spans to a single OTLP/HTTP endpoint."""
+    # Resource.create() merges OTEL_RESOURCE_ATTRIBUTES (e.g. openinference.project.name)
+    # from the environment; the bare Resource() constructor would drop it.
+    provider = TracerProvider(resource=Resource.create({
         "service.name": SERVICE_NAME,
         "deployment.environment": os.getenv("ENVIRONMENT", "production"),
     }))
-    exporter = OTLPSpanExporter(endpoint=endpoint, insecure=True, headers=headers or None)
+    exporter = OTLPSpanExporter(endpoint=_traces_url(endpoint), headers=headers or None)
     provider.add_span_processor(BatchSpanProcessor(exporter))
     return provider
 
@@ -90,25 +108,36 @@ def init_telemetry() -> TracerProvider:
     oo_endpoint = os.getenv(
         "OPENOBSERVE_OTLP_ENDPOINT", os.getenv("OTEL_EXPORTER_OTLP_ENDPOINT", "")
     ).strip()
+    oo_headers = os.getenv("OPENOBSERVE_OTLP_HEADERS", os.getenv("OTEL_EXPORTER_OTLP_HEADERS", ""))
     if oo_endpoint:
-        global_provider = _build_provider(oo_endpoint, _parse_headers(os.getenv("OPENOBSERVE_OTLP_HEADERS", "")))
+        global_provider = _build_provider(oo_endpoint, _parse_headers(oo_headers))
     else:
         # No collector configured: spans are recorded (so trace_ids still exist for
         # correlation) but nothing is exported.
-        global_provider = TracerProvider(resource=Resource(attributes={"service.name": SERVICE_NAME}))
+        global_provider = TracerProvider(resource=Resource.create({"service.name": SERVICE_NAME}))
     trace.set_tracer_provider(global_provider)
 
-    # --- Phoenix: LLM traces (dedicated provider) ---
+    # --- Phoenix: LLM traces ---
+    # Prefer a dedicated Phoenix endpoint. If none is set but a single OTEL collector
+    # is (e.g. one endpoint fronting both Phoenix and OpenObserve), bind the LLM
+    # instrumentors to the global provider so Gemini/Groq spans still get exported.
     px_endpoint = os.getenv("PHOENIX_OTLP_ENDPOINT", "").strip()
     if px_endpoint:
-        phoenix_provider = _build_provider(px_endpoint, _parse_headers(os.getenv("PHOENIX_OTLP_HEADERS", "")))
-        # OpenInference instrumentors emit LLM spans onto the Phoenix provider only,
-        # so Gemini/Groq calls are auto-captured with prompt/model/token attributes.
-        GoogleGenAIInstrumentor().instrument(tracer_provider=phoenix_provider)
-        OpenAIInstrumentor().instrument(tracer_provider=phoenix_provider)
+        llm_provider = _build_provider(px_endpoint, _parse_headers(os.getenv("PHOENIX_OTLP_HEADERS", "")))
+    elif oo_endpoint:
+        llm_provider = global_provider
+    else:
+        llm_provider = None
 
+    if llm_provider is not None:
+        # OpenInference instrumentors auto-capture Gemini/Groq calls with
+        # prompt/model/token attributes and emit them onto the chosen provider.
+        GoogleGenAIInstrumentor().instrument(tracer_provider=llm_provider)
+        OpenAIInstrumentor().instrument(tracer_provider=llm_provider)
+
+    llm_dest = px_endpoint or (oo_endpoint + " (shared)" if oo_endpoint else "")
     log.info(
-        "Telemetry ready | OpenObserve(API)=%s | Phoenix(LLM)=%s",
-        oo_endpoint or "(disabled)", px_endpoint or "(disabled)",
+        "Telemetry ready | API=%s | LLM=%s",
+        oo_endpoint or "(disabled)", llm_dest or "(disabled)",
     )
     return global_provider
