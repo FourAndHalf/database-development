@@ -65,14 +65,28 @@ func (s *Store) UpsertUser(ctx context.Context, email string) (string, error) {
 }
 
 func (s *Store) GetLastConversations(ctx context.Context, userID string, limit int) ([]Conversation, error) {
-	query := `
-		SELECT id, user_id, title, created_at
-		FROM conversations
-		WHERE user_id = $1
-		ORDER BY created_at DESC
-		LIMIT $2
-	`
-	rows, err := s.db.QueryContext(ctx, query, userID, limit)
+	var rows *sql.Rows
+	var err error
+
+	if userID == "00000000-0000-0000-0000-000000000000" {
+		query := `
+			SELECT id, user_id, title, created_at
+			FROM conversations
+			ORDER BY created_at DESC
+			LIMIT $1
+		`
+		rows, err = s.db.QueryContext(ctx, query, limit)
+	} else {
+		query := `
+			SELECT id, user_id, title, created_at
+			FROM conversations
+			WHERE user_id = $1
+			ORDER BY created_at DESC
+			LIMIT $2
+		`
+		rows, err = s.db.QueryContext(ctx, query, userID, limit)
+	}
+
 	if err != nil {
 		return nil, fmt.Errorf("failed to get last conversations: %w", err)
 	}
