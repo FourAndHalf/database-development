@@ -14,6 +14,12 @@
       <!-- HOME VIEW (Empty State) -->
       @if (messages().length === 0) {
         <div class="home-view">
+          <div class="top-nav">
+            <button class="metrics-fab" (click)="showMetricsModal.set(true)" title="Dashboard">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+              <span>Dashboard</span>
+            </button>
+          </div>
           <div class="greeting">
             <h1>{{ greeting() }}, Researcher</h1>
             <p>How can I help you today?</p>
@@ -30,22 +36,25 @@
           </div>
 
           <div class="quick-actions">
-            <button class="action-chip" (click)="prefill('Compare Bigtable and Dynamo architecture.')">Compare papers</button>
-            <button class="action-chip" (click)="prefill('Summarize the Raft consensus algorithm.')">Summarize text</button>
-            <button class="action-chip" (click)="prefill('Explain Spanner TrueTime')">Deep dive</button>
+            <button class="action-chip" (click)="prefill('Analyze the evolution of distributed consensus protocols from Paxos to Raft, highlighting trade-offs in leader election and log replication.')">Trace consensus evolution</button>
+            <button class="action-chip" (click)="prefill('Explain the differences between strict serializability and snapshot isolation in distributed databases, giving examples of anomalies prevented by each.')">Compare isolation levels</button>
+            <button class="action-chip" (click)="prefill('Provide a comprehensive comparison of storage engines: B-Trees vs. LSM-Trees. Include their write-amplification characteristics, read latencies, and optimal use cases in modern databases.')">Deep storage comparison</button>
           </div>
 
           <div class="widgets-row">
             <div class="widget">
-              <div class="w-head">Index Status</div>
+              <div class="w-head">System Uptime</div>
               <div class="w-body">
-                <div class="w-main-val">9.9k</div>
-                <div class="w-sub">Vectors Indexed<br>ChromaDB Ready</div>
+                <div class="w-main-val">{{ dashboardMetrics()?.realtime?.uptime_s ? formatUptime(dashboardMetrics()!.realtime.uptime_s) : '--' }}</div>
+                <div class="w-sub">Backend Active<br>API Gateway</div>
               </div>
             </div>
             <div class="widget w-wide">
-              <div class="w-head"><span class="badge">New</span> Context-Aware Chat</div>
-              <div class="w-text">Aether automatically retrieves chunks from indexed systems papers to ground your answers, avoiding hallucinations.</div>
+              <div class="w-head"><span class="badge">Today's Traffic</span> Operations</div>
+              <div class="w-text">
+                Queries: {{ dashboardMetrics()?.today?.total_queries || 0 }}<br>
+                Avg Latency: {{ dashboardMetrics()?.today?.avg_latency_ms || 0 }}ms
+              </div>
             </div>
           </div>
           
@@ -89,6 +98,98 @@
               ></app-chat-composer>
             </div>
           </footer>
+        </div>
+      }
+
+      @if (showMetricsModal()) {
+        <div class="modal-overlay">
+          <div class="modal metrics-modal">
+            <div class="modal-header">
+              <h2>System Metrics</h2>
+              <button class="close-btn" (click)="showMetricsModal.set(false)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+            <div class="modal-body">
+              @if (metricsLoading()) {
+                <div class="loader-wrap"><span class="loader"></span></div>
+              } @else if (dashboardMetrics(); as metrics) {
+                <div class="dashboard-header-stats">
+                  <div class="stat-card accent-glow">
+                    <div class="s-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                    <div class="s-info">
+                      <div class="s-val">{{ metrics.today?.total_queries || 0 }}</div>
+                      <div class="s-lbl">Queries Today</div>
+                    </div>
+                  </div>
+                  <div class="stat-card">
+                    <div class="s-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                    <div class="s-info">
+                      <div class="s-val">{{ metrics.today?.avg_latency_ms || 0 }}<span class="s-unit">ms</span></div>
+                      <div class="s-lbl">Avg Latency</div>
+                    </div>
+                  </div>
+                  <div class="stat-card" [class.danger-glow]="(metrics.today?.failure_rate || 0) > 5">
+                    <div class="s-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+                    <div class="s-info">
+                      <div class="s-val">{{ metrics.today?.failure_rate || 0 }}<span class="s-unit">%</span></div>
+                      <div class="s-lbl">Failure Rate</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="metrics-grid">
+                  <div class="metric-card small">
+                    <div class="m-label">P50 Latency</div>
+                    <div class="m-value">{{ metrics.today?.p50_latency_ms || 0 }}<span class="unit">ms</span></div>
+                  </div>
+                  <div class="metric-card small">
+                    <div class="m-label">P95 Latency</div>
+                    <div class="m-value">{{ metrics.today?.p95_latency_ms || 0 }}<span class="unit">ms</span></div>
+                  </div>
+                  <div class="metric-card small">
+                    <div class="m-label">P99 Latency</div>
+                    <div class="m-value">{{ metrics.today?.p99_latency_ms || 0 }}<span class="unit">ms</span></div>
+                  </div>
+                </div>
+                
+                <div class="charts-row">
+                  <div class="chart-box">
+                    <h3 class="history-title">Traffic Spikes (30 Days)</h3>
+                    <div class="chart-container">
+                      <div class="bar-chart">
+                        @for (day of metrics.history; track day.id) {
+                          <div class="bar-wrapper" [title]="day.metric_date + ': ' + day.total_queries + ' queries'">
+                            <div class="bar" [style.height]="((day.total_queries / (metrics.history[0]?.total_queries || 1)) * 100) + '%'"></div>
+                            <div class="bar-lbl">{{ day.metric_date | slice:8:10 }}</div>
+                          </div>
+                        } @empty {
+                          <div class="no-data">No history available</div>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="chart-box">
+                    <h3 class="history-title">Latency Trends (Avg vs P95)</h3>
+                    <div class="chart-container">
+                      <div class="bar-chart latency-chart">
+                        @for (day of metrics.history; track day.id) {
+                          <div class="bar-wrapper" [title]="day.metric_date + ': Avg ' + day.avg_latency_ms + 'ms, P95 ' + day.p95_latency_ms + 'ms'">
+                            <div class="bar p95-bar" [style.height]="((day.p95_latency_ms / ((metrics.history[0]?.p95_latency_ms || 1) * 1.2)) * 100) + '%'"></div>
+                            <div class="bar avg-bar" [style.height]="((day.avg_latency_ms / ((metrics.history[0]?.p95_latency_ms || 1) * 1.2)) * 100) + '%'"></div>
+                            <div class="bar-lbl">{{ day.metric_date | slice:8:10 }}</div>
+                          </div>
+                        } @empty {
+                          <div class="no-data">No history available</div>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
         </div>
       }
     </main>

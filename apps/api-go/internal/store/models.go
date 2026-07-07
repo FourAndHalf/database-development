@@ -59,3 +59,20 @@ type PaginatedPapers struct {
 	Papers []PaperDetail `json:"papers"`
 	Total  int           `json:"total"`
 }
+
+type DailyMetric struct {
+	ID               int       `json:"id"`
+	MetricDate       string    `json:"metric_date"`
+	TotalQueries     int       `json:"total_queries"`
+	SuccessfulQueries int      `json:"successful_queries"`
+	FailedQueries    int       `json:"failed_queries"`
+	FailureRate      float64   `json:"failure_rate"`
+	P50LatencyMs     float64   `json:"p50_latency_ms"`
+	P95LatencyMs     float64   `json:"p95_latency_ms"`
+	P99LatencyMs     float64   `json:"p99_latency_ms"`
+	AvgLatencyMs     float64   `json:"avg_latency_ms"`
+	MinLatencyMs     float64   `json:"min_latency_ms"`
+	MaxLatencyMs     float64   `json:"max_latency_ms"`
+	CreatedAt        time.Time `json:"created_at"`
+	UpdatedAt        time.Time `json:"updated_at"`
+}

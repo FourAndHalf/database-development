@@ -47,6 +47,7 @@ func (s *Server) routes() http.Handler {
 	papers := handlers.NewPaperHandler(s.cfg.Logger, s.cfg.Engine, s.cfg.Store)
 	users := handlers.NewUserHandler(s.cfg.Logger, s.cfg.Store)
 	auth := handlers.NewAuthHandler(s.cfg.Logger, s.cfg.Store)
+	metrics := handlers.NewMetricsHandler(s.cfg.Logger, s.cfg.Store)
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /healthz", health.Get)
@@ -78,6 +79,13 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("OPTIONS /v1/users/{id}/history", middleware.PreflightHandler(s.cfg.UIOrigin))
 	mux.HandleFunc("GET /v1/users/{id}/history", users.GetHistory)
 	mux.HandleFunc("DELETE /v1/users/{id}/chats/{conversation_id}", users.DeleteChat)
+
+	bug := handlers.NewBugHandler(s.cfg.Logger)
+	mux.HandleFunc("OPTIONS /v1/bugs", middleware.PreflightHandler(s.cfg.UIOrigin))
+	mux.HandleFunc("POST /v1/bugs", bug.ReportBug)
+
+	mux.HandleFunc("OPTIONS /v1/metrics/dashboard", middleware.PreflightHandler(s.cfg.UIOrigin))
+	mux.HandleFunc("GET /v1/metrics/dashboard", metrics.GetDashboard)
 
 	return middleware.Chain(
 		mux,

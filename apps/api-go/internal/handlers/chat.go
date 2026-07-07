@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"log"
@@ -122,6 +123,13 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 		}
 		h.logger.Printf("RAG engine failed to answer: %v", err)
 		writeErr(w, http.StatusInternalServerError, "chat_failed")
+		go func() {
+			bgCtx := context.Background()
+			elapsed := time.Since(start).Milliseconds()
+			if err := h.store.RecordQueryMetric(bgCtx, elapsed, false); err != nil {
+				h.logger.Printf("Failed to record query metric: %v", err)
+			}
+		}()
 		return
 	}
 
@@ -140,6 +148,13 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 		Mock:           ans.Mock,
 	}
 	writeJSON(w, http.StatusOK, resp)
+
+	go func() {
+		bgCtx := context.Background()
+		if err := h.store.RecordQueryMetric(bgCtx, resp.LatencyMs, true); err != nil {
+			h.logger.Printf("Failed to record query metric: %v", err)
+		}
+	}()
 }
 
 func writeErr(w http.ResponseWriter, status int, code string) {

@@ -90,6 +90,32 @@ func (s *Store) migrate() error {
 		data JSONB NOT NULL DEFAULT '{}'::jsonb,
 		updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 	);
+
+	CREATE TABLE IF NOT EXISTS daily_metrics (
+		id SERIAL PRIMARY KEY,
+		metric_date DATE NOT NULL UNIQUE,
+		total_queries INTEGER NOT NULL DEFAULT 0,
+		successful_queries INTEGER NOT NULL DEFAULT 0,
+		failed_queries INTEGER NOT NULL DEFAULT 0,
+		failure_rate NUMERIC(5,2) NOT NULL DEFAULT 0,
+		p50_latency_ms NUMERIC(10,2) NOT NULL DEFAULT 0,
+		p95_latency_ms NUMERIC(10,2) NOT NULL DEFAULT 0,
+		p99_latency_ms NUMERIC(10,2) NOT NULL DEFAULT 0,
+		avg_latency_ms NUMERIC(10,2) NOT NULL DEFAULT 0,
+		min_latency_ms NUMERIC(10,2) NOT NULL DEFAULT 0,
+		max_latency_ms NUMERIC(10,2) NOT NULL DEFAULT 0,
+		created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+		updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+	);
+
+	CREATE TABLE IF NOT EXISTS query_latency_log (
+		id SERIAL PRIMARY KEY,
+		query_date DATE NOT NULL DEFAULT CURRENT_DATE,
+		latency_ms NUMERIC(10,2) NOT NULL,
+		success BOOLEAN NOT NULL DEFAULT true,
+		created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+	);
+	CREATE INDEX IF NOT EXISTS idx_latency_log_date ON query_latency_log(query_date);
 	`
 	_, err := s.db.Exec(query)
 	return err
@@ -152,4 +178,126 @@ func (s *Store) ConversationExists(ctx context.Context, conversationID string) (
 		return false, fmt.Errorf("failed to check conversation existence: %w", err)
 	}
 	return exists, nil
+}
+
+func (s *Store) RecordQueryMetric(ctx context.Context, latencyMs int64, success bool) error {
+	now := time.Now().UTC()
+	dateStr := now.Format("2006-01-02")
+
+	// Insert into query_latency_log
+	logQuery := `INSERT INTO query_latency_log (query_date, latency_ms, success) VALUES ($1, $2, $3)`
+	_, err := s.db.ExecContext(ctx, logQuery, dateStr, latencyMs, success)
+	if err != nil {
+		return fmt.Errorf("failed to log latency: %w", err)
+	}
+
+	// Upsert daily_metrics counters
+	upsertQuery := `
+		INSERT INTO daily_metrics (metric_date, total_queries, successful_queries, failed_queries, failure_rate)
+		VALUES ($1, 1, CASE WHEN $2::boolean THEN 1 ELSE 0 END, CASE WHEN $2::boolean THEN 0 ELSE 1 END, CASE WHEN $2::boolean THEN 0 ELSE 100 END)
+		ON CONFLICT (metric_date) DO UPDATE SET
+			total_queries = daily_metrics.total_queries + 1,
+			successful_queries = daily_metrics.successful_queries + CASE WHEN $2::boolean THEN 1 ELSE 0 END,
+			failed_queries = daily_metrics.failed_queries + CASE WHEN $2::boolean THEN 0 ELSE 1 END,
+			failure_rate = ROUND(((daily_metrics.failed_queries + CASE WHEN $2::boolean THEN 0 ELSE 1 END)::NUMERIC / (daily_metrics.total_queries + 1)) * 100, 2),
+			updated_at = CURRENT_TIMESTAMP;
+	`
+	_, err = s.db.ExecContext(ctx, upsertQuery, dateStr, success)
+	if err != nil {
+		return fmt.Errorf("failed to upsert counters: %w", err)
+	}
+
+	// Update latency percentiles
+	updateStatsQuery := `
+		WITH stats AS (
+			SELECT
+				PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY latency_ms) AS p50,
+				PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY latency_ms) AS p95,
+				PERCENTILE_CONT(0.99) WITHIN GROUP (ORDER BY latency_ms) AS p99,
+				AVG(latency_ms) AS avg_lat,
+				MIN(latency_ms) AS min_lat,
+				MAX(latency_ms) AS max_lat
+			FROM query_latency_log
+			WHERE query_date = $1
+		)
+		UPDATE daily_metrics SET
+			p50_latency_ms = COALESCE(stats.p50, 0),
+			p95_latency_ms = COALESCE(stats.p95, 0),
+			p99_latency_ms = COALESCE(stats.p99, 0),
+			avg_latency_ms = COALESCE(stats.avg_lat, 0),
+			min_latency_ms = COALESCE(stats.min_lat, 0),
+			max_latency_ms = COALESCE(stats.max_lat, 0),
+			updated_at = CURRENT_TIMESTAMP
+		FROM stats
+		WHERE metric_date = $1;
+	`
+	_, err = s.db.ExecContext(ctx, updateStatsQuery, dateStr)
+	if err != nil {
+		return fmt.Errorf("failed to update percentiles: %w", err)
+	}
+
+	return nil
+}
+
+func (s *Store) GetDailyMetrics(ctx context.Context, days int) ([]DailyMetric, error) {
+	query := `
+		SELECT
+			id, metric_date, total_queries, successful_queries, failed_queries, failure_rate,
+			p50_latency_ms, p95_latency_ms, p99_latency_ms, avg_latency_ms, min_latency_ms, max_latency_ms,
+			created_at, updated_at
+		FROM daily_metrics
+		ORDER BY metric_date DESC
+		LIMIT $1
+	`
+	rows, err := s.db.QueryContext(ctx, query, days)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get daily metrics: %w", err)
+	}
+	defer rows.Close()
+
+	var metrics []DailyMetric
+	for rows.Next() {
+		var m DailyMetric
+		var metricDate time.Time
+		if err := rows.Scan(
+			&m.ID, &metricDate, &m.TotalQueries, &m.SuccessfulQueries, &m.FailedQueries, &m.FailureRate,
+			&m.P50LatencyMs, &m.P95LatencyMs, &m.P99LatencyMs, &m.AvgLatencyMs, &m.MinLatencyMs, &m.MaxLatencyMs,
+			&m.CreatedAt, &m.UpdatedAt,
+		); err != nil {
+			return nil, fmt.Errorf("failed to scan metric: %w", err)
+		}
+		m.MetricDate = metricDate.Format("2006-01-02")
+		metrics = append(metrics, m)
+	}
+	return metrics, nil
+}
+
+func (s *Store) GetTodayMetrics(ctx context.Context) (*DailyMetric, error) {
+	now := time.Now().UTC()
+	dateStr := now.Format("2006-01-02")
+
+	query := `
+		SELECT
+			id, metric_date, total_queries, successful_queries, failed_queries, failure_rate,
+			p50_latency_ms, p95_latency_ms, p99_latency_ms, avg_latency_ms, min_latency_ms, max_latency_ms,
+			created_at, updated_at
+		FROM daily_metrics
+		WHERE metric_date = $1
+	`
+	row := s.db.QueryRowContext(ctx, query, dateStr)
+
+	var m DailyMetric
+	var metricDate time.Time
+	if err := row.Scan(
+		&m.ID, &metricDate, &m.TotalQueries, &m.SuccessfulQueries, &m.FailedQueries, &m.FailureRate,
+		&m.P50LatencyMs, &m.P95LatencyMs, &m.P99LatencyMs, &m.AvgLatencyMs, &m.MinLatencyMs, &m.MaxLatencyMs,
+		&m.CreatedAt, &m.UpdatedAt,
+	); err != nil {
+		if err == sql.ErrNoRows {
+			return nil, nil
+		}
+		return nil, fmt.Errorf("failed to scan today metric: %w", err)
+	}
+	m.MetricDate = metricDate.Format("2006-01-02")
+	return &m, nil
 }

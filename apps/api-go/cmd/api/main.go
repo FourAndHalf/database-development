@@ -40,6 +40,17 @@ func main() {
 		}()
 	}
 
+	meterShutdown, err := telemetry.InitMeter(otelCtx)
+	if err != nil {
+		logger.Printf("warning: failed to initialize meter: %v", err)
+	} else {
+		defer func() {
+			if err := meterShutdown(context.Background()); err != nil {
+				logger.Printf("error shutting down meter: %v", err)
+			}
+		}()
+	}
+
 	dbURL := envString("DB_URL", "postgres://nexus:PinkFloyd@localhost:5434/nexus_db?sslmode=disable")
 	dbStore, err := store.New(dbURL)
 	if err != nil {

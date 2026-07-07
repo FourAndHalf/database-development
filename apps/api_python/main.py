@@ -58,8 +58,10 @@ app = FastAPI(lifespan=lifespan)
 # Instrument FastAPI with Prometheus
 Instrumentator().instrument(app).expose(app)
 
-# Instrument FastAPI with OpenTelemetry (API spans -> OpenObserve provider).
-FastAPIInstrumentor.instrument_app(app, tracer_provider=tracer_provider)
+# Instrument FastAPI with OpenTelemetry (API spans/metrics -> OpenObserve provider).
+from opentelemetry import metrics
+meter_provider = metrics.get_meter_provider()
+FastAPIInstrumentor.instrument_app(app, tracer_provider=tracer_provider, meter_provider=meter_provider)
 
 
 @app.middleware("http")

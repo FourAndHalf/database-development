@@ -7,8 +7,10 @@ import (
 	"strings"
 
 	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp"
 	"go.opentelemetry.io/otel/propagation"
+	sdkmetric "go.opentelemetry.io/otel/sdk/metric"
 	"go.opentelemetry.io/otel/sdk/resource"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 	semconv "go.opentelemetry.io/otel/semconv/v1.24.0"
@@ -83,4 +85,49 @@ func InitTracer(ctx context.Context) (func(context.Context) error, error) {
 	otel.SetTracerProvider(tp)
 
 	return tp.Shutdown, nil
+}
+
+// InitMeter wires all Go API metrics to OpenObserve (or generic OTLP collector).
+func InitMeter(ctx context.Context) (func(context.Context) error, error) {
+	endpoint := os.Getenv("OPENOBSERVE_OTLP_ENDPOINT")
+	if endpoint == "" {
+		endpoint = os.Getenv("OTEL_EXPORTER_OTLP_ENDPOINT")
+	}
+	if endpoint == "" {
+		return func(context.Context) error { return nil }, nil
+	}
+
+	endpoint = strings.TrimPrefix(strings.TrimPrefix(endpoint, "https://"), "http://")
+
+	headers := os.Getenv("OPENOBSERVE_OTLP_HEADERS")
+	if headers == "" {
+		headers = os.Getenv("OTEL_EXPORTER_OTLP_HEADERS")
+	}
+
+	exporter, err := otlpmetrichttp.New(ctx,
+		otlpmetrichttp.WithEndpoint(endpoint),
+		otlpmetrichttp.WithInsecure(),
+		otlpmetrichttp.WithHeaders(parseHeaders(headers)),
+	)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create OTLP metric exporter: %w", err)
+	}
+
+	res, err := resource.New(ctx,
+		resource.WithAttributes(
+			semconv.ServiceNameKey.String("rag-go-api"),
+			semconv.DeploymentEnvironmentKey.String(os.Getenv("ENVIRONMENT")),
+		),
+	)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create resource: %w", err)
+	}
+
+	provider := sdkmetric.NewMeterProvider(
+		sdkmetric.WithReader(sdkmetric.NewPeriodicReader(exporter)),
+		sdkmetric.WithResource(res),
+	)
+	otel.SetMeterProvider(provider)
+
+	return provider.Shutdown, nil
 }

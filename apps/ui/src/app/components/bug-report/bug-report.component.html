@@ -1,0 +1,60 @@
+<!-- Floating Action Button -->
+<button class="bug-fab" (click)="openDialog()" title="Report a bug">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m8 2 1.88 1.88"/>
+    <path d="M14.12 3.88 16 2"/>
+    <path d="M9 7.13v-1a3.003 3.003 0 1 1 6 0v1"/>
+    <path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6"/>
+    <path d="M12 20v-9"/>
+    <path d="M6.53 9C4.6 8.8 3 7.1 3 5"/>
+    <path d="M21 5c0 2.1-1.6 3.8-3.47 4"/>
+    <path d="M3 21c0-2.1 1.7-3.9 3.8-4"/>
+    <path d="M20.97 21c0-2.1-1.7-3.9-3.8-4"/>
+  </svg>
+</button>
+
+<!-- Dialog Overlay -->
+<div class="bug-report-dialog-overlay" *ngIf="isOpen()">
+  <div class="bug-report-dialog">
+    <div class="dialog-header">
+      <h2>Report a Bug</h2>
+      <button class="close-btn" (click)="closeDialog()">&times;</button>
+    </div>
+
+    <div class="dialog-body">
+      <div class="screenshot-container">
+        <div class="loading-overlay" *ngIf="isCapturing()">Capturing screenshot...</div>
+        <img [src]="screenshotDataUrl()" *ngIf="screenshotDataUrl()" alt="Screenshot" class="screenshot-preview">
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea [(ngModel)]="description" placeholder="What went wrong?"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>CC Email (optional)</label>
+        <input type="email" [(ngModel)]="ccEmail" placeholder="you@example.com" />
+      </div>
+
+      <div class="form-group">
+        <label>Attachments</label>
+        <div class="attachments">
+          <div class="attachment-item" *ngFor="let file of extraFiles(); let i = index">
+            <span>{{ file.name }}</span>
+            <button (click)="removeFile(i)" class="remove-btn">&times;</button>
+          </div>
+          <button class="btn btn-secondary" (click)="triggerFileInput()">+ Add File</button>
+          <input type="file" #fileInput (change)="onFileSelected($event)" multiple style="display: none;" accept="image/*,.pdf" />
+        </div>
+      </div>
+    </div>
+
+    <div class="dialog-footer">
+      <button class="btn btn-secondary" (click)="closeDialog()">Cancel</button>
+      <button class="btn btn-primary" (click)="submitReport()" [disabled]="isSubmitting()">
+        {{ isSubmitting() ? 'Sending...' : 'Send Report' }}
+      </button>
+    </div>
+  </div>
+</div>

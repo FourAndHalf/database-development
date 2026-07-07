@@ -24,6 +24,11 @@ from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 
+from opentelemetry import metrics
+from opentelemetry.sdk.metrics import MeterProvider
+from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader
+from opentelemetry.exporter.otlp.proto.http.metric_exporter import OTLPMetricExporter
+
 from openinference.instrumentation.google_genai import GoogleGenAIInstrumentor
 from openinference.instrumentation.openai import OpenAIInstrumentor
 
@@ -57,6 +62,27 @@ def _traces_url(endpoint: str) -> str:
     if not ep.endswith("/v1/traces"):
         ep = ep + "/v1/traces"
     return ep
+
+
+def _metrics_url(endpoint: str) -> str:
+    """Normalize an OTLP endpoint into an OTLP/HTTP metrics URL."""
+    ep = endpoint.strip().rstrip("/")
+    if not ep.startswith(("http://", "https://")):
+        ep = "http://" + ep
+    if not ep.endswith("/v1/metrics"):
+        ep = ep + "/v1/metrics"
+    return ep
+
+
+def _build_meter_provider(endpoint: str, headers: dict) -> MeterProvider:
+    """A MeterProvider that batches metrics to a single OTLP/HTTP endpoint."""
+    provider = MeterProvider(resource=Resource.create({
+        "service.name": SERVICE_NAME,
+        "deployment.environment": os.getenv("ENVIRONMENT", "production"),
+    }))
+    exporter = OTLPMetricExporter(endpoint=_metrics_url(endpoint), headers=headers or None)
+    provider.add_metric_reader(PeriodicExportingMetricReader(exporter))
+    return provider
 
 
 def _build_provider(endpoint: str, headers: dict) -> TracerProvider:
@@ -111,11 +137,14 @@ def init_telemetry() -> TracerProvider:
     oo_headers = os.getenv("OPENOBSERVE_OTLP_HEADERS", os.getenv("OTEL_EXPORTER_OTLP_HEADERS", ""))
     if oo_endpoint:
         global_provider = _build_provider(oo_endpoint, _parse_headers(oo_headers))
+        global_meter_provider = _build_meter_provider(oo_endpoint, _parse_headers(oo_headers))
     else:
         # No collector configured: spans are recorded (so trace_ids still exist for
         # correlation) but nothing is exported.
         global_provider = TracerProvider(resource=Resource.create({"service.name": SERVICE_NAME}))
+        global_meter_provider = MeterProvider(resource=Resource.create({"service.name": SERVICE_NAME}))
     trace.set_tracer_provider(global_provider)
+    metrics.set_meter_provider(global_meter_provider)
 
     # --- Phoenix: LLM traces ---
     # Prefer a dedicated Phoenix endpoint. If none is set but a single OTEL collector

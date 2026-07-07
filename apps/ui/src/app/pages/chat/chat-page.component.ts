@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, ViewChild, afterRenderEffect, signal, OnDestroy, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, afterRenderEffect, signal, OnDestroy, OnInit, inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { ChatApiService, Conversation } from '../../services/chat-api.service';
+import { ChatApiService, Conversation, DashboardMetrics } from '../../services/chat-api.service';
 import { firstValueFrom } from 'rxjs';
 import { ToastService } from '../../services/toast.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
@@ -20,7 +20,7 @@ import { ComposerComponent } from './components/composer/composer.component';
   templateUrl: './chat-page.component.html',
   styleUrl: './chat-page.component.css'
 })
-export class ChatPageComponent implements OnDestroy {
+export class ChatPageComponent implements OnInit, OnDestroy {
   @ViewChild('thread', { static: false }) private readonly threadEl?: ElementRef<HTMLElement>;
   @ViewChild('centerComposer', { static: false }) private readonly centerComposer?: ComposerComponent;
   @ViewChild('bottomComposer', { static: false }) private readonly bottomComposer?: ComposerComponent;
@@ -39,6 +39,11 @@ export class ChatPageComponent implements OnDestroy {
   protected readonly history = signal<Conversation[]>([]);
   protected readonly busy = signal(false);
   protected readonly greeting = getGreeting;
+
+  protected readonly dashboardMetrics = signal<DashboardMetrics | null>(null);
+  protected readonly metricsLoading = signal(true);
+  protected readonly showMetricsModal = signal(false);
+  private metricsInterval: any = null;
 
   constructor() {
     if (this.auth.isAuthenticated()) {
@@ -61,8 +66,42 @@ export class ChatPageComponent implements OnDestroy {
       }
     });
   }
+
+  ngOnInit() {
+    this.loadDashboardMetrics();
+    // Auto-refresh every 30 seconds
+    this.metricsInterval = setInterval(() => {
+      if (this.messages().length === 0) {
+        this.loadDashboardMetrics();
+      }
+    }, 30000);
+  }
   
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    if (this.metricsInterval) {
+      clearInterval(this.metricsInterval);
+    }
+  }
+
+  private loadDashboardMetrics() {
+    this.api.getDashboardMetrics().subscribe({
+      next: (metrics) => {
+        this.dashboardMetrics.set(metrics);
+        this.metricsLoading.set(false);
+      },
+      error: () => {
+        this.metricsLoading.set(false);
+      },
+    });
+  }
+
+  protected formatUptime(seconds: number): string {
+    if (seconds < 60) return `${Math.round(seconds)}s`;
+    if (seconds < 3600) return `${Math.floor(seconds / 60)}m`;
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    return m > 0 ? `${h}h ${m}m` : `${h}h`;
+  }
 
   @HostListener('window:keydown', ['$event'])
   onGlobalKeydown(e: KeyboardEvent) {
