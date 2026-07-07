@@ -58,6 +58,7 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("POST /v1/auth/login", auth.Login)
 
 	mux.HandleFunc("OPTIONS /v1/chat", middleware.PreflightHandler(s.cfg.UIOrigin))
+	mux.HandleFunc("OPTIONS /v1/chat/{id}", middleware.PreflightHandler(s.cfg.UIOrigin))
 	mux.HandleFunc("POST /v1/chat", chat.Post)
 	mux.HandleFunc("GET /v1/chat/{id}", chat.GetMessages)
 

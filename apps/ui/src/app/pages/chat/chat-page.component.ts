@@ -106,11 +106,16 @@ export class ChatPageComponent implements OnDestroy {
 
     try {
       const res = await firstValueFrom(this.api.getMessages(id));
-      this.messages.set(res.map((m: any) => ({
-        id: m.id,
-        role: m.role,
-        text: m.content,
-      })));
+      this.messages.set(res.map((m: any) => {
+        const { mainText, parsedTabs } = parseChatResponse(m.content ?? '');
+        return {
+          id: m.id,
+          role: m.role,
+          text: m.role === 'assistant' ? mainText : (m.content ?? ''),
+          tabs: m.role === 'assistant' ? parsedTabs : undefined,
+          activeTabIdx: 0,
+        };
+      }));
     } catch (err) {
       this.toast.error('Failed to load conversation.');
     } finally {
@@ -184,6 +189,7 @@ export class ChatPageComponent implements OnDestroy {
       );
       if (!res) throw new Error('no response');
       this.conversationId.set(res.conversation_id);
+      localStorage.setItem(this.conversationKey, res.conversation_id);
 
       const { mainText, parsedTabs } = parseChatResponse(res.answer);
 

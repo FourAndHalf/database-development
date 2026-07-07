@@ -25,7 +25,7 @@ type Message struct {
 	ID             string    `json:"id"`
 	ConversationID string    `json:"conversation_id"`
 	Role           string    `json:"role"`
-	Text           string    `json:"text"`
+	Text           string    `json:"content"`
 	CreatedAt      time.Time `json:"created_at"`
 }
 
