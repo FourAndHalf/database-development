@@ -1,15 +1,20 @@
 import sys
 import os
 import logging
+from dotenv import load_dotenv
+
+# Add the project root to the Python path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+
+# Load .env before any project modules (telemetry/state read env vars at import time)
+load_dotenv(os.path.join(os.path.dirname(__file__), '../../.env'))
+
 from fastapi import FastAPI, Request
 from contextlib import asynccontextmanager
 from prometheus_fastapi_instrumentator import Instrumentator
 
 from opentelemetry import trace
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
-
-# Add the project root to the Python path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from services.retrieval.query import PaperRetriever
 from services.retrieval.reranker import Reranker

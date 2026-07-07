@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ChatApiService, Conversation } from '../../services/chat-api.service';
 import { firstValueFrom } from 'rxjs';
 import { ToastService } from '../../services/toast.service';
+import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 import { UiMessage, Tab } from './chat.types';
 import { getGreeting, parseChatResponse, simulateTypewriterEffect } from './chat.utils';
 
@@ -29,6 +30,7 @@ export class ChatPageComponent implements OnDestroy {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly toast = inject(ToastService);
+  private readonly confirmDialog = inject(ConfirmDialogService);
 
   protected draft = '';
   private readonly conversationKey = 'db-rag.conversation_id';
@@ -117,7 +119,12 @@ export class ChatPageComponent implements OnDestroy {
   }
 
   protected async deleteConversation(id: string) {
-    if (!confirm('Are you sure you want to delete this chat?')) return;
+    const confirmed = await this.confirmDialog.confirm('Are you sure you want to delete this chat?', {
+      title: 'Delete chat',
+      confirmLabel: 'Delete',
+      danger: true
+    });
+    if (!confirmed) return;
     const user = this.auth.user();
     if (!user) return;
     try {

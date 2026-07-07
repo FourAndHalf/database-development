@@ -28,10 +28,11 @@ export function simulateTypewriterEffect(
   messageId: string,
   text: string
 ) {
+  const CHARS_PER_TICK = 5;
   let i = 0;
   const interval = setInterval(() => {
     messagesSignal.update(xs => xs.map(m => m.id === messageId ? { ...m, displayedText: text.substring(0, i) } : m));
-    i++;
+    i += CHARS_PER_TICK;
     if (i > text.length) {
       clearInterval(interval);
       messagesSignal.update(xs => xs.map(m => m.id === messageId ? { ...m, isTyping: false } : m));

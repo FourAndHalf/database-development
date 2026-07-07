@@ -105,7 +105,7 @@ async def generate_with_gemini(messages, model_name=None):
         contents=contents,
         config=types.GenerateContentConfig(
             temperature=0.15,
-            max_output_tokens=4000,
+            max_output_tokens=16000,
             system_instruction=system_instruction,
         ),
     )
@@ -130,7 +130,7 @@ def generate_with_groq(messages, model: str):
         model=groq_model,
         messages=messages,
         temperature=0.15,
-        max_tokens=4000
+        max_tokens=16000
     )
     return completion.choices[0].message.content
 

@@ -18,7 +18,7 @@ export class ExplorePageComponent {
   @ViewChild('searchInput', { static: false }) private readonly searchInput?: ElementRef<HTMLInputElement>;
 
   private readonly api = inject(ChatApiService);
-  private readonly auth = inject(AuthService);
+  protected readonly auth = inject(AuthService);
   private readonly toast = inject(ToastService);
   private readonly router = inject(Router);
 
@@ -69,9 +69,21 @@ export class ExplorePageComponent {
     return !!user && user.is_admin === true;
   }
 
+  private searchDebounce?: ReturnType<typeof setTimeout>;
+  private searchToken = 0;
+
+  onQueryChange(value: string) {
+    this.query.set(value);
+    this.currentPage.set(1);
+    clearTimeout(this.searchDebounce);
+    this.searchDebounce = setTimeout(() => this.search(), 300);
+  }
+
   async search() {
+    const token = ++this.searchToken;
     try {
       const res = await firstValueFrom(this.api.searchPapers(this.query(), this.currentPage(), this.pageSize));
+      if (token !== this.searchToken) return;
       this.results.set(res.papers || []);
       this.total.set(res.total || 0);
     } catch (err) {
