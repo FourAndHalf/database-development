@@ -8,7 +8,6 @@ import (
 	"database-development/apps/api-go/internal/middleware"
 	"database-development/apps/api-go/internal/rag"
 	"database-development/apps/api-go/internal/store"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
 
@@ -51,7 +50,6 @@ func (s *Server) routes() http.Handler {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /healthz", health.Get)
-	mux.Handle("GET /metrics", promhttp.Handler())
 
 	mux.HandleFunc("OPTIONS /v1/auth/register", middleware.PreflightHandler(s.cfg.UIOrigin))
 	mux.HandleFunc("POST /v1/auth/register", auth.Register)
@@ -92,7 +90,6 @@ func (s *Server) routes() http.Handler {
 		middleware.Recover(s.cfg.Logger),
 		middleware.RequestID(),
 		middleware.RequestLog(s.cfg.Logger),
-		middleware.Prometheus(),
 		middleware.Auth(s.cfg.Logger),
 		middleware.RateLimit(s.cfg.Logger),
 		middleware.CORS(s.cfg.UIOrigin),

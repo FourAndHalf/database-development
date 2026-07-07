@@ -11,7 +11,6 @@ load_dotenv(os.path.join(os.path.dirname(__file__), '../../.env'))
 
 from fastapi import FastAPI, Request
 from contextlib import asynccontextmanager
-from prometheus_fastapi_instrumentator import Instrumentator
 
 from opentelemetry import trace
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
@@ -54,9 +53,6 @@ async def lifespan(app: FastAPI):
 
 # --- API Definition ---
 app = FastAPI(lifespan=lifespan)
-
-# Instrument FastAPI with Prometheus
-Instrumentator().instrument(app).expose(app)
 
 # Instrument FastAPI with OpenTelemetry (API spans/metrics -> OpenObserve provider).
 from opentelemetry import metrics

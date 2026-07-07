@@ -141,8 +141,10 @@ func (h *PaperHandler) GetPaperURL(w http.ResponseWriter, r *http.Request) {
 
 	presignClient := s3.NewPresignClient(h.s3)
 	req, err := presignClient.PresignGetObject(ctx, &s3.GetObjectInput{
-		Bucket: aws.String(h.bucket),
-		Key:    aws.String(s3Key),
+		Bucket:                     aws.String(h.bucket),
+		Key:                        aws.String(s3Key),
+		ResponseContentType:        aws.String("application/pdf"),
+		ResponseContentDisposition: aws.String("inline; filename=\"" + filename + "\""),
 	}, func(opts *s3.PresignOptions) {
 		opts.Expires = 15 * time.Minute
 	})

@@ -1,5 +1,6 @@
 requests
 docling
+pypdf
 sentence-transformers
 tqdm
 chromadb

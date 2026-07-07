@@ -86,6 +86,10 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 	// Extract userID from context (set by authMiddleware)
 	userID, _ := ctx.Value(store.UserIDKey).(string)
 	isAuth := userID != ""
+	if !isAuth {
+		userID = "00000000-0000-0000-0000-000000000000"
+		isAuth = true
+	}
 
 	// Enrich the server span so chats are filterable in OpenObserve.
 	trace.SpanFromContext(ctx).SetAttributes(

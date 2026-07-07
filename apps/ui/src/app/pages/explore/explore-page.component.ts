@@ -6,6 +6,7 @@ import { ChatApiService } from '../../services/chat-api.service';
 import { AuthService } from '../../services/auth.service';
 import { ToastService } from '../../services/toast.service';
 import { firstValueFrom } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Component({
   standalone: true,
@@ -21,6 +22,8 @@ export class ExplorePageComponent {
   protected readonly auth = inject(AuthService);
   private readonly toast = inject(ToastService);
   private readonly router = inject(Router);
+
+  protected readonly uploadEnabled = environment.features.enablePaperUpload;
 
   query = signal('');
   results = signal<any[]>([]);

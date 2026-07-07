@@ -116,6 +116,10 @@ func (s *Store) migrate() error {
 		created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 	);
 	CREATE INDEX IF NOT EXISTS idx_latency_log_date ON query_latency_log(query_date);
+
+	INSERT INTO users (id, email, username, password_hash, is_admin)
+	VALUES ('00000000-0000-0000-0000-000000000000', 'recruiter@aether.local', 'RECRUITER', 'nopass', false)
+	ON CONFLICT (id) DO NOTHING;
 	`
 	_, err := s.db.Exec(query)
 	return err

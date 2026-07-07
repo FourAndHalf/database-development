@@ -46,9 +46,7 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   private metricsInterval: any = null;
 
   constructor() {
-    if (this.auth.isAuthenticated()) {
-      this.fetchHistory();
-    }
+    this.fetchHistory();
     afterRenderEffect(() => this.scrollToBottom());
 
     this.route.paramMap.subscribe(async params => {
@@ -126,10 +124,13 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   }
   
   protected async fetchHistory() {
+    let userId = '00000000-0000-0000-0000-000000000000';
     const user = this.auth.user();
-    if (!user) return;
+    if (user) {
+      userId = user.id;
+    }
     try {
-      const history = await firstValueFrom(this.api.getHistory(user.id));
+      const history = await firstValueFrom(this.api.getHistory(userId));
       this.history.set(history || []);
     } catch (err) {
       this.toast.error('Failed to fetch chat history.');
@@ -169,10 +170,13 @@ export class ChatPageComponent implements OnInit, OnDestroy {
       danger: true
     });
     if (!confirmed) return;
+    let userId = '00000000-0000-0000-0000-000000000000';
     const user = this.auth.user();
-    if (!user) return;
+    if (user) {
+      userId = user.id;
+    }
     try {
-      await firstValueFrom(this.api.deleteChat(user.id, id));
+      await firstValueFrom(this.api.deleteChat(userId, id));
       this.history.update(h => h.filter(c => c.id !== id));
       if (this.conversationId() === id) {
         this.newChat();
@@ -238,7 +242,7 @@ export class ChatPageComponent implements OnInit, OnDestroy {
       } : m));
 
       simulateTypewriterEffect(this.messages, assistantId, mainText);
-      if (this.auth.isAuthenticated()) void this.fetchHistory();
+      void this.fetchHistory();
 
     } catch (err) {
       this.messages.update((xs) => xs.map((m) => m.id === assistantId ? { ...m, text: 'Failed to synthesize answer.', pending: false } : m));

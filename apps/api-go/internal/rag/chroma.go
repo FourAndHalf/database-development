@@ -5,6 +5,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
+	"mime/multipart"
 	"net/http"
 	"time"
 
@@ -119,5 +121,46 @@ func (e *chromaEngine) DeleteDocument(ctx context.Context, filename string) erro
 		return fmt.Errorf("python service returned status: %s", resp.Status)
 	}
 
+	return nil
+}
+
+func (e *chromaEngine) ValidatePaper(ctx context.Context, r io.Reader, filename string) error {
+	var b bytes.Buffer
+	mw := multipart.NewWriter(&b)
+	part, err := mw.CreateFormFile("file", filename)
+	if err != nil {
+		return err
+	}
+	if _, err := io.Copy(part, r); err != nil {
+		return err
+	}
+	mw.Close()
+
+	req, err := http.NewRequestWithContext(ctx, "POST", e.pythonServiceURL+"/api/papers/validate", &b)
+	if err != nil {
+		return err
+	}
+	req.Header.Set("Content-Type", mw.FormDataContentType())
+
+	resp, err := e.httpClient.Do(req)
+	if err != nil {
+		return fmt.Errorf("failed to call python validation: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("python validation returned %s", resp.Status)
+	}
+	
+	var res struct {
+		Valid  bool   `json:"valid"`
+		Reason string `json:"reason"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&res); err != nil {
+		return err
+	}
+	if !res.Valid {
+		return fmt.Errorf("validation failed: %s", res.Reason)
+	}
 	return nil
 }

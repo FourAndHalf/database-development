@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"io"
 	"net/http"
 	"path/filepath"
 	"strings"
@@ -14,17 +15,18 @@ import (
 func (h *PaperHandler) UploadPaper(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 
-	// 1. Admin check
-	userID, ok := ctx.Value(store.UserIDKey).(string)
-	if !ok || userID == "" {
-		writeErr(w, http.StatusUnauthorized, "unauthorized")
-		return
+	// 1. Admin check or RECRUITER
+	userID, _ := ctx.Value(store.UserIDKey).(string)
+	if userID == "" {
+		userID = "00000000-0000-0000-0000-000000000000" // Treat as RECRUITER
 	}
 
-	user, err := h.store.GetUserByID(ctx, userID)
-	if err != nil || user == nil || !user.IsAdmin {
-		writeErr(w, http.StatusForbidden, "forbidden_admin_only")
-		return
+	if userID != "00000000-0000-0000-0000-000000000000" {
+		user, err := h.store.GetUserByID(ctx, userID)
+		if err != nil || user == nil || !user.IsAdmin {
+			writeErr(w, http.StatusForbidden, "forbidden_admin_only")
+			return
+		}
 	}
 
 	if h.bucket == "" {
@@ -60,11 +62,27 @@ func (h *PaperHandler) UploadPaper(w http.ResponseWriter, r *http.Request) {
 	filename := filepath.Base(header.Filename)
 	s3Key := h.s3Prefix + filename
 
+	// Validate via Python LLM
+	if err := h.engine.ValidatePaper(ctx, file, filename); err != nil {
+		h.logger.Printf("Paper validation failed for %s: %v", filename, err)
+		writeErr(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	
+	// Reset file pointer for S3 upload
+	if _, err := file.Seek(0, io.SeekStart); err != nil {
+		h.logger.Printf("Failed to seek file: %v", err)
+		writeErr(w, http.StatusInternalServerError, "file_error")
+		return
+	}
+
 	// 3. Upload to S3
 	_, err = h.s3.PutObject(ctx, &s3.PutObjectInput{
-		Bucket: aws.String(h.bucket),
-		Key:    aws.String(s3Key),
-		Body:   file,
+		Bucket:             aws.String(h.bucket),
+		Key:                aws.String(s3Key),
+		Body:               file,
+		ContentType:        aws.String("application/pdf"),
+		ContentDisposition: aws.String("inline; filename=\"" + filename + "\""),
 	})
 	if err != nil {
 		h.logger.Printf("Failed to upload to S3 (%s): %v", s3Key, err)

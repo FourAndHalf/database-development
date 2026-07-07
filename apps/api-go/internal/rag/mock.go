@@ -2,6 +2,7 @@ package rag
 
 import (
 	"context"
+	"io"
 	"strings"
 	"time"
 )
@@ -45,5 +46,9 @@ func (m *mockEngine) Answer(ctx context.Context, q Question) (Answer, error) {
 }
 
 func (m *mockEngine) DeleteDocument(ctx context.Context, filename string) error {
+	return nil
+}
+
+func (m *mockEngine) ValidatePaper(ctx context.Context, r io.Reader, filename string) error {
 	return nil
 }
