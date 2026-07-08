@@ -3,6 +3,7 @@ package store
 import (
 	"context"
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"time"
 
@@ -178,8 +179,12 @@ func (s *Store) GetConversationMessages(ctx context.Context, conversationID stri
 	var msgs []Message
 	for rows.Next() {
 		var m Message
-		if err := rows.Scan(&m.ID, &m.ConversationID, &m.Role, &m.Text, &m.Sources, &m.CreatedAt); err != nil {
+		var sourcesJSON []byte
+		if err := rows.Scan(&m.ID, &m.ConversationID, &m.Role, &m.Text, &sourcesJSON, &m.CreatedAt); err != nil {
 			return nil, fmt.Errorf("failed to scan message: %w", err)
+		}
+		if sourcesJSON != nil {
+			m.Sources = json.RawMessage(sourcesJSON)
 		}
 		msgs = append(msgs, m)
 	}

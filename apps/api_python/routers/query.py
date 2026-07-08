@@ -77,11 +77,41 @@ def _not_found_answer(query: str, web_searched: bool) -> str:
     return json.dumps({"main": msg, "tabs": []})
 
 
+def _extract_grounding_sources(response) -> list[Source]:
+    """Pulls Google Search grounding citations off a Gemini response, if any.
+
+    Gemini decides on its own whether a turn needed a web search; when it does,
+    candidates[0].grounding_metadata.grounding_chunks lists the pages it grounded
+    on. Mapped to the same Source shape as DDG results so the frontend renders
+    them identically (accordion + question breadcrumbs).
+    """
+    sources: list[Source] = []
+    candidates = getattr(response, "candidates", None) or []
+    if not candidates:
+        return sources
+    metadata = getattr(candidates[0], "grounding_metadata", None)
+    chunks = getattr(metadata, "grounding_chunks", None) or []
+    for chunk in chunks:
+        web = getattr(chunk, "web", None)
+        if not web or not web.uri:
+            continue
+        sources.append(Source(
+            source_file=web.title or web.uri,
+            content=web.title or "",
+            distance=0.0,
+            url=web.uri,
+        ))
+    return sources
+
+
 async def generate_with_gemini(messages, model_name=None):
     """Primary generator using Google Gemini (free tier) via the google-genai SDK.
 
     OpenInference auto-instruments this client, so the call is captured as an LLM
-    span (prompt/model/tokens) on the Phoenix provider.
+    span (prompt/model/tokens) on the Phoenix provider. Google Search grounding is
+    enabled so Gemini can cite external pages for a query even when the user didn't
+    opt into @web-search; grounding is model-decided and returns no chunks when it
+    isn't used.
     """
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
@@ -109,9 +139,10 @@ async def generate_with_gemini(messages, model_name=None):
             temperature=0.15,
             max_output_tokens=16000,
             system_instruction=system_instruction,
+            tools=[types.Tool(google_search=types.GoogleSearch())],
         ),
     )
-    return response.text
+    return response.text, _extract_grounding_sources(response)
 
 
 def generate_with_groq(messages, model: str):
@@ -228,7 +259,10 @@ async def handle_query(request: QueryRequest):
     session_ctx = using_session(request.conversation_id) if request.conversation_id else nullcontext()
     with session_ctx:
         try:
-            generated_text = await generate_with_gemini(messages)
+            generated_text, gemini_sources = await generate_with_gemini(messages)
+            # Dedupe against any DDG @web-search results already collected above.
+            seen_urls = {s.url for s in sources if s.url}
+            sources.extend(s for s in gemini_sources if s.url not in seen_urls)
         except Exception as e:
             log.warning("Gemini failed or rate limited: %s", e)
             try:

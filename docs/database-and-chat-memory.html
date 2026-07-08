@@ -1,0 +1,522 @@
+<title>Aether — The Database Design & How It Remembers a Conversation</title>
+<style>
+  :root {
+    --bg: #ECEBE1;
+    --surface: #F8F7F1;
+    --surface-2: #E2E0D2;
+    --ink: #20262A;
+    --ink-soft: #4B535A;
+    --ink-faint: #767F84;
+    --line: #D3CFC0;
+    --accent: #146B69;
+    --accent-ink: #F8F7F1;
+    --accent-2: #916A17;
+    --old: #5B6470;
+    --radius: 12px;
+    --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10171A;
+      --surface: #171F22;
+      --surface-2: #1E282B;
+      --ink: #E7E4D9;
+      --ink-soft: #AAB2AC;
+      --ink-faint: #77827E;
+      --line: #2B3538;
+      --accent: #57D6C7;
+      --accent-ink: #0A1213;
+      --accent-2: #DDB15C;
+      --old: #8891A0;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10171A;
+    --surface: #171F22;
+    --surface-2: #1E282B;
+    --ink: #E7E4D9;
+    --ink-soft: #AAB2AC;
+    --ink-faint: #77827E;
+    --line: #2B3538;
+    --accent: #57D6C7;
+    --accent-ink: #0A1213;
+    --accent-2: #DDB15C;
+    --old: #8891A0;
+  }
+  :root[data-theme="light"] {
+    --bg: #ECEBE1;
+    --surface: #F8F7F1;
+    --surface-2: #E2E0D2;
+    --ink: #20262A;
+    --ink-soft: #4B535A;
+    --ink-faint: #767F84;
+    --line: #D3CFC0;
+    --accent: #146B69;
+    --accent-ink: #F8F7F1;
+    --accent-2: #916A17;
+    --old: #5B6470;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; text-wrap: balance; color: var(--ink); }
+  p { margin: 0 0 1.1em; }
+  a { color: var(--accent); }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.9rem;
+  }
+
+  /* ---------- Cover ---------- */
+  .cover {
+    padding: 5rem 1.5rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .cover h1 {
+    font-size: clamp(2.1rem, 5vw, 3.3rem);
+    line-height: 1.1;
+    margin: 0 0 1.1rem;
+  }
+  .cover .sub {
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0 0 2rem;
+  }
+  .stat-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 1.1rem 0;
+  }
+  .stat {
+    flex: 1 1 140px;
+    padding: 0 1.25rem;
+    border-left: 1px solid var(--line);
+  }
+  .stat:first-child { border-left: none; padding-left: 0; }
+  .stat b {
+    display: block;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 1.5rem;
+    color: var(--accent);
+  }
+  .stat span { font-size: 0.82rem; color: var(--ink-faint); }
+
+  /* ---------- Page grid ---------- */
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem 6rem;
+    display: grid;
+    grid-template-columns: 210px minmax(0, 720px);
+    gap: 3rem;
+    justify-content: center;
+  }
+  @media (max-width: 880px) {
+    .page { grid-template-columns: 1fr; }
+  }
+
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 2rem;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: toc;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc li { counter-increment: toc; }
+  nav.toc a {
+    display: block;
+    padding: 0.4rem 0 0.4rem 0.9rem;
+    margin-left: -1px;
+    border-left: 1px solid transparent;
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  nav.toc a::before {
+    content: counter(toc, decimal-leading-zero) " ";
+    font-family: var(--font-mono);
+    color: var(--ink-faint);
+    margin-right: 0.35rem;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--accent); }
+  @media (max-width: 880px) {
+    nav.toc { position: static; margin-bottom: 1rem; }
+    nav.toc ol { columns: 2; column-gap: 1.5rem; border-left: none; }
+    nav.toc li { break-inside: avoid; }
+  }
+
+  main.content section {
+    padding-top: 3.5rem;
+    border-top: 1px solid var(--line);
+  }
+  main.content section:first-of-type { border-top: none; padding-top: 0; }
+
+  .chapter-num {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-2);
+    letter-spacing: 0.05em;
+  }
+  h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0.3rem 0 1.1rem; }
+  h3 { font-size: 1.25rem; margin: 1.8rem 0 0.8rem; }
+
+  .lede { font-size: 1.08rem; color: var(--ink-soft); }
+
+  .term {
+    border-bottom: 1px dotted var(--accent);
+    cursor: help;
+    font-style: italic;
+  }
+
+  /* ---------- Flow diagrams ---------- */
+  .flow { margin: 1.75rem 0 2.25rem; }
+  .flow-step {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem 1.1rem 4rem;
+  }
+  .flow-step .n {
+    position: absolute;
+    left: 1.1rem;
+    top: 1.1rem;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+  }
+  .flow-step h4 { margin: 0 0 0.35rem; font-size: 1.05rem; }
+  .flow-step p { margin: 0; color: var(--ink-soft); font-size: 0.96rem; }
+  .connector {
+    display: flex;
+    padding-left: 1.75rem;
+    color: var(--accent);
+    font-size: 1.1rem;
+    line-height: 1;
+    margin: 0.15rem 0;
+    opacity: 0.7;
+  }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-left: 3px solid var(--accent-2);
+    background: var(--surface);
+    border-radius: 0 8px 8px 0;
+    padding: 0.9rem 1.1rem;
+    margin: 1.4rem 0;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .callout b { color: var(--ink); }
+  .callout.status { border-left-color: var(--accent); }
+  .callout.quote { font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.6; }
+
+  /* ---------- Tables ---------- */
+  .table-wrap { overflow-x: auto; margin: 1.4rem 0; border: 1px solid var(--line); border-radius: var(--radius); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+  th, td { text-align: left; padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th {
+    background: var(--surface-2);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--surface); }
+  code { font-family: var(--font-mono); font-size: 0.88em; background: var(--surface-2); padding: 0.1em 0.4em; border-radius: 4px; }
+  td b, .num { font-variant-numeric: tabular-nums; }
+
+  /* ---------- Notebook cards (data model) ---------- */
+  .notebooks { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.6rem 0; }
+  .notebook { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.2rem; }
+  .notebook h4 { margin: 0 0 0.6rem; font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent); }
+  .notebook ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; color: var(--ink-soft); }
+  .notebook li { margin-bottom: 0.3rem; }
+  .notebook .link { margin-top: 0.7rem; font-size: 0.78rem; color: var(--ink-faint); font-style: italic; }
+  .notebook.dim { opacity: 0.82; }
+
+  /* ---------- Glossary ---------- */
+  dl.glossary { display: grid; grid-template-columns: max-content 1fr; gap: 0.6rem 1.5rem; margin: 1.6rem 0; }
+  dl.glossary dt { font-family: var(--font-mono); font-weight: 700; color: var(--ink); white-space: nowrap; }
+  dl.glossary dd { margin: 0; color: var(--ink-soft); }
+  @media (max-width: 620px) {
+    dl.glossary { grid-template-columns: 1fr; }
+    dl.glossary dd { margin-bottom: 0.5rem; }
+  }
+
+  footer {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+    border-top: 1px solid var(--line);
+    color: var(--ink-faint);
+    font-size: 0.85rem;
+  }
+</style>
+
+<header class="cover">
+  <span class="eyebrow">Database Research RAG · Field Notes</span>
+  <h1>The database design, and how a conversation survives a refresh</h1>
+  <p class="sub">This is the companion piece to <em>How Aether Works</em> — this one stays inside Postgres. It covers the actual table design and, specifically, the mechanism that lets a multi-turn conversation feel remembered: what's saved, what's only ever held in the browser, and what happens to each when the tab closes.</p>
+  <div class="stat-strip">
+    <div class="stat"><b>2</b><span>schemas sharing one database</span></div>
+    <div class="stat"><b>8</b><span>past messages carried as working memory</span></div>
+    <div class="stat"><b>1,500</b><span>characters kept per remembered message</span></div>
+    <div class="stat"><b>5</b><span>most recent chats shown in the sidebar</span></div>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="toc">
+    <ol>
+      <li><a href="#two-schemas">Two schemas, one database</a></li>
+      <li><a href="#chat-tables">The chat tables, up close</a></li>
+      <li><a href="#journey">A message's journey</a></li>
+      <li><a href="#sliding-window">What the AI actually remembers</a></li>
+      <li><a href="#reload">Loading a conversation back</a></li>
+      <li><a href="#guest">Signed in vs. a guest</a></li>
+      <li><a href="#honest-state">Honest state: mid-refactor</a></li>
+      <li><a href="#blueprint">The full blueprint</a></li>
+      <li><a href="#glossary">Word bank</a></li>
+    </ol>
+  </nav>
+
+  <main class="content">
+
+    <section id="two-schemas">
+      <span class="chapter-num">01</span>
+      <h2>Two schemas, one database</h2>
+      <p class="lede">There isn't one single file that defines every table this project uses. Two different services each create tables in the same Postgres database, for two different reasons — and the code is refreshingly upfront about why.</p>
+      <p>The first is <code>scripts/schema.sql</code> — the canonical, hand-written, version-controlled schema. It defines <code>users</code>, <code>papers</code>, <code>chunks</code>, <code>requests</code>, and <code>request_retrievals</code>, covered in detail in the companion piece on how the retrieval pipeline works.</p>
+      <p>Alongside it, the Go gateway defines a second set of tables itself, inside its own source code, and creates them the moment it starts up — no separate file, no migration tool, just a block of <code>CREATE TABLE IF NOT EXISTS</code> statements that runs on every single boot. <span class="term" title="Safe to run more than once — running it again after the tables already exist simply does nothing, rather than erroring or duplicating anything.">IF NOT EXISTS</span> is what makes that safe to repeat: the first boot creates the tables, every boot after that finds them already there and moves on.</p>
+      <p>Why two owners for one database: real back-and-forth conversation — the chat feature itself — was built against this second, Go-owned set of tables before <code>requests</code>/<code>request_retrievals</code> existed in the canonical schema. It hasn't been moved over yet.</p>
+      <div class="callout quote"><b>Straight from the source</b> — the comment sitting directly above the Go gateway's table-creation code:<br>"The users &amp; papers schema is owned by scripts/schema.sql (canonical). migrate() only ensures the legacy chat tables still used by the not-yet-migrated chat flow; these are removed in the chat-&gt;requests slice."</div>
+    </section>
+
+    <section id="chat-tables">
+      <span class="chapter-num">02</span>
+      <h2>The chat tables, up close</h2>
+      <p class="lede">Two tables do the actual remembering. Everything in the rest of this page builds on just these two.</p>
+
+      <div class="notebooks">
+        <div class="notebook">
+          <h4>conversations</h4>
+          <ul>
+            <li>Who it belongs to (nullable — blank for a guest)</li>
+            <li>A title, frozen from your first message</li>
+            <li>When it was started</li>
+          </ul>
+          <div class="link">links to → users · linked from → messages</div>
+        </div>
+        <div class="notebook">
+          <h4>messages</h4>
+          <ul>
+            <li>Which conversation it belongs to</li>
+            <li>Who said it — you, or the assistant</li>
+            <li>The text, and — for the assistant's replies only — the sources cited</li>
+          </ul>
+          <div class="link">links to → conversations</div>
+        </div>
+      </div>
+
+      <p>A conversation's title is set exactly once — the first 50 characters of the very first message — and never updated again, even if the conversation wanders somewhere else entirely an hour later.</p>
+
+      <div class="callout"><b>The database does its own cleanup:</b> <code>messages.conversation_id</code> is declared <code>ON DELETE CASCADE</code>. Delete a conversation, and every message inside it disappears automatically — nothing in the application code has to remember to clean them up one by one. It's the same trick a paper's note-cards use elsewhere in this database: delete the parent, and Postgres removes everything hanging off it.</div>
+    </section>
+
+    <section id="journey">
+      <span class="chapter-num">03</span>
+      <h2>A message's journey</h2>
+      <p class="lede">Here's exactly what happens, in order, between hitting send and seeing a saved reply.</p>
+
+      <div class="flow">
+        <div class="flow-step"><span class="n">1</span>
+          <h4>You hit send</h4>
+          <p>The app immediately shows your message and a "thinking" placeholder — it doesn't wait for the network round trip to update the screen.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">2</span>
+          <h4>The gateway checks who's asking</h4>
+          <p>An optional login token travels with the request. A valid one resolves to a real user id; no token, or an invalid one, is simply treated as a guest — never a hard rejection.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">3</span>
+          <h4>If signed in, the conversation is guaranteed to exist</h4>
+          <p>The very first message of a new conversation creates its row, titled from that message. Every message after that reuses the same conversation id.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">4</span>
+          <h4>Your message is saved immediately</h4>
+          <p>Before the assistant has even started answering — so if anything goes wrong generating a reply, what you asked is never lost.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">5</span>
+          <h4>The question, plus its working memory, goes to the RAG engine</h4>
+          <p>The same retrieve → rerank → generate pipeline described in the other explainer. What "working memory" means exactly is the next chapter.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">6</span>
+          <h4>The reply is saved the same way, sources and all</h4>
+          <p>Only if you're signed in. The cited sources are stored right alongside the reply, not looked up again later.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">7</span>
+          <h4>Timing is logged either way</h4>
+          <p>Signed in or a guest, answered or failed — every request's latency lands in a small metrics table that feeds an admin dashboard, entirely separate from the conversation itself.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sliding-window">
+      <span class="chapter-num">04</span>
+      <h2>What the AI actually remembers, each turn</h2>
+      <p class="lede">This is usually the real question behind "how is chat history persisted" — and the honest answer is more interesting than "it reads the database back."</p>
+
+      <p>It's tempting to assume the backend reloads a conversation's full history from Postgres before generating each reply. It doesn't. What actually happens: the browser keeps the visible conversation in its own memory, and right before sending a new question, it takes the <b>last 8 messages</b> — skipping anything still mid-typing — strips out any formatting, trims each one down to <b>1,500 characters</b>, and sends that whole small bundle along with the new question. Every single time.</p>
+
+      <p>The gateway doesn't open that bundle or look anything up because of it — it just relays it, unopened, straight through to the Python engine, which drops it into the prompt as the prior turns of the conversation.</p>
+
+      <div class="callout"><b>Why a window, and why those two numbers:</b> a conversation could run to hundreds of turns, but a model only ever needs to remember recently enough to resolve something like "turn that into a table" or "make it shorter" — not re-read an hour-old exchange from scratch. Capping both the number of turns and each turn's length keeps every request's size predictable, no matter how long the conversation has actually run.</div>
+
+      <p>So Postgres plays the role of the archive — a durable copy kept for later — but the working memory that actually shapes an answer is a short, freshly-rebuilt snapshot of whatever's currently on screen, carried by the browser, not read back out of the database on demand.</p>
+    </section>
+
+    <section id="reload">
+      <span class="chapter-num">05</span>
+      <h2>Loading a conversation back</h2>
+      <p class="lede">So what does survive closing the tab, and how does it come back?</p>
+
+      <p>The browser's own local storage keeps exactly one small thing: the current conversation's id — not the messages themselves, just a short string under one fixed key. On a page refresh, or when picking an older conversation out of the sidebar, that id is used to ask Postgres for the full transcript, in order, and that becomes the visible conversation again — which also happens to refill the 8-message window described above, ready for whatever gets asked next.</p>
+
+      <p>The sidebar itself only ever shows your <b>5 most recent</b> conversations, newest first, each labeled with that frozen first-message title.</p>
+    </section>
+
+    <section id="guest">
+      <span class="chapter-num">06</span>
+      <h2>Signed in vs. a guest</h2>
+      <p class="lede">The assistant works identically either way. What differs is entirely about what gets remembered afterward.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Question</th><th>Signed in</th><th>Guest</th></tr></thead>
+          <tbody>
+            <tr><td>Gets a real answer</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Message saved to Postgres</td><td>Yes</td><td>No</td></tr>
+            <tr><td>Survives closing the tab</td><td>Yes — reload by id</td><td>No — gone with the tab</td></tr>
+            <tr><td>Shows up in the sidebar's last 5</td><td>Yes</td><td>No</td></tr>
+            <tr><td>Can be deleted later</td><td>Yes</td><td>Nothing to delete</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout status"><b>Worth stating plainly:</b> a guest's conversation memory lives and dies with that one browser tab's in-memory state. Nothing about a guest's questions, or the answers they received, is ever written to the database — the assistant still works end to end, there's just no server-side trace of it afterward.</div>
+    </section>
+
+    <section id="honest-state">
+      <span class="chapter-num">07</span>
+      <h2>Honest state: mid-refactor</h2>
+      <p class="lede">A few things worth knowing before treating any of the above as the final design.</p>
+
+      <div class="callout"><b>Two definitions of "papers" exist in the same database.</b> The canonical schema's <code>papers</code> table (authors, DOI, visibility, ingestion status — see the other explainer) is a different shape from a second, simpler <code>papers</code> table the Go gateway also creates for itself, alongside its own <code>authors</code>, <code>paper_authors</code>, and <code>paper_metadata</code> tables. Only one of these is meant to be the long-term source of truth. This isn't a hidden landmine — it's a project mid-refactor, and the code says so itself.</div>
+
+      <div class="callout"><b>A seeded placeholder identity.</b> Every time the gateway starts, it makes sure one fixed row exists in <code>users</code> — a fixed all-zero id, with the address <code>recruiter@aether.local</code>. It's used as a fallback "who's asking" wherever an endpoint expects some id but there's no real signed-in user — and it's explicitly excluded from ever owning an actual conversation: that id is swapped for a blank <code>user_id</code> before a conversation is ever saved.</div>
+
+      <div class="callout"><b>The login token's signing key is a fixed string in the source code today,</b> rather than pulled from configuration. Harmless for a personal project running on one machine; the kind of thing to move into an environment variable before any real person's login is on the line, since it's what ties a saved conversation to the account that's allowed to see it.</div>
+    </section>
+
+    <section id="blueprint">
+      <span class="chapter-num">08</span>
+      <h2>The full blueprint</h2>
+      <p class="lede">The five canonical tables — <code>users</code>, <code>papers</code>, <code>chunks</code>, <code>requests</code>, <code>request_retrievals</code> — are covered in the other explainer. These are the rest: the ones the Go gateway owns for itself.</p>
+
+      <div class="notebooks">
+        <div class="notebook">
+          <h4>conversations</h4>
+          <ul><li>One row per chat thread</li><li>Belongs to a user, or nobody</li></ul>
+        </div>
+        <div class="notebook">
+          <h4>messages</h4>
+          <ul><li>One row per turn</li><li>Ordered by when it was said</li></ul>
+        </div>
+        <div class="notebook dim">
+          <h4>papers <span style="font-weight:400;color:var(--ink-faint);">(Go's own copy)</span></h4>
+          <ul><li>Title, filename, URL</li><li>A simpler shape than the canonical table</li></ul>
+        </div>
+        <div class="notebook dim">
+          <h4>authors / paper_authors</h4>
+          <ul><li>Names, and a many-to-many link to Go's <code>papers</code></li></ul>
+        </div>
+        <div class="notebook dim">
+          <h4>paper_metadata</h4>
+          <ul><li>A free-form JSON bucket per paper</li></ul>
+        </div>
+        <div class="notebook">
+          <h4>daily_metrics / query_latency_log</h4>
+          <ul><li>Nothing to do with any one conversation</li><li>Feeds the admin dashboard: request counts, failure rate, p50/p95/p99 latency, one row per day</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="glossary">
+      <span class="chapter-num">09</span>
+      <h2>Word bank</h2>
+      <p class="lede">New terms used above that didn't appear in the other explainer.</p>
+      <dl class="glossary">
+        <dt>Cascade delete</dt><dd>A rule on a database relationship that says: delete the parent row, and every row that points to it disappears automatically too.</dd>
+        <dt>Idempotent</dt><dd>Safe to run more than once — repeating it produces the same end state instead of erroring or duplicating anything.</dd>
+        <dt>JSONB</dt><dd>A Postgres column type that stores a small JSON document directly in a row, instead of forcing it into separate columns.</dd>
+        <dt>JWT</dt><dd>A signed token a login handshake hands back, carrying who's logged in so later requests don't need to log in again each time.</dd>
+        <dt>Local storage</dt><dd>A small key-value box the browser keeps for a website, which survives closing the tab but never leaves that one browser.</dd>
+        <dt>Sliding window (working memory)</dt><dd>Only the most recent handful of turns are carried forward into the next request, rather than an entire, ever-growing conversation.</dd>
+      </dl>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Companion piece to <em>How Aether Works</em>. Figures and code details on this page were checked against the repository on 2026-07-08.
+</footer>
