@@ -43,6 +43,7 @@ services:
       - OTEL_RESOURCE_ATTRIBUTES=${OTEL_RESOURCE_ATTRIBUTES:-}
     volumes:
       - ./uploads:/app/uploads
+      - hf_model_cache:/root/.cache/huggingface
     networks:
       - rag-network
     healthcheck:
@@ -113,3 +114,6 @@ services:
 networks:
   rag-network:
     external: true
+
+volumes:
+  hf_model_cache:
