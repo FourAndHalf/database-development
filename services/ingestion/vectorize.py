@@ -23,7 +23,7 @@ class Vectorizer:
     Handles the vectorization pipeline:
     1. Loads pre-chunked documents (output of chunker.py).
     2. Embeds the chunk content into vectors.
-    3. Stores the chunks, embeddings, and metadata in a VectorStore (ChromaDB).
+    3. Stores the chunks, embeddings, and metadata in a VectorStore (pgvector).
     """
 
     def __init__(self):
@@ -34,7 +34,7 @@ class Vectorizer:
 
     def vectorize_and_store(self):
         """
-        Main method to process all chunk JSON files and store them in ChromaDB.
+        Main method to process all chunk JSON files and store them in the vector store.
         Chunking already happened in chunker.py; here we only embed + store.
         """
         print(f"Starting vectorization process for chunks in: {INPUT_DATA_DIR}")
@@ -64,7 +64,7 @@ class Vectorizer:
                     "source": c.get("paper", filename),
                     "section": c.get("section", ""),
                     "subsection": c.get("subsection", ""),
-                    # Chroma metadata can't hold lists, so flatten concepts.
+                    # Metadata columns are scalar, so flatten concepts.
                     "concepts": ", ".join(c.get("concepts", [])),
                 }
                 for c in chunks

@@ -1,4 +1,3 @@
-import chromadb
 import argparse
 import sys
 import os
@@ -19,7 +18,7 @@ class PaperRetriever:
         # The same embedder is used to turn the query into a vector.
         self.embedder = Embedder()
         
-        # Connect to the vector store (ChromaDB).
+        # Connect to the vector store.
         try:
             self.vector_store = get_vector_store()
             print(f"Successfully connected to VectorStore.")
@@ -71,7 +70,7 @@ class PaperRetriever:
             
 def main():
     """Provides a CLI to query the vector database."""
-    parser = argparse.ArgumentParser(description="Query research papers from the ChromaDB vector store.")
+    parser = argparse.ArgumentParser(description="Query research papers from the vector store.")
     parser.add_argument(
         "query_text",
         type=str,

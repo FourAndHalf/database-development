@@ -3,7 +3,6 @@ docling
 pypdf
 sentence-transformers
 tqdm
-chromadb
 fastapi
 uvicorn[standard]
 python-multipart

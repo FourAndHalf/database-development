@@ -1,6 +1,5 @@
 import os
 from typing import List, Dict, Any
-import chromadb
 import psycopg2
 from pgvector import Vector
 from pgvector.psycopg2 import register_vector
@@ -22,23 +21,6 @@ class VectorStore(ABC):
     @abstractmethod
     def count(self) -> int:
         pass
-
-class ChromaVectorStore(VectorStore):
-    def __init__(self, path: str, collection_name: str):
-        self.client = chromadb.PersistentClient(path=path)
-        self.collection = self.client.get_or_create_collection(name=collection_name)
-
-    def add(self, ids: List[str], embeddings: List[List[float]], documents: List[str], metadatas: List[Dict[str, Any]]):
-        self.collection.add(ids=ids, embeddings=embeddings, documents=documents, metadatas=metadatas)
-
-    def query(self, query_embeddings: List[List[float]], n_results: int) -> Dict[str, Any]:
-        return self.collection.query(query_embeddings=query_embeddings, n_results=n_results)
-
-    def delete(self, filename: str):
-        self.collection.delete(where={"source": filename})
-
-    def count(self) -> int:
-        return self.collection.count()
 
 class PgVectorStore(VectorStore):
     def __init__(self, dsn: str):
@@ -110,11 +92,5 @@ class PgVectorStore(VectorStore):
             return cur.fetchone()[0]
 
 def get_vector_store() -> VectorStore:
-    backend = os.getenv("VECTOR_BACKEND", "chroma")
-    if backend == "pgvector":
-        dsn = os.environ["DATABASE_URL"]
-        return PgVectorStore(dsn=dsn)
-
-    collection_name = "database_papers"
-    path = os.getenv("CHROMA_DB_PATH", "data/chromadb")
-    return ChromaVectorStore(path=path, collection_name=collection_name)
+    dsn = os.environ["DATABASE_URL"]
+    return PgVectorStore(dsn=dsn)

@@ -42,7 +42,7 @@ func (h *PaperHandler) DeletePaper(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 3. Delete from Vector DB (Chroma via Python Engine)
+	// 3. Delete from Vector DB (pgvector via Python Engine)
 	err = h.engine.DeleteDocument(ctx, filename)
 	if err != nil {
 		h.logger.Printf("Failed to delete vectors for %s: %v", filename, err)

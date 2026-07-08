@@ -49,7 +49,6 @@ fi
 # ── 2. Create required data directories ──────────────────────────────────────
 info "Creating data directories..."
 mkdir -p uploads backups
-mkdir -p data/{postgres,chromadb}
 mkdir -p data/caddy/{data,config,logs}
 chmod 755 uploads backups
 
@@ -75,7 +74,7 @@ if [[ ! -f ".env" ]]; then
 fi
 
 # Check critical env vars are not still set to placeholders
-REQUIRED_VARS=(POSTGRES_PASSWORD GROQ_API_KEY)
+REQUIRED_VARS=(NEXUS_PG_PASSWORD GROQ_API_KEY)
 MISSING=()
 for var in "${REQUIRED_VARS[@]}"; do
   value=$(grep -E "^${var}=" .env | cut -d= -f2- | tr -d '"' | tr -d "'")
@@ -89,7 +88,7 @@ fi
 
 # ── 5. Build and start services ───────────────────────────────────────────────
 info "Building images and starting services (this may take several minutes on first run)..."
-docker compose pull caddy postgres 2>/dev/null || true
+docker compose pull caddy 2>/dev/null || true
 docker compose build --parallel python-rag-engine go-api-gateway angular-ui
 docker compose up -d
 

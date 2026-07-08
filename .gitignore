@@ -3,7 +3,6 @@ data/raw_pdfs/
 data/chunks/
 data/embeddings/
 data/parsed/
-data/chromadb/
 
 # Temporary files and logs
 temp/
@@ -132,7 +131,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+# .env
 .env.*
 !.env.example
 *.bak

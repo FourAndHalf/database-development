@@ -9,7 +9,7 @@ A scalable Retrieval-Augmented Generation (RAG) system designed to index, query,
 
 ## 🚀 Overview
 
-This project serves as a "living encyclopedia" for database engineering. Built on a multi-language microservices architecture, it processes dense academic PDFs using Docling, stores embeddings in ChromaDB, and uses high-performance API gateways to serve a modern Angular frontend.
+This project serves as a "living encyclopedia" for database engineering. Built on a multi-language microservices architecture, it processes dense academic PDFs using Docling, stores embeddings in Postgres via pgvector, and uses high-performance API gateways to serve a modern Angular frontend.
 
 ---
 
@@ -31,12 +31,11 @@ The project uses a containerized, decoupled microservices architecture designed 
 - **FastAPI Service (`/apps/api/main.py`):** A Python-based AI service responsible for the heavy lifting of the RAG pipeline.
   - **Ingestion & Parsing:** Uses **Docling** for high-fidelity extraction of text, tables, and citations from academic PDFs.
   - **Embedding:** Utilizes local **Sentence-Transformers** (e.g., `BAAI/bge-small-en-v1.5`) to generate dense semantic vectors, avoiding expensive API calls for high-volume ingestion.
-  - **Vector Storage:** Stores and queries embeddings using **ChromaDB**.
+  - **Vector Storage:** Stores and queries embeddings using **pgvector** on Postgres.
   - **LLM Integration:** Combines retrieved contexts with powerful prompts to generate grounded answers using external LLM APIs (e.g., OpenAI, Anthropic).
 
 ### 4. Data & Storage Layer
-- **PostgreSQL (15):** Relational database managing application state (users, auth, chat logs).
-- **ChromaDB:** Local vector database storing embedded document chunks for semantic search.
+- **PostgreSQL (15):** Relational database managing application state (users, auth, chat logs) and, via **pgvector**, the embedded document chunks used for semantic search.
 - **Local File System:** Manages raw PDFs, parsed JSONs, and embedding artifacts in the `/data` directory.
 
 ---
@@ -45,11 +44,11 @@ The project uses a containerized, decoupled microservices architecture designed 
 
 1. **Document Ingestion (`scripts/` & `services/ingestion/`):** Raw PDFs of research papers are downloaded into `/data/raw_pdfs`. The system uses Docling to accurately parse the structure (headings, paragraphs, tables) and convert them to parsed JSON representations.
 2. **Chunking & Embedding:** The parsed documents are broken down into semantically meaningful chunks (Hierarchical Chunking). The Python engine uses a local Sentence-Transformer model to convert these text chunks into dense numeric vectors.
-3. **Vector Storage:** The vectors, along with metadata (paper title, chunk index), are stored in ChromaDB for rapid similarity search.
+3. **Vector Storage:** The vectors, along with metadata (paper title, chunk index), are stored in Postgres via **pgvector** for rapid similarity search.
 4. **Query Execution:** 
    - A user submits a query via the **Angular UI**.
    - The **Go API Gateway** authenticates the user, logs the query in PostgreSQL, and forwards the request to the **Python RAG Engine**.
-   - The Python engine embeds the user's query, performs a semantic search against ChromaDB to find the most relevant document chunks, and optionally reranks them.
+   - The Python engine embeds the user's query, performs a semantic search against pgvector to find the most relevant document chunks, and optionally reranks them.
    - The retrieved context is formatted into a strict prompt and sent to an LLM to generate a grounded, cited response.
    - The answer is streamed back through the Go Gateway to the UI.
 

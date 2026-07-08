@@ -1,4 +1,4 @@
-aether-rag-pipeline.duckdns.org {
+(app_routes) {
     # API Routes (v1, healthz, pdfs)
     handle /v1/* {
         reverse_proxy go-api-gateway:8081
@@ -19,4 +19,15 @@ aether-rag-pipeline.duckdns.org {
     log {
         output file /var/log/caddy/access.log
     }
+}
+
+aether-rag-pipeline.duckdns.org {
+    import app_routes
+}
+
+# Plain-HTTP local/dev entry point — bare ":80" is port-only (no Host match),
+# so it skips automatic HTTPS/ACME and just serves on whatever host port this
+# container's 80 is published to (see docker-compose.yml caddy "ports:").
+:80 {
+    import app_routes
 }

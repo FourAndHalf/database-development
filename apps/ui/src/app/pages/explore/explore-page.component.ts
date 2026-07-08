@@ -109,7 +109,7 @@ export class ExplorePageComponent {
   }
 
   async deletePaper(id: string, title: string) {
-    if (!confirm(`Are you sure you want to permanently delete "${title}"? This will remove it from the SQL database and purge its vectors from ChromaDB.`)) {
+    if (!confirm(`Are you sure you want to permanently delete "${title}"? This will remove it from the SQL database and purge its vectors from the vector store.`)) {
       return;
     }
     this.busyDelete.set(id);
