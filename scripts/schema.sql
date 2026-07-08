@@ -1,12 +1,13 @@
 -- ============================================================
 -- RAG Pipeline Schema (PostgreSQL)
 -- Research-paper repository + user uploads + query history
--- Chunks & embeddings live in ChromaDB (external); Postgres is
--- the relational system-of-record and links back via paper_id.
--- Requires: PostgreSQL 14+
+-- Chunks & embeddings live in the chunks table (pgvector) below,
+-- linked back to papers via paper_id.
+-- Requires: PostgreSQL 14+ with the pgvector extension
 -- ============================================================
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;    -- gen_random_uuid()
+CREATE EXTENSION IF NOT EXISTS vector;      -- pgvector: embedding column + similarity search
 
 -- ---------- Enumerated types ----------
 CREATE TYPE paper_source     AS ENUM ('curated', 'user_upload');
@@ -71,9 +72,9 @@ $$ LANGUAGE plpgsql;
 -- papers  (both the shared repository and user uploads)
 --   curated repo paper  -> source_type = 'curated',     uploaded_by IS NULL
 --   user upload         -> source_type = 'user_upload', uploaded_by = <user>
---   NOTE: the paper's chunks/vectors live in ChromaDB, keyed by
---         this paper's id (store paper_id in each Chroma chunk's
---         metadata so you can filter + cite back).
+--   NOTE: the paper's chunks/vectors live in the chunks table below,
+--         keyed by this paper's id via chunks.paper_id so you can
+--         filter + cite back.
 -- ============================================================
 CREATE TABLE papers (
     id                uuid PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -101,7 +102,7 @@ CREATE TABLE papers (
     -- ingestion pipeline state
     status            ingest_status NOT NULL DEFAULT 'pending',
     ingested_at       timestamptz,                   -- set when ingestion completes; order by this
-    chunk_count       integer NOT NULL DEFAULT 0,    -- how many chunks were written to Chroma
+    chunk_count       integer NOT NULL DEFAULT 0,    -- how many chunks were written to the chunks table
     error_message     text,
 
     created_at        timestamptz NOT NULL DEFAULT now(),
@@ -143,6 +144,27 @@ CREATE TRIGGER trg_papers_count
     FOR EACH ROW EXECUTE FUNCTION bump_papers_count();
 
 -- ============================================================
+-- chunks  (paper text chunks + their embeddings; pgvector)
+--   Replaces the external ChromaDB collection. "source" holds the
+--   filename query/delete filter on, same role Chroma's metadata did.
+-- ============================================================
+CREATE TABLE chunks (
+    id         text PRIMARY KEY,          -- chunk_id from chunker.py
+    paper_id   uuid REFERENCES papers(id) ON DELETE CASCADE,
+    source     text NOT NULL,             -- filename; what delete() filters on
+    section    text,
+    subsection text,
+    concepts   text,
+    content    text NOT NULL,
+    embedding  vector(1024) NOT NULL,     -- bge-m3 dimension
+    created_at timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE INDEX idx_chunks_source ON chunks(source);
+CREATE INDEX idx_chunks_paper_id ON chunks(paper_id);
+CREATE INDEX idx_chunks_embedding ON chunks USING hnsw (embedding vector_cosine_ops);
+
+-- ============================================================
 -- requests  (a saved user query + its generated answer)
 -- ============================================================
 CREATE TABLE requests (
@@ -179,16 +201,16 @@ CREATE TRIGGER trg_requests_count
     FOR EACH ROW EXECUTE FUNCTION bump_requests_count();
 
 -- ============================================================
--- request_retrievals  (which Chroma chunks fed each answer — for
+-- request_retrievals  (which chunks fed each answer — for
 --   traceability / eval; pairs well with Phoenix-style tracing)
---   Chunks + vectors live in ChromaDB; we store the chunk id here
---   plus a cached snippet so display/audit needs no Chroma round-trip.
+--   We store the chunk id here plus a cached snippet so display/audit
+--   needs no round-trip to the chunks table.
 -- ============================================================
 CREATE TABLE request_retrievals (
     id              uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     request_id      uuid NOT NULL REFERENCES requests(id) ON DELETE CASCADE,
     paper_id        uuid REFERENCES papers(id) ON DELETE SET NULL, -- cite back to paper; kept even if paper is later deleted
-    chroma_chunk_id text NOT NULL,             -- id of the chunk in ChromaDB
+    chroma_chunk_id text NOT NULL,             -- id of the chunk in the chunks table
     snippet         text,                      -- cached chunk text (optional, for display/audit)
     rank            integer NOT NULL,          -- 1 = top hit
     score           double precision,          -- similarity / rerank score

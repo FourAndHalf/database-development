@@ -103,7 +103,7 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		if err := h.store.SaveMessage(ctx, conversationID, "user", req.Message); err != nil {
+		if err := h.store.SaveMessage(ctx, conversationID, "user", req.Message, nil); err != nil {
 			h.logger.Printf("Failed to save user message: %v", err)
 			writeErr(w, http.StatusInternalServerError, "db_error")
 			return
@@ -134,7 +134,15 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if isAuth {
-		if err := h.store.SaveMessage(ctx, conversationID, "assistant", ans.Text); err != nil {
+		var sourcesJSON []byte
+		if len(ans.Sources) > 0 {
+			var err error
+			sourcesJSON, err = json.Marshal(ans.Sources)
+			if err != nil {
+				h.logger.Printf("Failed to marshal sources (non-fatal): %v", err)
+			}
+		}
+		if err := h.store.SaveMessage(ctx, conversationID, "assistant", ans.Text, sourcesJSON); err != nil {
 			h.logger.Printf("Failed to save assistant message (non-fatal): %v", err)
 		}
 	}

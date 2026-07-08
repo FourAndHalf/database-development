@@ -2,9 +2,11 @@ import re
 import json
 import os
 import logging
+from contextlib import nullcontext
 from fastapi import APIRouter, HTTPException
 from duckduckgo_search import DDGS
 from opentelemetry import trace
+from openinference.instrumentation import using_session
 from apps.api_python.models import QueryRequest, QueryResponse, Source
 from apps.api_python import state
 from openai import OpenAI
@@ -220,16 +222,20 @@ async def handle_query(request: QueryRequest):
         messages.append({"role": role, "content": turn.text})
     messages.append({"role": "user", "content": clean_query})
 
-    # 6. Generation: Gemini primary -> Groq fallback.
-    try:
-        generated_text = await generate_with_gemini(messages)
-    except Exception as e:
-        log.warning("Gemini failed or rate limited: %s", e)
+    # 6. Generation: Gemini primary -> Groq fallback. Tag both LLM calls with the
+    #    conversation id as a Phoenix session, so every turn of a conversation groups
+    #    together in the Phoenix Sessions view instead of appearing as unrelated traces.
+    session_ctx = using_session(request.conversation_id) if request.conversation_id else nullcontext()
+    with session_ctx:
         try:
-            generated_text = generate_with_groq(messages, request.model)
-        except Exception as groq_err:
-            log.error("Groq fallback also failed: %s", groq_err)
-            raise HTTPException(status_code=502, detail="Both Gemini and Groq services are unavailable.")
+            generated_text = await generate_with_gemini(messages)
+        except Exception as e:
+            log.warning("Gemini failed or rate limited: %s", e)
+            try:
+                generated_text = generate_with_groq(messages, request.model)
+            except Exception as groq_err:
+                log.error("Groq fallback also failed: %s", groq_err)
+                raise HTTPException(status_code=502, detail="Both Gemini and Groq services are unavailable.")
 
     # 7. Parse Structure
     tabs = []

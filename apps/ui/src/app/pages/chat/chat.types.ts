@@ -14,6 +14,7 @@ export type UiMessage = {
   displayedText?: string;
   isTyping?: boolean;
   sources?: Source[];
+  externalLinks?: Source[];
   latencyMs?: number;
   pending?: boolean;
   tabs?: Tab[];

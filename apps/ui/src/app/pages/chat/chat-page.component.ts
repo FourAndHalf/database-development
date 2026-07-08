@@ -146,16 +146,25 @@ export class ChatPageComponent implements OnInit, OnDestroy {
 
     try {
       const res = await firstValueFrom(this.api.getMessages(id));
-      this.messages.set(res.map((m: any) => {
+      const mapped: UiMessage[] = res.map((m: any) => {
         const { mainText, parsedTabs } = parseChatResponse(m.content ?? '');
         return {
           id: m.id,
           role: m.role,
           text: m.role === 'assistant' ? mainText : (m.content ?? ''),
+          sources: m.role === 'assistant' ? m.sources : undefined,
           tabs: m.role === 'assistant' ? parsedTabs : undefined,
           activeTabIdx: 0,
         };
-      }));
+      });
+      // External (web) citations for an answer are shown as breadcrumbs under the
+      // question that prompted them, so hang them off the preceding user message.
+      for (let i = 1; i < mapped.length; i++) {
+        if (mapped[i].role === 'assistant' && mapped[i - 1].role === 'user') {
+          mapped[i - 1].externalLinks = mapped[i].sources?.filter((s) => s.url);
+        }
+      }
+      this.messages.set(mapped);
     } catch (err) {
       this.toast.error('Failed to load conversation.');
     } finally {
@@ -235,11 +244,20 @@ export class ChatPageComponent implements OnInit, OnDestroy {
       localStorage.setItem(this.conversationKey, res.conversation_id);
 
       const { mainText, parsedTabs } = parseChatResponse(res.answer);
+      const externalLinks = res.sources?.filter((s) => s.url);
 
-      this.messages.update((xs) => xs.map((m) => m.id === assistantId ? { 
-        ...m, text: mainText, displayedText: '', isTyping: true, sources: res.sources, 
-        latencyMs: res.latency_ms, pending: false, tabs: parsedTabs, activeTabIdx: 0 
-      } : m));
+      this.messages.update((xs) => xs.map((m) => {
+        if (m.id === assistantId) {
+          return {
+            ...m, text: mainText, displayedText: '', isTyping: true, sources: res.sources,
+            latencyMs: res.latency_ms, pending: false, tabs: parsedTabs, activeTabIdx: 0
+          };
+        }
+        if (m.id === userMsg.id) {
+          return { ...m, externalLinks };
+        }
+        return m;
+      }));
 
       simulateTypewriterEffect(this.messages, assistantId, mainText);
       void this.fetchHistory();

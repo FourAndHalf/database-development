@@ -40,6 +40,19 @@
 }
 .bubble.user:hover .copy-query-btn { opacity: 1; }
 
+.externalLinks {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px solid rgba(139, 92, 246, 0.15);
+  font-size: 11px;
+}
+.externalLink {
+  color: var(--text-muted); text-decoration: none;
+  white-space: nowrap; max-width: 220px; overflow: hidden; text-overflow: ellipsis;
+}
+.externalLink:hover { color: var(--accent); text-decoration: underline; }
+.crumbSep { color: var(--text-dark); }
+
 /* Assistant Synthesis Content */
 .bubble.assistant { display: flex; flex-direction: column; gap: 20px; padding-top: 8px; }
 

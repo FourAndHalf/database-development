@@ -1,0 +1,797 @@
+<title>Aether — How the Research Assistant Works</title>
+<style>
+  :root {
+    --bg: #ECEBE1;
+    --surface: #F8F7F1;
+    --surface-2: #E2E0D2;
+    --ink: #20262A;
+    --ink-soft: #4B535A;
+    --ink-faint: #767F84;
+    --line: #D3CFC0;
+    --accent: #146B69;
+    --accent-ink: #F8F7F1;
+    --accent-2: #916A17;
+    --old: #5B6470;
+    --radius: 12px;
+    --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10171A;
+      --surface: #171F22;
+      --surface-2: #1E282B;
+      --ink: #E7E4D9;
+      --ink-soft: #AAB2AC;
+      --ink-faint: #77827E;
+      --line: #2B3538;
+      --accent: #57D6C7;
+      --accent-ink: #0A1213;
+      --accent-2: #DDB15C;
+      --old: #8891A0;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10171A;
+    --surface: #171F22;
+    --surface-2: #1E282B;
+    --ink: #E7E4D9;
+    --ink-soft: #AAB2AC;
+    --ink-faint: #77827E;
+    --line: #2B3538;
+    --accent: #57D6C7;
+    --accent-ink: #0A1213;
+    --accent-2: #DDB15C;
+    --old: #8891A0;
+  }
+  :root[data-theme="light"] {
+    --bg: #ECEBE1;
+    --surface: #F8F7F1;
+    --surface-2: #E2E0D2;
+    --ink: #20262A;
+    --ink-soft: #4B535A;
+    --ink-faint: #767F84;
+    --line: #D3CFC0;
+    --accent: #146B69;
+    --accent-ink: #F8F7F1;
+    --accent-2: #916A17;
+    --old: #5B6470;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; text-wrap: balance; color: var(--ink); }
+  p { margin: 0 0 1.1em; }
+  a { color: var(--accent); }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.9rem;
+  }
+
+  /* ---------- Cover ---------- */
+  .cover {
+    padding: 5rem 1.5rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .cover h1 {
+    font-size: clamp(2.3rem, 5.5vw, 3.6rem);
+    line-height: 1.08;
+    margin: 0 0 1.1rem;
+  }
+  .cover .sub {
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0 0 2rem;
+  }
+  .stat-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 1.1rem 0;
+  }
+  .stat {
+    flex: 1 1 140px;
+    padding: 0 1.25rem;
+    border-left: 1px solid var(--line);
+  }
+  .stat:first-child { border-left: none; padding-left: 0; }
+  .stat b {
+    display: block;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 1.5rem;
+    color: var(--accent);
+  }
+  .stat span { font-size: 0.82rem; color: var(--ink-faint); }
+
+  /* ---------- Page grid ---------- */
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem 6rem;
+    display: grid;
+    grid-template-columns: 210px minmax(0, 720px);
+    gap: 3rem;
+    justify-content: center;
+  }
+  @media (max-width: 880px) {
+    .page { grid-template-columns: 1fr; }
+  }
+
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 2rem;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: toc;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc li { counter-increment: toc; }
+  nav.toc a {
+    display: block;
+    padding: 0.4rem 0 0.4rem 0.9rem;
+    margin-left: -1px;
+    border-left: 1px solid transparent;
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  nav.toc a::before {
+    content: counter(toc, decimal-leading-zero) " ";
+    font-family: var(--font-mono);
+    color: var(--ink-faint);
+    margin-right: 0.35rem;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--accent); }
+  @media (max-width: 880px) {
+    nav.toc { position: static; margin-bottom: 1rem; }
+    nav.toc ol { columns: 2; column-gap: 1.5rem; border-left: none; }
+    nav.toc li { break-inside: avoid; }
+  }
+
+  main.content section {
+    padding-top: 3.5rem;
+    border-top: 1px solid var(--line);
+  }
+  main.content section:first-of-type { border-top: none; padding-top: 0; }
+
+  .chapter-num {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-2);
+    letter-spacing: 0.05em;
+  }
+  h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0.3rem 0 1.1rem; }
+  h3 { font-size: 1.25rem; margin: 1.8rem 0 0.8rem; }
+
+  .lede { font-size: 1.08rem; color: var(--ink-soft); }
+
+  .term {
+    border-bottom: 1px dotted var(--accent);
+    cursor: help;
+    font-style: italic;
+  }
+
+  /* ---------- Flow diagrams ---------- */
+  .flow { margin: 1.75rem 0 2.25rem; }
+  .flow-step {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem 1.1rem 4rem;
+  }
+  .flow-step .n {
+    position: absolute;
+    left: 1.1rem;
+    top: 1.1rem;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+  }
+  .flow-step h4 { margin: 0 0 0.35rem; font-size: 1.05rem; }
+  .flow-step p { margin: 0; color: var(--ink-soft); font-size: 0.96rem; }
+  .connector {
+    display: flex;
+    padding-left: 1.75rem;
+    color: var(--accent);
+    font-size: 1.1rem;
+    line-height: 1;
+    margin: 0.15rem 0;
+    opacity: 0.7;
+  }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-left: 3px solid var(--accent-2);
+    background: var(--surface);
+    border-radius: 0 8px 8px 0;
+    padding: 0.9rem 1.1rem;
+    margin: 1.4rem 0;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .callout b { color: var(--ink); }
+  .callout.status { border-left-color: var(--accent); }
+
+  /* ---------- Tables ---------- */
+  .table-wrap { overflow-x: auto; margin: 1.4rem 0; border: 1px solid var(--line); border-radius: var(--radius); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+  th, td { text-align: left; padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th {
+    background: var(--surface-2);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--surface); }
+  code { font-family: var(--font-mono); font-size: 0.88em; background: var(--surface-2); padding: 0.1em 0.4em; border-radius: 4px; }
+  td b, .num { font-variant-numeric: tabular-nums; }
+
+  /* ---------- Before/after ---------- */
+  .pivot-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    align-items: stretch;
+    margin: 1.6rem 0;
+  }
+  @media (max-width: 620px) {
+    .pivot-grid { grid-template-columns: 1fr; }
+    .pivot-grid .arrow { transform: rotate(90deg); padding: 0.5rem 0; }
+  }
+  .pivot-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.2rem 1.3rem; }
+  .pivot-panel .tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+  .pivot-panel.then .tag { color: var(--old); background: color-mix(in srgb, var(--old) 15%, transparent); }
+  .pivot-panel.now .tag { color: var(--accent); background: color-mix(in srgb, var(--accent) 15%, transparent); }
+  .pivot-panel ul { margin: 0; padding-left: 1.1rem; font-size: 0.92rem; color: var(--ink-soft); }
+  .pivot-panel li { margin-bottom: 0.4rem; }
+  .arrow { display: flex; align-items: center; justify-content: center; color: var(--ink-faint); font-size: 1.6rem; }
+
+  /* ---------- Notebook cards (data model) ---------- */
+  .notebooks { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.6rem 0; }
+  .notebook { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.2rem; }
+  .notebook h4 { margin: 0 0 0.6rem; font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent); }
+  .notebook ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; color: var(--ink-soft); }
+  .notebook li { margin-bottom: 0.3rem; }
+  .notebook .link { margin-top: 0.7rem; font-size: 0.78rem; color: var(--ink-faint); font-style: italic; }
+
+  /* ---------- Glossary ---------- */
+  dl.glossary { display: grid; grid-template-columns: max-content 1fr; gap: 0.6rem 1.5rem; margin: 1.6rem 0; }
+  dl.glossary dt { font-family: var(--font-mono); font-weight: 700; color: var(--ink); white-space: nowrap; }
+  dl.glossary dd { margin: 0; color: var(--ink-soft); }
+  @media (max-width: 620px) {
+    dl.glossary { grid-template-columns: 1fr; }
+    dl.glossary dd { margin-bottom: 0.5rem; }
+  }
+
+  footer {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+    border-top: 1px solid var(--line);
+    color: var(--ink-faint);
+    font-size: 0.85rem;
+  }
+
+  svg text { font-family: var(--font-body); }
+</style>
+
+<header class="cover">
+  <span class="eyebrow">Database Research RAG · Field Notes</span>
+  <h1>Meet Aether — the assistant that reads the papers so you don't have to</h1>
+  <p class="sub">Aether is a small program that answers questions about dense computer-science papers on databases and distributed systems, and always shows exactly which passages it used to answer you. This page explains how it works, plain terms first, precise numbers alongside.</p>
+  <div class="stat-strip">
+    <div class="stat"><b>44</b><span>papers in the library</span></div>
+    <div class="stat"><b>10,180</b><span>note-cards (chunks)</span></div>
+    <div class="stat"><b>1,024</b><span>numbers per note-card</span></div>
+    <div class="stat"><b>1</b><span>database, after the move</span></div>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="toc">
+    <ol>
+      <li><a href="#big-idea">The big idea</a></li>
+      <li><a href="#journey">A question's journey</a></li>
+      <li><a href="#map">The map of meaning</a></li>
+      <li><a href="#ingestion">Getting papers in</a></li>
+      <li><a href="#chunking-deep">Chunking, in depth</a></li>
+      <li><a href="#reranking-deep">How reranking really works</a></li>
+      <li><a href="#pivot">The big move</a></li>
+      <li><a href="#specs">Under the hood</a></li>
+      <li><a href="#blueprint">The blueprint</a></li>
+      <li><a href="#extending">Extending the system</a></li>
+      <li><a href="#scaling">Scaling to a billion users</a></li>
+      <li><a href="#stack">The toolbox</a></li>
+      <li><a href="#glossary">Word bank</a></li>
+    </ol>
+  </nav>
+
+  <main class="content">
+
+    <section id="big-idea">
+      <span class="chapter-num">01</span>
+      <h2>The big idea</h2>
+      <p class="lede">Chatbots are confident writers, but their memory is fuzzy. Ask one a specific question about an obscure paper and it may guess — and say the guess with a completely straight face. That's usually called <span class="term" title="Sounding certain about something that isn't true, because a made-up answer looked statistically plausible.">hallucinating</span>.</p>
+      <p>Aether avoids that trap by refusing to answer from memory at all. Every time someone asks a question, it first goes and looks the answer up in the actual papers — like a student who opens the textbook to the right page before answering, instead of reciting from memory — and only then writes a response, with the exact passages it used shown right next to the answer, so anyone can check its work.</p>
+      <p>The fancy name for this pattern is <span class="term" title="Retrieval-Augmented Generation: look something up, then write about it, using only what you found.">Retrieval-Augmented Generation</span> — <b>RAG</b> for short. Look it up (retrieval), then write about it (generation), with real material in hand the whole time (augmented). Everything below is the machinery that makes that lookup fast, careful, and honest.</p>
+    </section>
+
+    <section id="journey">
+      <span class="chapter-num">02</span>
+      <h2>A question's journey</h2>
+      <p class="lede">Here's what happens between typing a question and seeing an answer.</p>
+
+      <div class="flow">
+        <div class="flow-step"><span class="n">1</span>
+          <h4>You ask a question</h4>
+          <p>e.g. "How does Raft handle a leader crash?" — typed straight into the app.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">2</span>
+          <h4>The question becomes a set of coordinates</h4>
+          <p>Your sentence is turned into a list of 1,024 numbers, so it can be compared to every note-card by <em>closeness in meaning</em> instead of matching exact words.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">3</span>
+          <h4>A fast first pass finds 20 candidates</h4>
+          <p>A quick search over the whole library returns the 20 note-cards whose coordinates sit nearest to the question's.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">4</span>
+          <h4>A slower, careful reader double-checks them</h4>
+          <p>A second model reads the question next to each of those 20 candidates, one pair at a time, and scores how relevant it truly is — catching cases where "nearby on the map" wasn't actually a good match.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">5</span>
+          <h4>Only the confident matches survive</h4>
+          <p>Anything scoring below halfway is thrown out. If nothing clears the bar, Aether says so honestly instead of inventing an answer.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">6</span>
+          <h4>The answer gets written, sources attached</h4>
+          <p>The surviving note-cards are handed to a language model with instructions to answer using only that material — then the exact passages are shown alongside the answer.</p>
+        </div>
+      </div>
+
+      <div class="callout"><b>Escape hatch:</b> typing <code>@web-search</code> anywhere in a question tells Aether to also check DuckDuckGo instead of relying only on the papers — this deliberately skips the confidence check in step 5, since a web result isn't being compared to a fixed library.</div>
+    </section>
+
+    <section id="map">
+      <span class="chapter-num">03</span>
+      <h2>The map of meaning</h2>
+      <p class="lede">Step 2 above — "turn the question into coordinates" — is the trick that makes all of this possible. Here's the idea without the jargon.</p>
+      <p>Aether turns every note-card, and every question asked of it, into a list of 1,024 numbers. Think of it as a very detailed coordinate: instead of just two numbers like a spot on a map (x, y), it's a point in a space with 1,024 directions. Cards about similar ideas land as nearby points; cards about unrelated ideas land far apart. So "find note-cards similar to this question" becomes "find the nearest points on the map."</p>
+
+      <div style="background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:1.2rem;">
+        <svg viewBox="0 0 640 340" width="100%" role="img" aria-label="A scatter diagram showing note-cards clustered by topic, with a question point connecting to its three nearest neighbours">
+          <g font-size="11" fill="var(--ink-faint)">
+            <text x="60" y="30">Consensus &amp; replication</text>
+            <text x="420" y="55">Storage engines</text>
+            <text x="240" y="320">Consistency models</text>
+          </g>
+
+          <!-- consensus cluster -->
+          <circle cx="95" cy="70" r="5" fill="var(--old)"></circle>
+          <text x="105" y="74" font-size="11" fill="var(--ink-soft)">Paxos</text>
+          <circle cx="150" cy="105" r="5" fill="var(--old)"></circle>
+          <text x="160" y="109" font-size="11" fill="var(--ink-soft)">Raft</text>
+          <circle cx="70" cy="120" r="5" fill="var(--old)"></circle>
+          <text x="80" y="124" font-size="11" fill="var(--ink-soft)">Viewstamped Replication</text>
+
+          <!-- storage cluster -->
+          <circle cx="470" cy="90" r="5" fill="var(--old)"></circle>
+          <text x="480" y="94" font-size="11" fill="var(--ink-soft)">LSM-trees</text>
+          <circle cx="520" cy="130" r="5" fill="var(--old)"></circle>
+          <text x="530" y="134" font-size="11" fill="var(--ink-soft)">B-trees</text>
+          <circle cx="440" cy="150" r="5" fill="var(--old)"></circle>
+          <text x="450" y="154" font-size="11" fill="var(--ink-soft)">SSTables</text>
+
+          <!-- consistency cluster -->
+          <circle cx="270" cy="250" r="5" fill="var(--old)"></circle>
+          <text x="280" y="254" font-size="11" fill="var(--ink-soft)">CAP theorem</text>
+          <circle cx="330" cy="280" r="5" fill="var(--old)"></circle>
+          <text x="340" y="284" font-size="11" fill="var(--ink-soft)">PACELC</text>
+          <circle cx="230" cy="290" r="5" fill="var(--old)"></circle>
+          <text x="240" y="294" font-size="11" fill="var(--ink-soft)">Eventual consistency</text>
+
+          <!-- query point + links to nearest neighbours -->
+          <line x1="180" y1="130" x2="95" y2="70" stroke="var(--accent-2)" stroke-width="1.5" stroke-dasharray="4 3"></line>
+          <line x1="180" y1="130" x2="150" y2="105" stroke="var(--accent-2)" stroke-width="1.5" stroke-dasharray="4 3"></line>
+          <line x1="180" y1="130" x2="70" y2="120" stroke="var(--accent-2)" stroke-width="1.5" stroke-dasharray="4 3"></line>
+          <circle cx="180" cy="130" r="7" fill="var(--accent-2)"></circle>
+          <text x="192" y="134" font-size="12" font-weight="700" fill="var(--ink)">"How does a leader failure get handled?"</text>
+        </svg>
+        <p style="margin:0.8rem 0 0; font-size:0.85rem; color:var(--ink-faint);">The gold point is an incoming question. Its three nearest points — all about handling a crashed leader — get pulled as candidates; the storage and consistency clusters, further away, don't.</p>
+      </div>
+
+      <p>Grown-ups call this list of numbers an <span class="term" title="A list of numbers that represents the meaning of a piece of text, so meaning can be compared mathematically.">embedding</span> or a <span class="term" title="A numeric list, usually representing a point in many-dimensional space.">vector</span>, and "how close two points are" is called <span class="term" title="A way of measuring how similar two lists of numbers are, based on the angle between them rather than raw distance.">cosine similarity</span> — but the map idea is really all there is to it.</p>
+
+      <div class="callout"><b>Spec, for the curious:</b> the numbers-machine is <code>BAAI/bge-m3</code>, and it outputs exactly <b>1,024</b> numbers per piece of text, normalized so that cosine similarity is just a dot product. It's reused twice in the pipeline: once here, comparing a question to every note-card, and again during ingestion (next chapter) to decide where a paper should be cut into note-cards in the first place.</div>
+    </section>
+
+    <section id="ingestion">
+      <span class="chapter-num">04</span>
+      <h2>Getting papers into the library</h2>
+      <p class="lede">Before any of the above can happen, a paper has to become a set of searchable note-cards. That happens once, when a paper is added.</p>
+
+      <div class="flow">
+        <div class="flow-step"><span class="n">1</span>
+          <h4>Start with a raw PDF</h4>
+          <p>A dense, multi-column academic paper — e.g. the original Raft paper.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">2</span>
+          <h4>Docling reads its structure</h4>
+          <p>An open-source tool called Docling parses headings, paragraphs, and tables — not just raw text — so Aether knows "this sentence sits under the Introduction," not "buried in a table."</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">3</span>
+          <h4>Cut into note-cards, respecting both structure and meaning</h4>
+          <p>First split along Docling's headings. Then, inside each section, split further wherever consecutive sentences stop being about the same idea — found by comparing their coordinates from the map above. Each card aims for about 512 model-tokens (~380 words), never fewer than 64, and carries forward roughly the last 15% of the previous card so an idea spanning a cut isn't lost.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">4</span>
+          <h4>Turn each note-card into 1,024 numbers</h4>
+          <p>The same embedding step described in the previous chapter.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">5</span>
+          <h4>File it away with its paper and section</h4>
+          <p>Stored as a row alongside which paper it came from, which heading it was under, and the source filename — used later if that paper is ever removed.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="chunking-deep">
+      <span class="chapter-num">05</span>
+      <h2>Chunking, in depth</h2>
+      <p class="lede">Step 3 of ingestion — "cut into note-cards" — is doing more work than it looks. Here's the actual mechanism, why it was chosen over the obvious alternatives, and where it's still rough.</p>
+
+      <h3>Two passes, not one</h3>
+      <p>The first pass is structural, not semantic. Docling has already parsed each PDF into a tree of real structural elements — headings, paragraphs, list items, table cells — during the earlier parsing step. A tool called <code>HierarchicalChunker</code> walks that tree and produces one raw chunk per structural section, tagging each with its nearest heading. A paper is not a flat wall of text, and an idea in "Evaluation" shouldn't blur into a superficially similar sentence from "Related Work" just because a naive splitter cut across the boundary between them. Anchoring on the document's own organization first rules that out entirely.</p>
+      <p>The second pass is semantic, and it happens <em>inside</em> each structural section. Every sentence in that section is embedded individually with the same bge-m3 model used at query time. Because those embeddings are normalized, comparing two sentences is just their dot product — so the similarity between every consecutive pair of sentences falls straight out of one calculation. The bottom 15% of those similarity scores, <em>within that specific paper</em>, are treated as natural topic breaks. That threshold is recalculated fresh for every single document — a terse, idea-dense systems paper and a long discursive survey don't get judged against the same fixed number, each is measured against its own rhythm.</p>
+      <p>A running segment also force-closes once it reaches its 512-token budget, even without a detected topic break, so one structural section can't balloon into a single giant chunk — but only once it's already past a 64-token minimum, so a couple of short sentences right after a real break don't get shipped out as a tiny, context-free sliver. Whatever's left over at the very end of a section gets folded into the previous segment rather than orphaned on its own.</p>
+
+      <h3>The overlap, concretely</h3>
+      <p>Once segment boundaries are decided, the chunker walks backward through the previous segment's sentences, accumulating them until adding one more would exceed roughly 15% of the token budget (~77 tokens), and prepends that tail onto the next segment. In practice: if a defining sentence sits right at a cut, it appears at the end of one note-card <em>and</em> at the start of the next — so whichever one gets retrieved later, the sentence arrives with its immediate lead-in still attached, not stranded mid-thought.</p>
+      <p>Every chunk is also stamped with a small header before it's embedded or stored — <code>[Paper: X] [Section: Y]</code>. A sentence like "It achieves this using a randomized timeout" means almost nothing pulled out on its own; the header is what makes a note-card self-describing, for both the search step and for whoever reads it as a cited source later.</p>
+
+      <div class="callout"><b>Why this, and not something simpler:</b> a fixed-size splitter (every N characters, regardless of content) is the cheapest option and routinely slices mid-sentence, blending unrelated ideas into one blurry chunk embedding. Asking a language model to decide chunk boundaries can produce excellent, context-aware cuts, but costs an LLM call per paper, runs slower, and isn't guaranteed to chunk the same paper the same way twice. This project's approach sits deliberately in between: no new model or external dependency — it reuses the embedding model already resident in memory — fully deterministic on a re-run, and it respects both the document's real structure and its own idea boundaries. The extra compute this costs only has to be paid once per paper at ingestion time, not once per question, which is the entire reason it's affordable: 44 papers get chunked once; thousands of questions get answered against the result.</div>
+
+      <h3>Where it's still rough</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Rough edge</th><th>What's happening today</th><th>The fix</th></tr></thead>
+          <tbody>
+            <tr><td>Paper titles</td><td>Read straight from the filename, not the PDF's own title text</td><td>A helper for pulling the real title from Docling's metadata already exists in the code — it just isn't called yet</td></tr>
+            <tr><td>Subsections</td><td>Only the first-level heading is captured; the <code>subsection</code> field is always blank</td><td>Docling's heading list carries the full hierarchy — reading past the first entry would fill it in</td></tr>
+            <tr><td>Concepts</td><td>A field reserved for tagging each chunk's key ideas, always left empty</td><td>A cheap NER pass or one LLM call per paper could populate it, enabling filtering by topic</td></tr>
+            <tr><td>Fixed budgets</td><td>Every paper shares the same 512-token target and 15th-percentile cutoff</td><td>Could vary by document type — a pseudocode-heavy systems paper and a prose survey don't necessarily want the same chunk size</td></tr>
+            <tr><td>Tables</td><td>Flattened table text is run through the same sentence-similarity logic as prose, where "sentences" barely apply</td><td>Treat an extracted table as one indivisible chunk rather than splitting it semantically</td></tr>
+            <tr><td>Overlap redundancy</td><td>The last ~15% of one chunk and the first ~15% of the next are literally the same sentences, so both can compete for the same answer</td><td>The reranker mostly absorbs this today; a de-duplication pass before the confidence gate could tighten it further</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="reranking-deep">
+      <span class="chapter-num">06</span>
+      <h2>How reranking really works</h2>
+      <p class="lede">Step 4 of a question's journey — "a slower, careful reader double-checks them" — is a genuinely different kind of comparison from step 3's fast search. Worth pulling apart.</p>
+
+      <h3>Two different ways to compare a question and a chunk</h3>
+      <p>The fast first pass (a <span class="term" title="A model that embeds two things separately, then compares the results — fast, but the two things never interact.">bi-encoder</span>) embeds the question and every chunk in complete isolation from each other. In fact, all 10,180 chunk embeddings were computed once, back at ingestion time, and never touched again — a search only ever has to embed the <em>question</em>, then let the index find precomputed points that already sit nearby. That separation is exactly what makes it fast enough to search the entire library on every request.</p>
+      <p>The careful second pass (a cross-encoder) works the opposite way: the question and one specific candidate chunk are fed into the model <em>together</em>, as a single joined input, so its attention mechanism can directly weigh individual words of the question against individual words of that particular chunk before producing one relevance score. That's a comparison a bi-encoder structurally cannot make — squeezing a whole passage down into one fixed-size list of numbers necessarily throws away some nuance (an exact entity match, a negation, "this describes the opposite of what was asked"), and the cross-encoder gets to look at the original words side by side instead of at two already-compressed points.</p>
+      <p>The cost of that extra care is unavoidable: because the score depends on the question and chunk <em>jointly</em>, nothing about it can be precomputed or indexed the way an embedding can. A cross-encoder score only exists for one specific pairing, and has to be produced fresh, every time. That's exactly why it only ever sees the 20 finalists the fast pass hands it, never the full library — running it against all 10,180 chunks on every question would be far too slow to be usable.</p>
+
+      <h3>Does it get better "after each use"?</h3>
+      <p>Worth being precise here: the reranker is a fixed, pretrained model. Nothing about answering one question changes its weights, and it does not learn or improve from being used — every single request gets the exact same model doing the exact same kind of comparison. What actually improves is the <em>reliability of the answer</em>, not the model itself, because of one specific property: the reranker's score is trained to be a calibrated relevance probability, not just a rough closeness figure. A bi-encoder's raw cosine distance doesn't have that property — a good match and a mediocre one often land within a hair of each other, so drawing a hard cutoff on distance alone is unreliable. Because the reranker's 0–1 score is meaningfully calibrated, the system can draw one honest line at 0.5 and have it actually mean something. That calibrated score is what lets Aether say "I don't know" instead of guessing — the confidence gate in step 5 only works because this step's output can be trusted as a real probability, not just a proxy for it.</p>
+
+      <div class="callout"><b>A real path to actual learning-from-usage:</b> this doesn't happen today, but the pieces for it already sit in the schema. <code>request_retrievals</code> already stores, for every past question, which chunks were shown, their rank, and their reranker score. Adding one more column — whether a person marked a given citation as actually useful — would build a dataset of real, domain-specific relevance judgments over time. That's precisely the kind of data used to fine-tune a reranker so it gets sharper on this project's own vocabulary (Paxos, LSM-trees, PACELC) rather than the general web text <code>bge-reranker-v2-m3</code> was originally trained on. Nothing currently reads that data for training — it's a clear next step, not a current feature.</div>
+    </section>
+
+    <section id="pivot">
+      <span class="chapter-num">07</span>
+      <h2>The big move: two filing systems become one</h2>
+      <p class="lede">This is the change this page was originally written to explain: where the note-cards and their 1,024-number coordinates <em>live</em> changed, and here's why.</p>
+
+      <p>When Aether was new, its note-cards lived in a separate, lightweight filing box called <b>ChromaDB</b> — a tool built specifically for storing text-plus-numbers and searching by closeness. It took about five minutes to set up, which is exactly what you want while you're still experimenting with chunking and proving the retrieval quality works at all. Meanwhile, all the other bookkeeping — who's using Aether, which papers exist, what people asked and when — lived in a completely separate, general-purpose filing cabinet: <b>PostgreSQL</b> ("Postgres"). Two systems, running side by side, that had no idea about each other beyond an ID one of them remembered to pass to the other.</p>
+
+      <div class="pivot-grid">
+        <div class="pivot-panel then">
+          <span class="tag">Then</span>
+          <ul>
+            <li>ChromaDB — note-cards + their coordinates</li>
+            <li>PostgreSQL — users, papers, questions asked</li>
+            <li>Two things to back up</li>
+            <li>Two things to secure and keep running</li>
+            <li>Links between them kept in sync by hand</li>
+          </ul>
+        </div>
+        <div class="arrow">→</div>
+        <div class="pivot-panel now">
+          <span class="tag">Now</span>
+          <ul>
+            <li>PostgreSQL — everything, including note-cards + coordinates</li>
+            <li>One thing to back up</li>
+            <li>One thing to secure and keep running</li>
+            <li>A note-card can point straight at its paper using the database's own cross-referencing</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>Once the paper collection settled at a manageable size — 44 papers, about ten thousand note-cards today — the specialized filing box's superpowers (built for millions or billions of note-cards) weren't buying anything. So Postgres was taught the one trick it was missing: storing and searching these number-lists. That's an add-on called <span class="term" title="pgvector: a Postgres extension that adds a 'vector' column type and fast nearest-neighbour search.">pgvector</span>. Every note-card gets copied over, and the second system can be retired.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Question</th><th>ChromaDB + Postgres (then)</th><th>Postgres + pgvector (now)</th></tr></thead>
+          <tbody>
+            <tr><td>Systems to run</td><td>Two</td><td>One</td></tr>
+            <tr><td>Setup effort, day one</td><td>Minutes — built for exactly this</td><td>A bit more — an extension + an index to configure</td></tr>
+            <tr><td>Backups</td><td>Two separate jobs</td><td>One job covers everything</td></tr>
+            <tr><td>Note-card ↔ paper link</td><td>Synced by hand (an ID copied into Chroma's metadata)</td><td>A real foreign key — the database enforces it</td></tr>
+            <tr><td>Best fit at ~10K note-cards</td><td>Overkill for this size</td><td>Comfortable, well within Postgres's normal range</td></tr>
+            <tr><td>Headroom at, say, 50M+ note-cards</td><td>Purpose-built — still the stronger choice</td><td>Possible, but needs real tuning and dedicated hardware</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>The honest tradeoff</h3>
+      <p>This isn't a free upgrade. A purpose-built vector database is still the better call at a much larger scale, at very high query volume, or when a project needs features vector databases specialize in. What's being traded here is some of that specialized headroom for a simpler day-to-day life — one database, one backup, one thing to reason about — which is the right trade <em>for a 44-paper library</em>, not a universal rule.</p>
+      <p>The code keeps that reversible: retrieval is written against a small interface (<code>VectorStore</code>) with two implementations — one for Chroma, one for pgvector — chosen by a single setting. If the library ever outgrows Postgres, only that one piece needs to change, not the rest of the app.</p>
+
+      <h3>How the move itself happens</h3>
+      <p>A one-time script reads every note-card out of the old ChromaDB collection, 500 at a time, and inserts it into the new <code>chunks</code> table, then compares the final counts on both sides before declaring success. Nothing about the original Chroma files is touched or deleted in the process.</p>
+
+      <div class="callout status"><b>Where things stand today:</b> the pgvector path, the schema, and the migration script all exist and are being wired in on this branch. The switch between the two — an environment setting called <code>VECTOR_BACKEND</code> — still defaults to the old Chroma path in each environment until that environment's migration has been run and its row counts verified. Flipping it to <code>pgvector</code> is the actual cutover moment; flipping it back is the rollback plan, since the old data is left in place rather than deleted.</div>
+    </section>
+
+    <section id="specs">
+      <span class="chapter-num">08</span>
+      <h2>Under the hood</h2>
+      <p class="lede">Everything above, translated into exact settings — for anyone who wants the precise version.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Piece</th><th>Set to</th><th>In plain words</th></tr></thead>
+          <tbody>
+            <tr><td>Embedding model</td><td><code>BAAI/bge-m3</code>, 1024-dim</td><td>Turns text into the coordinate list described above</td></tr>
+            <tr><td>Note-card target size</td><td>~512 tokens, min 64, ~15% overlap</td><td>Roughly 380 words per card, with a stitched-together tail so ideas don't get cut in half</td></tr>
+            <tr><td>First-pass search</td><td>pgvector, HNSW index, cosine distance</td><td>Fast approximate "20 nearest points" lookup across the whole library</td></tr>
+            <tr><td>Candidate pool</td><td>20</td><td>How many candidates get handed to the careful second check</td></tr>
+            <tr><td>Careful reader (reranker)</td><td><code>BAAI/bge-reranker-v2-m3</code>, runs on CPU</td><td>Reads the question and each candidate together, rather than by coordinates alone</td></tr>
+            <tr><td>Confidence gate</td><td>score ≥ 0.5 (of 1.0)</td><td>Anything less confident is discarded rather than risked</td></tr>
+            <tr><td>Answer writer, primary</td><td>Gemini 2.5 Flash, temperature 0.15</td><td>Low temperature = stick close to the material, don't improvise</td></tr>
+            <tr><td>Answer writer, fallback</td><td>Groq — Llama 3.3 70B / 3.1 8B</td><td>Kicks in only if Gemini errors or is rate-limited</td></tr>
+            <tr><td>Web fallback</td><td>DuckDuckGo, top 2 results</td><td>Only when a question is explicitly tagged <code>@web-search</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout"><b>Why the careful reader runs on a regular processor, not the graphics card:</b> the development machine's graphics card has about 3.6 GB of memory, and the embedding model alone nearly fills it. Rather than fight over that space, the careful-reader step runs on the CPU instead — which is fine, because by the time it runs there are only 20 candidates left to read, not the whole library.</div>
+
+      <div class="callout"><b>How the system watches itself:</b> two separate tools split the job — one watches the plumbing (how long a search took, how many candidates survived the confidence check), the other watches the AI model's own reasoning (which prompt, which model, how many tokens). They're kept strictly apart on purpose, but every request carries one shared ID end to end, so a single question can still be traced through both.</div>
+    </section>
+
+    <section id="blueprint">
+      <span class="chapter-num">09</span>
+      <h2>The blueprint</h2>
+      <p class="lede">Five tables now live in the one database. Here's what each one remembers, in plain words.</p>
+
+      <div class="notebooks">
+        <div class="notebook">
+          <h4>users</h4>
+          <ul>
+            <li>Who's allowed in</li>
+            <li>Login count, last login</li>
+            <li>How many papers/questions they've submitted</li>
+          </ul>
+        </div>
+        <div class="notebook">
+          <h4>papers</h4>
+          <ul>
+            <li>Title, authors, where it came from</li>
+            <li>Whether it's curated or a user upload</li>
+            <li>How ingestion is going (pending → done)</li>
+          </ul>
+          <div class="link">linked from → chunks, requests</div>
+        </div>
+        <div class="notebook">
+          <h4>chunks</h4>
+          <ul>
+            <li>The note-card's text</li>
+            <li>Its 1,024-number coordinate</li>
+            <li>Which paper &amp; section it's from</li>
+          </ul>
+          <div class="link">links to → papers</div>
+        </div>
+        <div class="notebook">
+          <h4>requests</h4>
+          <ul>
+            <li>The question asked</li>
+            <li>The answer given, and by which model</li>
+            <li>How long it took</li>
+          </ul>
+          <div class="link">links to → users</div>
+        </div>
+        <div class="notebook">
+          <h4>request_retrievals</h4>
+          <ul>
+            <li>Which note-cards fed a given answer</li>
+            <li>Their rank and confidence score</li>
+            <li>Kept even if the paper is later deleted</li>
+          </ul>
+          <div class="link">links to → requests, papers</div>
+        </div>
+      </div>
+
+      <div class="callout"><b>An honest leftover:</b> the <code>request_retrievals</code> table still names its reference column <code>chroma_chunk_id</code> — a naming fossil from before the move. It now stores an ID from the Postgres <code>chunks</code> table. Renaming it is a tidy-up, not a correctness issue, so it's still on the list rather than done.</div>
+    </section>
+
+    <section id="extending">
+      <span class="chapter-num">10</span>
+      <h2>Extending the system</h2>
+      <p class="lede">None of these are hypothetical feature requests — each one ties to something that already exists, half-built, in the code today.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Idea</th><th>What it would take</th><th>Already sitting in the code</th></tr></thead>
+          <tbody>
+            <tr><td>Access control at retrieval time</td><td>Join <code>chunks</code> to <code>papers</code> and filter by <code>visibility</code>/<code>uploaded_by</code> before the vector search runs</td><td><code>papers.visibility</code> and <code>chunks.paper_id</code> already exist — today's search doesn't reference either, so a private upload isn't actually isolated from other users' questions yet</td></tr>
+            <tr><td>Hybrid keyword + vector search</td><td>Merge exact-term (BM25) scores with vector distances before reranking, so a specific algorithm name or symbol isn't only findable "by meaning"</td><td>A hybrid-search experiment already exists using <code>rank_bm25</code> — currently against simulated data, not the real corpus</td></tr>
+            <tr><td>Fine-tune the reranker on real usage</td><td>Log whether a shown citation was actually useful, accumulate labelled pairs, periodically fine-tune</td><td><code>request_retrievals</code> already stores rank + score for every past answer — see previous chapter</td></tr>
+            <tr><td>Concept tagging / faceted filtering</td><td>Populate the always-empty <code>chunks.concepts</code> field via a cheap NLP or LLM pass, then filter by concept before searching</td><td>The column and the ingestion contract already reserve the spot for it</td></tr>
+            <tr><td>Richer citations</td><td>Parse the rest of Docling's heading hierarchy so a citation can point at "§4.2," not just "§4"</td><td>Only <code>headings[0]</code> is read today; the full list is already available</td></tr>
+            <tr><td>Answer caching</td><td>Cache full answers for identical or near-duplicate questions, keyed by the question's own coordinates</td><td>The same embedding step already used for search is enough to detect "this is basically the same question"</td></tr>
+            <tr><td>Streaming answers</td><td>Send the model's words to the screen as they're produced, instead of waiting for the whole response before reading its tags</td><td>Would replace the current whole-response regex pass with a streaming-aware one</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="scaling">
+      <span class="chapter-num">11</span>
+      <h2>Scaling to a billion users</h2>
+      <p class="lede">"Bigger" means two different things here, and they break the system in different places: far more people asking questions (query traffic), and far more papers being indexed (corpus size). Most of a RAG system's cost is either cacheable (repeated questions) or already handed off to an external, independently-scaled provider (the LLM call) — so this is mostly a well-trodden scaling story of replicas, caches, and sharding, not a novel one.</p>
+
+      <div class="flow">
+        <div class="flow-step"><span class="n">1</span>
+          <h4>Today — one machine, everything on it</h4>
+          <p>One Postgres, one Python process holding both models in memory, one Go gateway. Nothing is the bottleneck yet, because nothing is under load.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">2</span>
+          <h4>Thousands of concurrent users</h4>
+          <p>The single Python engine process becomes the first limit — it runs retrieve → rerank → generate synchronously per request, and the CPU-bound reranking step starts to queue. Fix: run several stateless replicas of the Go gateway and the Python engine behind a load balancer. Because retrieval already sits behind a small interface and nothing holds per-user state in memory, this is an infrastructure change, not a rewrite.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">3</span>
+          <h4>Millions of concurrent users</h4>
+          <p>The single Postgres instance becomes the limit — both ordinary lookups and vector search compete for the same reads, and a large share of questions are near-duplicates of each other. Fix: add Postgres read replicas, put a connection pooler in front (a fleet of engine replicas each holding their own pool doesn't scale cleanly against raw Postgres connections), and add a cache in front of the whole pipeline keyed by the question, so a repeated question skips retrieval and generation entirely.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">4</span>
+          <h4>Billions of requests, and/or the corpus itself reaching millions of documents</h4>
+          <p>This is where the earlier tradeoff reverses: a single-node index sized for ~10K vectors doesn't extend cleanly to tens of millions on one machine — build time and memory both grow substantially, and one node caps how much query load it can absorb no matter how it's tuned. This is exactly the point where a purpose-built, horizontally-shardable vector store (or a sharded pgvector deployment, splitting the corpus across many nodes and fanning a query out to all of them) starts winning again — and exactly why retrieval was kept behind that small interface: swapping the storage engine here doesn't require touching the rest of the app.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">5</span>
+          <h4>Ingestion at the same scale</h4>
+          <p>If the corpus is also growing, not just the user count, the local batch scripts run by hand against a folder of PDFs stop being adequate. That work moves to a queue: new PDFs land in object storage, a queue fans them out to a pool of parsing/embedding workers, autoscaled by queue depth. A sketch of exactly this kind of pipeline already exists, if aspirationally, elsewhere in this project's own architecture notes.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">6</span>
+          <h4>The answer-writing step</h4>
+          <p>Gemini and Groq are already hosted, already-scaled external services, so the bottleneck shifts from infrastructure to rate limits and unit cost. At real billion-request volume that usually means negotiated enterprise quota, an additional fallback provider, and/or self-hosting an open model on a dedicated GPU cluster for the highest-volume traffic, keeping the external providers as overflow.</p>
+        </div>
+        <div class="connector">↓</div>
+        <div class="flow-step"><span class="n">7</span>
+          <h4>Multi-region</h4>
+          <p>A billion users aren't in one place. The natural next step is regional read replicas of both the metadata and the vector index, plus a CDN/edge layer in front of the UI and cached answers — with writes (new papers, new accounts) still converging on one primary region.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack">
+      <span class="chapter-num">12</span>
+      <h2>The toolbox</h2>
+      <p class="lede">What each piece of the running system actually is, and why that one.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Piece</th><th>What it does</th><th>Why this one</th></tr></thead>
+          <tbody>
+            <tr><td>Angular UI</td><td>The web page people actually type questions into</td><td>A mature framework for a page with real state — conversation history, streaming answers, citations</td></tr>
+            <tr><td>Go API gateway</td><td>Logs a user in, checks rate limits, forwards the question along</td><td>Fast, and Go's concurrency suits a service that mostly waits on other services</td></tr>
+            <tr><td>Python RAG engine</td><td>Runs the actual pipeline: embed, search, rerank, answer</td><td>The machine-learning libraries this needs are Python-first</td></tr>
+            <tr><td>Postgres + pgvector</td><td>The one database: users, papers, questions, <em>and</em> note-cards</td><td>Battle-tested, and now it can hold the vectors too — see the big move above</td></tr>
+            <tr><td>Caddy</td><td>The front door — HTTPS, routes traffic to the right service</td><td>Handles certificates automatically, low fuss</td></tr>
+            <tr><td>Docker Compose</td><td>Starts every piece together with one command</td><td>Keeps a five-service system reproducible on any machine</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="glossary">
+      <span class="chapter-num">13</span>
+      <h2>Word bank</h2>
+      <p class="lede">Every technical term used above, in one place.</p>
+      <dl class="glossary">
+        <dt>Bi-encoder</dt><dd>A model that embeds two things separately and compares the results afterward — fast, but the two things never directly interact.</dd>
+        <dt>BM25 / hybrid search</dt><dd>An exact keyword-matching search technique, sometimes blended with vector search so specific terms aren't only findable "by meaning."</dd>
+        <dt>Calibrated score</dt><dd>A score trained to actually mean what it says — a 0.8 really is more relevant than a 0.4 — as opposed to a raw number that's merely ranked correctly.</dd>
+        <dt>Chunk</dt><dd>A small, self-contained slice of a paper — a "note-card."</dd>
+        <dt>Connection pooler</dt><dd>A layer in front of a database that shares a small set of real connections across many client processes, instead of each one opening its own.</dd>
+        <dt>Cosine similarity</dt><dd>A way of measuring how alike two coordinate-lists are, based on the angle between them.</dd>
+        <dt>Cross-encoder / reranker</dt><dd>A model that reads a question and one candidate together, rather than comparing coordinates from a distance — slower, but more careful.</dd>
+        <dt>Docling</dt><dd>An open-source tool that reads a PDF's structure — headings, paragraphs, tables — not just its raw text.</dd>
+        <dt>Embedding / vector</dt><dd>A list of numbers representing the meaning of a piece of text, so meaning can be compared mathematically.</dd>
+        <dt>Extension (Postgres)</dt><dd>An add-on that teaches a standard database a new trick — here, storing and searching vectors.</dd>
+        <dt>Foreign key</dt><dd>A database's built-in way of saying "this row belongs to that row," enforced automatically.</dd>
+        <dt>HNSW index</dt><dd>The specific technique pgvector uses to find "nearest points" quickly without checking every single one.</dd>
+        <dt>LLM</dt><dd>Large language model — the kind of AI model that writes the final answer.</dd>
+        <dt>RAG</dt><dd>Retrieval-Augmented Generation: look it up, then write about it, using only what was found.</dd>
+        <dt>Read replica</dt><dd>A copy of a database that only serves lookups, freeing the main copy to focus on writes.</dd>
+        <dt>Sharding</dt><dd>Splitting one large collection across several machines, each holding a slice of it.</dd>
+        <dt>Token</dt><dd>A model's unit of text — roughly three-quarters of a word, on average.</dd>
+        <dt>Threshold gate</dt><dd>A cutoff score below which a result is discarded rather than trusted.</dd>
+      </dl>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  This is a living project with a small, growing library — 44 papers as of this writing. Figures and code details on this page were checked against the repository on 2026-07-08.
+</footer>

@@ -12,6 +12,7 @@ python-dotenv
 openai
 google-genai
 psycopg2-binary
+pgvector
 numpy
 duckduckgo-search
 prometheus-fastapi-instrumentator

@@ -1,6 +1,7 @@
 package store
 
 import (
+	"encoding/json"
 	"time"
 )
 
@@ -22,11 +23,12 @@ type Conversation struct {
 }
 
 type Message struct {
-	ID             string    `json:"id"`
-	ConversationID string    `json:"conversation_id"`
-	Role           string    `json:"role"`
-	Text           string    `json:"content"`
-	CreatedAt      time.Time `json:"created_at"`
+	ID             string          `json:"id"`
+	ConversationID string          `json:"conversation_id"`
+	Role           string          `json:"role"`
+	Text           string          `json:"content"`
+	Sources        json.RawMessage `json:"sources,omitempty"`
+	CreatedAt      time.Time       `json:"created_at"`
 }
 
 type Paper struct {

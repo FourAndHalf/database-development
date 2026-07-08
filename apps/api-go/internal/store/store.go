@@ -62,8 +62,11 @@ func (s *Store) migrate() error {
 		conversation_id UUID NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
 		role TEXT NOT NULL,
 		text TEXT NOT NULL,
+		sources JSONB,
 		created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 		);
+
+	ALTER TABLE messages ADD COLUMN IF NOT EXISTS sources JSONB;
 
 		CREATE TABLE IF NOT EXISTS papers (
 		id UUID PRIMARY KEY,
@@ -141,10 +144,18 @@ func (s *Store) EnsureConversation(ctx context.Context, id, userID, title string
 	return nil
 }
 
-func (s *Store) SaveMessage(ctx context.Context, conversationID, role, text string) error {
+// SaveMessage persists a message. sourcesJSON is the pre-marshaled JSON array
+// of sources for that message, or nil if the message has none.
+func (s *Store) SaveMessage(ctx context.Context, conversationID, role, text string, sourcesJSON []byte) error {
 	id := uuid.New().String()
-	query := `INSERT INTO messages (id, conversation_id, role, text) VALUES ($1, $2, $3, $4)`
-	_, err := s.db.ExecContext(ctx, query, id, conversationID, role, text)
+
+	var sourcesVal interface{}
+	if len(sourcesJSON) > 0 {
+		sourcesVal = sourcesJSON
+	}
+
+	query := `INSERT INTO messages (id, conversation_id, role, text, sources) VALUES ($1, $2, $3, $4, $5)`
+	_, err := s.db.ExecContext(ctx, query, id, conversationID, role, text, sourcesVal)
 	if err != nil {
 		return fmt.Errorf("failed to save message: %w", err)
 	}
@@ -153,7 +164,7 @@ func (s *Store) SaveMessage(ctx context.Context, conversationID, role, text stri
 
 func (s *Store) GetConversationMessages(ctx context.Context, conversationID string) ([]Message, error) {
 	query := `
-		SELECT id, conversation_id, role, text, created_at
+		SELECT id, conversation_id, role, text, sources, created_at
 		FROM messages
 		WHERE conversation_id = $1
 		ORDER BY created_at ASC
@@ -167,7 +178,7 @@ func (s *Store) GetConversationMessages(ctx context.Context, conversationID stri
 	var msgs []Message
 	for rows.Next() {
 		var m Message
-		if err := rows.Scan(&m.ID, &m.ConversationID, &m.Role, &m.Text, &m.CreatedAt); err != nil {
+		if err := rows.Scan(&m.ID, &m.ConversationID, &m.Role, &m.Text, &m.Sources, &m.CreatedAt); err != nil {
 			return nil, fmt.Errorf("failed to scan message: %w", err)
 		}
 		msgs = append(msgs, m)

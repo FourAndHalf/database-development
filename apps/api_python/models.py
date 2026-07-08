@@ -9,6 +9,7 @@ class QueryRequest(BaseModel):
     n_results: int = 5
     model: str = "aether-2.0"
     history: list[Turn] = []
+    conversation_id: str | None = None
 
 class Source(BaseModel):
     source_file: str
