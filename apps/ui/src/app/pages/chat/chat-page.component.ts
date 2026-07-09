@@ -63,6 +63,9 @@ export class ChatPageComponent implements OnInit, OnDestroy {
     this.route.queryParamMap.subscribe(async params => {
       const q = params.get('q');
       if (q) {
+        this.messages.set([]);
+        this.conversationId.set('');
+        localStorage.removeItem(this.conversationKey);
         this.prefill(q);
       }
     });
