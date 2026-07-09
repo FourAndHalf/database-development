@@ -31,13 +31,12 @@ services:
       dockerfile: apps/api_python/Dockerfile.python
     container_name: rag-python-engine
     restart: always
-    ports:
-      - "8000:8000"
     environment:
       - DATABASE_URL=postgres://nexus:${RDS_PASSWORD}@${RDS_HOST}:5432/nexus_db?sslmode=require
       - UPLOAD_PATH=/app/uploads
       - GROQ_API_KEY=${GROQ_API_KEY}
       - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - HF_TOKEN=${HF_TOKEN}
       - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT:-}
       - OTEL_EXPORTER_OTLP_HEADERS=${OTEL_EXPORTER_OTLP_HEADERS:-}
       - OTEL_RESOURCE_ATTRIBUTES=${OTEL_RESOURCE_ATTRIBUTES:-}
@@ -55,7 +54,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1G
+          memory: 5G
 
   go-api-gateway:
     build:
