@@ -277,7 +277,9 @@ async def handle_query(request: QueryRequest):
         tabs.append({"title": tab_match.group(1), "content": tab_match.group(2).strip()})
 
     main_match = re.search(r'<main>(.*?)</main>', generated_text, re.DOTALL | re.IGNORECASE)
-    main_content = main_match.group(1).strip() if main_match else "See tabs for details."
+    # The model doesn't always follow the <main> output contract (more likely on long
+    # follow-up turns) — fall back to the raw text rather than discarding the answer.
+    main_content = main_match.group(1).strip() if main_match else generated_text.strip()
 
     final_answer = json.dumps({"main": main_content, "tabs": tabs})
     return QueryResponse(answer=final_answer, sources=sources)
