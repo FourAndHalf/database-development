@@ -20,7 +20,7 @@ import (
 func main() {
 	port := envInt("PORT", 8081)
 	uiOrigin := envString("UI_ORIGIN", "http://localhost:4200")
-	ragEngineType := envString("RAG_ENGINE", "chroma")
+	ragEngineType := envString("RAG_ENGINE", "python")
 	pythonServiceURL := envString("PYTHON_SERVICE_URL", "http://localhost:8000")
 
 	logger := log.New(os.Stdout, "api ", log.LstdFlags|log.Lmicroseconds)
@@ -60,18 +60,15 @@ func main() {
 
 	var engine rag.Engine
 	switch ragEngineType {
-	// "chroma" and "real" both select the Python RAG proxy. The vector backend
-	// (Chroma) lives inside the Python service, not here — these are aliases so
-	// the RAG_ENGINE env value can't silently fall through to mock.
-	case "chroma", "real":
-		engine = rag.NewChromaEngine(pythonServiceURL)
-		logger.Printf("using RAG engine: %s -> python proxy (%s)", ragEngineType, pythonServiceURL)
+	case "python":
+		engine = rag.NewPythonProxyEngine(pythonServiceURL)
+		logger.Printf("using RAG engine: python proxy (%s)", pythonServiceURL)
 	case "mock":
 		engine = rag.NewMockEngine()
 		logger.Printf("using RAG engine: mock")
 	default:
 		logger.Printf("warning: unknown RAG_ENGINE %q, defaulting to python proxy (%s)", ragEngineType, pythonServiceURL)
-		engine = rag.NewChromaEngine(pythonServiceURL)
+		engine = rag.NewPythonProxyEngine(pythonServiceURL)
 	}
 
 	srv := httpserver.New(httpserver.Config{

@@ -14,13 +14,13 @@ import (
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
 
-type chromaEngine struct {
+type pythonProxyEngine struct {
 	pythonServiceURL string
 	httpClient       *http.Client
 }
 
-func NewChromaEngine(pythonServiceURL string) Engine {
-	return &chromaEngine{
+func NewPythonProxyEngine(pythonServiceURL string) Engine {
+	return &pythonProxyEngine{
 		pythonServiceURL: pythonServiceURL,
 		httpClient: &http.Client{
 			Timeout: 600 * time.Second,
@@ -51,7 +51,7 @@ type pythonQueryResponse struct {
 	Sources []pythonSource `json:"sources"`
 }
 
-func (e *chromaEngine) Answer(ctx context.Context, q Question) (Answer, error) {
+func (e *pythonProxyEngine) Answer(ctx context.Context, q Question) (Answer, error) {
 	reqBody, err := json.Marshal(pythonQueryRequest{
 		Query:          q.Message,
 		NResults:       5,
@@ -104,7 +104,7 @@ func (e *chromaEngine) Answer(ctx context.Context, q Question) (Answer, error) {
 	}, nil
 }
 
-func (e *chromaEngine) DeleteDocument(ctx context.Context, filename string) error {
+func (e *pythonProxyEngine) DeleteDocument(ctx context.Context, filename string) error {
 	req, err := http.NewRequestWithContext(ctx, "DELETE", e.pythonServiceURL+"/api/papers/"+filename, nil)
 	if err != nil {
 		return err
@@ -126,7 +126,7 @@ func (e *chromaEngine) DeleteDocument(ctx context.Context, filename string) erro
 	return nil
 }
 
-func (e *chromaEngine) ValidatePaper(ctx context.Context, r io.Reader, filename string) error {
+func (e *pythonProxyEngine) ValidatePaper(ctx context.Context, r io.Reader, filename string) error {
 	var b bytes.Buffer
 	mw := multipart.NewWriter(&b)
 	part, err := mw.CreateFormFile("file", filename)

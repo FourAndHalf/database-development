@@ -21,9 +21,8 @@ services:
         limits:
           memory: 128M
 
-  # Postgres (with pgvector) is NOT managed here — it runs as the standalone
-  # "nexus-pg" container (joined to this rag-network separately), mirroring
-  # how it'll be an external RDS instance once this moves to AWS.
+  # Postgres (with pgvector) is not managed here — all services connect to
+  # the external RDS instance (see RDS_HOST/RDS_PASSWORD in .env).
 
   python-rag-engine:
     build:
@@ -65,7 +64,7 @@ services:
     environment:
       - PORT=8081
       - UI_ORIGIN=${UI_ORIGIN:-*}
-      - RAG_ENGINE=chroma
+      - RAG_ENGINE=python
       - PYTHON_SERVICE_URL=http://rag-python-engine:8000
       - DB_URL=postgres://nexus:${RDS_PASSWORD}@${RDS_HOST}:5432/nexus_db?sslmode=require
       - UPLOAD_PATH=/app/uploads
