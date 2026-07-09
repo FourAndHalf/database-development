@@ -2,6 +2,38 @@
   height: 100vh;
   display: grid;
   grid-template-columns: 280px 1fr;
+  transition: grid-template-columns 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.shell.sidebar-collapsed {
+  grid-template-columns: 72px 1fr;
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+/* Floating reopen button — only needed on mobile, where the collapsed sidebar
+   is fully off-canvas rather than a visible icon rail. */
+.sidebar-toggle-btn {
+  display: none;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 110;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  place-items: center;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+.sidebar-toggle-btn:hover {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: var(--accent);
 }
 
 /* Main Content Area */
@@ -141,8 +173,60 @@
 .center-composer.bottom { width: min(850px, 100%); margin: 0 auto; }
 
 @media (max-width: 980px) {
-  .shell { grid-template-columns: 1fr; }
-  .sidebar { display: none; } /* Kept if needed or the app-sidebar has this class */
+  .shell,
+  .shell.sidebar-collapsed {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-toggle-btn {
+    display: grid;
+  }
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 250;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .sidebar-backdrop.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .top-nav { top: 16px; right: 16px; }
+  .metrics-fab span { display: none; }
+  .metrics-fab { padding: 10px; }
+
+  .sidebar-toggle-btn { top: 16px; left: 16px; }
+
+  .home-view { padding: 80px 16px 24px 16px; }
+  .greeting { margin-bottom: 32px; }
+  .greeting h1 { font-size: 30px; }
+  .greeting p { font-size: 15px; }
+
+  .quick-actions { margin-bottom: 24px; }
+  .action-chip { font-size: 12px; padding: 8px 14px; }
+
+  .widgets-row { flex-direction: column; }
+
+  .chat-header { padding: 16px 20px 16px 64px; }
+
+  .thread { padding: 20px 16px; }
+  .bottom-composer { padding: 16px 16px 24px 16px; }
+
+  .modal { width: 100%; max-width: 100%; border-radius: 16px; max-height: 85vh; }
+  .modal-header { padding: 20px; }
+  .modal-body { padding: 20px; }
+
+  .dashboard-header-stats { grid-template-columns: 1fr; gap: 16px; }
+  .metrics-grid { grid-template-columns: 1fr; }
+  .charts-row { grid-template-columns: 1fr; }
+
+  .recent-cards { grid-template-columns: 1fr; }
 }
 
 .modal-overlay {

@@ -16,9 +16,12 @@ export class SidebarComponent {
 
   @Input() history: Conversation[] = [];
   @Input() conversationId = '';
+  @Input() open = true;
 
   @Output() newChat = new EventEmitter<void>();
   @Output() loadConversation = new EventEmitter<string>();
   @Output() deleteConversation = new EventEmitter<string>();
   @Output() logout = new EventEmitter<void>();
+  @Output() closeSidebar = new EventEmitter<void>();
+  @Output() toggleCollapse = new EventEmitter<void>();
 }

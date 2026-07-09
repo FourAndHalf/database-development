@@ -45,6 +45,9 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   protected readonly showMetricsModal = signal(false);
   private metricsInterval: any = null;
 
+  private readonly mobileBreakpoint = 980;
+  protected readonly sidebarOpen = signal(typeof window === 'undefined' || window.innerWidth > this.mobileBreakpoint);
+
   constructor() {
     this.fetchHistory();
     afterRenderEffect(() => this.scrollToBottom());
@@ -113,6 +116,16 @@ export class ChatPageComponent implements OnInit, OnDestroy {
     const composer = this.messages().length === 0 ? this.centerComposer : this.bottomComposer;
     if (composer) {
       composer.focusInput();
+    }
+  }
+
+  protected toggleSidebar() {
+    this.sidebarOpen.update((v) => !v);
+  }
+
+  protected onSidebarClose() {
+    if (window.innerWidth <= this.mobileBreakpoint) {
+      this.sidebarOpen.set(false);
     }
   }
 
