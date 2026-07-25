@@ -7,7 +7,7 @@ import { firstValueFrom } from 'rxjs';
 import { ToastService } from '../../services/toast.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 import { UiMessage, Tab } from './chat.types';
-import { getGreeting, parseChatResponse, simulateTypewriterEffect } from './chat.utils';
+import { getGreeting, parseChatResponse } from './chat.utils';
 
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MessageComponent } from './components/message/message.component';
@@ -247,39 +247,48 @@ export class ChatPageComponent implements OnInit, OnDestroy {
 
     this.messages.update((xs) => [...xs, userMsg, assistantMsg]);
 
+    let liveText = '';
     try {
-      const res = await firstValueFrom(
-        this.api.chat({
-          conversation_id: this.conversationId() || undefined,
-          message,
-          history
-        })
-      );
-      if (!res) throw new Error('no response');
-      this.conversationId.set(res.conversation_id);
-      localStorage.setItem(this.conversationKey, res.conversation_id);
+      for await (const evt of this.api.chatStream({
+        conversation_id: this.conversationId() || undefined,
+        message,
+        history
+      })) {
+        if (evt.type === 'token') {
+          liveText += evt.text;
+          this.messages.update((xs) => xs.map((m) =>
+            m.id === assistantId ? { ...m, text: liveText, displayedText: liveText, isTyping: true, pending: false } : m
+          ));
+        } else if (evt.type === 'final') {
+          this.conversationId.set(evt.conversation_id);
+          localStorage.setItem(this.conversationKey, evt.conversation_id);
 
-      const { mainText, parsedTabs } = parseChatResponse(res.answer);
-      const externalLinks = res.sources?.filter((s) => s.url);
+          const { mainText, parsedTabs } = parseChatResponse(evt.answer);
+          const externalLinks = evt.sources?.filter((s) => s.url);
 
-      this.messages.update((xs) => xs.map((m) => {
-        if (m.id === assistantId) {
-          return {
-            ...m, text: mainText, displayedText: '', isTyping: true, sources: res.sources,
-            latencyMs: res.latency_ms, pending: false, tabs: parsedTabs, activeTabIdx: 0
-          };
+          this.messages.update((xs) => xs.map((m) => {
+            if (m.id === assistantId) {
+              return {
+                ...m, text: mainText, displayedText: mainText, isTyping: false, sources: evt.sources,
+                latencyMs: evt.latency_ms, pending: false, tabs: parsedTabs, activeTabIdx: 0
+              };
+            }
+            if (m.id === userMsg.id) {
+              return { ...m, externalLinks };
+            }
+            return m;
+          }));
+
+          void this.fetchHistory();
+        } else if (evt.type === 'error') {
+          this.messages.update((xs) => xs.map((m) =>
+            m.id === assistantId ? { ...m, text: 'Failed to synthesize answer.', displayedText: undefined, isTyping: false, pending: false } : m
+          ));
+          this.toast.error('Failed to get an answer from the assistant.');
         }
-        if (m.id === userMsg.id) {
-          return { ...m, externalLinks };
-        }
-        return m;
-      }));
-
-      simulateTypewriterEffect(this.messages, assistantId, mainText);
-      void this.fetchHistory();
-
+      }
     } catch (err) {
-      this.messages.update((xs) => xs.map((m) => m.id === assistantId ? { ...m, text: 'Failed to synthesize answer.', pending: false } : m));
+      this.messages.update((xs) => xs.map((m) => m.id === assistantId ? { ...m, text: 'Failed to synthesize answer.', pending: false, isTyping: false } : m));
       this.toast.error('Failed to get an answer from the assistant.');
     } finally {
       this.busy.set(false);

@@ -1,13 +1,16 @@
 package rag
 
 import (
+	"bufio"
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"mime/multipart"
 	"net/http"
+	"strings"
 	"time"
 
 	"database-development/apps/api-go/internal/middleware"
@@ -46,12 +49,17 @@ type pythonSource struct {
 	URL        string  `json:"url,omitempty"`
 }
 
-type pythonQueryResponse struct {
-	Answer  string         `json:"answer"`
+type pythonFinalEvent struct {
+	Main    string         `json:"main"`
+	Tabs    []any          `json:"tabs"`
 	Sources []pythonSource `json:"sources"`
 }
 
-func (e *pythonProxyEngine) Answer(ctx context.Context, q Question) (Answer, error) {
+type pythonErrorEvent struct {
+	Detail string `json:"detail"`
+}
+
+func (e *pythonProxyEngine) AnswerStream(ctx context.Context, q Question, onToken func(text string)) (Answer, error) {
 	reqBody, err := json.Marshal(pythonQueryRequest{
 		Query:          q.Message,
 		NResults:       5,
@@ -68,6 +76,7 @@ func (e *pythonProxyEngine) Answer(ctx context.Context, q Question) (Answer, err
 		return Answer{}, err
 	}
 	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Accept", "text/event-stream")
 	if rid := middleware.RequestIDFromContext(ctx); rid != "" {
 		req.Header.Set("X-Request-ID", rid)
 	}
@@ -82,13 +91,47 @@ func (e *pythonProxyEngine) Answer(ctx context.Context, q Question) (Answer, err
 		return Answer{}, fmt.Errorf("python service returned status: %s", resp.Status)
 	}
 
-	var pyResp pythonQueryResponse
-	if err := json.NewDecoder(resp.Body).Decode(&pyResp); err != nil {
-		return Answer{}, err
+	var final pythonFinalEvent
+	var streamErr error
+
+	scanner := bufio.NewScanner(resp.Body)
+	// Answers can contain large inline SVG diagrams; raise the line-size cap well
+	// above bufio.Scanner's 64KB default so a single `data:` line isn't truncated.
+	scanner.Buffer(make([]byte, 0, 64*1024), 4*1024*1024)
+
+	var currentEvent string
+	for scanner.Scan() {
+		line := scanner.Text()
+		switch {
+		case strings.HasPrefix(line, "event: "):
+			currentEvent = strings.TrimPrefix(line, "event: ")
+		case strings.HasPrefix(line, "data: "):
+			raw := strings.TrimPrefix(line, "data: ")
+			switch currentEvent {
+			case "token":
+				var text string
+				if err := json.Unmarshal([]byte(raw), &text); err == nil {
+					onToken(text)
+				}
+			case "final":
+				_ = json.Unmarshal([]byte(raw), &final)
+			case "error":
+				var errEvt pythonErrorEvent
+				_ = json.Unmarshal([]byte(raw), &errEvt)
+				streamErr = errors.New(errEvt.Detail)
+			}
+		}
+	}
+	if err := scanner.Err(); err != nil {
+		return Answer{}, fmt.Errorf("reading python stream: %w", err)
 	}
 
-	sources := make([]Source, len(pyResp.Sources))
-	for i, s := range pyResp.Sources {
+	if final.Main == "" && streamErr != nil {
+		return Answer{}, streamErr
+	}
+
+	sources := make([]Source, len(final.Sources))
+	for i, s := range final.Sources {
 		sources[i] = Source{
 			PaperID: s.SourceFile,
 			Title:   s.SourceFile, // Using filename or web title
@@ -97,8 +140,16 @@ func (e *pythonProxyEngine) Answer(ctx context.Context, q Question) (Answer, err
 		}
 	}
 
+	// Reconstruct the same `{"main":...,"tabs":[...]}` JSON-string shape the old
+	// buffered QueryResponse.answer used, so downstream persistence (SaveMessage)
+	// and the Angular parseChatResponse() contract are unchanged.
+	answerJSON, err := json.Marshal(map[string]any{"main": final.Main, "tabs": final.Tabs})
+	if err != nil {
+		return Answer{}, err
+	}
+
 	return Answer{
-		Text:    pyResp.Answer,
+		Text:    string(answerJSON),
 		Sources: sources,
 		Mock:    false,
 	}, nil

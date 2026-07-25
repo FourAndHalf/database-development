@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"net/http"
 	"strings"
@@ -110,19 +111,41 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	ans, err := h.engine.Answer(ctx, rag.Question{
+	flusher, ok := w.(http.Flusher)
+	if !ok {
+		h.logger.Printf("ResponseWriter does not support flushing; cannot stream chat response")
+		writeErr(w, http.StatusInternalServerError, "streaming_unsupported")
+		return
+	}
+
+	w.Header().Set("Content-Type", "text/event-stream")
+	w.Header().Set("Cache-Control", "no-cache")
+	w.Header().Set("Connection", "keep-alive")
+	w.Header().Set("X-Accel-Buffering", "no")
+	w.WriteHeader(http.StatusOK)
+	flusher.Flush()
+
+	writeSSE := func(event string, data any) {
+		b, _ := json.Marshal(data)
+		fmt.Fprintf(w, "event: %s\ndata: %s\n\n", event, b)
+		flusher.Flush()
+	}
+
+	ans, err := h.engine.AnswerStream(ctx, rag.Question{
 		ConversationID: conversationID,
 		Message:        req.Message,
 		Model:          req.Model,
 		History:        req.History,
+	}, func(token string) {
+		writeSSE("token", map[string]string{"text": token})
 	})
 	if err != nil {
 		if errors.Is(err, rag.ErrNoAnswer) {
-			writeErr(w, http.StatusUnprocessableEntity, "no_answer")
-			return
+			writeSSE("error", map[string]string{"detail": "no_answer"})
+		} else {
+			h.logger.Printf("RAG engine failed to answer: %v", err)
+			writeSSE("error", map[string]string{"detail": "chat_failed"})
 		}
-		h.logger.Printf("RAG engine failed to answer: %v", err)
-		writeErr(w, http.StatusInternalServerError, "chat_failed")
 		go func() {
 			bgCtx := context.Background()
 			elapsed := time.Since(start).Milliseconds()
@@ -155,7 +178,7 @@ func (h *ChatHandler) Post(w http.ResponseWriter, r *http.Request) {
 		LatencyMs:      time.Since(start).Milliseconds(),
 		Mock:           ans.Mock,
 	}
-	writeJSON(w, http.StatusOK, resp)
+	writeSSE("final", resp)
 
 	go func() {
 		bgCtx := context.Background()

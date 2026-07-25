@@ -44,3 +44,11 @@ func (w *statusWriter) WriteHeader(status int) {
 	w.status = status
 	w.ResponseWriter.WriteHeader(status)
 }
+
+// Flush passes through to the underlying ResponseWriter so streaming (SSE)
+// handlers still work if this middleware is ever added to the chain.
+func (w *statusWriter) Flush() {
+	if f, ok := w.ResponseWriter.(http.Flusher); ok {
+		f.Flush()
+	}
+}

@@ -9,7 +9,9 @@ import (
 var ErrNoAnswer = errors.New("no answer")
 
 type Engine interface {
-	Answer(ctx context.Context, q Question) (Answer, error)
+	// AnswerStream streams raw text tokens to onToken as they arrive, then returns
+	// the final Answer (full text + sources) once generation completes.
+	AnswerStream(ctx context.Context, q Question, onToken func(text string)) (Answer, error)
 	DeleteDocument(ctx context.Context, filename string) error
 	ValidatePaper(ctx context.Context, r io.Reader, filename string) error
 }
