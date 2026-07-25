@@ -1,8 +1,12 @@
 # Project-specific Data
+data/
 data/raw_pdfs/
 data/chunks/
 data/embeddings/
 data/parsed/
+
+# LLM
+.claude
 
 # Temporary files and logs
 temp/
