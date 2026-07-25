@@ -4,10 +4,11 @@ import os
 import logging
 from contextlib import nullcontext
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import StreamingResponse
 from duckduckgo_search import DDGS
 from opentelemetry import trace
 from openinference.instrumentation import using_session
-from apps.api_python.models import QueryRequest, QueryResponse, Source
+from apps.api_python.models import QueryRequest, Source
 from apps.api_python import state
 from openai import OpenAI
 from google import genai
@@ -104,8 +105,12 @@ def _extract_grounding_sources(response) -> list[Source]:
     return sources
 
 
-async def generate_with_gemini(messages, model_name=None):
+async def generate_with_gemini_stream(messages, sources_out: list, model_name=None):
     """Primary generator using Google Gemini (free tier) via the google-genai SDK.
+
+    Yields text deltas as they arrive. Grounding citations (if the model used
+    Google Search) are appended to `sources_out` in place, since an async
+    generator can't both yield chunks and return a value.
 
     OpenInference auto-instruments this client, so the call is captured as an LLM
     span (prompt/model/tokens) on the Phoenix provider. Google Search grounding is
@@ -132,7 +137,7 @@ async def generate_with_gemini(messages, model_name=None):
     while contents and contents[0]["role"] == "model":
         contents.pop(0)
 
-    response = client.models.generate_content(
+    stream = await client.aio.models.generate_content_stream(
         model=model_name,
         contents=contents,
         config=types.GenerateContentConfig(
@@ -142,11 +147,16 @@ async def generate_with_gemini(messages, model_name=None):
             tools=[types.Tool(google_search=types.GoogleSearch())],
         ),
     )
-    return response.text, _extract_grounding_sources(response)
+    async for chunk in stream:
+        grounded = _extract_grounding_sources(chunk)
+        if grounded:
+            sources_out[:] = grounded
+        if chunk.text:
+            yield chunk.text
 
 
-def generate_with_groq(messages, model: str):
-    """Fallback generator using Groq once Gemini is exhausted/unavailable."""
+def generate_with_groq_stream(messages, model: str):
+    """Fallback generator using Groq once Gemini is exhausted/unavailable. Yields text deltas."""
     groq_api_key = os.getenv("GROQ_API_KEY")
     if not groq_api_key:
         raise Exception("GROQ_API_KEY not configured for fallback.")
@@ -159,16 +169,57 @@ def generate_with_groq(messages, model: str):
 
     log.info("Falling back to Groq (%s)", groq_model)
     client = OpenAI(base_url="https://api.groq.com/openai/v1", api_key=groq_api_key)
-    completion = client.chat.completions.create(
+    stream = client.chat.completions.create(
         model=groq_model,
         messages=messages,
         temperature=0.15,
-        max_tokens=16000
+        max_tokens=16000,
+        stream=True,
     )
-    return completion.choices[0].message.content
+    for event in stream:
+        delta = event.choices[0].delta.content if event.choices else None
+        if delta:
+            yield delta
 
 
-@router.post("/query", response_model=QueryResponse)
+def _sse(event: str, data) -> str:
+    return f"event: {event}\ndata: {json.dumps(data)}\n\n"
+
+
+async def _stream_answer(messages, model: str, sources: list):
+    """Streams raw text chunks from Gemini, falling back to Groq on failure.
+
+    Fallback is only safe BEFORE any chunk has reached the client — once Gemini's
+    stream has emitted output, switching providers mid-answer would produce a
+    jarring, disjointed response, so a failure at that point just truncates the
+    answer with a short notice instead of silently swapping generators.
+
+    Yields ("token", text) for each chunk and, at most once, ("error", detail) if
+    both providers fail before any output was produced.
+    """
+    emitted_any = False
+    gemini_sources: list = []
+    try:
+        async for chunk in generate_with_gemini_stream(messages, gemini_sources):
+            emitted_any = True
+            yield ("token", chunk)
+        seen_urls = {s.url for s in sources if s.url}
+        sources.extend(s for s in gemini_sources if s.url not in seen_urls)
+    except Exception as e:
+        log.warning("Gemini failed or rate limited: %s", e)
+        if emitted_any:
+            log.error("Gemini failed mid-stream after partial output; not falling back to Groq.")
+            yield ("token", "\n\n<em>[Response was cut short due to a generation error.]</em>")
+        else:
+            try:
+                for chunk in generate_with_groq_stream(messages, model):
+                    yield ("token", chunk)
+            except Exception as groq_err:
+                log.error("Groq fallback also failed: %s", groq_err)
+                yield ("error", "Both Gemini and Groq services are unavailable.")
+
+
+@router.post("/query")
 async def handle_query(request: QueryRequest):
     """
     Handles a user's query: retrieve -> rerank -> threshold-gate -> synthesize.
@@ -238,7 +289,11 @@ async def handle_query(request: QueryRequest):
     has_context = bool(kept_documents or web_documents)
     history = request.history or []
     if not has_context and not history:
-        return QueryResponse(answer=_not_found_answer(clean_query, use_web_search), sources=[])
+        async def not_found_stream():
+            payload = json.loads(_not_found_answer(clean_query, use_web_search))
+            yield _sse("token", payload["main"])
+            yield _sse("final", {"main": payload["main"], "tabs": [], "sources": []})
+        return StreamingResponse(not_found_stream(), media_type="text/event-stream")
 
     # 5. Construct the multi-turn prompt: system + conversation history + current query.
     if has_context:
@@ -253,33 +308,40 @@ async def handle_query(request: QueryRequest):
         messages.append({"role": role, "content": turn.text})
     messages.append({"role": "user", "content": clean_query})
 
-    # 6. Generation: Gemini primary -> Groq fallback. Tag both LLM calls with the
-    #    conversation id as a Phoenix session, so every turn of a conversation groups
-    #    together in the Phoenix Sessions view instead of appearing as unrelated traces.
-    session_ctx = using_session(request.conversation_id) if request.conversation_id else nullcontext()
-    with session_ctx:
-        try:
-            generated_text, gemini_sources = await generate_with_gemini(messages)
-            # Dedupe against any DDG @web-search results already collected above.
-            seen_urls = {s.url for s in sources if s.url}
-            sources.extend(s for s in gemini_sources if s.url not in seen_urls)
-        except Exception as e:
-            log.warning("Gemini failed or rate limited: %s", e)
-            try:
-                generated_text = generate_with_groq(messages, request.model)
-            except Exception as groq_err:
-                log.error("Groq fallback also failed: %s", groq_err)
-                raise HTTPException(status_code=502, detail="Both Gemini and Groq services are unavailable.")
+    # 6. Generation: Gemini primary -> Groq fallback (only before the first token is
+    #    sent; see _stream_answer). Tag both LLM calls with the conversation id as a
+    #    Phoenix session, so every turn of a conversation groups together in the
+    #    Phoenix Sessions view instead of appearing as unrelated traces.
+    async def event_stream():
+        buffer = []
+        session_ctx = using_session(request.conversation_id) if request.conversation_id else nullcontext()
+        with session_ctx:
+            async for kind, payload in _stream_answer(messages, request.model, sources):
+                if kind == "token":
+                    buffer.append(payload)
+                    yield _sse("token", payload)
+                elif kind == "error":
+                    yield _sse("error", {"detail": payload})
 
-    # 7. Parse Structure
-    tabs = []
-    for tab_match in re.finditer(r'<tab\s+title="([^"]+)">(.*?)</tab>', generated_text, re.DOTALL | re.IGNORECASE):
-        tabs.append({"title": tab_match.group(1), "content": tab_match.group(2).strip()})
+        generated_text = "".join(buffer)
+        if not generated_text:
+            return  # both providers failed before any output; client already got an error event
 
-    main_match = re.search(r'<main>(.*?)</main>', generated_text, re.DOTALL | re.IGNORECASE)
-    # The model doesn't always follow the <main> output contract (more likely on long
-    # follow-up turns) — fall back to the raw text rather than discarding the answer.
-    main_content = main_match.group(1).strip() if main_match else generated_text.strip()
+        # 7. Parse Structure — same regex contract as before, applied to the full text
+        #    now that streaming has finished.
+        tabs = []
+        for tab_match in re.finditer(r'<tab\s+title="([^"]+)">(.*?)</tab>', generated_text, re.DOTALL | re.IGNORECASE):
+            tabs.append({"title": tab_match.group(1), "content": tab_match.group(2).strip()})
 
-    final_answer = json.dumps({"main": main_content, "tabs": tabs})
-    return QueryResponse(answer=final_answer, sources=sources)
+        main_match = re.search(r'<main>(.*?)</main>', generated_text, re.DOTALL | re.IGNORECASE)
+        # The model doesn't always follow the <main> output contract (more likely on long
+        # follow-up turns) — fall back to the raw text rather than discarding the answer.
+        main_content = main_match.group(1).strip() if main_match else generated_text.strip()
+
+        yield _sse("final", {
+            "main": main_content,
+            "tabs": tabs,
+            "sources": [s.model_dump() for s in sources],
+        })
+
+    return StreamingResponse(event_stream(), media_type="text/event-stream")
