@@ -52,6 +52,8 @@ The project uses a containerized, decoupled microservices architecture designed 
    - The retrieved context is formatted into a strict prompt and sent to an LLM to generate a grounded, cited response.
    - The answer is streamed back through the Go Gateway to the UI.
 
+> 📖 For the long version — chunking strategy, reranking, hybrid retrieval, and the chat-memory model — see the [deep-dive docs](#deep-dives-docs).
+
 ---
 
 ## 💻 Installation & Setup
@@ -111,6 +113,22 @@ docker-compose down
 
 ## 📚 Further Documentation
 
-- `/docs`: Contains advanced integration playbooks and AWS deployment strategies.
+### Deep dives (`/docs`)
+
+Long-form, plain-English walkthroughs of the system. Open them locally in a browser, or read them online once GitHub Pages is enabled (Settings → Pages → Source: `main` / `/docs`).
+
+| Document | What it covers | Read |
+| --- | --- | --- |
+| **How the Research Assistant Works** | The full RAG pipeline: a question's journey, chunking in depth, reranking, hybrid retrieval, scaling, and a glossary. | [local](docs/how-it-works.html) · [online](https://fourandhalf.github.io/database-development/how-it-works.html) |
+| **The Database Design & How It Remembers a Conversation** | The two-schema Postgres layout, the chat tables, what the model actually sees each turn, conversation reload, and guest vs. signed-in state. | [local](docs/database-and-chat-memory.html) · [online](https://fourandhalf.github.io/database-development/database-and-chat-memory.html) |
+
+To read them without cloning or waiting on Pages:
+```bash
+python3 -m http.server 8090 --directory docs
+# then open http://localhost:8090/how-it-works.html
+```
+
+### Other directories
+
 - `/ai`: Contains system prompts, governance rules, and prompt engineering evaluation details.
 - `/experiments`: Scripts used for evaluating chunking, embedding models, and reranking strategies.
