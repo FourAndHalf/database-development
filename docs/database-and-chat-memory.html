@@ -520,3 +520,53 @@
 <footer>
   Companion piece to <em>How Aether Works</em>. Figures and code details on this page were checked against the repository on 2026-07-08.
 </footer>
+
+<!-- Fullscreen affordance: F toggles, and #fullscreen arms the first click. -->
+<style>
+  #fs-toggle {
+    position: fixed; bottom: 1rem; right: 1rem; z-index: 999;
+    font: inherit; font-size: 0.8rem; line-height: 1;
+    padding: 0.55rem 0.8rem; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft);
+    opacity: 0.55; transition: opacity 0.15s ease, color 0.15s ease;
+  }
+  #fs-toggle:hover { opacity: 1; color: var(--ink); }
+  #fs-hint {
+    position: fixed; inset: 0; z-index: 998; display: flex;
+    align-items: center; justify-content: center;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    font-size: 1rem; color: var(--ink-soft); cursor: pointer;
+  }
+  @media print { #fs-toggle, #fs-hint { display: none; } }
+</style>
+<button id="fs-toggle" title="Toggle fullscreen (F)">⛶ Fullscreen</button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    function toggle() {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else if (root.requestFullscreen) root.requestFullscreen().catch(function () {});
+    }
+    document.getElementById('fs-toggle').addEventListener('click', toggle);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'f' || e.key === 'F') {
+        var t = e.target.tagName;
+        if (t === 'INPUT' || t === 'TEXTAREA' || e.metaKey || e.ctrlKey || e.altKey) return;
+        toggle();
+      }
+    });
+    // Opened via the docs hub's "Open fullscreen" button: fullscreen needs a
+    // user gesture, so arm it on the first click anywhere.
+    if (location.hash === '#fullscreen') {
+      var hint = document.createElement('div');
+      hint.id = 'fs-hint';
+      hint.textContent = 'Click anywhere to enter fullscreen';
+      hint.addEventListener('click', function () { hint.remove(); toggle(); });
+      document.addEventListener('keydown', function once() {
+        if (hint.isConnected) hint.remove();
+        document.removeEventListener('keydown', once);
+      });
+      document.body.appendChild(hint);
+    }
+  })();
+</script>

@@ -115,18 +115,19 @@ docker-compose down
 
 ### Deep dives (`/docs`)
 
-Long-form, plain-English walkthroughs of the system. Open them locally in a browser, or read them online once GitHub Pages is enabled (Settings → Pages → Source: `main` / `/docs`).
+Long-form, plain-English walkthroughs of the system. Start the docs server and open the hub — each doc opens in its own maximized window, and `F` toggles true fullscreen inside any of them.
 
-| Document | What it covers | Read |
-| --- | --- | --- |
-| **How the Research Assistant Works** | The full RAG pipeline: a question's journey, chunking in depth, reranking, hybrid retrieval, scaling, and a glossary. | [local](docs/how-it-works.html) · [online](https://fourandhalf.github.io/database-development/how-it-works.html) |
-| **The Database Design & How It Remembers a Conversation** | The two-schema Postgres layout, the chat tables, what the model actually sees each turn, conversation reload, and guest vs. signed-in state. | [local](docs/database-and-chat-memory.html) · [online](https://fourandhalf.github.io/database-development/database-and-chat-memory.html) |
-
-To read them without cloning or waiting on Pages:
 ```bash
 python3 -m http.server 8090 --directory docs
-# then open http://localhost:8090/how-it-works.html
+# then open http://localhost:8090/
 ```
+
+| Document | What it covers |
+| --- | --- |
+| **[How the Research Assistant Works](docs/how-it-works.html)** | The full RAG pipeline: a question's journey, chunking in depth, reranking, hybrid retrieval, scaling, and a glossary. |
+| **[The Database Design & How It Remembers a Conversation](docs/database-and-chat-memory.html)** | The two-schema Postgres layout, the chat tables, what the model actually sees each turn, conversation reload, and guest vs. signed-in state. |
+
+*(These are HTML files — GitHub shows them as source in the browser. Clone the repo, or use the server above, to read them rendered.)*
 
 ### Other directories
 

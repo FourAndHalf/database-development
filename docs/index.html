@@ -1,0 +1,207 @@
+<title>Aether — Documentation</title>
+<style>
+  :root {
+    --bg: #ECEBE1;
+    --surface: #F8F7F1;
+    --surface-2: #E2E0D2;
+    --ink: #20262A;
+    --ink-soft: #4B535A;
+    --ink-faint: #767F84;
+    --line: #D3CFC0;
+    --accent: #146B69;
+    --accent-ink: #F8F7F1;
+    --accent-2: #916A17;
+    --radius: 12px;
+    --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10171A;
+      --surface: #171F22;
+      --surface-2: #1E282B;
+      --ink: #E7E4D9;
+      --ink-soft: #AAB2AC;
+      --ink-faint: #77827E;
+      --line: #2B3538;
+      --accent: #57D6C7;
+      --accent-ink: #0A1213;
+      --accent-2: #DDB15C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10171A;
+    --surface: #171F22;
+    --surface-2: #1E282B;
+    --ink: #E7E4D9;
+    --ink-soft: #AAB2AC;
+    --ink-faint: #77827E;
+    --line: #2B3538;
+    --accent: #57D6C7;
+    --accent-ink: #0A1213;
+    --accent-2: #DDB15C;
+  }
+  :root[data-theme="light"] {
+    --bg: #ECEBE1;
+    --surface: #F8F7F1;
+    --surface-2: #E2E0D2;
+    --ink: #20262A;
+    --ink-soft: #4B535A;
+    --ink-faint: #767F84;
+    --line: #D3CFC0;
+    --accent: #146B69;
+    --accent-ink: #F8F7F1;
+    --accent-2: #916A17;
+  }
+
+  body {
+    margin: 0;
+    padding: 4rem 1.5rem 6rem;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 46rem; margin: 0 auto; }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 0.75rem;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    line-height: 1.15;
+    margin: 0 0 0.75rem;
+    font-weight: 600;
+  }
+
+  .lede { color: var(--ink-soft); margin: 0 0 3rem; max-width: 34rem; }
+
+  .cards { display: grid; gap: 1.25rem; }
+
+  .card {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.6rem;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .card:hover, .card:focus-visible {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  .card h2 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin: 0 0 0.4rem;
+    font-weight: 600;
+  }
+  .card p { margin: 0 0 1rem; color: var(--ink-soft); font-size: 0.95rem; }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  .btn {
+    font: inherit;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    color: var(--ink);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .btn:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .btn-primary:hover { filter: brightness(1.1); }
+
+  .note {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+  .note code {
+    background: var(--surface-2);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Aether</p>
+  <h1>Documentation</h1>
+  <p class="lede">Long-form walkthroughs of how the research assistant works and how it stores what it knows. Each opens in its own window.</p>
+
+  <div class="cards">
+    <div class="card">
+      <h2>How the Research Assistant Works</h2>
+      <p>The full RAG pipeline — a question's journey, chunking in depth, how reranking really works, hybrid retrieval, scaling, and a glossary.</p>
+      <div class="actions">
+        <button class="btn btn-primary" data-open="how-it-works.html">Open in new window</button>
+        <button class="btn" data-open="how-it-works.html" data-fullscreen="1">Open fullscreen</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>The Database Design &amp; How It Remembers a Conversation</h2>
+      <p>The two-schema Postgres layout, the chat tables up close, what the model actually sees each turn, conversation reload, and guest vs. signed-in state.</p>
+      <div class="actions">
+        <button class="btn btn-primary" data-open="database-and-chat-memory.html">Open in new window</button>
+        <button class="btn" data-open="database-and-chat-memory.html" data-fullscreen="1">Open fullscreen</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="note">
+    Served best over a local server rather than <code>file://</code>:
+    <code>python3 -m http.server 8090 --directory docs</code>, then visit
+    <code>http://localhost:8090/</code>. Inside any doc, press <code>F</code> to toggle fullscreen.
+  </p>
+</div>
+
+<script>
+  document.querySelectorAll('[data-open]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var url = btn.dataset.open;
+      var wantsFullscreen = btn.dataset.fullscreen === '1';
+      if (wantsFullscreen) url += '#fullscreen';
+
+      var features = [
+        'popup=yes',
+        'noopener=no',
+        'width=' + screen.availWidth,
+        'height=' + screen.availHeight,
+        'left=0',
+        'top=0'
+      ].join(',');
+
+      var win = window.open(url, '_blank', features);
+      if (!win) {
+        // Popup blocked — fall back to a plain new tab.
+        window.open(url, '_blank');
+        return;
+      }
+      try { win.moveTo(0, 0); win.resizeTo(screen.availWidth, screen.availHeight); } catch (e) {}
+      win.focus();
+    });
+  });
+</script>
